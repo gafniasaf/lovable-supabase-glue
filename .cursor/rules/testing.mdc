@@ -1,0 +1,13 @@
+---
+description: Testing Framework and Execution Standards
+globs:
+alwaysApply: true
+---
+
+- Use Pytest exclusively for Python backend testing without alternatives
+- Use Vitest exclusively for frontend unit testing without alternatives
+- Use Playwright exclusively for end-to-end testing without alternatives
+- Run complete test suites before marking any development task complete
+- Fix all failing tests before proceeding to next development phase
+- Generate test reports in reports folder for analysis and debugging
+- Maintain comprehensive test coverage for all implemented features

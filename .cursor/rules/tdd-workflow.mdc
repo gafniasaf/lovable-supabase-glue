@@ -1,0 +1,14 @@
+---
+description: Mandatory Test-Driven Development Workflow Rules
+globs:
+alwaysApply: true
+---
+
+- Component Test creation MUST precede any code modification or creation
+- Build and test execution REQUIRED after each development phase completion
+- Code creation ONLY permitted after Component Test completion and validation
+- Unit Test creation REQUIRED after Code implementation completion
+- E2E Test creation REQUIRED after Unit Test completion and validation
+- IMMEDIATE FAILURE required if any build or test step fails during cycle
+- Follow exact TDD sequence without deviation or skipping phases
+- Document test results and failures in artifacts folder for debugging

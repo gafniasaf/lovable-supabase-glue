@@ -1,0 +1,21 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["jest", "node"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "noImplicitAny": false,
+    "baseUrl": ".",
+    "paths": {
+      "@shared": ["../packages/shared/src/index.ts"],
+      "@shared/*": ["../packages/shared/src/*"],
+      "@education/shared": ["../packages/shared/src/index.ts"],
+      "@education/shared/*": ["../packages/shared/src/*"],
+      "@/*": ["../apps/web/src/*"]
+    }
+  },
+  "include": ["unit/**/*.ts", "unit/**/*.tsx", "types/**/*.d.ts"]
+}
+
+

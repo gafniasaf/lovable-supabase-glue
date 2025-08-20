@@ -1,0 +1,13 @@
+---
+description: Project Structure and Design Compliance Rules
+globs:
+alwaysApply: true
+---
+
+- Place all generated artifacts in artifacts folder for debugging and logging
+- Use reports folder exclusively for test reports and analysis logs
+- Maintain proper dependency management with exact version specifications
+- Prevent duplicate file creation or conflicting implementations
+- Follow established project structure without creating alternative patterns
+- Ensure proper separation of concerns according to architectural blueprint
+- Validate structural compliance before completing development tasks

@@ -1,0 +1,30 @@
+# Node modules and caches
+node_modules
+**/node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-store
+
+# Next build outputs
+apps/web/.next
+apps/web/out
+
+# Git
+.git
+.gitignore
+
+# Local envs and logs
+.env*
+*.log
+
+# Tests, reports, and artifacts (not needed in runtime image)
+/tests
+/reports
+/artifacts
+
+# OS/editor
+.DS_Store
+*.swp
+.idea
+.vscode

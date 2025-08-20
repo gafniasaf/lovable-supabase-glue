@@ -1,0 +1,34 @@
+name: Web CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Enable concurrency
+        uses: softprops/turnstyle@v1
+        with:
+          abort-after-seconds: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: npm ci
+      - run: npm --workspace apps/web run typecheck
+      - run: npm --workspace apps/web run lint
+      - run: npm --workspace apps/web run build-storybook
+      - name: Upload Storybook build
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: apps/web/storybook-static
+
+

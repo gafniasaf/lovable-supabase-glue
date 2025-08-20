@@ -1,0 +1,13 @@
+---
+description: Technical Documentation and Project Reference Rules
+globs:
+alwaysApply: true
+---
+
+- Check TECHNICAL_INFO.md and README.md before any development action
+- Follow architecture folder structure as mandatory development blueprint
+- Reference HOW_TO_RUN.md for execution procedures and environment setup
+- Update documentation when adding features or making modifications
+- Verify project documentation alignment for all technical decisions
+- Document all code changes with clear comments and explanations
+- Maintain consistency between code implementation and architectural plans

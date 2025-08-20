@@ -1,0 +1,38 @@
+name: Nightly Contract Ping
+
+on:
+  schedule:
+    - cron: '0 5 * * *'  # daily at 05:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  contract-ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Concurrency (cancel in-progress)
+        uses: softprops/turnstyle@v1
+        with:
+          abort-after-seconds: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run contract ping
+        env:
+          CONTRACT_BASE_URL: ${{ secrets.CONTRACT_BASE_URL }}
+          PLAYWRIGHT_BASE_URL: ${{ secrets.CONTRACT_BASE_URL }}
+          NEXT_DISABLE_SWC_NATIVE: '1'
+        run: npm run ci:contract
+
+

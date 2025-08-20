@@ -1,0 +1,21 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Running typecheck and lint..."
+npm run typecheck || exit 1
+npm run lint || exit 1
+
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Format and lint staged files
+npx lint-staged
+
+# Typecheck whole workspace and lint web app
+npm run -ws typecheck
+npm --workspace apps/web run lint
+
+# Quick unit tests (fast)
+npm --workspace tests run test
+
+

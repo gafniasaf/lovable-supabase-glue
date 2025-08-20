@@ -1,0 +1,13 @@
+---
+description: Terminal Safety and Error Prevention Rules
+globs:
+alwaysApply: true
+---
+
+- Generate only explicitly requested code without extras or nice-to-have features
+- Create comprehensive error handling for all operations and functions
+- Avoid complex shell operations that can cause terminal hanging or blocking
+- Use simple file operations with individual creation and verification steps
+- Prevent multi-line shell commands that can fail or cause system issues
+- Include validation checkpoints throughout all development workflows
+- Implement immediate failure protocols for build or test failures

@@ -1,0 +1,38 @@
+"use client";
+import { useEffect, useState } from "react";
+import { useNotificationsPoll } from "@/lib/hooks/useNotificationsPoll";
+
+export default function NotificationsBellClient({ initialUnread = 0 }: { initialUnread?: number }) {
+	const [unread, setUnread] = useState<number>(initialUnread);
+	useNotificationsPoll(15000, (count) => setUnread(count));
+
+	useEffect(() => {
+		function onUpdated() {
+			setTimeout(async () => {
+				try {
+					const base = process.env.NEXT_PUBLIC_BASE_URL || '';
+					const res = await fetch(`${base}/api/notifications`, { cache: 'no-store' });
+					const arr = await res.json().catch(() => []);
+					const cnt = Array.isArray(arr) ? arr.filter((n: any) => !n.read_at).length : 0;
+					setUnread(cnt);
+				} catch {}
+			}, 0);
+		}
+		window.addEventListener('notifications:updated', onUpdated as any);
+		return () => window.removeEventListener('notifications:updated', onUpdated as any);
+	}, []);
+
+	const bumpClass = unread > 0 ? 'animate-pulse' : '';
+	return (
+		<span className="inline-flex items-center gap-2">
+			<span className={bumpClass}>🔔</span>
+			<span className="ml-1 text-xs">{unread}</span>
+			<span className="ml-2 inline-flex items-center gap-1 text-[10px] text-gray-500">
+				<span className="w-2 h-2 rounded-full bg-gray-400" title="Polling" />
+				<span>Polling</span>
+			</span>
+		</span>
+	);
+}
+
+

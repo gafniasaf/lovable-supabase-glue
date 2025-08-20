@@ -1,0 +1,51 @@
+name: E2E Smoke
+
+on:
+  pull_request:
+    branches: ['**']
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Concurrency (cancel in-progress)
+        uses: softprops/turnstyle@v1
+        with:
+          abort-after-seconds: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        working-directory: tests
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright smoke tests (@smoke)
+        env:
+          PW_WORKERS: '1'
+          CI: 'true'
+        working-directory: tests
+        run: npx playwright test -c ./e2e/playwright.config.ts -g @smoke --reporter=line
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-smoke
+          path: |
+            tests/playwright-report
+            tests/test-results
+          if-no-files-found: ignore
+
+

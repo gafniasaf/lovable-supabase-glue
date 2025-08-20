@@ -1,0 +1,178 @@
+{
+  "info": {
+    "name": "Education Platform API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Core backend endpoints — health, dashboard, notifications, messages, files (test-mode)."
+  },
+  "item": [
+    {
+      "name": "Runtime v2 — exchange",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "content-type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"token\": \"{{launch_token}}\"\n}" },
+        "url": { "raw": "{{base_url}}/api/runtime/auth/exchange", "host": ["{{base_url}}"], "path": ["api","runtime","auth","exchange"] }
+      }
+    },
+    {
+      "name": "Runtime v2 — context",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "authorization", "value": "Bearer {{runtime_token}}" } ],
+        "url": { "raw": "{{base_url}}/api/runtime/context", "host": ["{{base_url}}"], "path": ["api","runtime","context"] }
+      }
+    },
+    {
+      "name": "Runtime v2 — progress",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "authorization", "value": "Bearer {{runtime_token}}" }, { "key": "content-type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"pct\": 25,\n  \"topic\": \"conformance\"\n}" },
+        "url": { "raw": "{{base_url}}/api/runtime/progress", "host": ["{{base_url}}"], "path": ["api","runtime","progress"] }
+      }
+    },
+    {
+      "name": "Runtime v2 — grade",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "authorization", "value": "Bearer {{runtime_token}}" }, { "key": "content-type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"score\": 85,\n  \"max\": 100,\n  \"passed\": true\n}" },
+        "url": { "raw": "{{base_url}}/api/runtime/grade", "host": ["{{base_url}}"], "path": ["api","runtime","grade"] }
+      }
+    },
+    {
+      "name": "Runtime v2 — checkpoint save",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "authorization", "value": "Bearer {{runtime_token}}" }, { "key": "content-type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"key\": \"adaptive-state\",\n  \"state\": { \"ok\": true }\n}" },
+        "url": { "raw": "{{base_url}}/api/runtime/checkpoint/save", "host": ["{{base_url}}"], "path": ["api","runtime","checkpoint","save"] }
+      }
+    },
+    {
+      "name": "Runtime v2 — checkpoint load",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "authorization", "value": "Bearer {{runtime_token}}" } ],
+        "url": { "raw": "{{base_url}}/api/runtime/checkpoint/load?key=adaptive-state", "host": ["{{base_url}}"], "path": ["api","runtime","checkpoint","load"], "query": [ { "key":"key", "value":"adaptive-state" } ] }
+      }
+    },
+    {
+      "name": "Outcomes — attempt.completed (vendor→platform)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "authorization", "value": "Bearer {{provider_jwt}}" }, { "key": "content-type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"courseId\": \"{{course_id}}\",\n  \"userId\": \"{{user_id}}\",\n  \"event\": {\n    \"type\": \"attempt.completed\",\n    \"score\": 90,\n    \"max\": 100,\n    \"passed\": true,\n    \"runtimeAttemptId\": \"attempt-1\",\n    \"raw\": { \"note\": \"demo\" }\n  }\n}" },
+        "url": { "raw": "{{base_url}}/api/runtime/outcomes", "host": ["{{base_url}}"], "path": ["api","runtime","outcomes"] }
+      }
+    },
+    {
+      "name": "Outcomes — progress (vendor→platform)",
+      "request": {
+        "method": "POST",
+        "header": [ { "key": "authorization", "value": "Bearer {{provider_jwt}}" }, { "key": "content-type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"courseId\": \"{{course_id}}\",\n  \"userId\": \"{{user_id}}\",\n  \"event\": {\n    \"type\": \"progress\",\n    \"pct\": 60,\n    \"topic\": \"unit-1\",\n    \"raw\": { \"note\": \"demo\" }\n  }\n}" },
+        "url": { "raw": "{{base_url}}/api/runtime/outcomes", "host": ["{{base_url}}"], "path": ["api","runtime","outcomes"] }
+      }
+    }
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/health", "host": ["{{base_url}}"], "path": ["api", "health"] }
+      }
+    },
+    {
+      "name": "Dashboard",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "x-test-auth", "value": "{{role}}" } ],
+        "url": { "raw": "{{base_url}}/api/dashboard", "host": ["{{base_url}}"], "path": ["api", "dashboard"] }
+      }
+    },
+    {
+      "name": "Notifications — list",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "x-test-auth", "value": "student" } ],
+        "url": { "raw": "{{base_url}}/api/notifications", "host": ["{{base_url}}"], "path": ["api", "notifications"] }
+      }
+    },
+    {
+      "name": "Notifications — preferences (GET)",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "x-test-auth", "value": "student" } ],
+        "url": { "raw": "{{base_url}}/api/notifications/preferences", "host": ["{{base_url}}"], "path": ["api", "notifications", "preferences"] }
+      }
+    },
+    {
+      "name": "Notifications — preferences (PATCH)",
+      "request": {
+        "method": "PATCH",
+        "header": [ { "key": "x-test-auth", "value": "student" }, { "key": "content-type", "value": "application/json" } ],
+        "body": { "mode": "raw", "raw": "{\n  \"message:new\": true\n}" },
+        "url": { "raw": "{{base_url}}/api/notifications/preferences", "host": ["{{base_url}}"], "path": ["api", "notifications", "preferences"] }
+      }
+    },
+    {
+      "name": "Notifications — read all (PATCH)",
+      "request": {
+        "method": "PATCH",
+        "header": [ { "key": "x-test-auth", "value": "student" } ],
+        "url": { "raw": "{{base_url}}/api/notifications/read-all", "host": ["{{base_url}}"], "path": ["api", "notifications", "read-all"] }
+      }
+    },
+    {
+      "name": "Messages — threads (GET)",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "x-test-auth", "value": "student" } ],
+        "url": { "raw": "{{base_url}}/api/messages/threads", "host": ["{{base_url}}"], "path": ["api", "messages", "threads"] }
+      }
+    },
+    {
+      "name": "Messages — list in thread (GET)",
+      "request": {
+        "method": "GET",
+        "header": [ { "key": "x-test-auth", "value": "student" } ],
+        "url": { "raw": "{{base_url}}/api/messages?thread_id={{thread_id}}", "host": ["{{base_url}}"], "path": ["api", "messages"], "query": [ { "key": "thread_id", "value": "{{thread_id}}" } ] }
+      }
+    },
+    {
+      "name": "Messages — mark read (PATCH)",
+      "request": {
+        "method": "PATCH",
+        "header": [ { "key": "x-test-auth", "value": "student" } ],
+        "url": { "raw": "{{base_url}}/api/messages?id={{message_id}}", "host": ["{{base_url}}"], "path": ["api", "messages"], "query": [ { "key": "id", "value": "{{message_id}}" } ] }
+      }
+    },
+    {
+      "name": "Files — upload via PUT (test-mode)",
+      "request": {
+        "method": "PUT",
+        "header": [ { "key": "x-test-auth", "value": "student" }, { "key": "content-type", "value": "text/plain" } ],
+        "body": { "mode": "raw", "raw": "hello world" },
+        "url": { "raw": "{{base_url}}/api/files/upload-url?owner_type=user&owner_id=test-user&content_type=text/plain", "host": ["{{base_url}}"], "path": ["api", "files", "upload-url"], "query": [
+          { "key": "owner_type", "value": "user" },
+          { "key": "owner_id", "value": "test-user" },
+          { "key": "content_type", "value": "text/plain" }
+        ] }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:3022" },
+    { "key": "launch_token", "value": "" },
+    { "key": "runtime_token", "value": "" },
+    { "key": "provider_jwt", "value": "" },
+    { "key": "course_id", "value": "" },
+    { "key": "user_id", "value": "" },
+    { "key": "role", "value": "teacher" },
+    { "key": "thread_id", "value": "00000000-0000-0000-0000-000000000000" },
+    { "key": "message_id", "value": "00000000-0000-0000-0000-000000000000" }
+  ]
+}
+
+

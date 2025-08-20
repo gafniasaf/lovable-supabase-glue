@@ -1,0 +1,80 @@
+### Health
+GET http://localhost:3022/api/health
+
+### Dashboard (test role header)
+GET http://localhost:3022/api/dashboard
+x-test-auth: teacher
+
+### Notifications list
+GET http://localhost:3022/api/notifications
+x-test-auth: student
+
+### Notifications preferences
+GET http://localhost:3022/api/notifications/preferences
+x-test-auth: student
+
+PATCH http://localhost:3022/api/notifications/preferences
+content-type: application/json
+x-test-auth: student
+
+{
+  "message:new": true
+}
+
+### Messages threads
+GET http://localhost:3022/api/messages/threads
+x-test-auth: student
+
+### Messages in thread
+GET http://localhost:3022/api/messages?thread_id=00000000-0000-0000-0000-000000000000
+x-test-auth: student
+
+### Files upload-url (test-mode PUT path)
+PUT http://localhost:3022/api/files/upload-url?owner_type=user&owner_id=test-user&content_type=text/plain
+content-type: text/plain
+x-test-auth: student
+
+hello
+
+### Files presign (prod-like)
+POST http://localhost:3022/api/files/upload-url
+content-type: application/json
+x-test-auth: student
+
+{
+  "owner_type": "user",
+  "owner_id": "test-student-id",
+  "content_type": "text/plain",
+  "filename": "hello.txt",
+  "expected_bytes": 5
+}
+
+### Files finalize
+POST http://localhost:3022/api/files/finalize
+content-type: application/json
+x-test-auth: student
+
+{
+  "key": "<object_key_from_presign>",
+  "size_bytes": 5
+}
+
+### Admin quotas list
+GET http://localhost:3022/api/admin/quotas
+x-test-auth: admin
+
+### Admin quotas update
+PATCH http://localhost:3022/api/admin/quotas
+content-type: application/json
+x-test-auth: admin
+
+{
+  "user_id": "00000000-0000-0000-0000-000000000000",
+  "max_bytes": 10485760
+}
+
+### Internal metrics (Prometheus)
+GET http://localhost:3022/api/internal/metrics
+x-metrics-token: change-me
+
+

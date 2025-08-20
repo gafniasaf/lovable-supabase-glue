@@ -1,0 +1,46 @@
+name: Nightly Contracts
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Playwright browsers
+        working-directory: tests
+        run: npx playwright install --with-deps
+
+      - name: Run contract pings (@contract)
+        working-directory: tests
+        env:
+          PW_WORKERS: '1'
+          CI: 'true'
+        run: npx playwright test -c ./e2e/playwright.config.ts -g @contract --reporter=line
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-contracts
+          path: |
+            tests/playwright-report
+            tests/test-results
+          if-no-files-found: ignore
+
+

@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  build-test:
+    name: Lint, Typecheck, Unit (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Concurrency (cancel in-progress)
+        uses: softprops/turnstyle@v1
+        with:
+          abort-after-seconds: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests with coverage
+        run: npx jest -w 1 -c tests/jest.config.cjs --coverage
+
+      - name: Upload coverage artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: reports/unit/coverage
+
+  e2e:
+    name: Playwright E2E (Windows) - Smoke
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Concurrency (cancel in-progress)
+        uses: softprops/turnstyle@v1
+        with:
+          abort-after-seconds: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+
+      - name: Run E2E smoke tests
+        env:
+          CI: '1'
+        run: npm run smoke-test
+

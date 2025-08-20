@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Simple loading skeletons */
+.skeleton {
+  @apply animate-pulse bg-gray-200 rounded;
+}
+.skeleton-line {
+  @apply h-4 bg-gray-200 rounded;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+/* Improve keyboard visibility */
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* Dark mode tokens */
+:root.dark {
+  --bg: #0b0f19;
+  --fg: #e5e7eb;
+}
+html.dark body {
+  background-color: var(--bg);
+  color: var(--fg);
+}
+
+

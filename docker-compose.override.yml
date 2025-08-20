@@ -1,0 +1,7 @@
+services:
+  web:
+    environment:
+      - NODE_ENV=development
+      - TEST_MODE=1
+      - NEXT_PUBLIC_TEST_MODE=1
+      - CSRF_DOUBLE_SUBMIT=0

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schema.stryker-mutator.io/stryker-schema.json",
+  "mutate": [
+    "../apps/web/src/server/services/{submissions,progress,assignments,quizzes,messages}/**/*.ts",
+    "../apps/web/src/app/api/{submissions,progress,assignments,files,quizzes,messages}/**/*.ts"
+  ],
+  "testRunner": "jest",
+  "coverageAnalysis": "perTest",
+  "jest": { "projectType": "custom", "configFile": "tests/jest.config.cjs" },
+  "ignoreStatic": true,
+  "thresholds": { "high": 80, "low": 70, "break": 65 },
+  "reporters": ["progress", "html"],
+  "timeoutMS": 60000
+}
+
+

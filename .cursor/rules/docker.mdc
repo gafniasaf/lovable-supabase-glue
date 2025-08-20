@@ -1,0 +1,13 @@
+---
+description: Docker Environment and Container Management Rules
+globs:
+alwaysApply: true
+---
+
+- Use Docker exclusively for all development environments without exceptions
+- Execute docker compose build after any file changes or modifications
+- Run docker compose up for service validation after build completion
+- Execute docker compose down for complete cleanup after task completion
+- Avoid complex shell operations that can cause terminal hanging or freezing
+- Use simple sequential file operations with individual creation and verification
+- Validate container health before proceeding with development tasks

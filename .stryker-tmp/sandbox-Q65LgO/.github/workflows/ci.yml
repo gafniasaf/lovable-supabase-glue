@@ -1,0 +1,118 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+
+      - name: Unit tests
+        run: npm --workspace tests run test
+
+      - name: Build web app
+        run: npm --workspace apps/web run build
+
+      - name: E2E tests (Playwright)
+        run: |
+          export WEB_PORT=3030
+          npm run e2e:build
+          PORT=$WEB_PORT TEST_MODE=1 NEXT_PUBLIC_TEST_MODE=1 npm --workspace apps/web run start &
+          SERVER_PID=$!
+          node tests/e2e/wait-for-health.js
+          PW_NO_SERVER=1 PW_WORKERS=1 PLAYWRIGHT_BASE_URL=http://localhost:$WEB_PORT npx playwright install --with-deps
+          PW_NO_SERVER=1 PW_WORKERS=1 PLAYWRIGHT_BASE_URL=http://localhost:$WEB_PORT npm --workspace tests run test:e2e
+          kill $SERVER_PID || true
+
+      - name: Mutation tests (Stryker)
+        run: npx stryker run --configFile tests/stryker.conf.json
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+    branches: ['**']
+
+jobs:
+  build-test:
+    name: Lint, Typecheck, Unit (Ubuntu)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Concurrency (cancel in-progress)
+        uses: softprops/turnstyle@v1
+        with:
+          abort-after-seconds: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests with coverage
+        run: npm --workspace tests run test:coverage
+
+      - name: Upload coverage artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: tests/test-results/coverage
+
+  e2e:
+    name: Playwright E2E (Windows) - Smoke
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Concurrency (cancel in-progress)
+        uses: softprops/turnstyle@v1
+        with:
+          abort-after-seconds: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install
+
+      - name: Run E2E smoke tests
+        env:
+          CI: '1'
+        run: npm run smoke-test
+

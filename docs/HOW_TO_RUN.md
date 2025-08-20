@@ -1,0 +1,47 @@
+### How to Run (Docker Compose)
+
+Prerequisites
+- Docker Desktop 4.x+
+- No local Node/PNPM/npm required
+
+Quick start (local)
+1) Build the web image
+   - Windows/macOS/Linux:
+     - docker compose build web
+2) Start the web service (web only)
+   - docker compose up -d web
+3) Check health
+   - Windows PowerShell:
+     - powershell -NoProfile -Command "(Invoke-WebRequest -UseBasicParsing http://localhost:3022/api/health).StatusCode"
+   - macOS/Linux:
+     - curl -i http://localhost:3022/api/health
+4) Stop and clean up
+   - docker compose down
+
+Local overrides
+- docker-compose.override.yml is applied automatically by Docker Compose.
+- It sets:
+  - NODE_ENV=development
+  - TEST_MODE=1
+  - NEXT_PUBLIC_TEST_MODE=1
+  - CSRF_DOUBLE_SUBMIT=0
+- Base docker-compose.yml remains prod-like (no dev/test flags).
+
+Profiles
+- The tests service is under the "tests" profile and will not run by default.
+- To run only if explicitly requested:
+  - docker compose --profile tests up tests
+
+Environment variables
+- Suppress warnings by setting an explicit allowlist (optional):
+  - RUNTIME_CORS_ALLOW=
+- Supabase (optional for local dev):
+  - NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321
+  - NEXT_PUBLIC_SUPABASE_ANON_KEY=test-anon-key-1234567890
+
+Ports
+- Web: http://localhost:3022
+
+Notes
+- Healthcheck calls `/api/health` from inside the container using loopback; the compose file uses `127.0.0.1` to avoid DNS/alias issues.
+- For stage/prod, unset TEST_MODE and provide real Supabase/runtime keys.

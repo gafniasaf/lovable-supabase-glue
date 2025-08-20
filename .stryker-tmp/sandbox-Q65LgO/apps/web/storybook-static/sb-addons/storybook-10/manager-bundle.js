@@ -1,0 +1,4 @@
+// @ts-nocheck
+try{
+(()=>{var p=__STORYBOOK_API__,{ActiveTabs:_,Consumer:m,ManagerContext:I,Provider:O,RequestResponseError:h,addons:e,combineParameters:d,controlOrMetaKey:A,controlOrMetaSymbol:T,eventMatchesShortcut:y,eventToShortcut:b,experimental_MockUniversalStore:U,experimental_UniversalStore:k,experimental_requestResponse:C,experimental_useUniversalStore:E,isMacLike:M,isShortcutTaken:P,keyToSymbol:B,merge:N,mockChannel:R,optionOrAltSymbol:Y,shortcutMatchesShortcut:v,shortcutToHumanString:x,types:s,useAddonState:L,useArgTypes:g,useArgs:q,useChannel:J,useGlobalTypes:X,useGlobals:G,useParameter:w,useSharedState:D,useStoryPrepared:K,useStorybookApi:V,useStorybookState:f}=__STORYBOOK_API__;e.register("role-switcher",()=>{e.add("role-switcher/tool",{title:"Role",type:s.TOOL,match:({viewMode:a})=>!!a,render:()=>null})});})();
+}catch(e){ console.error("[Storybook] One of your manager-entries failed: " + import.meta.url, e); }

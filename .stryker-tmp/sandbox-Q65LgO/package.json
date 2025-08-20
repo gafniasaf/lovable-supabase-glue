@@ -1,0 +1,52 @@
+{
+  "name": "education-platform-v2",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tests"
+  ],
+  "scripts": {
+    "dev": "npm --workspace apps/web run dev",
+    "build": "npm -ws run build",
+    "typecheck": "npm --workspace apps/web run typecheck",
+    "lint": "npm --workspace apps/web run lint",
+    "format": "prettier --write .",
+    "test": "npm --workspace tests run test",
+    "test:e2e": "npm --workspace tests run test:e2e",
+    "test:mutation": "npx stryker run --configFile tests/stryker.conf.json",
+    "test:cypress": "npm --workspace tests run test:cypress",
+    "smoke-test": "npm --workspace tests run smoke-test",
+    "prepare": "husky install",
+    "e2e:build": "npm --workspace apps/web run build",
+    "e2e:start": "cross-env PORT=%WEB_PORT% TEST_MODE=1 NEXT_PUBLIC_TEST_MODE=1 npm --workspace apps/web run start",
+    "e2e:health": "cross-env PLAYWRIGHT_BASE_URL=http://localhost:%WEB_PORT% node tests/e2e/wait-for-health.js",
+    "e2e:run": "cross-env PW_NO_SERVER=1 PW_WORKERS=1 PLAYWRIGHT_BASE_URL=http://localhost:%WEB_PORT% playwright test -c tests/e2e/playwright.config.ts",
+    "e2e": "npm run e2e:build && powershell -NoProfile -ExecutionPolicy Bypass -File tests/e2e/kill-web.ps1 && powershell -NoProfile -ExecutionPolicy Bypass -File tests/e2e/kill-port.ps1 -Port %WEB_PORT% && set WEB_PORT=%WEB_PORT%&& start /B cmd /C \"npm run e2e:start\" && npm run e2e:health && npm run e2e:run && taskkill /F /IM node.exe /FI \"WINDOWTITLE eq web*\"",
+    "storybook": "npm --workspace apps/web run storybook -- -p 6007",
+    "contract:ping": "cross-env CONTRACT_BASE_URL=${CONTRACT_BASE_URL:-http://localhost:%WEB_PORT%} node scripts/contract-ping.js",
+    "ci:contract": "npm run e2e:build && PORT=%WEB_PORT% TEST_MODE=1 NEXT_PUBLIC_TEST_MODE=1 npm --workspace apps/web run start & SERVER_PID=$!; node tests/e2e/wait-for-health.js; cross-env CONTRACT_BASE_URL=${CONTRACT_BASE_URL:-http://localhost:%WEB_PORT%} node scripts/contract-ping.js; kill $SERVER_PID || true"
+  },
+  "devDependencies": {
+    "@stryker-mutator/core": "^8.3.0",
+    "@stryker-mutator/jest-runner": "^8.3.0",
+    "@types/jest": "^29.5.12",
+    "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.6",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.5.4"
+  },
+  "lint-staged": {
+    "**/*.{ts,tsx,js,jsx,json,css,md}": [
+      "prettier --write"
+    ],
+    "**/*.{ts,tsx}": [
+      "eslint --fix"
+    ]
+  }
+}

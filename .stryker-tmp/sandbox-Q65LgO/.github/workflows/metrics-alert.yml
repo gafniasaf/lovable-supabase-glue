@@ -1,0 +1,24 @@
+name: Metrics Alert
+
+on:
+  schedule:
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm ci --omit=dev
+      - name: Check p95 budgets
+        env:
+          BASE_URL: ${{ secrets.CONTRACT_BASE_URL }}
+          METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
+          ALERT_P95_BUDGET_MS: 1200
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        run: node scripts/metrics-alert.js
+
