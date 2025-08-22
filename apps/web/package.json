@@ -17,7 +17,7 @@
     "storybook:test": "test-storybook --url http://localhost:6007"
   },
   "dependencies": {
-    "@education/shared": "0.1.0",
+    "@education/shared": "file:../../packages/shared",
     "@hookform/resolvers": "^5.2.1",
     "@supabase/auth-helpers-nextjs": "^0.9.0",
     "@supabase/supabase-js": "^2.45.0",
