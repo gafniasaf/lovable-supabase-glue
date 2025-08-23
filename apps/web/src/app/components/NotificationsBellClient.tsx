@@ -10,8 +10,8 @@ export default function NotificationsBellClient({ initialUnread = 0 }: { initial
 		function onUpdated() {
 			setTimeout(async () => {
 				try {
-					const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-					const res = await fetch(`${base}/api/notifications`, { cache: 'no-store' });
+					const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+					const res = await fetch(`${origin}/api/notifications`, { cache: 'no-store' });
 					const arr = await res.json().catch(() => []);
 					const cnt = Array.isArray(arr) ? arr.filter((n: any) => !n.read_at).length : 0;
 					setUnread(cnt);

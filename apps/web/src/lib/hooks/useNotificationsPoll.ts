@@ -9,8 +9,8 @@ export function useNotificationsPoll(intervalMs: number = 15000, onUpdate?: (unr
 		const lastUnreadRef = { current: -1 } as { current: number };
 		async function tick() {
 			try {
-				const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-				const res = await fetch(`${base}/api/notifications`, { cache: 'no-store' });
+				const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+				const res = await fetch(`${origin}/api/notifications`, { cache: 'no-store' });
 				if (res.ok) {
 					const json = await res.json().catch(() => []);
 					const arr = Array.isArray(json) ? json : [];

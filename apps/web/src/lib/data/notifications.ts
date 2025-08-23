@@ -17,8 +17,8 @@ function buildHttpGateway(): NotificationsGateway {
         const { fetchJson } = await import("@/lib/serverFetch");
         return fetchJson(`/api/notifications?offset=${offset}&limit=${limit}`, z.array(notification));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const url = `${base}/api/notifications?offset=${offset}&limit=${limit}`;
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const url = `${origin}/api/notifications?offset=${offset}&limit=${limit}`;
         const res = await fetch(url, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -30,8 +30,8 @@ function buildHttpGateway(): NotificationsGateway {
         const { fetchJson } = await import("@/lib/serverFetch");
         return fetchJson(`/api/notifications?id=${encodeURIComponent(id)}`, notification, { method: "PATCH" });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const url = `${base}/api/notifications?id=${encodeURIComponent(id)}`;
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const url = `${origin}/api/notifications?id=${encodeURIComponent(id)}`;
         const res = await fetch(url, { method: 'PATCH', cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -44,8 +44,8 @@ function buildHttpGateway(): NotificationsGateway {
         await fetchJson(`/api/notifications/read-all`, z.object({ ok: z.boolean() }), { method: "PATCH" });
         return { ok: true } as const;
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const url = `${base}/api/notifications/read-all`;
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const url = `${origin}/api/notifications/read-all`;
         const res = await fetch(url, { method: 'PATCH', cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return { ok: true } as const;
@@ -56,8 +56,8 @@ function buildHttpGateway(): NotificationsGateway {
         const { fetchJson } = await import("@/lib/serverFetch");
         return fetchJson(`/api/notifications/preferences`, z.record(z.boolean()));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const url = `${base}/api/notifications/preferences`;
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const url = `${origin}/api/notifications/preferences`;
         const res = await fetch(url, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -73,8 +73,8 @@ function buildHttpGateway(): NotificationsGateway {
           body: JSON.stringify(prefs)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const url = `${base}/api/notifications/preferences`;
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const url = `${origin}/api/notifications/preferences`;
         const res = await fetch(url, {
           method: 'PATCH',
           headers: { 'content-type': 'application/json' },
