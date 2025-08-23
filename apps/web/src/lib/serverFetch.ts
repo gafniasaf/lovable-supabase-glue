@@ -20,6 +20,14 @@ export function getBaseUrl() {
       return window.location.origin;
     }
   } catch {}
+  // Server runtime: derive from incoming request headers when possible
+  try {
+    const nh: any = require('next/headers');
+    const h = nh.headers();
+    const proto = h.get('x-forwarded-proto') || 'https';
+    const host = h.get('x-forwarded-host') || h.get('host');
+    if (host) return `${proto}://${host}`;
+  } catch {}
   return process.env.PLAYWRIGHT_BASE_URL || process.env.NEXT_PUBLIC_BASE_URL || `http://localhost:${process.env.PORT || 3000}`;
 }
 
