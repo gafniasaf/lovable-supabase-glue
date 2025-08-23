@@ -10,6 +10,19 @@ export default function NotificationsBellClient({ initialUnread = 0 }: { initial
 		function onUpdated() {
 			setTimeout(async () => {
 				try {
+					// Skip on public auth pages to avoid unnecessary calls before login
+					const path = (typeof window !== 'undefined' && window.location?.pathname) ? window.location.pathname : '';
+					if (path.startsWith('/login') || path.startsWith('/auth')) return;
+					// Skip if no Supabase session yet
+					const hasSession = (() => {
+						try {
+							const ck = typeof document !== 'undefined' ? (document.cookie || '') : '';
+							if (/sb-[^=]+=/.test(ck)) return true;
+							const keys = Object.keys(localStorage || {});
+							return keys.some(k => k.startsWith('sb-') && k.endsWith('-auth-token') && !!localStorage.getItem(k));
+						} catch { return false; }
+					})();
+					if (!hasSession) return;
 					const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
 					const res = await fetch(`${origin}/api/notifications`, { cache: 'no-store' });
 					const arr = await res.json().catch(() => []);
