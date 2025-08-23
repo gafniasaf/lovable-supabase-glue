@@ -35,8 +35,8 @@ function buildHttpGateway(): FilesGateway {
           body: JSON.stringify({ keys })
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/files/resolve`, {
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/files/resolve`, {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify({ keys }),

@@ -30,8 +30,8 @@ function buildHttpGateway(): QuizzesGateway {
       if (typeof window === 'undefined') {
         return fetchJson<z.infer<typeof quiz>[]>(`/api/quizzes?course_id=${encodeURIComponent(courseId)}`, z.array(quiz));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quizzes?course_id=${encodeURIComponent(courseId)}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quizzes?course_id=${encodeURIComponent(courseId)}`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return z.array(quiz).parse(json);
@@ -45,8 +45,8 @@ function buildHttpGateway(): QuizzesGateway {
           body: JSON.stringify(input)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quizzes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quizzes`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return quiz.parse(json);
@@ -60,8 +60,8 @@ function buildHttpGateway(): QuizzesGateway {
           body: JSON.stringify(data)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quizzes?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quizzes?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return quiz.parse(json);
@@ -71,8 +71,8 @@ function buildHttpGateway(): QuizzesGateway {
       if (typeof window === 'undefined') {
         await fetchJson(`/api/quizzes?id=${encodeURIComponent(id)}`, z.object({ ok: z.boolean() }), { method: "DELETE" });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quizzes?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quizzes?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       }
       return { ok: true } as const;
@@ -81,8 +81,8 @@ function buildHttpGateway(): QuizzesGateway {
       if (typeof window === 'undefined') {
         return fetchJson<z.infer<typeof quizQuestion>[]>(`/api/quiz-questions?quiz_id=${encodeURIComponent(quiz_id)}`, z.array(quizQuestion));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quiz-questions?quiz_id=${encodeURIComponent(quiz_id)}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quiz-questions?quiz_id=${encodeURIComponent(quiz_id)}`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return z.array(quizQuestion).parse(json);
@@ -96,8 +96,8 @@ function buildHttpGateway(): QuizzesGateway {
           body: JSON.stringify(input)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quiz-questions`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quiz-questions`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return quizQuestion.parse(json);
@@ -107,8 +107,8 @@ function buildHttpGateway(): QuizzesGateway {
       if (typeof window === 'undefined') {
         return fetchJson<z.infer<typeof quizChoice>[]>(`/api/quiz-choices?question_id=${encodeURIComponent(question_id)}`, z.array(quizChoice));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quiz-choices?question_id=${encodeURIComponent(question_id)}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quiz-choices?question_id=${encodeURIComponent(question_id)}`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return z.array(quizChoice).parse(json);
@@ -122,8 +122,8 @@ function buildHttpGateway(): QuizzesGateway {
           body: JSON.stringify(input)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quiz-choices`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quiz-choices`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return quizChoice.parse(json);
@@ -137,8 +137,8 @@ function buildHttpGateway(): QuizzesGateway {
           body: JSON.stringify(input)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quiz-attempts`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quiz-attempts`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return quizAttempt.parse(json);
@@ -153,8 +153,8 @@ function buildHttpGateway(): QuizzesGateway {
           body: JSON.stringify(input)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quiz-attempts`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quiz-attempts`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return json;
@@ -168,8 +168,8 @@ function buildHttpGateway(): QuizzesGateway {
           body: JSON.stringify(input)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quiz-attempts/submit`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quiz-attempts/submit`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return quizAttempt.parse(json);
@@ -179,8 +179,8 @@ function buildHttpGateway(): QuizzesGateway {
       if (typeof window === 'undefined') {
         return fetchJson<z.infer<typeof quizAttempt>[]>(`/api/quiz-attempts?quiz_id=${encodeURIComponent(quiz_id)}`, z.array(quizAttempt));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/quiz-attempts?quiz_id=${encodeURIComponent(quiz_id)}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/quiz-attempts?quiz_id=${encodeURIComponent(quiz_id)}`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return z.array(quizAttempt).parse(json);

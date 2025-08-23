@@ -16,8 +16,8 @@ function buildHttpGateway(): AssignmentsGateway {
       if (typeof window === 'undefined') {
         return fetchJson<z.infer<typeof assignment>[]>(`/api/assignments?course_id=${encodeURIComponent(courseId)}`, z.array(assignment));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/assignments?course_id=${encodeURIComponent(courseId)}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/assignments?course_id=${encodeURIComponent(courseId)}`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return z.array(assignment).parse(json);
@@ -31,8 +31,8 @@ function buildHttpGateway(): AssignmentsGateway {
           body: JSON.stringify(input)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/assignments`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/assignments`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return assignment.parse(json);
@@ -46,8 +46,8 @@ function buildHttpGateway(): AssignmentsGateway {
           body: JSON.stringify(data)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/assignments?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/assignments?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return assignment.parse(json);
@@ -57,8 +57,8 @@ function buildHttpGateway(): AssignmentsGateway {
       if (typeof window === 'undefined') {
         await fetchJson(`/api/assignments?id=${encodeURIComponent(id)}`, z.object({ ok: z.boolean() }), { method: "DELETE" });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/assignments?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/assignments?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       }
       return { ok: true } as const;

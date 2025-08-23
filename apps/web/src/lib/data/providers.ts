@@ -21,8 +21,8 @@ function buildHttpGateway(): ProvidersGateway {
       if (typeof window === 'undefined') {
         return fetchJson(`/api/providers`, z.array(providerSchema));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/providers`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/providers`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return z.array(providerSchema).parse(json);
@@ -32,8 +32,8 @@ function buildHttpGateway(): ProvidersGateway {
       if (typeof window === 'undefined') {
         return fetchJson(`/api/providers`, providerSchema, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input) });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/providers`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/providers`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return providerSchema.parse(json);
@@ -43,8 +43,8 @@ function buildHttpGateway(): ProvidersGateway {
       if (typeof window === 'undefined') {
         return fetchJson(`/api/providers?id=${encodeURIComponent(id)}`, providerSchema, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input) });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/providers?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/providers?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return providerSchema.parse(json);
@@ -54,8 +54,8 @@ function buildHttpGateway(): ProvidersGateway {
       if (typeof window === 'undefined') {
         await fetchJson(`/api/providers?id=${encodeURIComponent(id)}`, z.object({ ok: z.boolean() }), { method: 'DELETE' });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/providers?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/providers?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       }
       return { ok: true } as const;
@@ -64,8 +64,8 @@ function buildHttpGateway(): ProvidersGateway {
       if (typeof window === 'undefined') {
         return fetchJson(`/api/providers/health?id=${encodeURIComponent(id)}`, z.any());
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/providers/health?id=${encodeURIComponent(id)}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/providers/health?id=${encodeURIComponent(id)}`, { cache: 'no-store' });
         const json = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return json;
@@ -75,8 +75,8 @@ function buildHttpGateway(): ProvidersGateway {
       if (typeof window === 'undefined') {
         return fetchJson(`/api/providers/health/summaries`, z.record(z.any()));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/providers/health/summaries`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/providers/health/summaries`, { cache: 'no-store' });
         const json = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return json as any;

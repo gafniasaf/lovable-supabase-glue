@@ -14,8 +14,8 @@ function buildHttpGateway(): RuntimeGateway {
       if (typeof window === 'undefined') {
         return fetchJson(`/api/runtime/auth/exchange`, exchangeResponse, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ token }) });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/runtime/auth/exchange`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ token }), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/runtime/auth/exchange`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ token }), cache: 'no-store' });
         const json = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return exchangeResponse.parse(json);
@@ -25,8 +25,8 @@ function buildHttpGateway(): RuntimeGateway {
       if (typeof window === 'undefined') {
         await fetchJson(`/api/runtime/events`, z.object({ ok: z.boolean() }).or(z.any()), { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input) });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/runtime/events`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/runtime/events`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       }
       return { ok: true } as const;

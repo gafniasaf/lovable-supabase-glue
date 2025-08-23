@@ -32,8 +32,8 @@ function buildHttpGateway(): RegistryGateway {
         const totalCount = Number(res.headers.get('x-total-count') || rows.length || 0);
         return { rows, totalCount };
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/registry/courses${qs.toString() ? `?${qs.toString()}` : ''}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/registry/courses${qs.toString() ? `?${qs.toString()}` : ''}`, { cache: 'no-store' });
         const json = await res.json().catch(() => []);
         const rows = z.array(externalCourse).parse(json);
         const totalCount = Number(res.headers.get('x-total-count') || rows.length || 0);
@@ -46,8 +46,8 @@ function buildHttpGateway(): RegistryGateway {
         const json = await res.json();
         return externalCourse.parse(json);
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/registry/courses?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/registry/courses?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return externalCourse.parse(json);
@@ -62,8 +62,8 @@ function buildHttpGateway(): RegistryGateway {
         if (!parsed.success) return null;
         return parsed.data[0] ?? null;
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/registry/courses?id=${encodeURIComponent(id)}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/registry/courses?id=${encodeURIComponent(id)}`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const rows = Array.isArray(json) ? json : [json];
@@ -78,8 +78,8 @@ function buildHttpGateway(): RegistryGateway {
         const json = await res.json();
         return externalCourse.parse(json);
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/registry/courses`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/registry/courses`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return externalCourse.parse(json);
@@ -89,8 +89,8 @@ function buildHttpGateway(): RegistryGateway {
       if (typeof window === 'undefined') {
         await serverFetch(`/api/registry/courses?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/registry/courses?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/registry/courses?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       }
       return { ok: true } as const;
@@ -101,8 +101,8 @@ function buildHttpGateway(): RegistryGateway {
         const json = await res.json();
         return z.array(courseVersion).parse(json);
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/registry/versions?external_course_id=${encodeURIComponent(external_course_id)}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/registry/versions?external_course_id=${encodeURIComponent(external_course_id)}`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return z.array(courseVersion).parse(json);
@@ -114,8 +114,8 @@ function buildHttpGateway(): RegistryGateway {
         const json = await res.json();
         return courseVersion.parse(json);
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/registry/versions`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/registry/versions`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return courseVersion.parse(json);
@@ -127,8 +127,8 @@ function buildHttpGateway(): RegistryGateway {
         const json = await res.json();
         return courseVersion.parse(json);
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/registry/versions?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/registry/versions?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return courseVersion.parse(json);
@@ -138,8 +138,8 @@ function buildHttpGateway(): RegistryGateway {
       if (typeof window === 'undefined') {
         await serverFetch(`/api/registry/versions?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/registry/versions?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/registry/versions?id=${encodeURIComponent(id)}`, { method: 'DELETE', cache: 'no-store' });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
       }
       return { ok: true } as const;
@@ -155,7 +155,7 @@ function buildTestGateway(): RegistryGateway {
       const totalCount = 137;
       const start = (page - 1) * page_size;
       const rows = Array.from({ length: page_size }).map((_, i) => ({
-        id: `ext-${start + i + 1}`,
+        id: `00000000-0000-0000-0000-${String(1000000000 + start + i + 1).padStart(12, '0')}`,
         title: `External Course ${start + i + 1}`,
         kind: (start + i) % 2 ? 'v2' : 'v1',
         version: `1.${(start + i) % 10}.0`,

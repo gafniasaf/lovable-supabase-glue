@@ -15,8 +15,8 @@ function buildHttpGateway(): SubmissionsGateway {
       if (typeof window === 'undefined') {
         return fetchJson<z.infer<typeof submission>[]>(`/api/submissions?assignment_id=${encodeURIComponent(assignmentId)}`, z.array(submission));
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/submissions?assignment_id=${encodeURIComponent(assignmentId)}`, { cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/submissions?assignment_id=${encodeURIComponent(assignmentId)}`, { cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return z.array(submission).parse(json);
@@ -30,8 +30,8 @@ function buildHttpGateway(): SubmissionsGateway {
           body: JSON.stringify(input)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/submissions`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/submissions`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return submission.parse(json);
@@ -45,8 +45,8 @@ function buildHttpGateway(): SubmissionsGateway {
           body: JSON.stringify(data)
         });
       } else {
-        const base = process.env.NEXT_PUBLIC_BASE_URL || '';
-        const res = await fetch(`${base}/api/submissions?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data), cache: 'no-store' });
+        const origin = (typeof window !== 'undefined' && window.location?.origin) ? window.location.origin : '';
+        const res = await fetch(`${origin}/api/submissions?id=${encodeURIComponent(id)}`, { method: 'PATCH', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data), cache: 'no-store' });
         const json = await res.json();
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return submission.parse(json);
