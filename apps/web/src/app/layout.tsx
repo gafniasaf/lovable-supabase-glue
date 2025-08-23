@@ -31,6 +31,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   try { require('@/server/scheduler').ensureJobsStarted?.(); } catch {}
   let nonce: string | undefined = undefined;
   try { nonce = (require('@/lib/csp').getCspNonce?.() as string | null) || undefined; } catch {}
+  // Read pathname from middleware-provided header to suppress header on auth pages
+  let pathname = '';
+  try { const nh: any = require('next/headers'); const h = nh.headers(); pathname = h.get('x-pathname') || ''; } catch {}
+  const isAuthPage = pathname.startsWith('/login') || pathname.startsWith('/auth');
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
@@ -39,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <PrefetchClient />
         <CommandPaletteClient />
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-yellow-200 text-black px-2 py-1 rounded" aria-label="Skip to main content"><Trans keyPath="common.skipToMain" fallback="Skip to main" /></a>
+        {isAuthPage ? null : (
         <header className="px-4 py-2 border-b text-sm text-gray-700 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <a href="/dashboard" className="font-medium" aria-label="Dashboard home">Education Platform v2</a>
@@ -59,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div className="sm:hidden"><SearchOverlayClient /></div>
           </div>
         </header>
+        )}
         <div className="flex min-h-[calc(100vh-41px)]">
           <aside className="hidden md:block w-60 border-r p-3 text-sm" aria-label="Primary">
             <nav className="space-y-2">
