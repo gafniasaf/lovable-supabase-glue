@@ -64,7 +64,7 @@ export function middleware(req: NextRequest) {
 export default middleware;
 
 export const config = {
-  matcher: ['/api/:path*']
+  matcher: ['/:path*']
 };
 
 
