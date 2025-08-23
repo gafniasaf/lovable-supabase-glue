@@ -1,0 +1,54 @@
+name: Deploy
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      to:
+        description: 'Environment to deploy'
+        required: true
+        default: 'production'
+        type: choice
+        options: [production]
+
+permissions:
+  contents: read
+  deployments: write
+
+jobs:
+  deploy-production:
+    if: ${{ (github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: Production
+      url: ${{ steps.deploy.outputs.preview-url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Deploy to Vercel (Production)
+        id: deploy
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          npx vercel --version
+          # Build from monorepo root; output configured in vercel.json
+          npx vercel pull --yes --environment=production --token "$VERCEL_TOKEN"
+          npx vercel build --prod --token "$VERCEL_TOKEN"
+          URL=$(npx vercel deploy --prebuilt --prod --token "$VERCEL_TOKEN")
+          echo "preview-url=$URL" >> $GITHUB_OUTPUT
+
+

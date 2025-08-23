@@ -1,0 +1,51 @@
+name: E2E on Vercel Preview
+
+on:
+  deployment_status:
+    types: [success]
+
+permissions:
+  contents: read
+  deployments: read
+
+jobs:
+  run-e2e:
+    if: ${{ github.event.deployment_status.state == 'success' && contains(github.event.deployment.environment, 'Preview') }}
+    runs-on: ubuntu-latest
+    env:
+      PLAYWRIGHT_BASE_URL: ${{ github.event.deployment_status.target_url }}
+      # Optional split in case edu/folio are different domains later
+      PLAYWRIGHT_BASE_URL_EDU: ${{ github.event.deployment_status.target_url }}
+      PLAYWRIGHT_BASE_URL_FOLIO: ${{ github.event.deployment_status.target_url }}
+      PW_NO_SERVER: 1
+      PW_WORKERS: 1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright E2E
+        run: npm --workspace tests run test:e2e
+
+      - name: Upload E2E results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-results
+          path: |
+            tests/test-results/**
+            reports/e2e/**
+          if-no-files-found: warn
+
+

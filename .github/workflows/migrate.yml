@@ -1,0 +1,37 @@
+name: DB Migrations
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options: [staging, production]
+
+permissions:
+  contents: read
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup psql
+        uses: ankane/setup-postgres@v1
+
+      - name: Run migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          PGPASSWORD: ${{ secrets.PG_SERVICE_ROLE_PASSWORD }}
+        run: |
+          echo "Applying migrations from supabase/migrations"
+          for f in supabase/migrations/*.sql; do
+            echo "Running $f";
+            psql "$DATABASE_URL" -v ON_ERROR_STOP=1 -f "$f";
+          done
+
+
