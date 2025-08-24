@@ -19,8 +19,10 @@ test.describe('Smoke @smoke', () => {
   });
 
   test('dashboard loads per role and student can mark lesson complete', async ({ page, request }) => {
+    // Determine cookie domain from configured base URL (works in Docker where host is `web`)
+    const base = new URL(process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3030');
     // Teacher dashboard
-    await page.context().addCookies([{ name: 'x-test-auth', value: 'teacher', domain: 'localhost', path: '/' }]);
+    await page.context().addCookies([{ name: 'x-test-auth', value: 'teacher', domain: base.hostname, path: '/' }] as any);
     await page.goto('/dashboard');
     await page.waitForLoadState('domcontentloaded');
     await expect(page.getByText('Role: teacher')).toBeVisible();
@@ -32,13 +34,13 @@ test.describe('Smoke @smoke', () => {
       await request.post('/api/lessons', { data: { course_id: course.id, title: 'Lesson 1', content: '', order_index: 1 }, headers: { 'x-test-auth': 'teacher' } });
       // Enroll the student into the course for realistic navigation
       await page.context().clearCookies();
-      await page.context().addCookies([{ name: 'x-test-auth', value: 'student', domain: 'localhost', path: '/' }]);
+      await page.context().addCookies([{ name: 'x-test-auth', value: 'student', domain: base.hostname, path: '/' }] as any);
       await request.post('/api/enrollments', { data: { course_id: course.id }, headers: { 'x-test-auth': 'student' } });
     }
 
     // Switch to student
     await page.context().clearCookies();
-    await page.context().addCookies([{ name: 'x-test-auth', value: 'student', domain: 'localhost', path: '/' }]);
+    await page.context().addCookies([{ name: 'x-test-auth', value: 'student', domain: base.hostname, path: '/' }] as any);
     // Basic smoke: dashboard renders as student
     await page.goto('/dashboard');
     await expect(page.getByText('Role: student')).toBeVisible();
