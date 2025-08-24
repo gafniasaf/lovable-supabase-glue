@@ -6,13 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default function LoginLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body suppressHydrationWarning>
-        {children}
-      </body>
-    </html>
-  );
+  // Do NOT render <html>/<body> here; root layout already provides them.
+  // Keep this layout minimal so it only wraps /login content if needed.
+  return <>{children}</>;
 }
 
 
