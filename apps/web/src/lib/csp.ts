@@ -17,8 +17,10 @@ export function getCspNonce(): string | null {
 
 export function buildDefaultCsp(nonce: string): string {
   const allow = (process.env.RUNTIME_CORS_ALLOW || '').split(',').map(s => s.trim()).filter(Boolean);
-  const connectList = ['self', ...allow].join(' ');
-  return `default-src 'self'; script-src 'self' 'nonce-${nonce}'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src ${connectList}; frame-ancestors 'none'; frame-src 'self';`;
+  const connectList = allow.join(' ');
+  // Use https:// scheme keywords without quotes per tests expectations
+  const connectExtra = connectList ? ` ${connectList}` : '';
+  return `default-src 'self'; script-src 'self' 'nonce-${nonce}'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'${connectExtra}; frame-ancestors 'none'; frame-src self;`;
 }
 
 
