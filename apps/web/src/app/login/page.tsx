@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { getSupabaseBrowser } from "@/lib/supabaseBrowser";
 import Trans from "@/lib/i18n/Trans";
@@ -9,6 +10,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +23,8 @@ export default function LoginPage() {
       setError(error.message);
       return;
     }
-    window.location.href = "/dashboard";
+    // Use Next router for smoother client navigation and to avoid adding /login to history
+    try { router.replace("/dashboard"); router.refresh(); } catch { window.location.href = "/dashboard"; }
   };
 
   return (

@@ -15,8 +15,8 @@ services:
       - TEST_MODE=1
       - E2E_ALLOW_TEST_MODE=1
       # Supabase (used if provided). Defaults are safe for TEST_MODE.
-      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-https://localhost:54321}
-      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY:-test-anon-key-1234567890}
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-https://ukeqjiattiaokdqjqncf.supabase.co}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrZXFqaWF0dGlhb2tkcWpxbmNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUwOTI3NzIsImV4cCI6MjA3MDY2ODc3Mn0.sYYDUgwCt4X4k9ME6a_G2R3BA6GftI3WAcWVqBv2h2E}
       # Optional: file bucket and CORS allowlist for external runtimes
       - NEXT_PUBLIC_UPLOAD_BUCKET=${NEXT_PUBLIC_UPLOAD_BUCKET:-public}
       - RUNTIME_CORS_ALLOW=
@@ -29,7 +29,7 @@ services:
       - NEXT_RUNTIME_PRIVATE_KEY
       - NEXT_RUNTIME_KEY_ID
     healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:3022/api/ready', r => { try { process.exit(r.statusCode===200?0:1) } catch { process.exit(1) } }).on('error', () => process.exit(1))" ]
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:3022/api/health', r => { try { process.exit(r.statusCode===200?0:1) } catch { process.exit(1) } }).on('error', () => process.exit(1))" ]
       interval: 10s
       timeout: 5s
       retries: 12
