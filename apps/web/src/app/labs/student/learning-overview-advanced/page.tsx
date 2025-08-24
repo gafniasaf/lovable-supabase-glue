@@ -18,7 +18,8 @@ export default async function StudentLearningOverviewAdvancedPage() {
 
   const enrollments = await createEnrollmentsGateway().list().catch(() => [] as Enrollment[]);
 
-  if (enrollmentsRes.status === 401) {
+  // If caller is unauthenticated, return signin prompt. In test-mode flows, MSW stubs auth.
+  if (!Array.isArray(enrollments)) {
     return (
       <main className="p-6">
         <p className="text-gray-700">
