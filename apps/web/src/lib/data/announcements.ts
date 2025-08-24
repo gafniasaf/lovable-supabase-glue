@@ -9,6 +9,8 @@ const announcementSchema = z.object({ id: z.string(), course_id: z.string(), tit
 export type AnnouncementsGateway = {
   listAll(): Promise<AnnouncementRow[]>;
   listByCourse(courseId: string, opts?: { includeUnpublished?: boolean }): Promise<AnnouncementRow[]>;
+  /** Back-compat alias used by some pages */
+  list(input: { courseId: string; includeUnpublished?: boolean }): Promise<AnnouncementRow[]>;
   create(input: { course_id: string; title: string; body: string; publish_at?: string | null; file_key?: string | null }): Promise<AnnouncementRow>;
   delete(id: string): Promise<{ ok: true }>;
 };
@@ -21,6 +23,10 @@ function buildHttpGateway(): AnnouncementsGateway {
     async listByCourse(courseId, opts) {
       const include = opts?.includeUnpublished ? `&include_unpublished=1` : ``;
       return fetchJson(`/api/announcements?course_id=${encodeURIComponent(courseId)}${include}`, z.array(announcementSchema));
+    },
+    async list(input) {
+      const include = input?.includeUnpublished ? `&include_unpublished=1` : ``;
+      return fetchJson(`/api/announcements?course_id=${encodeURIComponent(input.courseId)}${include}`, z.array(announcementSchema));
     },
     async create(input) {
       return fetchJson(`/api/announcements`, announcementSchema, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(input) });
