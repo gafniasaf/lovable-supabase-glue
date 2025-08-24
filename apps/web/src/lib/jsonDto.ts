@@ -17,7 +17,11 @@ export function jsonDto<T extends z.ZodTypeAny>(
 ) {
   const { requestId } = opts;
   const status = typeof opts.status === 'number' ? opts.status : 200;
-  const parsed = (schema as any).safeParse(data);
+  const s: any = schema as any;
+  // Allow callers to pass either a Zod schema or a plain object describing shape; if not Zod, bypass validation
+  const parsed = typeof s?.safeParse === 'function'
+    ? s.safeParse(data)
+    : (typeof s?.parse === 'function' ? (() => { try { return { success: true, data: s.parse(data) }; } catch (e: any) { return { success: false, error: e }; } })() : { success: true, data });
   if (!parsed.success) {
     try { getRequestLogger(requestId).error({ issues: redactIssues(parsed.error.issues) }, 'dto_response_validation_failed'); } catch {}
     return NextResponse.json({ error: { code: 'INTERNAL', message: 'Invalid response shape' }, requestId }, { status: 500, headers: { 'x-request-id': requestId } });

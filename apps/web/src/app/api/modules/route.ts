@@ -18,18 +18,23 @@ import { jsonDto } from "@/lib/jsonDto";
 import { createModuleApi, updateModuleApi, deleteModuleApi } from "@/server/services/modules";
 import { z } from "zod";
 import { parseQuery } from "@/lib/zodQuery";
+import { recordEvent } from "@/lib/events";
 
 export const POST = withRouteTiming(createApiHandler({
   schema: moduleCreateRequest,
+  preAuth: async (ctx) => {
+    const user = await getCurrentUserInRoute(ctx.req as any);
+    const role = (user?.user_metadata as any)?.role ?? undefined;
+    if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId: ctx.requestId }, { status: 401, headers: { 'x-request-id': ctx.requestId } });
+    if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId: ctx.requestId }, { status: 403, headers: { 'x-request-id': ctx.requestId } });
+    return null;
+  },
   handler: async (input, ctx) => {
     const supabase = getRouteHandlerSupabase();
     const requestId = ctx.requestId;
-    const user = await getCurrentUserInRoute();
-    const role = (user?.user_metadata as any)?.role ?? undefined;
-    if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
-    if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
     const data = await createModuleApi({ course_id: input!.course_id, title: input!.title, order_index: input!.order_index ?? 1 });
     try {
+      try { await recordEvent({ user_id: (await getCurrentUserInRoute(ctx.req as any))!.id, event_type: 'module.create', entity_type: 'course', entity_id: input!.course_id, meta: { module_id: (data as any)?.id } }); } catch {}
       const out = moduleSchema.parse(data);
       return jsonDto(out, moduleDto as any, { requestId, status: 201 });
     } catch {
@@ -144,6 +149,7 @@ export const DELETE = withRouteTiming(createApiHandler({
       await supabase.from('audit_logs').insert({ actor_id: user.id, action: 'module.delete', entity_type: 'module', entity_id: id, details: {} });
     } catch {}
     try {
+      try { await recordEvent({ user_id: user.id, event_type: 'module.delete', entity_type: 'module', entity_id: id }); } catch {}
       const out = moduleSchema.parse(data);
       return jsonDto(out, moduleDto as any, { requestId, status: 200 });
     } catch {

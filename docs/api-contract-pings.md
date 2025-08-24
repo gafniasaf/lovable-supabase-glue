@@ -12,6 +12,7 @@ Covered:
 - Files: resolve guard sanity
 - Files: upload-url (test-mode path) and direct PUT flow
 - Registry: courses (optional), versions (optional)
+- Runtime outcomes: course list, teacher overview, and CSV export (asserts CSV headers on 200)
 
 CI: `.github/workflows/contract-ping.yml` (nightly) runs `npm run ci:contract`
 

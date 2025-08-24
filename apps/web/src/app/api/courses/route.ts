@@ -16,8 +16,18 @@ import { createApiHandler } from "@/server/apiHandler";
 import { withRouteTiming } from "@/server/withRouteTiming";
 import { createCourseApi } from "@/server/services/courses";
 
+export const runtime = 'nodejs';
+
 export const POST = withRouteTiming(createApiHandler({
 	schema: courseCreateRequest,
+	preAuth: async (ctx) => {
+		const requestId = ctx.requestId;
+		const user = await getCurrentUserInRoute(ctx.req as any);
+		const role = (user?.user_metadata as any)?.role ?? undefined;
+		if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
+		if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
+		return null;
+	},
 	handler: async (input, ctx) => {
 		const requestId = ctx.requestId;
 		// Fast-path for test mode to avoid dev bundler header/cookie timing
@@ -35,7 +45,8 @@ export const POST = withRouteTiming(createApiHandler({
 			if (testRole !== 'teacher') return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Teachers only' }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
 			const fakeUser = { id: 'test-teacher-id' } as any;
 			const data = await createCourseApi(fakeUser, input!);
-			return jsonDto(data, course, { requestId, status: 201 });
+			const mapped = { id: (data as any).id, title: (data as any).title, description: (data as any).description ?? null, teacherId: (data as any).teacher_id, createdAt: (data as any).created_at } as any;
+			return jsonDto(mapped, course, { requestId, status: 201 });
 		}
 
 		const supabase = getRouteHandlerSupabase();

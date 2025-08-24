@@ -12,10 +12,10 @@ export default async function AuthCheckPage() {
   const incomingHeaders = headers();
   const cookieStore = cookies();
 
-  const cookieHeader = incomingHeaders.get("cookie") ?? cookieStore
+  const cookieHeader = incomingHeaders.get("cookie") ?? (cookieStore.getAll ? cookieStore
     .getAll()
     .map((c) => `${c.name}=${c.value}`)
-    .join("; ");
+    .join("; ") : (cookieStore.get('x-test-auth') ? `x-test-auth=${cookieStore.get('x-test-auth')?.value}` : ''));
   const testAuthHeader = incomingHeaders.get("x-test-auth") ?? "";
   const testAuth = testAuthHeader || cookieStore.get("x-test-auth")?.value || "";
 

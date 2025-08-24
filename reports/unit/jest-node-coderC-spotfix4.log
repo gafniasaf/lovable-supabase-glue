@@ -1,0 +1,23 @@
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
+Test Suites: 0 of 2 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        0.016 s
+Ran all test suites matching unit/api.files.content-type-default.spec.ts|unit/api.files.download-url.dev-namespace.guard.spec.ts.
+Error: typescript module not found for jest transformer
+    at Object.<anonymous> (/workspace/tests/jest.ts-transformer.cjs:20:9)
+    at Module._compile (node:internal/modules/cjs/loader:1358:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)
+    at Module.load (node:internal/modules/cjs/loader:1208:32)
+    at Module._load (node:internal/modules/cjs/loader:1024:12)
+    at Module.require (node:internal/modules/cjs/loader:1233:19)
+    at require (node:internal/modules/helpers:179:18)
+    at requireOrImportModule (/root/.npm/_npx/b8d86e6551a4f492/node_modules/jest-util/build/index.js:1010:28)
+    at /root/.npm/_npx/b8d86e6551a4f492/node_modules/@jest/transform/build/index.js:260:69
+    at Array.map (<anonymous>)
+npm notice
+npm notice New major version of npm available! 10.8.1 -> 11.5.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.2
+npm notice To update run: npm install -g npm@11.5.2
+npm notice

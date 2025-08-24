@@ -2,6 +2,7 @@ import { getServerComponentSupabase, getCurrentUser } from "@/lib/supabaseServer
 import { isTestMode } from "@/lib/testMode";
 import { getTestCourse, listTestLessonsByCourse } from "@/lib/testStore";
 import { createLessonsGateway } from "@/lib/data/lessons";
+import { createCoursesGateway } from "@/lib/data/courses";
 import { createTeacherProgressGateway } from "@/lib/data/teacherProgress";
 import { createInteractiveOutcomesGateway } from "@/lib/data/interactiveOutcomes";
 import Trans from "@/lib/i18n/Trans";
@@ -12,7 +13,7 @@ import { Tabs, TabList, Tab } from "@/components/ui/Tabs";
 export default async function CourseDetailPage({ params }: { params: { courseId: string } }) {
   const supabase = getServerComponentSupabase();
   const user = await getCurrentUser();
-  if (!user) return <section className="p-6" aria-label="Course"><span><Trans keyPath="auth.notSignedIn" fallback="You are not signed in." /> <a className="underline" href="/login"><Trans keyPath="auth.signin" fallback="Sign in" /></a></span></section>;
+  if (!user && !isTestMode()) return <section className="p-6" aria-label="Course"><span><Trans keyPath="auth.notSignedIn" fallback="You are not signed in." /> <a className="underline" href="/login"><Trans keyPath="auth.signin" fallback="Sign in" /></a></span></section>;
 
   let course: any = null;
   let lessons: any[] = [];
@@ -20,8 +21,17 @@ export default async function CourseDetailPage({ params }: { params: { courseId:
   let perStudent: { student_id: string; completedLessons: number; totalLessons: number; percent: number; name?: string }[] = [];
   let interactive: any[] = [];
   if (isTestMode()) {
-    course = getTestCourse(params.courseId) ?? { id: params.courseId, title: 'Course', description: null } as any;
-    lessons = listTestLessonsByCourse(params.courseId) as any[];
+    try {
+      const list = await createCoursesGateway().listForTeacher().catch(() => [] as any[]);
+      course = (list as any[]).find((c: any) => c.id === params.courseId) ?? getTestCourse(params.courseId) ?? { id: params.courseId, title: 'Course', description: null } as any;
+    } catch {
+      course = getTestCourse(params.courseId) ?? { id: params.courseId, title: 'Course', description: null } as any;
+    }
+    try {
+      lessons = await createLessonsGateway().listByCourse(params.courseId).catch(() => listTestLessonsByCourse(params.courseId) as any[]);
+    } catch {
+      lessons = listTestLessonsByCourse(params.courseId) as any[];
+    }
   } else {
     const courseRes = await supabase
       .from("courses")

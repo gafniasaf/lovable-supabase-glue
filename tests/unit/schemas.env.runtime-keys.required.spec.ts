@@ -32,6 +32,8 @@ describe('server env runtime keys (production fail-fast)', () => {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY = 'anon-key-1234567890';
     // Other required prod envs
     process.env.METRICS_TOKEN = 'secret';
+    // Allow TEST_MODE in production for tests via explicit public flag
+    process.env.NEXT_PUBLIC_TEST_MODE = '1';
     expect(() => loadServerEnv()).not.toThrow();
   });
 });

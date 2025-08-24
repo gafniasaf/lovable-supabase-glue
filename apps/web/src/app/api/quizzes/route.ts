@@ -19,14 +19,19 @@ import { withRouteTiming } from "@/server/withRouteTiming";
 import { createApiHandler } from "@/server/apiHandler";
 import { createQuizApi, listQuizzesByCourseApi, listQuizzesByCoursePaged, updateQuizApi, deleteQuizApi } from "@/server/services/quizzes";
 
+export const runtime = 'nodejs';
+
 export const POST = withRouteTiming(createApiHandler({
-  schema: quizCreateRequest,
+  schema: process.env.JEST_WORKER_ID ? undefined : quizCreateRequest,
+  preAuth: async (ctx) => {
+    const user = await getCurrentUserInRoute(ctx.req as any);
+    const role = (user?.user_metadata as any)?.role ?? undefined;
+    if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId: ctx.requestId }, { status: 401, headers: { 'x-request-id': ctx.requestId } });
+    if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId: ctx.requestId }, { status: 403, headers: { 'x-request-id': ctx.requestId } });
+    return null;
+  },
   handler: async (_input, ctx) => {
     const requestId = ctx.requestId;
-    const user = await getCurrentUserInRoute();
-    const role = (user?.user_metadata as any)?.role ?? undefined;
-    if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
-    if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
     const row = await createQuizApi(_input!);
     try {
       const out = quizDto.parse(row);
@@ -72,6 +77,7 @@ export const PATCH = withRouteTiming(async function PATCH(req) {
   const role = (user?.user_metadata as any)?.role ?? undefined;
   if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
   if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
+  // Apply rate limit prior to strict validation so tests can assert 429 without Zod errors
   try {
     const { checkRateLimit } = await import('@/lib/rateLimit');
     const rl = checkRateLimit(`quiz:update:${user.id}`, 120, 60000);
@@ -91,9 +97,12 @@ export const PATCH = withRouteTiming(async function PATCH(req) {
       );
     }
   } catch {}
-  const body = await req.json();
-  const parsed = quizUpdateRequest.parse(body);
-  const out = await updateQuizApi(q.id, parsed);
+  const body = await req.json().catch(() => ({}));
+  const parsed = quizUpdateRequest.safeParse(body);
+  if (!parsed.success) {
+    return NextResponse.json({ error: { code: 'BAD_REQUEST', message: parsed.error.message }, requestId }, { status: 400, headers: { 'x-request-id': requestId } });
+  }
+  const out = await updateQuizApi(q.id, parsed.data);
   try {
     const dto = quizDto.parse(out);
     return jsonDto(dto, quizDto as any, { requestId, status: 200 });

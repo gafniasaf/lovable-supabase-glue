@@ -36,4 +36,21 @@ Readiness vs Health:
 - `/api/ready` is a lightweight readiness probe checking environment presence.
 - `/api/health` performs DB/storage/provider checks and reports flags and required envs.
 
+Endpoints (scopes):
+- Auth exchange: `POST /api/runtime/auth/exchange`
+- Context: `GET /api/runtime/context`
+- Progress: `POST /api/runtime/progress` (scope: `progress.write`)
+- Grade: `POST /api/runtime/grade` (scope: `attempts.write`)
+- Events: `POST /api/runtime/events` (scope: `events.write`)
+- Checkpoints: `POST /api/runtime/checkpoint/save`, `GET /api/runtime/checkpoint/load` (scopes: `progress.write/read`)
+- Assets: `POST /api/runtime/asset/sign-url` (scope: `files.write`)
+
+Idempotency:
+- `Idempotency-Key` header is supported on `progress` and `grade`.
+- When a duplicate is detected within `RUNTIME_IDEMPOTENCY_TTL_MS` (default 5m), the server returns 200 with header `idempotency-replayed: 1` without performing a second write.
+
+Checkpoint limits:
+- Maximum payload size for `checkpoint/save` is controlled by `RUNTIME_CHECKPOINT_MAX_BYTES` (default 32KB). Larger payloads are rejected with 400.
+- Rate limits per alias/course via `RUNTIME_CHECKPOINT_LIMIT` and `RUNTIME_CHECKPOINT_WINDOW_MS`.
+
 

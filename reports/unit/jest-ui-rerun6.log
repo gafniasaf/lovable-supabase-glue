@@ -1,0 +1,8 @@
+PASS tests/unit/ui/NotificationsDropdownClient.spec.tsx
+PASS tests/unit/ui/SystemRequestId.spec.tsx
+
+Test Suites: 2 passed, 2 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        3.355 s
+Ran all test suites related to files matching /tests\/unit\/ui\/NotificationsDropdownClient.spec.tsx|tests\/unit\/ui\/SystemRequestId.spec.tsx/i.

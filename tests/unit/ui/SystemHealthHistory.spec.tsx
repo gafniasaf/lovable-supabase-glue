@@ -2,7 +2,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { server, delayedJson, jitter } from './mswServer';
-import { http } from 'msw';
+import { http, HttpResponse } from '../../shims/msw';
 import HealthHistoryPage from '@/app/labs/system/health-history/page';
 
 describe('System Health History (labs)', () => {
@@ -11,7 +11,7 @@ describe('System Health History (labs)', () => {
   afterAll(() => server.close());
 
   it('renders delta stats and timestamps with jitter', async () => {
-    server.use(http.get('/api/health', async () => delayedJson({ ok: true, ts: Date.now(), testMode: true }, jitter(2, 12))));
+    server.use(http.get('/api/health', () => HttpResponse.json({ ok: true, ts: Date.now(), testMode: true })));
     const ui = await HealthHistoryPage();
     render(ui);
     await screen.findByTestId('history-sample-count');

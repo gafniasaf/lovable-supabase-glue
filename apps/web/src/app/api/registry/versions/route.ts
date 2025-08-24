@@ -56,11 +56,11 @@ export const GET = withRouteTiming(async function GET(req: NextRequest) {
 
 export const POST = withRouteTiming(async function POST(req: NextRequest) {
   const requestId = req.headers.get("x-request-id") || crypto.randomUUID();
-  if (!isExternalCoursesEnabled()) return NextResponse.json({ error: { code: "FORBIDDEN", message: "External courses disabled" }, requestId }, { status: 403, headers: { "x-request-id": requestId } });
   const user = await getCurrentUserInRoute(req);
   const role = (user?.user_metadata as any)?.role;
   if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { "x-request-id": requestId } });
   if (role !== "admin") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Admins only" }, requestId }, { status: 403, headers: { "x-request-id": requestId } });
+  if (!isExternalCoursesEnabled()) return NextResponse.json({ error: { code: "FORBIDDEN", message: "External courses disabled" }, requestId }, { status: 403, headers: { "x-request-id": requestId } });
   try {
     const rl = checkRateLimit(`registry:mut:${user.id}`, Number(process.env.REGISTRY_MUTATE_LIMIT || 30), Number(process.env.REGISTRY_MUTATE_WINDOW_MS || 60000));
     if (!rl.allowed) {
@@ -84,11 +84,11 @@ export const POST = withRouteTiming(async function POST(req: NextRequest) {
 
 export const PATCH = withRouteTiming(async function PATCH(req: NextRequest) {
   const requestId = req.headers.get("x-request-id") || crypto.randomUUID();
-  if (!isExternalCoursesEnabled()) return NextResponse.json({ error: { code: "FORBIDDEN", message: "External courses disabled" }, requestId }, { status: 403, headers: { "x-request-id": requestId } });
   const user = await getCurrentUserInRoute(req);
   const role = (user?.user_metadata as any)?.role;
   if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { "x-request-id": requestId } });
   if (role !== "admin") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Admins only" }, requestId }, { status: 403, headers: { "x-request-id": requestId } });
+  if (!isExternalCoursesEnabled()) return NextResponse.json({ error: { code: "FORBIDDEN", message: "External courses disabled" }, requestId }, { status: 403, headers: { "x-request-id": requestId } });
   try {
     const rl = checkRateLimit(`registry:mut:${user.id}`, Number(process.env.REGISTRY_MUTATE_LIMIT || 30), Number(process.env.REGISTRY_MUTATE_WINDOW_MS || 60000));
     if (!rl.allowed) {

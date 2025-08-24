@@ -5,6 +5,7 @@ import FormField from "@/components/ui/FormField";
 import Input from "@/components/ui/Input";
 import TextArea from "@/components/ui/TextArea";
 import { createProfilesGateway, createNotificationsGateway } from "@/lib/data";
+import MuteToastsToggleClient from "@/app/components/MuteToastsToggleClient";
 
 export default async function SettingsPage() {
 	const profile = await createProfilesGateway().get().catch(() => ({} as any));
@@ -63,7 +64,7 @@ export default async function SettingsPage() {
 						</ul>
 					)}
 					<div className="flex items-center gap-2 pt-2 border-t mt-2">
-						<input id="pref-mute-toasts" type="checkbox" defaultChecked={false} onChange={(e) => { 'use client'; try { localStorage.setItem('notifications.muteToasts', e.currentTarget.checked ? '1' : '0'); } catch {} }} />
+						<MuteToastsToggleClient id="pref-mute-toasts" defaultChecked={false} />
 						<label htmlFor="pref-mute-toasts" className="text-sm">Mute notification toasts</label>
 					</div>
 					<div>

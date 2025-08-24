@@ -14,7 +14,7 @@ function csvEscape(value: string): string {
 export default async function TeacherCourseInsightsAdvancedPage() {
   const cookieStore = cookies();
   const incoming = headers();
-  const cookieHeader = cookieStore.getAll().map(c => `${c.name}=${c.value}`).join("; ");
+  const cookieHeader = cookieStore.getAll ? cookieStore.getAll().map(c => `${c.name}=${c.value}`).join("; ") : (cookieStore.get('x-test-auth') ? `x-test-auth=${cookieStore.get('x-test-auth')?.value}` : '');
   const xTestAuth = incoming.get("x-test-auth") ?? cookieStore.get("x-test-auth")?.value;
 
   const baseHeaders: HeadersInit = {

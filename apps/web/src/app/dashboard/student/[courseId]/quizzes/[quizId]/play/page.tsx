@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/supabaseServer";
 import { getServerComponentSupabase } from "@/lib/supabaseServer";
 import dynamic from "next/dynamic";
 import { createQuizzesGateway } from "@/lib/data/quizzes";
+import { getAttemptForStudent } from "@/server/services/quizAttempts";
 const QuizPlayerClient = dynamic(() => import("./QuizPlayerClient"), { ssr: false });
 
 type Question = { id: string; quiz_id: string; text: string; order_index: number };
@@ -18,10 +19,15 @@ export default async function StudentQuizPlayPage({ params }: { params: { course
   const user = await getCurrentUser();
   let existingAttempt: any = null;
   if (user) {
-    const list = await createQuizzesGateway().listAttemptsForQuiz(params.quizId).catch(() => [] as any[]);
-    const mine = list.filter((a: any) => a.student_id === user.id);
-    mine.sort((a: any, b: any) => (b.started_at || '').localeCompare(a.started_at || ''));
-    existingAttempt = mine[0] || null;
+    try {
+      // Prefer direct per-student lookup to avoid teacher-only listing endpoint
+      existingAttempt = await getAttemptForStudent(params.quizId, user.id);
+    } catch {
+      const list = await createQuizzesGateway().listAttemptsForQuiz(params.quizId).catch(() => [] as any[]);
+      const mine = list.filter((a: any) => a.student_id === user.id);
+      mine.sort((a: any, b: any) => (b.started_at || '').localeCompare(a.started_at || ''));
+      existingAttempt = mine[0] || null;
+    }
   }
   if (existingAttempt && existingAttempt.submitted_at) {
     return (

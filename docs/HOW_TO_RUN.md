@@ -45,3 +45,7 @@ Ports
 Notes
 - Healthcheck calls `/api/health` from inside the container using loopback; the compose file uses `127.0.0.1` to avoid DNS/alias issues.
 - For stage/prod, unset TEST_MODE and provide real Supabase/runtime keys.
+
+ExpertFolio (Feature Flag)
+- To enable ExpertFolio endpoints during local/dev runs, set `FEATURES_EXPERTFOLIO=1` in the web service environment (Compose override or environment).
+- Endpoints (Part 1 skeleton): `POST /api/ef/assessments`, `POST /api/ef/evaluations`.

@@ -16,7 +16,7 @@ describe('assignments POST CSRF double-submit', () => {
   afterEach(() => { process.env = original; });
 
   test('403 missing/mismatched tokens; 201 when matched', async () => {
-    const payload = { course_id: '00000000-0000-0000-0000-000000000001', title: 'New', description: null, due_at: null, points: 100 };
+    const payload = { course_id: '00000000-0000-0000-0000-000000000001', title: 'New Assignment', points: 100 };
     // Missing tokens
     let res = await (AssignmentsPOST as any)(post(payload, { origin: 'http://localhost', referer: 'http://localhost/x' }));
     expect([400,403]).toContain(res.status);

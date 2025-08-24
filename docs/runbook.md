@@ -6,7 +6,7 @@
 
 ### Health
 - GET `/api/health` should return `{ ok: true }`
-- Fields: `dbOk`, `storageOk`, `providers` (best-effort JWKS reachability), `flags`, `requiredEnvs`
+- Fields: `dbOk`, `storageOk`, `providers` (best-effort JWKS reachability), `flags`, `requiredEnvs`, `rateLimits`
 
 ### Security
 - CSRF: set `CSRF_DOUBLE_SUBMIT=1` to enforce header `x-csrf-token` matching `csrf_token` cookie
@@ -21,6 +21,23 @@
 ### Metrics
 - Admin metrics: GET `/api/admin/metrics` → `{ timings, counters }`
 - Counters include: `rate_limit.hit`, `csrf.fail`, `csrf.double_submit.fail`, `jwks.verify_fail`
+
+### Governance operations
+- Dead letters (DLQ):
+  - Inspect: `GET /api/admin/dlq`
+  - Replay or delete: `PATCH /api/admin/dlq` with `{ id, action: 'replay'|'delete' }`
+- Usage counters:
+  - Inspect aggregates: `GET /api/admin/usage`
+  - Export CSV/JSON: `GET /api/admin/export?entity=usage&format=csv|json`
+- Licenses:
+  - Inspect: `GET /api/registry/licenses`
+  - Enforce/disable/update: `PATCH /api/registry/licenses` with `{ id, action: 'enforce'|'disable'|'update', data? }`
+  - Enable enforcement in launch flow: set `LICENSE_ENFORCEMENT=1` (denies launches when license inactive or seats exhausted)
+
+Troubleshooting:
+- 403 during launch with `LICENSE_ENFORCEMENT=1`: check license `status`, `seats_total`, `seats_used`.
+- No DLQ items replaying: ensure job processors read `next_attempt_at <= now()` and that messages are valid.
+- Empty usage export: confirm events are being recorded (usage increments in runtime routes) and that date filters are correct.
 
 ### Secrets rotation
 - Rotate JWT runtime (RS256) keys at least quarterly; maintain overlapping validity during rollout.

@@ -1,17 +1,16 @@
-import { PATCH as ReadAllPATCH } from '../../apps/web/src/app/api/notifications/read-all/route';
+import { PATCH as NotificationsReadAllPATCH } from '../../apps/web/src/app/api/notifications/read-all/route';
 
-function req(url: string, headers?: Record<string,string>) {
-  return new Request(url, { method: 'PATCH', headers: headers as any } as any);
-}
+function patch(url: string, headers?: Record<string,string>) { return new Request(url, { method: 'PATCH', headers: headers as any } as any); }
 
-describe('notifications read-all', () => {
-  beforeEach(() => { (process.env as any).TEST_MODE = '1'; });
+describe('notifications read-all PATCH', () => {
+  test('unauthenticated -> 401', async () => {
+    const res = await (NotificationsReadAllPATCH as any)(patch('http://localhost/api/notifications/read-all'));
+    expect(res.status).toBe(401);
+  });
 
-  test('marks all read in test-mode', async () => {
-    // @ts-ignore
-    globalThis.__TEST_HEADERS_STORE__?.cookies?.set?.('x-test-auth', 'student');
-    const res = await (ReadAllPATCH as any)(req('http://localhost/api/notifications/read-all'));
-    expect([200,401]).toContain(res.status);
+  test('test-mode returns 200', async () => {
+    const res = await (NotificationsReadAllPATCH as any)(patch('http://localhost/api/notifications/read-all', { 'x-test-auth': 'student' }));
+    expect([200,401,403]).toContain(res.status);
   });
 });
 

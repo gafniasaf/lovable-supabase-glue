@@ -43,13 +43,18 @@ const gradeDistQuery = z.object({ course_id: z.string().uuid(), format: z.string
 
 export const GET = withRouteTiming(async function GET(req: NextRequest) {
   const requestId = req.headers.get('x-request-id') || crypto.randomUUID();
+  const wantsCsv = (() => { try { const u = new URL((req as any).url); return (u.searchParams.get('format') || '').toLowerCase() === 'csv'; } catch { return false; } })();
   const user = await getCurrentUserInRoute(req);
-  if (!user) return NextResponse.json({ error: { code: 'UNAUTHENTICATED', message: 'Not signed in' }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
+  if (!user) {
+    if (wantsCsv) return new Response('', { status: 401, headers: { 'content-type': 'text/csv; charset=utf-8', 'x-request-id': requestId } });
+    return NextResponse.json({ error: { code: 'UNAUTHENTICATED', message: 'Not signed in' }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
+  }
   // In prod, compute from DB; test-mode path supported below
   let q: { course_id: string; format?: string };
   try {
     q = parseQuery(req, gradeDistQuery);
   } catch (e: any) {
+    if (wantsCsv) return new Response('', { status: 400, headers: { 'content-type': 'text/csv; charset=utf-8', 'x-request-id': requestId } });
     return NextResponse.json({ error: { code: 'BAD_REQUEST', message: e.message }, requestId }, { status: 400, headers: { 'x-request-id': requestId } });
   }
   const format = ((q.format || 'json') as string).toLowerCase();
@@ -63,7 +68,10 @@ export const GET = withRouteTiming(async function GET(req: NextRequest) {
       .from('assignments')
       .select('id')
       .eq('course_id', q.course_id);
-    if (aErr) return NextResponse.json({ error: { code: 'DB_ERROR', message: aErr.message }, requestId }, { status: 500, headers: { 'x-request-id': requestId } });
+    if (aErr) {
+      if (wantsCsv) return new Response('', { status: 500, headers: { 'content-type': 'text/csv; charset=utf-8', 'x-request-id': requestId } });
+      return NextResponse.json({ error: { code: 'DB_ERROR', message: aErr.message }, requestId }, { status: 500, headers: { 'x-request-id': requestId } });
+    }
     const ids = (assignments ?? []).map(r => (r as any).id);
     if (ids.length === 0) {
       data = { total: 0, average: 0, dist: [] } as any;
@@ -73,7 +81,10 @@ export const GET = withRouteTiming(async function GET(req: NextRequest) {
         .select('score')
         .in('assignment_id', ids)
         .not('score', 'is', null);
-      if (sErr) return NextResponse.json({ error: { code: 'DB_ERROR', message: sErr.message }, requestId }, { status: 500, headers: { 'x-request-id': requestId } });
+      if (sErr) {
+        if (wantsCsv) return new Response('', { status: 500, headers: { 'content-type': 'text/csv; charset=utf-8', 'x-request-id': requestId } });
+        return NextResponse.json({ error: { code: 'DB_ERROR', message: sErr.message }, requestId }, { status: 500, headers: { 'x-request-id': requestId } });
+      }
       const scores = (submissions ?? []).map((r: any) => r.score as number).filter((n: any) => typeof n === 'number');
       data = buildDistributionFromScores(scores) as any;
     }

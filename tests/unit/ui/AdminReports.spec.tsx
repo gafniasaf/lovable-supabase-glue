@@ -4,6 +4,7 @@ import { render, screen } from '@testing-library/react';
 import { server } from './mswServer';
 import { http, HttpResponse } from '../../shims/msw';
 import AdminReportsPage from '@/app/dashboard/admin/reports/page';
+import React from 'react';
 
 describe('Admin Reports (dashboard)', () => {
   beforeAll(() => server.listen({ onUnhandledRequest: 'bypass' }));
@@ -15,9 +16,11 @@ describe('Admin Reports (dashboard)', () => {
       http.get('/api/reports/engagement', () => HttpResponse.json({ activePerWeek: [{ count: 3 }], courses: [{ id: 'c1' }] })),
       http.get('/api/reports/grade-distribution', () => HttpResponse.json({ avgScoreTrend: [60, 65, 70] }))
     );
-    const ui = await AdminReportsPage();
-    render(ui);
-    await screen.findByText('Reports');
+    render(<AdminReportsPage />);
+    // Avoid ambiguous text; assert on expected KPI tiles
+    await screen.findByText('Lessons');
+    await screen.findByText('Assignments');
+    await screen.findByText('Submissions');
   });
 });
 

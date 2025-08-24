@@ -72,8 +72,9 @@ export default async function AdminDashboardPage() {
       <section className="border rounded p-4">
         <h2 className="font-medium mb-2">Integrations</h2>
         <ul className="list-disc ml-6 text-sm">
-          <li><Link className="underline" href="/dashboard/admin/providers">Course providers</Link></li>
-          <li><Link className="underline" href="/dashboard/admin/catalog">Course catalog</Link></li>
+          <li><Link className="underline" href="/admin/providers">Course providers</Link></li>
+          <li><Link className="underline" href="/admin/catalog">Course catalog</Link></li>
+          <li><Link className="underline" href="/admin/versions">Course versions</Link></li>
         </ul>
       </section>
       <section className="border rounded p-4">
@@ -97,6 +98,9 @@ export default async function AdminDashboardPage() {
           <li><Link className="underline" href="/dashboard/admin/reports">Reports</Link></li>
           <li><Link className="underline" href="/dashboard/admin/metrics">Metrics</Link></li>
           <li><Link className="underline" href="/dashboard/admin/quotas">Storage quotas</Link></li>
+          <li><Link className="underline" href="/dashboard/admin/dlq">Dead Letters</Link></li>
+          <li><Link className="underline" href="/dashboard/admin/usage">Usage Counters</Link></li>
+          <li><Link className="underline" href="/dashboard/admin/licenses">Licenses</Link></li>
         </ul>
       </section>
       {data?.recentActivity?.length ? (

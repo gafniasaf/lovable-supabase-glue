@@ -16,12 +16,15 @@ import { parseQuery } from "@/lib/zodQuery";
 
 export const POST = withRouteTiming(createApiHandler({
   schema: quizQuestionCreateRequest,
-  handler: async (input, ctx) => {
-    const requestId = ctx.requestId;
+  preAuth: async (ctx) => {
     const user = await getCurrentUserInRoute();
     const role = (user?.user_metadata as any)?.role ?? undefined;
-    if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
-    if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
+    if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId: ctx.requestId }, { status: 401, headers: { 'x-request-id': ctx.requestId } });
+    if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId: ctx.requestId }, { status: 403, headers: { 'x-request-id': ctx.requestId } });
+    return null;
+  },
+  handler: async (input, ctx) => {
+    const requestId = ctx.requestId;
     const row = await createQuestionApi(input!);
     try {
       const out = quizQuestion.parse(row);

@@ -6,11 +6,19 @@ import { useForm } from "react-hook-form";
 import Trans from "@/lib/i18n/Trans";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { courseCreateRequest, scope } from "@education/shared";
+import { z } from "zod";
 
 export default function NewCoursePage() {
-  const form = useForm<{ title: string; description?: string | null; launch_kind?: 'WebEmbed' | 'RemoteContainer' | 'StreamedDesktop' | null; launch_url?: string | null; provider_id?: string | null; scopes?: typeof scope._type[] | null}>({
-    resolver: zodResolver(courseCreateRequest),
-    defaultValues: { title: "", description: "", launch_kind: null, launch_url: "", provider_id: "", scopes: [] }
+  const formSchema = courseCreateRequest.extend({
+    // Accept empty string in form fields for optional values
+    launch_kind: z.union([z.literal(''), z.enum(['WebEmbed','RemoteContainer','StreamedDesktop'])]).optional().nullable(),
+    launch_url: z.union([z.literal(''), z.string().url()]).optional().nullable(),
+    provider_id: z.union([z.literal(''), z.string().uuid()]).optional().nullable(),
+    scopes: z.array(scope).optional().nullable()
+  });
+  const form = useForm<{ title: string; description?: string | null; launch_kind?: 'WebEmbed' | 'RemoteContainer' | 'StreamedDesktop' | '' | null; launch_url?: string | null; provider_id?: string | null; scopes?: typeof scope._type[] | null}>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { title: "", description: "", launch_kind: "", launch_url: "", provider_id: "", scopes: [] }
   });
   const [providers, setProviders] = useState<any[]>([]);
   const [scopes, setScopes] = useState<string[]>([]);
@@ -24,7 +32,15 @@ export default function NewCoursePage() {
     setOk(false);
     const res = await (async () => {
       try {
-        const created = await createCoursesGateway().create({ ...values, ...(scopes.length ? { scopes } : {}) } as any);
+        // Normalize optional fields: convert empty string to undefined to satisfy server schema
+        const normalized = {
+          ...values,
+          launch_kind: values.launch_kind ? values.launch_kind : undefined,
+          launch_url: values.launch_url ? values.launch_url : undefined,
+          provider_id: values.provider_id ? values.provider_id : undefined,
+          ...(scopes.length ? { scopes } : {})
+        } as any;
+        const created = await createCoursesGateway().create(normalized);
         return { ok: true, json: async () => created } as any;
       } catch (e: any) {
         return { ok: false, status: 400, json: async () => ({ error: { message: String(e?.message || e) } }) } as any;

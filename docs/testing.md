@@ -93,7 +93,7 @@ use: {
 - `tests/e2e/playwright.config.ts` configures base URL and projects
 - `global-setup.ts` waits for `/api/health`
 - Specs simulate user workflows (login redirect, teacher dashboard, course/lesson creation)
-- Coverage now includes: seeding/roles, teacher course/lesson flow, assignments and grading, profile + notifications, quizzes (build/attempt/submit), announcements + modules, messaging (test-mode), reports (JSON/CSV), and file uploads/downloads (test-mode direct upload).
+- Coverage now includes: seeding/roles, teacher course/lesson flow, assignments and grading, profile + notifications, quizzes (build/attempt/submit), announcements + modules (with event producers), messaging (test-mode), reports (JSON/CSV + activity/retention), runtime v2 gating and OPTIONS preflights, and file uploads/downloads (ownership checks, test-mode direct upload).
 
 Accessibility:
 

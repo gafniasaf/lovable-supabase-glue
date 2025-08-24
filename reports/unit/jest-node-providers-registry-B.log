@@ -1,0 +1,18 @@
+{"level":30,"time":1755756037656,"pid":107,"hostname":"fac41733d092","requestId":"fb70d520-299e-4efb-bbd7-14e2c134040d","ms":3,"msg":"route_success"}
+{"level":30,"time":1755756037664,"pid":107,"hostname":"fac41733d092","requestId":"83a5f7a0-8423-43da-a848-9bc708d84086","ms":4,"msg":"route_success"}
+{"level":30,"time":1755756037670,"pid":107,"hostname":"fac41733d092","requestId":"33f1e1b5-988c-40e1-9bcd-7ae61e0e3901","ms":3,"msg":"route_success"}
+{"level":30,"time":1755756037672,"pid":107,"hostname":"fac41733d092","requestId":"760c752e-761b-4066-aeea-0200c8a2d6eb","ms":1,"msg":"route_success"}
+{"level":30,"time":1755756037673,"pid":107,"hostname":"fac41733d092","requestId":"ad4546ac-29f7-4f1a-bb34-b0072a63d1e2","ms":0,"msg":"route_success"}
+{"level":30,"time":1755756037678,"pid":107,"hostname":"fac41733d092","requestId":"2c977575-0dab-4a26-8382-7ce01036ae7f","ms":2,"msg":"route_success"}
+PASS tests/unit/api.registry.spec.ts (5.691 s)
+  External registry and runtime v2 (TEST_MODE)
+    ✓ registry courses GET requires auth and respects flag (17 ms)
+    ✓ runtime v2 auth exchange rejects bad token (4 ms)
+    ✓ context requires bearer token (1 ms)
+    ✓ progress/grade require bearer token (8 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       4 passed, 4 total
+Snapshots:   0 total
+Time:        6.144 s
+Ran all test suites matching /tests\/unit\/api.providers.spec.ts|tests\/unit\/api.registry.spec.ts|tests\/unit\/api.admin.spec.ts/i.

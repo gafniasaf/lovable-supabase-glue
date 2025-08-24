@@ -33,6 +33,7 @@ export async function createSubmissionApi(input: SubmissionCreateRequest, studen
       feedback: null
     } as any;
     addTestSubmission(fake);
+    try { await recordEvent({ user_id: studentId, event_type: 'assignment.submit', entity_type: 'assignment', entity_id: input.assignment_id }); } catch {}
     return fake;
   }
   const supabase = getRouteHandlerSupabase();
@@ -181,6 +182,7 @@ export async function gradeSubmissionApi(id: string, data: SubmissionGradeReques
       try {
         addTestNotification({ user_id: updated.student_id, type: 'submission:graded', payload: { assignment_id: updated.assignment_id, submission_id: updated.id, score: updated.score ?? null } });
       } catch {}
+      try { await recordEvent({ user_id: updated.student_id, event_type: 'assignment.graded', entity_type: 'submission', entity_id: updated.id, meta: { assignment_id: updated.assignment_id, score: updated.score ?? null } }); } catch {}
     }
     return updated;
   }

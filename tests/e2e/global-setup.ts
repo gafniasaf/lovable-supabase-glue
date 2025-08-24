@@ -16,7 +16,16 @@ async function waitForHealth(baseURL: string, timeoutMs = 60000) {
 
 export default async function globalSetup(_: FullConfig) {
   const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3030';
-  await waitForHealth(baseURL);
+  // When running against an already-started server (PW_NO_SERVER=1), do a single non-fatal probe
+  if (process.env.PW_NO_SERVER === '1') {
+    try {
+      const ctx = await pwRequest.newContext({ baseURL });
+      await ctx.get('/api/health');
+      await ctx.dispose();
+    } catch {}
+  } else {
+    await waitForHealth(baseURL);
+  }
   // Pre-warm the app shell to reduce Next.js dev overlay during first route loads
   try {
     const warm = await pwRequest.newContext({ baseURL });

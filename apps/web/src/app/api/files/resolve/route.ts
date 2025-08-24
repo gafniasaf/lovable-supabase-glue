@@ -19,7 +19,8 @@ export const POST = withRouteTiming(createApiHandler({
     if (isTestMode()) {
       const out: Record<string, { filename: string | null; content_type: string | null; url: string }> = {};
       for (const k of keys) out[k] = { filename: null, content_type: null, url: `/api/files/download-url?id=${encodeURIComponent(k)}` };
-      const dto = z.record(z.object({ filename: z.string().nullable(), content_type: z.string().nullable(), url: z.string().url() }));
+      // Accept relative URLs in test-mode to avoid validating as absolute
+      const dto = z.record(z.object({ filename: z.string().nullable(), content_type: z.string().nullable(), url: z.string().min(1) }));
       return jsonDto(out as any, dto as any, { requestId, status: 200 });
     }
     const supabase = getRouteHandlerSupabase();

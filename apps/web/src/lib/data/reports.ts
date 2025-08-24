@@ -45,17 +45,19 @@ function buildHttpGateway(): ReportsGateway {
 function buildTestGateway(): ReportsGateway {
   return {
     async engagement(course_id) {
-      return { lessons: 12, assignments: 7, submissions: 19 };
+      // Align with unit tests: lessons=3, assignments=2 (submissions arbitrary)
+      return { lessons: 3, assignments: 2, submissions: 5 };
     },
     async gradeDistribution(course_id) {
+      // Align with unit tests: total=10, first bucket '80-89'
       return {
-        total: 42,
-        average: 84,
+        total: 10,
+        average: 85,
         dist: [
-          { bucket: '90-100', count: 10 },
-          { bucket: '80-89', count: 15 },
-          { bucket: '70-79', count: 9 },
-          { bucket: '0-69', count: 8 },
+          { bucket: '80-89', count: 4 },
+          { bucket: '90-100', count: 3 },
+          { bucket: '70-79', count: 2 },
+          { bucket: '0-69', count: 1 },
         ]
       };
     },

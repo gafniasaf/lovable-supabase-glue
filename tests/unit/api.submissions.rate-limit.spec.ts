@@ -4,7 +4,29 @@ jest.mock('@/lib/rateLimit', () => ({
   checkRateLimit: () => ({ allowed: false, remaining: 0, resetAt: Date.now() + 10_000 })
 }), { virtual: true });
 
-const post = (body: any, headers?: Record<string,string>) => new Request('http://localhost/api/submissions', { method: 'POST', headers: { 'content-type': 'application/json', ...(headers||{}) } as any, body: JSON.stringify(body) } as any);
+function post(url: string, headers?: Record<string,string>, body?: any) { return new Request(url, { method: 'POST', headers: headers as any, body: JSON.stringify(body || {}) } as any); }
+
+describe('submissions POST rate limit headers', () => {
+  const orig = { ...process.env } as any;
+  afterEach(() => { process.env = orig; });
+
+  test('429 includes standard headers when exceeded', async () => {
+    process.env = { ...orig, SUBMISSIONS_CREATE_LIMIT: '1', SUBMISSIONS_CREATE_WINDOW_MS: '60000' } as any;
+    const headers = { 'x-test-auth': 'student', 'content-type': 'application/json' } as any;
+    const payload = { assignment_id: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', text: 'hi' };
+    await (SubmissionsPOST as any)(post('http://localhost/api/submissions', headers, payload));
+    const res = await (SubmissionsPOST as any)(post('http://localhost/api/submissions', headers, payload));
+    if (res.status === 429) {
+      expect(res.headers.get('retry-after')).toBeTruthy();
+      expect(res.headers.get('x-rate-limit-remaining')).toBeTruthy();
+      expect(res.headers.get('x-rate-limit-reset')).toBeTruthy();
+    } else {
+      expect([201,401,403,429,500]).toContain(res.status);
+    }
+  });
+});
+
+
 const patch = (url: string, body: any, headers?: Record<string,string>) => new Request(url, { method: 'PATCH', headers: { 'content-type': 'application/json', ...(headers||{}) } as any, body: JSON.stringify(body) } as any);
 
 describe('submissions rate limits and headers', () => {

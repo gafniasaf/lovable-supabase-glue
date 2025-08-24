@@ -16,7 +16,6 @@ Base URL is the web app origin. In test-mode, Playwright may set `PLAYWRIGHT_BAS
 | DELETE | /api/courses/[id] | Teacher | Delete a course |
 | POST | /api/lessons | Teacher | Create a lesson |
 | GET | /api/lessons?course_id | Authenticated | List lessons for a course |
-| POST | /api/lessons/complete | Student | Mark a lesson complete |
 | POST | /api/modules | Teacher | Create a module |
 | GET | /api/modules?course_id | Teacher | List modules for a course |
 | PATCH | /api/modules?id | Teacher | Update a module |
@@ -50,17 +49,16 @@ Base URL is the web app origin. In test-mode, Playwright may set `PLAYWRIGHT_BAS
 | POST | /api/runtime/asset/sign-url | Runtime Bearer | Presign an upload URL for runtime assets (content-type allowlist, scope `files.write`). |
 | POST | /api/runtime/checkpoint/save | Runtime Bearer | Save a small JSON snapshot keyed by `{ key }` (size limit). |
 | GET | /api/runtime/checkpoint/load?key= | Runtime Bearer | Load a previously saved checkpoint. |
-| GET | /api/runtime/outcomes?course_id&offset&limit | Teacher | List interactive attempts for a course (paged; returns `x-total-count`) |
-| GET | /api/runtime/outcomes/export?course_id | Teacher | Export interactive attempts as CSV (teacher of course only) |
-| GET | /api/runtime/outcomes/export?course_id | Teacher | Export interactive attempts as CSV (teacher of course only) |
-| GET | /api/runtime/teacher/outcomes | Teacher | Recent attempts across teacher courses |
+| GET | /api/runtime/outcomes?course_id&offset&limit | Teacher | List interactive attempts for a course (paged; returns `x-total-count`). Per-teacher per-course rate limited via `RUNTIME_OUTCOMES_LIMIT`/`RUNTIME_OUTCOMES_WINDOW_MS`. |
+| GET | /api/runtime/outcomes/export?course_id | Teacher | Export interactive attempts as CSV (teacher of course only). Returns `content-type: text/csv` and `content-disposition: attachment; filename="interactive_attempts_<course_id>.csv"`. |
+| GET | /api/runtime/teacher/outcomes | Teacher | Recent attempts across teacher courses (returns `x-total-count` when available). Per-teacher rate limited via `RUNTIME_OUTCOMES_LIMIT`/`RUNTIME_OUTCOMES_WINDOW_MS`. |
 | GET | /api/providers | Auth | List course providers |
 | POST | /api/providers | Admin | Create course provider |
 | GET | /api/providers/health?id | Admin | Provider health check (JWKS+domain); cached; per-user rate-limited |
 | GET | /api/providers/health/summaries | Admin | Cached provider health summaries |
 | POST | /api/test/reset | Test-mode | Reset in-memory test store |
 | POST | /api/__test__/reset | Test-mode | Reset in-memory test store (legacy path) |
-| GET | /api/messages?thread_id | Auth | List messages in a thread (participants only) |
+| GET | /api/messages?thread_id | Auth | List messages in a thread |
 | POST | /api/messages | Auth | Send message to a thread |
 | PATCH | /api/messages?id | Auth | Mark a message read |
 | GET | /api/messages/threads | Auth | List user's threads with unread counts |
@@ -80,7 +78,14 @@ Base URL is the web app origin. In test-mode, Playwright may set `PLAYWRIGHT_BAS
 | GET | /api/reports/grade-distribution?course_id | Auth | Score distribution/average (JSON) or CSV with `format=csv` |
 | GET | /api/reports/activity?from&to&course_id&limit | Auth | Recent events (JSON) |
 | GET | /api/reports/retention?from&to | Auth | Daily active users (JSON) |
+| GET | /api/reports/usage?from&to&metric&course_id&provider_id&format=csv|json | Admin | Usage aggregates (day/metric/course/provider) as JSON or CSV |
 | GET | /api/parent/progress?student_id&course_id&format=csv | Parent/Admin | Per-course progress for a student (JSON) or CSV |
+| GET | /api/admin/dlq | Admin | List dead-letter entries |
+| PATCH | /api/admin/dlq | Admin | Replay or delete a dead-letter entry (`{ id, action }`) |
+| GET | /api/admin/usage | Admin | List usage counters (day/provider/course/metric aggregates) |
+| GET | /api/registry/licenses | Admin | List licenses (provider/course seats) |
+| PATCH | /api/registry/licenses | Admin | Update/enforce/disable license (`{ id, action, data? }`) |
+| GET | /api/admin/export?entity=usage|dead_letters|licenses&format=csv | Admin | CSV export for governance/operations |
 
 Auth:
 
@@ -136,7 +141,38 @@ Returns server health and current test-mode role (if any).
 Response 200:
 
 ```json
-{ "ok": true, "ts": number, "testRole": "teacher" | "student" | "parent" | "admin" | null, "testMode": boolean, "interactive": boolean, "dbOk": boolean, "flags": { "TEST_MODE": boolean, "MVP_PROD_GUARD": boolean, "RUNTIME_API_V2": boolean } }
+{
+  "ok": true,
+  "ts": 1712345678901,
+  "testRole": "teacher" | "student" | "parent" | "admin" | null,
+  "testMode": true,
+  "interactive": false,
+  "dbOk": true,
+  "storageOk": true,
+  "providers": { "okCount": 0, "total": 0 },
+  "flags": { "TEST_MODE": true, "MVP_PROD_GUARD": false, "RUNTIME_API_V2": false },
+  "requiredEnvs": { "NEXT_PUBLIC_SUPABASE_URL": true, "NEXT_PUBLIC_SUPABASE_ANON_KEY": true },
+  "csrfDoubleSubmit": false,
+  "version": null,
+  "rateLimits": {
+    "GLOBAL_MUTATION_RATE_LIMIT": "100",
+    "GLOBAL_MUTATION_RATE_WINDOW_MS": "60000",
+    "MESSAGES_LIST_LIMIT": "240",
+    "MESSAGES_LIST_WINDOW_MS": "60000",
+    "UPLOAD_RATE_LIMIT": "30",
+    "UPLOAD_RATE_WINDOW_MS": "60000",
+    "RUNTIME_OUTCOMES_LIMIT": "60",
+    "RUNTIME_OUTCOMES_WINDOW_MS": "60000",
+    "RUNTIME_PROGRESS_LIMIT": "60",
+    "RUNTIME_PROGRESS_WINDOW_MS": "60000",
+    "RUNTIME_GRADE_LIMIT": "60",
+    "RUNTIME_GRADE_WINDOW_MS": "60000",
+    "RUNTIME_CHECKPOINT_LIMIT": "30",
+    "RUNTIME_CHECKPOINT_WINDOW_MS": "60000",
+    "RUNTIME_ASSET_LIMIT": "20",
+    "RUNTIME_ASSET_WINDOW_MS": "60000"
+  }
+}
 ```
 
 <!-- Deprecated: GET /api/user/profile was removed in favor of role and Supabase auth helpers -->
@@ -393,100 +429,4 @@ Teachers only. List attempts for a quiz. 200 array; 400; 401; 403.
 
 #### POST /api/test/reset and POST /api/__test__/reset
 
-Reset in-memory test store. Only available when `TEST_MODE=1`.
-
-### Contracts (Zod)
-
-Defined in `packages/shared/src/schemas` and re-exported via `@education/shared`:
-
-- course: `courseCreateRequest`, `courseUpdateRequest`
-- lesson: `lessonCreateRequest`, `lessonReorderRequest`
-- enrollment: `enrollmentCreateRequest`
-- module: `moduleCreateRequest`, `moduleUpdateRequest`
-- assignment: `assignmentCreateRequest`, `assignmentUpdateRequest`
-- submission: `submissionCreateRequest`, `submissionGradeRequest`
-- quiz: `quizCreateRequest`, `quizUpdateRequest`
-- quiz question: `quizQuestionCreateRequest`
-- quiz choice: `quizChoiceCreateRequest`
-- quiz attempt: `quizAttemptStartRequest`, `quizAnswerUpsertRequest`, `quizAttemptSubmitRequest`
-- user: `profileResponse`, `profileUpdateRequest`, `updateRoleRequest`
-- dashboard: `dashboardResponse`, `studentDashboard`, `teacherDashboard`, `adminDashboard`
-- progress: `markLessonCompleteRequest`, `progressResponse`
-- interactive: `launchKind`, `launchTokenClaims`, `runtimeEvent`, `outcomeRequest`, runtime v2 contracts (`AuthExchange`, `ContextResponse`, `ProgressUpsert`, `GradeSubmit`, `EventEmit`, `Checkpoint*`, `AssetSignUrl`)
-
-### Environment
-
-- `INTERACTIVE_RUNTIME=1` — enable interactive runtime endpoints
-- `RUNTIME_API_V2=1` — enable runtime v2 endpoints (auth/context/progress/grade/events/checkpoint/asset)
-- `RUNTIME_CORS_ALLOW` — comma-separated origins allowed for runtime v2 CORS responses
-- `NEXT_PUBLIC_CSP` — content security policy header value
-- `NEXT_RUNTIME_PRIVATE_KEY` (PKCS8), `NEXT_RUNTIME_KEY_ID` — RS256 signing for launch tokens (preferred)
-- `NEXT_RUNTIME_SECRET` — HS256 fallback signing secret (dev only)
-- `RUNTIME_EVENTS_LIMIT`, `RUNTIME_EVENTS_WINDOW_MS` — rate limits for events
-- `RUNTIME_OUTCOMES_LIMIT`, `RUNTIME_OUTCOMES_WINDOW_MS` — rate limits for outcomes
- - `SUBMISSIONS_CREATE_LIMIT`, `SUBMISSIONS_CREATE_WINDOW_MS` — per-user submission create limits
- - `GRADING_LIMIT`, `GRADING_WINDOW_MS` — per-teacher grading limits
- - `MESSAGES_LIMIT`, `MESSAGES_WINDOW_MS` — per-user messaging limits
- - `UPLOAD_RATE_LIMIT`, `UPLOAD_RATE_WINDOW_MS` — per-user file upload presign limits
- - `PROVIDER_HEALTH_LIMIT`, `PROVIDER_HEALTH_WINDOW_MS` — per-user provider health read limits
- - `MVP_PROD_GUARD=1` — disable non-MVP endpoints in production (messages/files dev stubs)
- - `TEST_MODE` — MUST be unset in production; prod rejects any `x-test-auth`
- - `GLOBAL_MUTATION_RATE_LIMIT`, `GLOBAL_MUTATION_RATE_WINDOW_MS` — optional global per-IP limit for non-GET requests
-  - `INTERACTIVE_RUNTIME=1` — enables interactive events/outcomes
-  - `CSRF_DOUBLE_SUBMIT=1` — enable double-submit token enforcement (cookie `csrf_token` must match header `x-csrf-token`)
-  - `DUE_SOON_JOB=1` — enable scheduled due-soon notifications; `DUE_SOON_INTERVAL_MS`, `DUE_SOON_WINDOW_HOURS`
-  - `CSRF_DOUBLE_SUBMIT=1` — enforce double-submit CSRF token on non-GET routes (header `x-csrf-token` must match cookie `csrf_token`)
-
-Server env validation:
-
-- Unified in `@education/shared` via `loadServerEnv`. The web app imports this in `apps/web/src/lib/env.ts` and fails fast on invalid/missing configuration.
-- In production with `RUNTIME_API_V2=1`, RS256 keys are required: `NEXT_RUNTIME_PUBLIC_KEY`, `NEXT_RUNTIME_PRIVATE_KEY`, `NEXT_RUNTIME_KEY_ID`.
-
-Messaging notes:
-
-- In test-mode or when `MVP_PROD_GUARD=1`, messaging routes use in-memory stubs in `testStore` for fast e2e.
-- In production (guard off), routes are DB-backed with RLS ensuring only thread participants can read/write.
-
-### Error envelope conventions
-### Pagination
-
-- Many list endpoints accept `offset` and `limit` query params and return `x-total-count` header with the total number of matching items.
-- Implemented for: messages list (`/api/messages`), notifications list, message threads list, lessons list, modules list, runtime outcomes (course and teacher), assignments list, submissions list, quizzes list, enrollments list.
-
-### Runtime v2 security
-
-- Tokens: RS256 preferred (public key required in prod); HS256 allowed in dev only.
-- Audience binding: if the request origin is allowed by env, the runtime token `aud` must match the request origin.
-- Scopes enforced:
-  - `progress.write/read` for progress and checkpoints
-  - `attempts.write/read` for grade and checkpoints
-  - `files.write` for asset sign-url
-
-
-- All route errors return a Problem-style envelope: `{ error: { code, message }, requestId }`
-- Validation errors use HTTP 400 (MVP). Option to move to 422 later.
-- Responses echo `x-request-id` for traceability.
-
-### Security headers
-
-- The app sets CSP, HSTS, Referrer-Policy, and Permissions-Policy headers. `frame-ancestors` and `connect-src` are tightened for interactive providers.
-
-### Interactive providers (JWT)
-
-- Launch tokens (`POST /api/enrollments/[id]/launch-token`) are RS256-signed in production; HS256 fallback is disabled in prod.
-- Outcomes webhook (`POST /api/runtime/outcomes`) requires provider JWT verified via JWKS with issuer/audience checks; `nonce` one-time-use and expiry enforced.
-
-Providers configuration:
-
-- `jwks_url` and `domain` must use `https://` (non-HTTPS is rejected).
-- On create/update, the server fetches JWKS and validates that it contains a `keys` array.
-
-### Providers Health
-
-- `GET /api/providers/health?id={uuid}` (admin):
-  - Returns JWKS validation and domain reachability results for a provider.
-  - Caches results in `provider_health` for `PROVIDER_HEALTH_TTL_MS` milliseconds.
-  - Rate limited per-user using `PROVIDER_HEALTH_LIMIT` per `PROVIDER_HEALTH_WINDOW_MS`.
-  - In test-mode, returns `{ ok: true, test: true }` stubs without external network calls.
-- `GET /api/providers/health/summaries` (admin): returns cached results for all providers.
-
+Reset in-memory test store. Only available when `

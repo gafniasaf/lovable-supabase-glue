@@ -34,6 +34,24 @@ export const PATCH = withRouteTiming(async function PATCH(req: NextRequest) {
   const requestId = req.headers.get('x-request-id') || crypto.randomUUID();
   const user = await getCurrentUserInRoute(req);
   if (!user) return NextResponse.json({ error: { code: 'UNAUTHENTICATED', message: 'Not signed in' }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
+  // Enforce CSRF double-submit when enabled
+  try {
+    if (process.env.CSRF_DOUBLE_SUBMIT === '1') {
+      const h = req.headers;
+      const headerToken = h.get('x-csrf-token') || '';
+      const cookieHeader = h.get('cookie') || '';
+      const cookiesMap: Record<string, string> = {};
+      for (const part of cookieHeader.split(';')) {
+        const [k, ...v] = part.trim().split('=');
+        if (!k) continue;
+        cookiesMap[k] = decodeURIComponent(v.join('='));
+      }
+      const cookieToken = cookiesMap['csrf_token'] || '';
+      if (!headerToken || !cookieToken || headerToken !== cookieToken) {
+        return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Invalid CSRF token' }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
+      }
+    }
+  } catch {}
   const body = await req.json().catch(() => ({}));
   // Basic rate limit on preference writes
   try {

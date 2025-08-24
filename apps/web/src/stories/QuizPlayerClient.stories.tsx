@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import QuizPlayerClient from "../app/dashboard/student/[courseId]/quizzes/[quizId]/play/QuizPlayerClient";
+import QuizPlayerClient from "@/app/dashboard/student/[courseId]/quizzes/[quizId]/play/QuizPlayerClient";
 
 const meta = {
   title: "Student/QuizPlayer",

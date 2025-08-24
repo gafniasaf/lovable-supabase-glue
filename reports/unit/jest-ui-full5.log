@@ -1,0 +1,245 @@
+PASS tests/unit/ui/NotificationsDropdownClient.spec.tsx
+PASS tests/unit/ui/GradeRowClient.spec.tsx
+PASS tests/unit/ui/SystemThroughputProfiler.spec.tsx
+PASS tests/unit/ui/TeacherAnnouncements.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/courses 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+    console.debug
+      [serverFetch] 404 /api/courses 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+    console.error
+      Warning: Invalid value for prop `action` on <form> tag. Either remove it from the element, or pass a string or number value to keep it in the DOM. For details, see https://reactjs.org/link/attribute-behavior 
+          at form
+          at section
+          at section
+
+      24 |     );
+      25 |     const ui = await TeacherAnnouncementsPage({});
+    > 26 |     render(ui as any);
+         |           ^
+      27 |     await screen.findByTestId('ann-course-count');
+      28 |   });
+      29 | });
+
+      at printWarning (../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnUnknownProperties (../node_modules/react-dom/cjs/react-dom.development.js:3815:7)
+      at validateProperties$2 (../node_modules/react-dom/cjs/react-dom.development.js:3827:3)
+      at validatePropertiesInDevelopment (../node_modules/react-dom/cjs/react-dom.development.js:9541:5)
+      at setInitialProperties (../node_modules/react-dom/cjs/react-dom.development.js:9830:5)
+      at finalizeInitialChildren (../node_modules/react-dom/cjs/react-dom.development.js:10950:3)
+      at completeWork (../node_modules/react-dom/cjs/react-dom.development.js:22232:17)
+      at completeUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26632:16)
+      at performUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26607:5)
+      at workLoopSync (../node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (../node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performConcurrentWorkOnRoot (../node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+      at flushActQueue (../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../node_modules/react/cjs/react.development.js:2582:11)
+      at ../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (../node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (unit/ui/TeacherAnnouncements.spec.tsx:26:11)
+
+PASS tests/unit/ui/TeacherCourseInsightsAdvanced.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/courses 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+    console.debug
+      [serverFetch] 404 /api/courses 4ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+    console.debug
+      [serverFetch] 404 /api/lessons?course_id=00000000-0000-0000-0000-0000000000c1 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+    console.debug
+      [serverFetch] 404 /api/lessons?course_id=00000000-0000-0000-0000-0000000000c1 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/SystemDiagnosticsSuite.spec.tsx
+PASS tests/unit/ui/StudentStudyDigest.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/enrollments 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+    console.debug
+      [serverFetch] 404 /api/enrollments 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/StudentLearningOverviewDetailed.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/enrollments 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+    console.debug
+      [serverFetch] 404 /api/enrollments 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/StudentLearningOverviewAdvanced.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/enrollments 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+    console.debug
+      [serverFetch] 404 /api/enrollments 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/ParentAnnouncementsLab.spec.tsx
+PASS tests/unit/ui/StudentLearningOverview.spec.tsx
+PASS tests/unit/ui/SystemPercentileTrends.spec.tsx
+PASS tests/unit/ui/AdminReports.spec.tsx
+PASS tests/unit/ui/StudentUpcomingLessons.spec.tsx
+PASS tests/unit/ui/SystemObserver.spec.tsx
+PASS tests/unit/ui/SystemHealthHistory.spec.tsx
+PASS tests/unit/ui/TeacherCourseInsights.spec.tsx
+PASS tests/unit/ui/SystemRequestId.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/SystemLatencySampler.spec.tsx
+PASS tests/unit/ui/SystemUptimeTile.spec.tsx
+PASS tests/unit/ui/StudentProfile.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/user/profile 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/StudentPlanner.spec.tsx
+PASS tests/unit/ui/SystemRoleBadge.spec.tsx
+FAIL tests/unit/ui/SystemAuthCheck.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/user/profile 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+  ● System Auth Check (labs) › renders email and role when authenticated
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      t@example.com
+    Received:
+      s@example.com
+
+      15 |     const ui = await AuthCheckPage();
+      16 |     render(ui);
+    > 17 |     expect(await screen.findByTestId('auth-email')).toHaveTextContent('t@example.com');
+         |                                                     ^
+      18 |     expect(await screen.findByTestId('auth-role')).toHaveTextContent('teacher');
+      19 |   });
+      20 | });
+
+      at Object.<anonymous> (unit/ui/SystemAuthCheck.spec.tsx:17:53)
+
+PASS tests/unit/ui/ParentChildrenReport.spec.tsx
+PASS tests/unit/ui/SystemOkCard.spec.tsx
+PASS tests/unit/ui/TeacherCourseCardsWithCounts.spec.tsx
+PASS tests/unit/ui/TeacherPrintPages.spec.tsx
+PASS tests/unit/ui/NotificationsInboxPage.spec.tsx
+PASS tests/unit/ui/DropdownMenu.spec.tsx
+PASS tests/unit/ui/ParentChildren.spec.tsx
+  ● Console
+
+    console.error
+      Warning: Invalid value for prop `action` on <form> tag. Either remove it from the element, or pass a string or number value to keep it in the DOM. For details, see https://reactjs.org/link/attribute-behavior 
+          at form
+          at main
+
+      14 |     server.use(http.get('/api/parent-links', () => HttpResponse.json([{ id: 'pl-1', parent_id: 'p-1', student_id: 's-1', created_at: new Date().toISOString() }])));
+      15 |     const ui = await ParentChildrenListPage();
+    > 16 |     render(ui);
+         |           ^
+      17 |     await screen.findByTestId('children-list');
+      18 |   });
+      19 | });
+
+      at printWarning (../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnUnknownProperties (../node_modules/react-dom/cjs/react-dom.development.js:3815:7)
+      at validateProperties$2 (../node_modules/react-dom/cjs/react-dom.development.js:3827:3)
+      at validatePropertiesInDevelopment (../node_modules/react-dom/cjs/react-dom.development.js:9541:5)
+      at setInitialProperties (../node_modules/react-dom/cjs/react-dom.development.js:9830:5)
+      at finalizeInitialChildren (../node_modules/react-dom/cjs/react-dom.development.js:10950:3)
+      at completeWork (../node_modules/react-dom/cjs/react-dom.development.js:22232:17)
+      at completeUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26632:16)
+      at performUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26607:5)
+      at workLoopSync (../node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (../node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performConcurrentWorkOnRoot (../node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+      at flushActQueue (../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../node_modules/react/cjs/react.development.js:2582:11)
+      at ../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (../node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (unit/ui/ParentChildren.spec.tsx:16:11)
+
+PASS tests/unit/ui/TeacherAnalyticsLab.spec.tsx
+PASS tests/unit/ui/DarkModeToggle.spec.tsx
+PASS tests/unit/ui/telemetry.spec.tsx
+PASS tests/unit/ui/SettingsPage.spec.tsx
+PASS tests/unit/ui/TeacherCoursesGrid.spec.tsx
+PASS tests/unit/ui/StudentEnrollmentsGrid.spec.tsx
+PASS tests/unit/ui/SystemHealth.spec.tsx
+
+Summary of all failing tests
+FAIL unit/ui/SystemAuthCheck.spec.tsx
+  ● System Auth Check (labs) › renders email and role when authenticated
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      t@example.com
+    Received:
+      s@example.com
+
+      15 |     const ui = await AuthCheckPage();
+      16 |     render(ui);
+    > 17 |     expect(await screen.findByTestId('auth-email')).toHaveTextContent('t@example.com');
+         |                                                     ^
+      18 |     expect(await screen.findByTestId('auth-role')).toHaveTextContent('teacher');
+      19 |   });
+      20 | });
+
+      at Object.<anonymous> (unit/ui/SystemAuthCheck.spec.tsx:17:53)
+
+
+Test Suites: 1 failed, 37 passed, 38 total
+Tests:       1 failed, 38 passed, 39 total
+Snapshots:   0 total
+Time:        22.5 s
+Ran all test suites.

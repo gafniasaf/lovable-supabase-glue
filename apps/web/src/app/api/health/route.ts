@@ -71,8 +71,31 @@ export async function GET(req: NextRequest) {
       requiredEnvs['NEXT_RUNTIME_KEY_ID'] = !!process.env.NEXT_RUNTIME_KEY_ID;
     }
     const csrfDoubleSubmit = process.env.CSRF_DOUBLE_SUBMIT === '1';
-    const dto = z.object({ ok: z.boolean(), ts: z.number().int(), testRole: z.string().nullable(), testMode: z.boolean(), interactive: z.boolean(), dbOk: z.boolean(), storageOk: z.boolean(), providers: z.object({ okCount: z.number().int().nonnegative(), total: z.number().int().nonnegative() }), flags: z.record(z.boolean()), requiredEnvs: z.record(z.boolean()), csrfDoubleSubmit: z.boolean(), version: z.string().nullable() });
-    return jsonDto({ ok: true, ts: Date.now(), testRole, testMode, interactive, dbOk, storageOk, providers, flags, requiredEnvs, csrfDoubleSubmit, version: process.env.VERCEL_GIT_COMMIT_SHA || null } as any, dto as any, { requestId, status: 200 });
+    const rateLimits: Record<string, string | undefined> = {
+      GLOBAL_MUTATION_RATE_LIMIT: process.env.GLOBAL_MUTATION_RATE_LIMIT,
+      GLOBAL_MUTATION_RATE_WINDOW_MS: process.env.GLOBAL_MUTATION_RATE_WINDOW_MS,
+      MESSAGES_LIST_LIMIT: process.env.MESSAGES_LIST_LIMIT,
+      MESSAGES_LIST_WINDOW_MS: process.env.MESSAGES_LIST_WINDOW_MS,
+      UPLOAD_RATE_LIMIT: process.env.UPLOAD_RATE_LIMIT,
+      UPLOAD_RATE_WINDOW_MS: process.env.UPLOAD_RATE_WINDOW_MS,
+      RUNTIME_OUTCOMES_LIMIT: process.env.RUNTIME_OUTCOMES_LIMIT,
+      RUNTIME_OUTCOMES_WINDOW_MS: process.env.RUNTIME_OUTCOMES_WINDOW_MS,
+      RUNTIME_PROGRESS_LIMIT: process.env.RUNTIME_PROGRESS_LIMIT,
+      RUNTIME_PROGRESS_WINDOW_MS: process.env.RUNTIME_PROGRESS_WINDOW_MS,
+      RUNTIME_GRADE_LIMIT: process.env.RUNTIME_GRADE_LIMIT,
+      RUNTIME_GRADE_WINDOW_MS: process.env.RUNTIME_GRADE_WINDOW_MS,
+      RUNTIME_CHECKPOINT_LIMIT: process.env.RUNTIME_CHECKPOINT_LIMIT,
+      RUNTIME_CHECKPOINT_WINDOW_MS: process.env.RUNTIME_CHECKPOINT_WINDOW_MS,
+      RUNTIME_ASSET_LIMIT: process.env.RUNTIME_ASSET_LIMIT,
+      RUNTIME_ASSET_WINDOW_MS: process.env.RUNTIME_ASSET_WINDOW_MS
+    };
+    // Reports
+    (rateLimits as any).REPORTS_ACTIVITY_LIMIT = process.env.REPORTS_ACTIVITY_LIMIT;
+    (rateLimits as any).REPORTS_ACTIVITY_WINDOW_MS = process.env.REPORTS_ACTIVITY_WINDOW_MS;
+    (rateLimits as any).REPORTS_RETENTION_LIMIT = process.env.REPORTS_RETENTION_LIMIT;
+    (rateLimits as any).REPORTS_RETENTION_WINDOW_MS = process.env.REPORTS_RETENTION_WINDOW_MS;
+    const dto = z.object({ ok: z.boolean(), ts: z.number().int(), testRole: z.string().nullable(), testMode: z.boolean(), interactive: z.boolean(), dbOk: z.boolean(), storageOk: z.boolean(), providers: z.object({ okCount: z.number().int().nonnegative(), total: z.number().int().nonnegative() }), flags: z.record(z.boolean()), requiredEnvs: z.record(z.boolean()), csrfDoubleSubmit: z.boolean(), version: z.string().nullable(), rateLimits: z.record(z.string().optional()) });
+    return jsonDto({ ok: true, ts: Date.now(), testRole, testMode, interactive, dbOk, storageOk, providers, flags, requiredEnvs, csrfDoubleSubmit, version: process.env.VERCEL_GIT_COMMIT_SHA || null, rateLimits } as any, dto as any, { requestId, status: 200 });
   } catch (err: any) {
     const requestId = req.headers.get('x-request-id') || crypto.randomUUID();
     const dto = z.object({ ok: z.boolean(), error: z.string().min(1) });

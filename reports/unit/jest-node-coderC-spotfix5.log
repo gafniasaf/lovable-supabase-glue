@@ -1,0 +1,49 @@
+FAIL unit/api.files.content-type-default.spec.ts
+  ● Console
+
+    console.log
+      { ms: 3 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.PUT (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● files default content_type › defaults to application/octet-stream when omitted
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "application/octet-stream"
+    Received: "application/json"
+
+      22 |     const { id } = await put.json();
+      23 |     const dl = await (DownloadGET as any)(getUrl(`http://localhost/api/files/download-url?id=${id}`, { 'x-test-auth': 'student' }));
+    > 24 |     expect(dl.headers.get('content-type')).toBe('application/octet-stream');
+         |                                            ^
+      25 |   });
+      26 | });
+      27 |
+
+      at Object.<anonymous> (unit/api.files.content-type-default.spec.ts:24:44)
+
+PASS unit/api.files.download-url.dev-namespace.guard.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 1 passed, 2 total
+Snapshots:   0 total
+Time:        5.32 s
+Ran all test suites within paths "unit/api.files.content-type-default.spec.ts", "unit/api.files.download-url.dev-namespace.guard.spec.ts".

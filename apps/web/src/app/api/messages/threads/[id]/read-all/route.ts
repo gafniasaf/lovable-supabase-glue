@@ -13,8 +13,8 @@ export const PATCH = withRouteTiming(async function PATCH(req: NextRequest, ctx?
   const threadId = ctx?.params?.id || new URL(req.url).pathname.split('/').slice(-2)[0];
   if (isTestMode()) {
     const out = markAllThreadMessagesReadForUser(threadId, user.id);
-    const dto = z.object({ updated: z.number().int().nonnegative() });
-    return jsonDto(out as any, dto as any, { requestId, status: 200 });
+    const dto = z.object({ ok: z.boolean() });
+    return jsonDto({ ok: !!(out as any)?.ok } as any, dto as any, { requestId, status: 200 });
   }
   const supabase = getRouteHandlerSupabase();
   // Fetch message ids for the thread and insert missing receipts for user

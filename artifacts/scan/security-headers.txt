@@ -1,0 +1,2 @@
+default-src 'self'; script-src 'self' 'nonce-dev'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src self; frame-ancestors 'none'; frame-src self;
+

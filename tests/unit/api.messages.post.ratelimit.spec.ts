@@ -1,8 +1,5 @@
 import { POST as MessagesPOST } from '../../apps/web/src/app/api/messages/route';
-
-jest.mock('../../apps/web/src/lib/rateLimit', () => ({
-  checkRateLimit: () => ({ allowed: false, remaining: 0, resetAt: Date.now() + 30_000 })
-}), { virtual: true });
+import { mockRateLimit, expectRateLimited } from './helpers/rateLimit';
 
 function post(body: any, headers?: Record<string,string>) {
   return new Request('http://localhost/api/messages', { method: 'POST', headers: { 'content-type': 'application/json', ...(headers||{}) } as any, body: JSON.stringify(body) } as any);
@@ -17,11 +14,9 @@ describe('messages POST rate limit headers', () => {
   });
 
   test('returns 429 with standard headers when rate-limited', async () => {
+    mockRateLimit({ allowed: false, remaining: 0 });
     const res = await (MessagesPOST as any)(post({ thread_id: '00000000-0000-0000-0000-000000000001', body: 'hello' }));
-    expect(res.status).toBe(429);
-    expect(res.headers.get('retry-after')).toBeTruthy();
-    expect(res.headers.get('x-rate-limit-reset')).toBeTruthy();
-    expect(res.headers.get('x-rate-limit-remaining')).toBe('0');
+    expectRateLimited(res as any);
   });
 });
 

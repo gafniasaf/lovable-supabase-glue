@@ -7,8 +7,9 @@ import { getCurrentUserInRoute } from "@/lib/supabaseServer";
 
 function sanitizeLabel(val: string): string {
   try {
-    // Ensure label length reasonable and escape quotes
-    const trimmed = (val || '').slice(0, 200);
+    // Ensure label length reasonable, strip newlines, and escape quotes
+    const cleaned = String(val || '').replace(/[\r\n]/g, ' ');
+    const trimmed = cleaned.slice(0, 200);
     return trimmed.replace(/"/g, '\\"');
   } catch { return val; }
 }

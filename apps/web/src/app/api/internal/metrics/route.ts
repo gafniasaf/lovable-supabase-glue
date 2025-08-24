@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { withRouteTiming } from "@/server/withRouteTiming";
 import { snapshot, getCounters } from "@/lib/metrics";
 
+export const runtime = 'nodejs';
 export const GET = withRouteTiming(async function GET(req: NextRequest) {
   const requestId = req.headers.get('x-request-id') || crypto.randomUUID();
   const token = req.headers.get('x-metrics-token') || '';

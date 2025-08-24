@@ -34,6 +34,14 @@ npm --workspace apps/web run dev:test   # TEST_MODE=1 (port 3020)
 npm --workspace apps/web run dev:e2e    # TEST_MODE=1 (port 3030)
 ```
 
+### ExpertFolio (walking skeleton)
+
+Set `FEATURES_EXPERTFOLIO=1` to enable feature-flagged ExpertFolio endpoints:
+- `POST /api/ef/assessments` — create assessment (in-memory adapter for Part 1)
+- `POST /api/ef/evaluations` — create evaluation (in-memory adapter for Part 1)
+
+All 2xx JSON responses are validated via `jsonDto` and include `x-request-id`. Part 2 adds DB/RLS.
+
 Multi-Dev quickstart:
 
 ```bash
@@ -79,6 +87,7 @@ Security hardening (env flags):
 - `docs/observability.md` — logging, request IDs, route timing
 - `docs/roles.md` — application roles and permissions
 - `docs/runtime-v2.md` — External Runtime API v2 integration guide (draft)
+- `docs/runbook.md` — ops and governance runbook (DLQ, usage, licenses, exports)
 - `docs/parallel-work.md` — how Coders A (Frontend), B (Backend), C (QA) work safely in parallel
 - `docs/start-here.md` — one-line onboarding: “you are coder A/B/C, scan the system and proceed”
  - `docs/tasks/coder-A.md` — Frontend/UI to-do plan (independent track)

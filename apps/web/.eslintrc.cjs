@@ -9,6 +9,27 @@ module.exports = {
 	plugins: ["jsx-a11y"],
 	overrides: [
 		{
+			files: ["src/**/*.{ts,tsx}"],
+			rules: {
+				"no-restricted-imports": [
+					"error",
+					{
+						patterns: [
+							"../../apps/web/src/**",
+							"../apps/web/src/**",
+							"../../**/src/**"
+						],
+						paths: [
+							{ name: "../../apps/web/src/lib/jobs", message: "Use '@/lib/jobs' alias" },
+							{ name: "../lib/jobs", message: "Use '@/lib/jobs' alias" },
+							{ name: "../../apps/web/src/lib/rateLimit", message: "Use '@/lib/rateLimit' alias" },
+							{ name: "../lib/rateLimit", message: "Use '@/lib/rateLimit' alias" }
+						]
+					}
+				]
+			}
+		},
+		{
 			files: ["src/app/dashboard/**/*.{ts,tsx}"],
 			rules: {
 				"no-restricted-imports": [

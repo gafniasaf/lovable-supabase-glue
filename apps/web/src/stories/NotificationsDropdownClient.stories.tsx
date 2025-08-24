@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import NotificationsDropdownClient from "../app/components/NotificationsDropdownClient";
-import NotificationsBellClient from "../app/components/NotificationsBellClient";
+import NotificationsDropdownClient from "@/app/components/NotificationsDropdownClient";
+import NotificationsBellClient from "@/app/components/NotificationsBellClient";
 
 const meta = {
   title: "Header/NotificationsDropdown",

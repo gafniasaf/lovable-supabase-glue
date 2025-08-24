@@ -4,10 +4,12 @@ import { getCurrentUserInRoute, getRouteHandlerSupabase } from "@/lib/supabaseSe
 import { runtimeEvent } from "@education/shared";
 import { getRequestLogger } from "@/lib/logger";
 import { isInteractiveRuntimeEnabled } from "@/lib/testMode";
-import { checkRateLimit } from "@/lib/rateLimit";
+// Note: rateLimit is loaded dynamically in tests to allow jest.mock with a relative path
 import { getRequestOrigin, isOriginAllowedByEnv, buildCorsHeaders } from "@/lib/cors";
 import { isRuntimeV2Enabled } from "@/lib/runtime";
 import { verifyRuntimeAuthorization } from "@/lib/runtimeAuth";
+
+export const runtime = 'nodejs';
 
 // gated via shared helper
 
@@ -48,20 +50,22 @@ export const POST = withRouteTiming(async function POST(req: NextRequest) {
     const alias = String((claims as any)?.alias || '');
     const courseId = String((claims as any)?.courseId || '');
     const rlKey = `evt:${courseId}:${alias || 'anon'}`;
+    const { checkRateLimit } = await import('@/lib/rateLimit');
     const rl = checkRateLimit(rlKey, Number(process.env.RUNTIME_EVENTS_LIMIT || 60), Number(process.env.RUNTIME_EVENTS_WINDOW_MS || 60000));
     if (!rl.allowed) {
       const retry = Math.max(0, rl.resetAt - Date.now());
+      const reqOrigin = getRequestOrigin(req as any);
+      const allowCors = !!reqOrigin && isOriginAllowedByEnv(reqOrigin);
+      const headers: Record<string, string> = {
+        'x-request-id': requestId,
+        'retry-after': String(Math.ceil(retry / 1000)),
+        'x-rate-limit-remaining': String(rl.remaining),
+        'x-rate-limit-reset': String(Math.ceil(rl.resetAt / 1000))
+      };
+      if (allowCors) Object.assign(headers, buildCorsHeaders(reqOrigin));
       return NextResponse.json(
         { error: { code: 'TOO_MANY_REQUESTS', message: 'Rate limit' }, requestId },
-        {
-          status: 429,
-          headers: {
-            'x-request-id': requestId,
-            'retry-after': String(Math.ceil(retry / 1000)),
-            'x-rate-limit-remaining': String(rl.remaining),
-            'x-rate-limit-reset': String(Math.ceil(rl.resetAt / 1000))
-          }
-        }
+        { status: 429, headers }
       );
     }
     // Persist minimal signals; ignore failures (RLS) as best-effort telemetry
@@ -92,7 +96,8 @@ export const POST = withRouteTiming(async function POST(req: NextRequest) {
   if (!courseId) return NextResponse.json({ error: { code: 'BAD_REQUEST', message: 'courseId required' }, requestId }, { status: 400, headers: { 'x-request-id': requestId } });
   if (!isInteractiveRuntimeEnabled()) return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Interactive runtime disabled' }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
   const rlKey = `evt:${courseId}:${user?.id ?? 'anon'}`;
-  const rl = checkRateLimit(rlKey, Number(process.env.RUNTIME_EVENTS_LIMIT || 60), Number(process.env.RUNTIME_EVENTS_WINDOW_MS || 60000));
+  const { checkRateLimit: checkRateLimitLegacy } = await import('@/lib/rateLimit');
+  const rl = checkRateLimitLegacy(rlKey, Number(process.env.RUNTIME_EVENTS_LIMIT || 60), Number(process.env.RUNTIME_EVENTS_WINDOW_MS || 60000));
   if (!rl.allowed) {
     const retry = Math.max(0, rl.resetAt - Date.now());
     return NextResponse.json(

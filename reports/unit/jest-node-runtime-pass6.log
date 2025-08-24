@@ -1,0 +1,27 @@
+{"level":30,"time":1755754164595,"pid":20,"hostname":"239a53dabc19","requestId":"87eb3f85-fdf1-4dd8-82ff-4bc95c1665b2","ms":8,"msg":"route_success"}
+FAIL tests/unit/api.runtime.cors.headers.spec.ts
+  runtime CORS headers for allowed origin
+    ✕ includes access-control-allow-origin when origin is allowed (22 ms)
+
+  ● runtime CORS headers for allowed origin › includes access-control-allow-origin when origin is allowed
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 403
+    Received array: [200, 201, 204, 400]
+
+      25 |     const res = await (ProgressPOST as any)(post({ authorization: `Bearer ${token}` }));
+      26 |     // success or preflight OK
+    > 27 |     expect([200,201,204,400]).toContain(res.status);
+         |                               ^
+      28 |     // @ts-ignore NextResponse-like headers
+      29 |     const h = res.headers as Headers;
+      30 |     expect(h.get('access-control-allow-origin')).toBe('https://provider.example');
+
+      at Object.<anonymous> (unit/api.runtime.cors.headers.spec.ts:27:31)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 1 total
+Snapshots:   0 total
+Time:        2.391 s
+Ran all test suites related to files matching /tests\/unit\/api.runtime.cors.headers.spec.ts/i.

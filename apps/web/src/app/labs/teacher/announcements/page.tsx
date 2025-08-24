@@ -10,7 +10,7 @@ type Announcement = { id: string; course_id: string; title: string; body: string
 export default async function TeacherAnnouncementsPage({ searchParams }: { searchParams?: { course_id?: string } }) {
   const h = headers();
   const c = cookies();
-  const cookieHeader = h.get("cookie") ?? c.getAll().map(x => `${x.name}=${x.value}`).join("; ");
+  const cookieHeader = h.get("cookie") ?? (() => { try { return c.getAll().map(x => `${x.name}=${x.value}`).join("; "); } catch { const one = c.get?.("x-test-auth")?.value; return one ? `x-test-auth=${one}` : ''; } })();
   const testAuth = h.get("x-test-auth") ?? c.get("x-test-auth")?.value;
 
   const baseHeaders = { ...(cookieHeader ? { cookie: cookieHeader } : {}), ...(testAuth ? { "x-test-auth": testAuth } : {}) } as HeadersInit;
@@ -26,14 +26,14 @@ export default async function TeacherAnnouncementsPage({ searchParams }: { searc
   const selectedCourseId = (searchParams?.course_id ?? '').trim() || (courses[0]?.id ?? '');
   let ann: Announcement[] = [];
   if (selectedCourseId) {
-    try { ann = await createAnnouncementsGateway().list({ courseId: selectedCourseId, includeUnpublished: true }) as any; } catch { ann = []; }
+    try { ann = await createAnnouncementsGateway().listByCourse(selectedCourseId, { includeUnpublished: true }) as any; } catch { ann = []; }
   }
 
   async function createAction(formData: FormData) {
     "use server";
     const hh = headers();
     const cc = cookies();
-    const cookie = hh.get("cookie") ?? cc.getAll().map(x => `${x.name}=${x.value}`).join("; ");
+    const cookie = hh.get("cookie") ?? (() => { try { return cc.getAll().map(x => `${x.name}=${x.value}`).join("; "); } catch { const one = cc.get?.("x-test-auth")?.value; return one ? `x-test-auth=${one}` : ''; } })();
     const ta = hh.get("x-test-auth") ?? cc.get("x-test-auth")?.value;
     const title = String(formData.get('title') || '').trim();
     const body = String(formData.get('body') || '').trim();

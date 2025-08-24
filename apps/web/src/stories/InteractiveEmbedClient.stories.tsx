@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import InteractiveEmbedClient from "../app/dashboard/student/[courseId]/InteractiveEmbedClient";
+import InteractiveEmbedClient from "@/app/dashboard/student/[courseId]/InteractiveEmbedClient";
 
 const launchUrl = "https://provider.example.com/launch?course=demo";
 const allowed = (() => { try { const u = new URL(launchUrl); return `${u.protocol}//${u.host}`; } catch { return "https://provider.example.com"; } })();

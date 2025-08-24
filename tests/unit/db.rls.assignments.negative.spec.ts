@@ -1,3 +1,11 @@
+describe('assignments RLS negatives (app-level guards)', () => {
+  test('student cannot modify assignments for courses they do not own', async () => {
+    const route = await import('../../apps/web/src/app/api/assignments/route');
+    const bad = await route.PATCH(new Request('http://localhost/api/assignments?id=unknown', { method: 'PATCH', headers: { 'x-test-auth': 'student', 'content-type': 'application/json' } } as any) as any);
+    expect([401,403]).toContain(bad.status);
+  });
+});
+
 describe('Assignments RLS/authorization negatives', () => {
   test('student cannot create assignment', async () => {
     const route = await import('../../apps/web/src/app/api/assignments/route');

@@ -1,4 +1,5 @@
 const { spawn } = require('child_process');
+const path = require('path');
 
 const mode = process.argv[2] || 'dev';
 const defaults = { dev: 3000, test: 3020, e2e: 3030 };
@@ -31,11 +32,12 @@ env.NODE_ENV = 'development';
 env.NEXT_DISABLE_SWC_NATIVE = env.NEXT_DISABLE_SWC_NATIVE || '1';
 env.PORT = port;
 
-const args = ['next', 'dev', '-p', port];
+const args = ['--yes', 'next', 'dev', '-p', port];
 const child = spawn(process.platform === 'win32' ? 'npx.cmd' : 'npx', args, {
   stdio: 'inherit',
   shell: true,
   env,
+  cwd: path.resolve(__dirname, '..'),
 });
 
 child.on('exit', (code) => process.exit(code || 0));

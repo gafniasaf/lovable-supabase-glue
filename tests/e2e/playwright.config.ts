@@ -27,8 +27,21 @@ export default defineConfig({
   },
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
+      name: 'edu-chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: process.env.PLAYWRIGHT_BASE_URL_EDU
+          || process.env.PLAYWRIGHT_BASE_URL
+          || 'http://localhost:3030'
+      }
+    },
+    {
+      name: 'folio-chromium',
+      use: {
+        ...devices['Desktop Chrome'],
+        baseURL: process.env.PLAYWRIGHT_BASE_URL_FOLIO
+          || (process.env.PLAYWRIGHT_BASE_URL ? `${process.env.PLAYWRIGHT_BASE_URL.replace(/\/$/, '')}` : 'http://localhost:3030')
+      }
     }
   ]
 });

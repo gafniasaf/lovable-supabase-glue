@@ -18,13 +18,16 @@ import { parseQuery } from "@/lib/zodQuery";
 
 export const POST = withRouteTiming(createApiHandler({
 	schema: lessonCreateRequest,
-	handler: async (input, ctx) => {
-		const requestId = ctx.requestId;
-		const supabase = getRouteHandlerSupabase();
+	preAuth: async (ctx) => {
+		const { getCurrentUserInRoute } = await import('@/lib/supabaseServer');
 		const user = await getCurrentUserInRoute(ctx.req as any);
 		const role = (user?.user_metadata as any)?.role ?? undefined;
-		if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
-		if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
+		if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId: ctx.requestId }, { status: 401, headers: { 'x-request-id': ctx.requestId } });
+		if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId: ctx.requestId }, { status: 403, headers: { 'x-request-id': ctx.requestId } });
+		return null;
+	},
+	handler: async (input, ctx) => {
+		const requestId = ctx.requestId;
 		const { course_id, title, content, order_index } = input!;
 		const data = await createLessonApi({ course_id, title, content, order_index });
 		try {

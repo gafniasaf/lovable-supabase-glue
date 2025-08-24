@@ -24,7 +24,7 @@ describe('runtime outcomes accepts runtime token when no jwks', () => {
   test('403 when missing attempts.write scope; 201 when scope present', async () => {
     const mock = (supa as any).makeSupabaseMock({
       courses: () => supa.supabaseOk({ id: 'c1', provider_id: null }),
-      interactive_attempts: () => supa.supabaseOk({ id: 'ia1' })
+      interactive_attempts: (p: any) => supa.supabaseOk({ id: 'ia1', course_id: 'c1', user_id: 'u1', score: p?.insert?.score ?? 1, max: p?.insert?.max ?? 1, passed: p?.insert?.passed ?? true })
     } as any);
     jest.spyOn(supa as any, 'getRouteHandlerSupabase').mockReturnValue(mock);
     const now = Math.floor(Date.now()/1000);

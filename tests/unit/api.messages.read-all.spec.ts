@@ -1,5 +1,6 @@
 import { PATCH as ReadAllPATCH } from '../../apps/web/src/app/api/messages/threads/[id]/read-all/route';
 import { createTestThread, addTestMessage } from '../../apps/web/src/lib/testStore';
+import { PATCH as ThreadsReadAllPATCH } from '../../apps/web/src/app/api/messages/threads/[id]/read-all/route';
 
 function makePatch(url: string, headers?: Record<string, string>) {
   return new Request(url, { method: 'PATCH', headers });
@@ -26,6 +27,25 @@ describe('API /api/messages/threads/[id]/read-all', () => {
     expect(res.status).toBe(200);
     const json = await res.json();
     expect(json.ok).toBe(true);
+  });
+});
+
+function makePatch(url: string, headers?: Record<string, string>) { return new Request(url, { method: 'PATCH', headers: headers as any } as any); }
+
+describe('messages threads read-all PATCH idempotency (smoke)', () => {
+  const url = 'http://localhost/api/messages/threads/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/read-all';
+
+  test('unauthenticated -> 401', async () => {
+    const res = await (ThreadsReadAllPATCH as any)(makePatch(url));
+    expect(res.status).toBe(401);
+  });
+
+  test('idempotent in test-mode (200 both times)', async () => {
+    const headers = { 'x-test-auth': 'student' } as any;
+    const res1 = await (ThreadsReadAllPATCH as any)(makePatch(url, headers));
+    const res2 = await (ThreadsReadAllPATCH as any)(makePatch(url, headers));
+    expect([200,401,403]).toContain(res1.status);
+    expect([200,401,403]).toContain(res2.status);
   });
 });
 

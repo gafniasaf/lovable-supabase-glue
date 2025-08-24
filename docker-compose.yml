@@ -4,16 +4,18 @@ services:
       context: .
       dockerfile: apps/web/Dockerfile
     image: education-platform-web:local
-    container_name: education-web
     restart: unless-stopped
     ports:
-      - "3022:3022"
+      - "${WEB_PORT:-3022}:3022"
     environment:
       # App base URL and port
       - PORT=3022
-      - NEXT_PUBLIC_BASE_URL=http://localhost:3022
+      - NEXT_PUBLIC_BASE_URL=http://web:3022
+      # Enable test mode for E2E and allow x-test-auth
+      - TEST_MODE=1
+      - E2E_ALLOW_TEST_MODE=1
       # Supabase (used if provided). Defaults are safe for TEST_MODE.
-      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-http://localhost:54321}
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-https://localhost:54321}
       - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY:-test-anon-key-1234567890}
       # Optional: file bucket and CORS allowlist for external runtimes
       - NEXT_PUBLIC_UPLOAD_BUCKET=${NEXT_PUBLIC_UPLOAD_BUCKET:-public}
@@ -34,12 +36,11 @@ services:
   tests:
     profiles:
       - tests
-    image: mcr.microsoft.com/playwright:v1.46.0-jammy
-    container_name: education-tests
+    image: mcr.microsoft.com/playwright:v1.54.2-jammy
     working_dir: /workspace
     depends_on:
       web:
-        condition: service_healthy
+        condition: service_started
     environment:
       - PW_NO_SERVER=1
       - PW_WORKERS=1
@@ -47,4 +48,5 @@ services:
     volumes:
       - .:/workspace
       - /workspace/node_modules
+      - /workspace/tests/node_modules
     command: bash -lc "npm ci && npm --workspace tests run test:e2e && mkdir -p reports/e2e artifacts/e2e && cp -r tests/test-results reports/e2e/ || true && cp -r tests/test-results artifacts/e2e/ || true"

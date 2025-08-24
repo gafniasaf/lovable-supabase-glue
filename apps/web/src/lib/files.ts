@@ -19,7 +19,19 @@ export async function presignDownloadUrl(input: { bucket: string; objectKey: str
   const expires = input.expiresIn ?? 300; // seconds
   const { data, error } = await (supabase as any).storage.from(input.bucket).createSignedUrl(input.objectKey, expires);
   if (error) throw new Error(error.message);
-  return (data as any).signedUrl as string;
+  let url = (data as any).signedUrl as string;
+  // In test env, storage mock may return a relative path; normalize to absolute URL
+  try {
+    const isAbsolute = /^https?:\/\//i.test(url);
+    if (!isAbsolute) {
+      let base = `http://localhost`;
+      try { if (typeof window !== 'undefined' && window.location?.origin) base = window.location.origin; }
+      catch {}
+      if (!base && process.env.NEXT_PUBLIC_BASE_URL) base = String(process.env.NEXT_PUBLIC_BASE_URL);
+      url = `${base}${url.startsWith('/') ? '' : '/'}${url}`;
+    }
+  } catch {}
+  return url;
 }
 
 /** Convenience helper to upload a Blob/ArrayBuffer to a presigned URL. */

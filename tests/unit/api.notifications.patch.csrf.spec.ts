@@ -15,7 +15,7 @@ describe('notifications preferences PATCH respects CSRF double-submit', () => {
     res = await (NotifPrefsPATCH as any)(patch({ origin: 'http://localhost', referer: 'http://localhost/p', cookie: 'csrf_token=a', 'x-csrf-token': 'b', 'content-type': 'application/json' }));
     expect([400,403]).toContain(res.status);
     // Match -> 200
-    res = await (NotifPrefsPATCH as any)(patch({ origin: 'http://localhost', referer: 'http://localhost/p', cookie: 'csrf_token=t', 'x-csrf-token': 't', 'content-type': 'application/json' }));
+    res = await (NotifPrefsPATCH as any)(patch({ origin: 'http://localhost', referer: 'http://localhost/p', cookie: 'csrf_token=t', 'x-csrf-token': 't', 'content-type': 'application/json', 'x-test-auth': 'student' }));
     expect([200]).toContain(res.status);
   });
 });

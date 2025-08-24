@@ -26,6 +26,17 @@ export default function OutcomesAdminPage() {
 			<div className="flex gap-2 items-center">
 				<input className="border rounded px-2 py-1 w-[420px]" placeholder="course UUID" value={courseId} onChange={e => setCourseId(e.target.value)} />
 				<button className="px-3 py-1 border rounded" onClick={load}>Load</button>
+				{courseId ? (
+					<a
+						className="px-3 py-1 border rounded underline"
+						href={createInteractiveOutcomesGateway().exportCsvUrl(courseId)}
+						target="_blank"
+						rel="noopener noreferrer"
+						aria-label={`Download CSV for course ${courseId}`}
+					>
+						Download CSV
+					</a>
+				) : null}
 				{error ? <span className="text-sm text-red-600">{error}</span> : null}
 			</div>
 			<div className="text-sm text-gray-600">{loading ? 'Loading…' : `${rows.length} rows`}</div>

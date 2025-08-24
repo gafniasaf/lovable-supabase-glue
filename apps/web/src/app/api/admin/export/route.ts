@@ -59,6 +59,21 @@ export const GET = withRouteTiming(async function GET(req: NextRequest) {
     } else if (entity === 'messages') {
       const { data } = await supabase.from('messages').select('*').limit(5000);
       rows = data ?? [];
+    } else if (entity === 'usage') {
+      try {
+        const { data } = await supabase.from('usage_counters').select('*').limit(5000);
+        rows = data ?? [];
+      } catch { rows = []; }
+    } else if (entity === 'dead_letters') {
+      try {
+        const { data } = await supabase.from('dead_letters').select('*').limit(5000);
+        rows = data ?? [];
+      } catch { rows = []; }
+    } else if (entity === 'licenses') {
+      try {
+        const { data } = await supabase.from('licenses').select('*').limit(5000);
+        rows = data ?? [];
+      } catch { rows = []; }
     } else {
       return NextResponse.json({ error: { code: 'BAD_REQUEST', message: 'Unsupported entity' }, requestId }, { status: 400, headers: { 'x-request-id': requestId } });
     }

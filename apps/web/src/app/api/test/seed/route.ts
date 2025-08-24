@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isTestMode } from "@/lib/testMode";
 import { resetTestStore, addTestCourse, addTestLesson, addTestEnrollment, upsertTestProfile, addTestNotification, addTestAssignment, addTestSubmission } from "@/lib/testStore";
+import { getRouteHandlerSupabase } from "@/lib/supabaseServer";
 import { withRouteTiming } from "@/server/withRouteTiming";
 
 function makeId() {
@@ -55,6 +56,19 @@ async function seed(req: NextRequest) {
   // Notifications
   addTestNotification({ user_id: studentId, type: 'assignment:new', payload: { course_id: courseA.id, title: assign2.title } });
   addTestNotification({ user_id: studentId, type: 'message:new', payload: { from: 'Teacher A' } });
+
+  // Optional DB seeds (best-effort) for new admin surfaces
+  try {
+    const supabase = getRouteHandlerSupabase();
+    // usage_counters stub rows
+    const day = now.slice(0, 10);
+    await supabase.from('usage_counters').upsert({ day, provider_id: null, course_id: courseA.id, metric: 'runtime.progress', count: 3 } as any, { onConflict: 'day,provider_id,course_id,metric' } as any);
+    await supabase.from('usage_counters').upsert({ day, provider_id: null, course_id: courseA.id, metric: 'runtime.grade', count: 1 } as any, { onConflict: 'day,provider_id,course_id,metric' } as any);
+    // dead_letters one row
+    await supabase.from('dead_letters').insert({ kind: 'runtime.event', payload: { sample: true } as any, error: 'timeout' } as any);
+    // licenses sample
+    await supabase.from('licenses').upsert({ provider_id: null, external_course_id: courseA.id, seats_total: 10, seats_used: 0, status: 'active' } as any);
+  } catch {}
 
   const res = NextResponse.redirect(new URL(referer, req.url), 303);
   res.headers.set('x-request-id', requestId);

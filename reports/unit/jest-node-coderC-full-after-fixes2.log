@@ -1,0 +1,2659 @@
+FAIL unit/api.files.download-ownership.spec.ts
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+    By default "node_modules" folder is ignored by transformers.
+
+    Here's what you can do:
+     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    /workspace/tests/unit/api.files.download-ownership.spec.ts:55
+    function get(url, headers) { return new Request(url, { method: 'GET', headers: headers }); }
+    ^
+
+    SyntaxError: Identifier 'get' has already been declared
+
+      at Runtime.createScriptFromCode (../node_modules/jest-runtime/build/index.js:1505:14)
+
+PASS unit/lib.serverFetch.spec.ts
+  ● Console
+
+    console.debug
+      [serverFetch] 200 http://localhost:3333/api/ping 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:102:13)
+
+    console.debug
+      [serverFetch] 200 http://example.com/api/secure 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:102:13)
+
+    console.debug
+      [serverFetch] 200 http://localhost:3333/api/test 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:102:13)
+
+PASS unit/api.messages.threads-and-messages.spec.ts
+  ● Console
+
+    console.log
+      { ms: 8 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 5 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+FAIL unit/api.files.download-url.permissions.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● files download-url ownership checks › owner can download; non-owner teacher of course can download submission files; others 403
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 403
+    Received: 404
+
+      41 |     jest.spyOn(supa as any, 'getRouteHandlerSupabase').mockReturnValue(mock3);
+      42 |     res = await (DownloadGET as any)(get('http://localhost/api/files/download-url?id=obj-1'));
+    > 43 |     expect(res.status).toBe(403);
+         |                        ^
+      44 |   });
+      45 | });
+      46 |
+
+      at Object.<anonymous> (unit/api.files.download-url.permissions.spec.ts:43:24)
+
+PASS unit/security.csrf.double-submit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.read-all.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.upload-url.rate-quota-csrf.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+FAIL unit/api.files.attachments.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.DELETE (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.error
+      { ms: 2, err: 'Maximum call stack size exceeded' } route_error
+
+      119 |         decrInFlight(path);
+      120 |       } catch {}
+    > 121 |       log.error({ ms, err: err?.message }, "route_error");
+          |           ^
+      122 |       try {
+      123 |         const url = (req as any)?.url as string | undefined;
+      124 |         const path = url ? new URL(url).pathname : 'unknown';
+
+      at Object.DELETE (../apps/web/src/server/withRouteTiming.ts:121:11)
+      at Object.<anonymous> (unit/api.files.attachments.spec.ts:14:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.DELETE (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● Files attachments API › 400 missing key; 401 unauth
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |                              ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:30)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+PASS unit/lib.serverFetch.csrf-header.spec.ts
+  ● Console
+
+    console.debug
+      [serverFetch] 200 http://localhost:3030/api/messages 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:102:13)
+
+PASS unit/lib.serverFetch.headers.spec.ts
+  ● Console
+
+    console.debug
+      [serverFetch] 200 http://localhost:3030/api/health 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:102:13)
+
+    console.debug
+      [serverFetch] 200 http://localhost:3030/api/health 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:102:13)
+
+    console.debug
+      [serverFetch] 400 http://localhost:3030/api/x 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:102:13)
+
+PASS unit/api.messages.csrf-double-submit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.roundtrip.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.PUT (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications.read-all.csrf.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at ../apps/web/src/server/withRouteTiming.ts:107:11
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.negatives.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PUT (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications-preferences.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.threads.ratelimit.headers.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+FAIL unit/api.messages.port-toggle.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● MESSAGING_PORT toggle routes › GET returns 200 with array and x-total-count
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 400
+    Received array: [200, 500]
+
+      12 |   test('GET returns 200 with array and x-total-count', async () => {
+      13 |     const res = await (MessagesGET as any)(get('http://localhost/api/messages?thread_id=t1', { 'x-test-auth': 'student' }));
+    > 14 |     expect([200,500]).toContain(res.status);
+         |                       ^
+      15 |     if (res.status === 200) {
+      16 |       expect(res.headers.get('x-total-count')).toBeDefined();
+      17 |       const data = await res.json();
+
+      at Object.<anonymous> (unit/api.messages.port-toggle.spec.ts:14:23)
+
+  ● MESSAGING_PORT toggle routes › POST + PATCH (mark read) via port
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 401
+    Received array: [201, 500]
+
+      22 |   test('POST + PATCH (mark read) via port', async () => {
+      23 |     const created = await (MessagesPOST as any)(post('http://localhost/api/messages', { thread_id: 'thr1', body: 'hi' }, { 'x-test-auth': 'student' }));
+    > 24 |     expect([201,500]).toContain(created.status);
+         |                       ^
+      25 |     if (created.status !== 201) return; // bail if test env not suitable
+      26 |     const msg = await created.json();
+      27 |     const res = await (MessagesPATCH as any)(patch(`http://localhost/api/messages?id=${encodeURIComponent(msg.id)}`, { 'x-test-auth': 'student' }));
+
+      at Object.<anonymous> (unit/api.messages.port-toggle.spec.ts:24:23)
+
+PASS unit/api.notifications.rate-limit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.threads.ratelimit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+FAIL unit/api.files.finalize.permissions.spec.ts
+  ● Console
+
+    console.error
+      { ms: 1, err: 'Maximum call stack size exceeded' } route_error
+
+      119 |         decrInFlight(path);
+      120 |       } catch {}
+    > 121 |       log.error({ ms, err: err?.message }, "route_error");
+          |           ^
+      122 |       try {
+      123 |         const url = (req as any)?.url as string | undefined;
+      124 |         const path = url ? new URL(url).pathname : 'unknown';
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:121:11)
+      at Object.<anonymous> (unit/api.files.finalize.permissions.spec.ts:15:15)
+
+  ● files finalize permissions and quotas (smoke) › owner can finalize; non-owner forbidden
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+FAIL unit/api.files.attachment.delete.auth.spec.ts
+  ● Console
+
+    console.error
+      { ms: 4, err: 'Maximum call stack size exceeded' } route_error
+
+      119 |         decrInFlight(path);
+      120 |       } catch {}
+    > 121 |       log.error({ ms, err: err?.message }, "route_error");
+          |           ^
+      122 |       try {
+      123 |         const url = (req as any)?.url as string | undefined;
+      124 |         const path = url ? new URL(url).pathname : 'unknown';
+
+      at Object.DELETE (../apps/web/src/server/withRouteTiming.ts:121:11)
+      at Object.<anonymous> (unit/api.files.attachment.delete.auth.spec.ts:16:17)
+
+    console.error
+      { ms: 1, err: 'Maximum call stack size exceeded' } route_error
+
+      119 |         decrInFlight(path);
+      120 |       } catch {}
+    > 121 |       log.error({ ms, err: err?.message }, "route_error");
+          |           ^
+      122 |       try {
+      123 |         const url = (req as any)?.url as string | undefined;
+      124 |         const path = url ? new URL(url).pathname : 'unknown';
+
+      at Object.DELETE (../apps/web/src/server/withRouteTiming.ts:121:11)
+      at Object.<anonymous> (unit/api.files.attachment.delete.auth.spec.ts:23:17)
+
+  ● files attachment DELETE permissions (smoke) › owner allowed (user)
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+  ● files attachment DELETE permissions (smoke) › lesson/announcement teacher allowed
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+PASS unit/api.files.content-type-default.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PUT (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.resolve.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications.prefs.auth.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.guards-and-headers.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications.prefs.dto.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+FAIL unit/api.files.upload-put.avscan.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PUT (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PUT (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● files upload PUT test-mode AV scan › rejects EICAR test string
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 200
+    Received array: [400, 401, 403]
+
+      13 |     const eicar = 'X5O!P%25@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*';
+      14 |     const res = await (UploadPut as any)(put(url, headers, eicar));
+    > 15 |     expect([400,401,403]).toContain(res.status);
+         |                           ^
+      16 |   });
+      17 |
+      18 |   test('accepts small benign text', async () => {
+
+      at Object.<anonymous> (unit/api.files.upload-put.avscan.spec.ts:15:27)
+
+FAIL unit/api.files.upload-url.quota.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● files upload-url quota enforcement › 413 when expected_bytes exceed remaining quota
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 413
+    Received: 500
+
+      17 |     jest.spyOn(supa as any, 'getRouteHandlerSupabase').mockReturnValue(mock);
+      18 |     const res = await (UploadUrlPOST as any)(post({ owner_type: 'user', owner_id: 'u1', content_type: 'image/png', expected_bytes: 200 }));
+    > 19 |     expect(res.status).toBe(413);
+         |                        ^
+      20 |   });
+      21 | });
+      22 |
+
+      at Object.<anonymous> (unit/api.files.upload-url.quota.spec.ts:19:24)
+
+FAIL unit/api.notifications.patch.csrf.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● notifications preferences PATCH respects CSRF double-submit › 403 when tokens missing or mismatched; 200 when matched
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 401
+    Received array: [200]
+
+      17 |     // Match -> 200
+      18 |     res = await (NotifPrefsPATCH as any)(patch({ origin: 'http://localhost', referer: 'http://localhost/p', cookie: 'csrf_token=t', 'x-csrf-token': 't', 'content-type': 'application/json' }));
+    > 19 |     expect([200]).toContain(res.status);
+         |                   ^
+      20 |   });
+      21 | });
+      22 |
+
+      at Object.<anonymous> (unit/api.notifications.patch.csrf.spec.ts:19:19)
+
+PASS unit/api.notifications-preferences.rate-limit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+FAIL unit/api.files.download-url.dev-namespace.spec.ts
+  ● Console
+
+    console.error
+      { ms: 1, err: 'Maximum call stack size exceeded' } route_error
+
+      119 |         decrInFlight(path);
+      120 |       } catch {}
+    > 121 |       log.error({ ms, err: err?.message }, "route_error");
+          |           ^
+      122 |       try {
+      123 |         const url = (req as any)?.url as string | undefined;
+      124 |         const path = url ? new URL(url).pathname : 'unknown';
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:121:11)
+      at Object.<anonymous> (unit/api.files.download-url.dev-namespace.spec.ts:24:17)
+
+  ● files download-url DEV_ID guard › when DEV_ID set and key lacks prefix -> 403
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+FAIL unit/api.messages.post.ratelimit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● messages POST rate limit headers › returns 429 with standard headers when rate-limited
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 429
+    Received: 201
+
+      19 |   test('returns 429 with standard headers when rate-limited', async () => {
+      20 |     const res = await (MessagesPOST as any)(post({ thread_id: '00000000-0000-0000-0000-000000000001', body: 'hello' }));
+    > 21 |     expect(res.status).toBe(429);
+         |                        ^
+      22 |     expect(res.headers.get('retry-after')).toBeTruthy();
+      23 |     expect(res.headers.get('x-rate-limit-reset')).toBeTruthy();
+      24 |     expect(res.headers.get('x-rate-limit-remaining')).toBe('0');
+
+      at Object.<anonymous> (unit/api.messages.post.ratelimit.spec.ts:21:24)
+
+FAIL unit/api.files.download-ownership.student.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● files download ownership: enrolled student access › student enrolled in course can access lesson/announcement attachment
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 404
+    Received array: [200, 500]
+
+      16 |     jest.spyOn(supa as any, 'getCurrentUserInRoute').mockResolvedValue({ id: 'stu-1', user_metadata: { role: 'student' } } as any);
+      17 |     const res = await (DownloadGET as any)(get('http://localhost/api/files/download-url?id=k2', { 'x-test-auth': 'student' }));
+    > 18 |     expect([200,500]).toContain(res.status);
+         |                       ^
+      19 |   });
+      20 | });
+      21 |
+
+      at Object.<anonymous> (unit/api.files.download-ownership.student.spec.ts:18:23)
+
+PASS unit/api.files.access.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.quota.enforcement.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.av-and-quota.negatives.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PUT (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.scoping.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.threads.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.ratelimit.headers.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.upload-url.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.download-url.dev-namespace.guard.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.upload-url.ratelimit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/lib.serverFetch.extend.spec.ts
+  ● Console
+
+    console.debug
+      [serverFetch] 200 http://example.com/api/x 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:102:13)
+
+    console.debug
+      [serverFetch] 200 http://web:3022/api/demo 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:102:13)
+
+FAIL unit/api.files.download-dev-namespace.spec.ts
+  ● Console
+
+    console.error
+      { ms: 2, err: 'Maximum call stack size exceeded' } route_error
+
+      119 |         decrInFlight(path);
+      120 |       } catch {}
+    > 121 |       log.error({ ms, err: err?.message }, "route_error");
+          |           ^
+      122 |       try {
+      123 |         const url = (req as any)?.url as string | undefined;
+      124 |         const path = url ? new URL(url).pathname : 'unknown';
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:121:11)
+      at Object.<anonymous> (unit/api.files.download-dev-namespace.spec.ts:14:17)
+
+  ● files download DEV_ID namespace enforcement › rejects object key not prefixed by DEV_ID when set
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+PASS unit/api.messages.list.rate-limit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.threads.rate-limit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.list.ratelimit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.download-url.disposition.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.patch.ratelimit.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications.auth.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.threads.auth.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.patch-negatives.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/lib.serverFetch.baseurl.spec.ts
+PASS unit/api.files.upload-url.content-type.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications.guard.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.list.pagination.params.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.upload-url.allowed-mime.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.POST (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.threads.pagination.params.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications.read-all.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.files.download-url.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.read-all-thread.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+FAIL unit/api.messages.guard.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+  ● api.messages guard (MVP_PROD_GUARD) › guard enforced in production-like (non test-mode)
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 400
+    Received array: [401, 501]
+
+      11 |     const res = await (MessagesGET as any)(makeReq('http://localhost/api/messages?thread_id=th1', { 'x-test-auth': 'student' }));
+      12 |     // In non test-mode, auth may fail or MVP guard may block; accept 401 or 501
+    > 13 |     expect([401, 501]).toContain(res.status);
+         |                        ^
+      14 |   });
+      15 | });
+      16 |
+
+      at Object.<anonymous> (unit/api.messages.guard.spec.ts:13:24)
+
+PASS unit/api.messages.missing-thread.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.messages.list.total-count.spec.ts
+  ● Console
+
+    console.log
+      { ms: 1 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications.list.total-count.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.GET (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+PASS unit/api.notifications.read-all.auth.spec.ts
+  ● Console
+
+    console.log
+      { ms: 0 } route_success
+
+      at Object.PATCH (../apps/web/src/server/withRouteTiming.ts:107:11)
+
+
+Summary of all failing tests
+FAIL unit/api.files.download-ownership.spec.ts
+  ● Test suite failed to run
+
+    Jest encountered an unexpected token
+
+    Jest failed to parse a file. This happens e.g. when your code or its dependencies use non-standard JavaScript syntax, or when Jest is not configured to support such syntax.
+
+    Out of the box Jest supports Babel, which will be used to transform your files into valid JS based on your Babel configuration.
+
+    By default "node_modules" folder is ignored by transformers.
+
+    Here's what you can do:
+     • If you are trying to use ECMAScript Modules, see https://jestjs.io/docs/ecmascript-modules for how to enable it.
+     • If you are trying to use TypeScript, see https://jestjs.io/docs/getting-started#using-typescript
+     • To have some of your "node_modules" files transformed, you can specify a custom "transformIgnorePatterns" in your config.
+     • If you need a custom transformation specify a "transform" option in your config.
+     • If you simply want to mock your non-JS modules (e.g. binary assets) you can stub them out with the "moduleNameMapper" config option.
+
+    You'll find more details and examples of these config options in the docs:
+    https://jestjs.io/docs/configuration
+    For information about custom transformations, see:
+    https://jestjs.io/docs/code-transformation
+
+    Details:
+
+    /workspace/tests/unit/api.files.download-ownership.spec.ts:55
+    function get(url, headers) { return new Request(url, { method: 'GET', headers: headers }); }
+    ^
+
+    SyntaxError: Identifier 'get' has already been declared
+
+      at Runtime.createScriptFromCode (../node_modules/jest-runtime/build/index.js:1505:14)
+
+FAIL unit/api.files.download-url.permissions.spec.ts
+  ● files download-url ownership checks › owner can download; non-owner teacher of course can download submission files; others 403
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 403
+    Received: 404
+
+      41 |     jest.spyOn(supa as any, 'getRouteHandlerSupabase').mockReturnValue(mock3);
+      42 |     res = await (DownloadGET as any)(get('http://localhost/api/files/download-url?id=obj-1'));
+    > 43 |     expect(res.status).toBe(403);
+         |                        ^
+      44 |   });
+      45 | });
+      46 |
+
+      at Object.<anonymous> (unit/api.files.download-url.permissions.spec.ts:43:24)
+
+FAIL unit/api.files.attachments.spec.ts
+  ● Files attachments API › 400 missing key; 401 unauth
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |                              ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:30)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+FAIL unit/api.messages.port-toggle.spec.ts
+  ● MESSAGING_PORT toggle routes › GET returns 200 with array and x-total-count
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 400
+    Received array: [200, 500]
+
+      12 |   test('GET returns 200 with array and x-total-count', async () => {
+      13 |     const res = await (MessagesGET as any)(get('http://localhost/api/messages?thread_id=t1', { 'x-test-auth': 'student' }));
+    > 14 |     expect([200,500]).toContain(res.status);
+         |                       ^
+      15 |     if (res.status === 200) {
+      16 |       expect(res.headers.get('x-total-count')).toBeDefined();
+      17 |       const data = await res.json();
+
+      at Object.<anonymous> (unit/api.messages.port-toggle.spec.ts:14:23)
+
+  ● MESSAGING_PORT toggle routes › POST + PATCH (mark read) via port
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 401
+    Received array: [201, 500]
+
+      22 |   test('POST + PATCH (mark read) via port', async () => {
+      23 |     const created = await (MessagesPOST as any)(post('http://localhost/api/messages', { thread_id: 'thr1', body: 'hi' }, { 'x-test-auth': 'student' }));
+    > 24 |     expect([201,500]).toContain(created.status);
+         |                       ^
+      25 |     if (created.status !== 201) return; // bail if test env not suitable
+      26 |     const msg = await created.json();
+      27 |     const res = await (MessagesPATCH as any)(patch(`http://localhost/api/messages?id=${encodeURIComponent(msg.id)}`, { 'x-test-auth': 'student' }));
+
+      at Object.<anonymous> (unit/api.messages.port-toggle.spec.ts:24:23)
+
+FAIL unit/api.files.finalize.permissions.spec.ts
+  ● files finalize permissions and quotas (smoke) › owner can finalize; non-owner forbidden
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+FAIL unit/api.files.attachment.delete.auth.spec.ts
+  ● files attachment DELETE permissions (smoke) › owner allowed (user)
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+  ● files attachment DELETE permissions (smoke) › lesson/announcement teacher allowed
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+FAIL unit/api.files.upload-put.avscan.spec.ts
+  ● files upload PUT test-mode AV scan › rejects EICAR test string
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 200
+    Received array: [400, 401, 403]
+
+      13 |     const eicar = 'X5O!P%25@AP[4\\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*';
+      14 |     const res = await (UploadPut as any)(put(url, headers, eicar));
+    > 15 |     expect([400,401,403]).toContain(res.status);
+         |                           ^
+      16 |   });
+      17 |
+      18 |   test('accepts small benign text', async () => {
+
+      at Object.<anonymous> (unit/api.files.upload-put.avscan.spec.ts:15:27)
+
+FAIL unit/api.files.upload-url.quota.spec.ts
+  ● files upload-url quota enforcement › 413 when expected_bytes exceed remaining quota
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 413
+    Received: 500
+
+      17 |     jest.spyOn(supa as any, 'getRouteHandlerSupabase').mockReturnValue(mock);
+      18 |     const res = await (UploadUrlPOST as any)(post({ owner_type: 'user', owner_id: 'u1', content_type: 'image/png', expected_bytes: 200 }));
+    > 19 |     expect(res.status).toBe(413);
+         |                        ^
+      20 |   });
+      21 | });
+      22 |
+
+      at Object.<anonymous> (unit/api.files.upload-url.quota.spec.ts:19:24)
+
+FAIL unit/api.notifications.patch.csrf.spec.ts
+  ● notifications preferences PATCH respects CSRF double-submit › 403 when tokens missing or mismatched; 200 when matched
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 401
+    Received array: [200]
+
+      17 |     // Match -> 200
+      18 |     res = await (NotifPrefsPATCH as any)(patch({ origin: 'http://localhost', referer: 'http://localhost/p', cookie: 'csrf_token=t', 'x-csrf-token': 't', 'content-type': 'application/json' }));
+    > 19 |     expect([200]).toContain(res.status);
+         |                   ^
+      20 |   });
+      21 | });
+      22 |
+
+      at Object.<anonymous> (unit/api.notifications.patch.csrf.spec.ts:19:19)
+
+FAIL unit/api.files.download-url.dev-namespace.spec.ts
+  ● files download-url DEV_ID guard › when DEV_ID set and key lacks prefix -> 403
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+FAIL unit/api.messages.post.ratelimit.spec.ts
+  ● messages POST rate limit headers › returns 429 with standard headers when rate-limited
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 429
+    Received: 201
+
+      19 |   test('returns 429 with standard headers when rate-limited', async () => {
+      20 |     const res = await (MessagesPOST as any)(post({ thread_id: '00000000-0000-0000-0000-000000000001', body: 'hello' }));
+    > 21 |     expect(res.status).toBe(429);
+         |                        ^
+      22 |     expect(res.headers.get('retry-after')).toBeTruthy();
+      23 |     expect(res.headers.get('x-rate-limit-reset')).toBeTruthy();
+      24 |     expect(res.headers.get('x-rate-limit-remaining')).toBe('0');
+
+      at Object.<anonymous> (unit/api.messages.post.ratelimit.spec.ts:21:24)
+
+FAIL unit/api.files.download-ownership.student.spec.ts
+  ● files download ownership: enrolled student access › student enrolled in course can access lesson/announcement attachment
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 404
+    Received array: [200, 500]
+
+      16 |     jest.spyOn(supa as any, 'getCurrentUserInRoute').mockResolvedValue({ id: 'stu-1', user_metadata: { role: 'student' } } as any);
+      17 |     const res = await (DownloadGET as any)(get('http://localhost/api/files/download-url?id=k2', { 'x-test-auth': 'student' }));
+    > 18 |     expect([200,500]).toContain(res.status);
+         |                       ^
+      19 |   });
+      20 | });
+      21 |
+
+      at Object.<anonymous> (unit/api.files.download-ownership.student.spec.ts:18:23)
+
+FAIL unit/api.files.download-dev-namespace.spec.ts
+  ● files download DEV_ID namespace enforcement › rejects object key not prefixed by DEV_ID when set
+
+    RangeError: Maximum call stack size exceeded
+
+      88 |   Object.defineProperty(mod, 'getCurrentUserInRoute', {
+      89 |     configurable: true,
+    > 90 |     get: () => (real as any).getCurrentUserInRoute,
+         |          ^
+      91 |     set: (fn: any) => { (real as any).getCurrentUserInRoute = fn; }
+      92 |   });
+      93 | } catch {}
+
+      at Object.get [as getCurrentUserInRoute] (unit/helpers/supabaseMock.ts:90:10)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+      at Object.<anonymous>.real.getCurrentUserInRoute (unit/helpers/supabaseMock.ts:70:75)
+
+FAIL unit/api.messages.guard.spec.ts
+  ● api.messages guard (MVP_PROD_GUARD) › guard enforced in production-like (non test-mode)
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 400
+    Received array: [401, 501]
+
+      11 |     const res = await (MessagesGET as any)(makeReq('http://localhost/api/messages?thread_id=th1', { 'x-test-auth': 'student' }));
+      12 |     // In non test-mode, auth may fail or MVP guard may block; accept 401 or 501
+    > 13 |     expect([401, 501]).toContain(res.status);
+         |                        ^
+      14 |   });
+      15 | });
+      16 |
+
+      at Object.<anonymous> (unit/api.messages.guard.spec.ts:13:24)
+
+
+Test Suites: 14 failed, 53 passed, 67 total
+Tests:       15 failed, 90 passed, 105 total
+Snapshots:   0 total
+Time:        21.549 s
+Ran all test suites related to files matching /unit\/api.files.access.spec.ts|unit\/api.files.attachment.delete.auth.spec.ts|unit\/api.files.attachments.spec.ts|unit\/api.files.av-and-quota.negatives.spec.ts|unit\/api.files.content-type-default.spec.ts|unit\/api.files.download-dev-namespace.spec.ts|unit\/api.files.download-ownership.spec.ts|unit\/api.files.download-ownership.student.spec.ts|unit\/api.files.download-url.dev-namespace.guard.spec.ts|unit\/api.files.download-url.dev-namespace.spec.ts|unit\/api.files.download-url.disposition.spec.ts|unit\/api.files.download-url.permissions.spec.ts|unit\/api.files.download-url.spec.ts|unit\/api.files.finalize.permissions.spec.ts|unit\/api.files.guards-and-headers.spec.ts|unit\/api.files.negatives.spec.ts|unit\/api.files.quota.enforcement.spec.ts|unit\/api.files.resolve.spec.ts|unit\/api.files.roundtrip.spec.ts|unit\/api.files.upload-put.avscan.spec.ts|unit\/api.files.upload-url.allowed-mime.spec.ts|unit\/api.files.upload-url.content-type.spec.ts|unit\/api.files.upload-url.quota.spec.ts|unit\/api.files.upload-url.rate-quota-csrf.spec.ts|unit\/api.files.upload-url.ratelimit.spec.ts|unit\/api.files.upload-url.spec.ts|unit\/api.messages.csrf-double-submit.spec.ts|unit\/api.messages.guard.spec.ts|unit\/api.messages.list.pagination.params.spec.ts|unit\/api.messages.list.rate-limit.spec.ts|unit\/api.messages.list.ratelimit.spec.ts|unit\/api.messages.list.total-count.spec.ts|unit\/api.messages.missing-thread.spec.ts|unit\/api.messages.patch-negatives.spec.ts|unit\/api.messages.patch.ratelimit.spec.ts|unit\/api.messages.port-toggle.spec.ts|unit\/api.messages.post.ratelimit.spec.ts|unit\/api.messages.ratelimit.headers.spec.ts|unit\/api.messages.read-all-thread.spec.ts|unit\/api.messages.read-all.spec.ts|unit\/api.messages.scoping.spec.ts|unit\/api.messages.threads-and-messages.spec.ts|unit\/api.messages.threads.auth.spec.ts|unit\/api.messages.threads.pagination.params.spec.ts|unit\/api.messages.threads.rate-limit.spec.ts|unit\/api.messages.threads.ratelimit.headers.spec.ts|unit\/api.messages.threads.ratelimit.spec.ts|unit\/api.messages.threads.spec.ts|unit\/api.notifications-preferences.rate-limit.spec.ts|unit\/api.notifications-preferences.spec.ts|unit\/api.notifications.auth.spec.ts|unit\/api.notifications.guard.spec.ts|unit\/api.notifications.list.total-count.spec.ts|unit\/api.notifications.patch.csrf.spec.ts|unit\/api.notifications.prefs.auth.spec.ts|unit\/api.notifications.prefs.dto.spec.ts|unit\/api.notifications.rate-limit.spec.ts|unit\/api.notifications.read-all.auth.spec.ts|unit\/api.notifications.read-all.csrf.spec.ts|unit\/api.notifications.read-all.spec.ts|unit\/api.notifications.spec.ts|unit\/security.csrf.double-submit.spec.ts|unit\/lib.serverFetch.baseurl.spec.ts|unit\/lib.serverFetch.csrf-header.spec.ts|unit\/lib.serverFetch.extend.spec.ts|unit\/lib.serverFetch.headers.spec.ts|unit\/lib.serverFetch.spec.ts/i.

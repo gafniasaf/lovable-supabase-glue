@@ -1,0 +1,44 @@
+PASS tests/unit/api.runtime.v2.spec.ts
+{"level":30,"time":1755750969724,"pid":20,"hostname":"256ee99213fe","requestId":"aa7378dc-ab22-42e2-a663-c7cecb411de1","ms":4,"msg":"route_success"}
+FAIL tests/unit/middleware.cors.disallowed-origin.spec.ts
+  ● middleware CSP connect-src allowlist propagation › includes origins from RUNTIME_CORS_ALLOW in CSP via guard path
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /connect-src [^;]*https:\/\/api\.provider1/
+    Received string:  ""
+
+      33 |     const res: any = await (middleware as any)(makeReq('http://localhost/api/health'));
+      34 |     const csp = res.headers.get('Content-Security-Policy') || '';
+    > 35 |     expect(csp).toMatch(/connect-src [^;]*https:\/\/api\.provider1/);
+         |                 ^
+      36 |     expect(csp).toMatch(/connect-src [^;]*https:\/\/api\.provider2/);
+      37 |   });
+      38 | });
+
+      at Object.<anonymous> (unit/middleware.cors.disallowed-origin.spec.ts:35:17)
+
+FAIL tests/unit/api.runtime.cors.headers.spec.ts
+  ● runtime CORS headers for allowed origin › includes access-control-allow-origin when origin is allowed
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 403
+    Received array: [200, 201, 204, 400]
+
+      25 |     const res = await (ProgressPOST as any)(post({ authorization: `Bearer ${token}` }));
+      26 |     // success or preflight OK
+    > 27 |     expect([200,201,204,400]).toContain(res.status);
+         |                               ^
+      28 |     // @ts-ignore NextResponse-like headers
+      29 |     const h = res.headers as Headers;
+      30 |     expect(h.get('access-control-allow-origin')).toBe('https://provider.example');
+
+      at Object.<anonymous> (unit/api.runtime.cors.headers.spec.ts:27:31)
+
+Test Suites: 2 failed, 1 passed, 3 total
+Tests:       2 failed, 2 passed, 4 total
+Snapshots:   0 total
+Time:        3.619 s
+Ran all test suites related to files matching /tests\/unit\/middleware.cors.disallowed-origin.spec.ts|tests\/unit\/api.runtime.cors.headers.spec.ts|tests\/unit\/api.runtime.v2.spec.ts/i.
+{"level":30,"time":1755750970240,"pid":20,"hostname":"256ee99213fe","requestId":"439593ff-09af-4795-994f-ff411e3c3e06","ms":90,"msg":"route_success"}

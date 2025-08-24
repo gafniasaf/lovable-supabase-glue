@@ -19,9 +19,13 @@ export type TestRole = "teacher" | "student" | "parent" | "admin";
 
 /** True if running under automated tests (Playwright/Jest). */
 export function isTestMode(): boolean {
-  // Prefer explicit env flags; fall back to a runtime global for Storybook/client usage
+  // Prefer explicit env flag for deterministic behavior in unit tests
+  if (process.env.E2E_ALLOW_TEST_MODE === "1") return true;
   if (process.env.TEST_MODE === "1") return true;
-  if (process.env.NEXT_PUBLIC_TEST_MODE === "1") return true;
+  if (process.env.TEST_MODE === "0") return false;
+  // Do not auto-enable under Jest without explicit TEST_MODE=1
+  // Only consider NEXT_PUBLIC_TEST_MODE on the client
+  try { if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_TEST_MODE === "1") return true; } catch {}
   try {
     if (typeof window !== "undefined" && (window as any).__TEST_MODE__ === true) return true;
   } catch {}

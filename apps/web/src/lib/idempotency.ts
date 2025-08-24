@@ -1,3 +1,47 @@
+import { getRouteHandlerSupabase } from '@/lib/supabaseServer';
+import { isTestMode } from '@/lib/testMode';
+
+type Key = { tenantId: string; product: string; userId: string; endpoint: string; key: string };
+const mem = new Map<string, any>();
+
+function kstr(k: Key) {
+  return `${k.tenantId}:${k.product}:${k.userId}:${k.endpoint}:${k.key}`;
+}
+
+export async function getStoredResponse(k: Key): Promise<any | null> {
+  if (isTestMode()) {
+    return mem.get(kstr(k)) ?? null;
+  }
+  try {
+    const supabase = getRouteHandlerSupabase();
+    const { data } = await (supabase as any)
+      .from('idempotency_keys')
+      .select('response_json')
+      .eq('tenant_id', k.tenantId)
+      .eq('product', k.product)
+      .eq('user_id', k.userId)
+      .eq('endpoint', k.endpoint)
+      .eq('key', k.key)
+      .maybeSingle();
+    return (data?.response_json as any) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export async function storeResponse(k: Key, response: any): Promise<void> {
+  if (isTestMode()) {
+    mem.set(kstr(k), response);
+    return;
+  }
+  try {
+    const supabase = getRouteHandlerSupabase();
+    await (supabase as any)
+      .from('idempotency_keys')
+      .upsert({ tenant_id: k.tenantId, product: k.product, user_id: k.userId, endpoint: k.endpoint, key: k.key, response_json: response }, { onConflict: 'tenant_id,product,user_id,endpoint,key' });
+  } catch {}
+}
+
 import { redisSetWithTTL } from "@/lib/redis";
 type Entry = { seenAt: number; ttlMs: number };
 const entries = new Map<string, Entry>();

@@ -12,6 +12,10 @@ export type ProfilesGateway = {
 function buildHttpGateway(): ProfilesGateway {
   return {
     async get() {
+      if (isTestMode()) {
+        // Always attempt real endpoint; do not fabricate profile in tests so unauthenticated states are observable
+        return await fetchJson(`/api/user/profile`, profileResponse);
+      }
       return fetchJson(`/api/user/profile`, profileResponse);
     },
     async update(input) {

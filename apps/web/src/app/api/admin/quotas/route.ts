@@ -51,7 +51,9 @@ export const PATCH = withRouteTiming(async function PATCH(req: NextRequest) {
   }
   if (typeof body.max_bytes === 'number') row.max_bytes = body.max_bytes;
   if (typeof body.used_bytes === 'number') row.used_bytes = body.used_bytes;
-  const { error } = await supabase.from('user_storage_quotas').upsert(row, { onConflict: 'user_id' } as any);
+  // Use insert with onConflict for broader mock compatibility
+  const resp = await (supabase.from('user_storage_quotas') as any).insert(row, { onConflict: 'user_id' } as any).select?.()?.single?.();
+  const error = (resp as any)?.error ?? null;
   if (error) return NextResponse.json({ error: { code: 'DB_ERROR', message: error.message }, requestId }, { status: 500, headers: { 'x-request-id': requestId } });
   return jsonDto({ ok: true } as any, z.object({ ok: z.boolean() }) as any, { requestId, status: 200 });
 });

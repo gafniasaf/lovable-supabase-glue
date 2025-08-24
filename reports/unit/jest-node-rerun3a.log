@@ -1,0 +1,44 @@
+FAIL tests/unit/env.validation.spec.ts
+  ● environment validation › prod with TEST_MODE=1 throws unless explicitly allowed
+
+    expect(received).toThrow(expected)
+
+    Expected pattern: /TEST_MODE must not be enabled/
+
+    Received function did not throw
+
+      12 |   test('prod with TEST_MODE=1 throws unless explicitly allowed', () => {
+      13 |     process.env = { ...original, NODE_ENV: 'production', TEST_MODE: '1' } as any;
+    > 14 |     expect(() => loadServerEnv()).toThrow(/TEST_MODE must not be enabled/);
+         |                                   ^
+      15 |   });
+      16 | });
+      17 |
+
+      at Object.<anonymous> (unit/env.validation.spec.ts:14:35)
+
+PASS tests/unit/api.notifications.read-all.spec.ts
+{"level":30,"time":1755741364550,"pid":20,"hostname":"414c366fc4c7","requestId":"efe29745-1145-4a55-b2f1-6e2b68806506","ms":3,"msg":"route_success"}
+{"level":30,"time":1755741365593,"pid":20,"hostname":"414c366fc4c7","requestId":"b4758c1d-3e8b-467b-a316-98b1b16b1b42","ms":1,"msg":"route_success"}
+FAIL tests/unit/api.notifications.list.total-count.spec.ts
+  ● API /api/notifications list sets x-total-count (smoke) › authed → header present when 200
+
+    expect(received).toBeTruthy()
+
+    Received: null
+
+       7 |     const res = await (NotifsGET as any)(get('http://localhost/api/notifications', { 'x-test-auth': 'teacher' }));
+       8 |     if (res.status === 200) {
+    >  9 |       expect(res.headers.get('x-total-count')).toBeTruthy();
+         |                                                ^
+      10 |     } else {
+      11 |       expect([401]).toContain(res.status);
+      12 |     }
+
+      at Object.<anonymous> (unit/api.notifications.list.total-count.spec.ts:9:48)
+
+Test Suites: 2 failed, 1 passed, 3 total
+Tests:       2 failed, 2 passed, 4 total
+Snapshots:   0 total
+Time:        5.149 s
+Ran all test suites related to files matching /tests\/unit\/env.validation.spec.ts|tests\/unit\/api.notifications.read-all.spec.ts|tests\/unit\/api.notifications.list.total-count.spec.ts/i.

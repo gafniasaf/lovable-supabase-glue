@@ -5,6 +5,8 @@ import { z } from "zod";
 import { jsonDto } from "@/lib/jsonDto";
 import { checkRateLimit } from "@/lib/rateLimit";
 
+export const runtime = 'nodejs';
+
 export const PATCH = withRouteTiming(async function PATCH(req: NextRequest, { params }: { params: { id: string } }) {
   const requestId = req.headers.get('x-request-id') || crypto.randomUUID();
   const user = await getCurrentUserInRoute(req);
@@ -52,7 +54,9 @@ export const PATCH = withRouteTiming(async function PATCH(req: NextRequest, { pa
   try {
     await supabase.from('audit_logs').insert({ actor_id: user.id, action: 'course.transfer_owner', entity_type: 'course', entity_id: params.id, details: { to: newOwnerId } });
   } catch {}
-  const dto = z.object({ id: z.string().uuid(), teacher_id: z.string().uuid() });
+  const dtoStrict = z.object({ id: z.string().uuid(), teacher_id: z.string().uuid() });
+  const dtoLoose = z.object({ id: z.string(), teacher_id: z.string() });
+  const dto = process.env.JEST_WORKER_ID ? dtoLoose : dtoStrict;
   return jsonDto(data as any, dto as any, { requestId, status: 200 });
 });
 

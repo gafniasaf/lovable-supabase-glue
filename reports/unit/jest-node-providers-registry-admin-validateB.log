@@ -1,0 +1,155 @@
+PASS tests/unit/api.registry.mutations.ratelimit.spec.ts
+{"level":30,"time":1755757147725,"pid":20,"hostname":"6e984a474cdf","requestId":"5ec99959-122b-4d06-8b40-ef64a0b56701","ms":8,"msg":"route_success"}
+{"level":30,"time":1755757147730,"pid":20,"hostname":"6e984a474cdf","requestId":"988601f8-a2d4-4178-a763-6a3130d4c0bc","ms":2,"msg":"route_success"}
+{"level":30,"time":1755757147731,"pid":20,"hostname":"6e984a474cdf","requestId":"cb97449e-6009-4b52-868b-b1f3f22da14b","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757147733,"pid":20,"hostname":"6e984a474cdf","requestId":"551c66fe-bc01-4d46-b177-4669ab09cd37","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757147734,"pid":20,"hostname":"6e984a474cdf","requestId":"8b8c9f3a-571a-4f1d-8901-f158c871108f","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757148434,"pid":20,"hostname":"6e984a474cdf","requestId":"8a2940a0-9b90-42d8-964a-beff80e0b22b","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757148435,"pid":20,"hostname":"6e984a474cdf","requestId":"32d07258-ac52-4ca5-b41d-50081ad8010c","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757148437,"pid":20,"hostname":"6e984a474cdf","requestId":"5116a8e9-405c-4ce1-b53a-b09330986909","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757148438,"pid":20,"hostname":"6e984a474cdf","requestId":"9f1b82cf-8377-4e45-bcdd-680d58382ee7","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757148439,"pid":20,"hostname":"6e984a474cdf","requestId":"5e90f00b-80ef-4b12-961b-28649e3a9521","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757148439,"pid":20,"hostname":"6e984a474cdf","requestId":"36b61061-8a36-469d-9eff-9279dd46dbd9","ms":0,"msg":"route_success"}
+PASS tests/unit/api.registry.spec.ts
+PASS tests/unit/api.admin.governance.smoke.spec.ts
+{"level":30,"time":1755757148951,"pid":20,"hostname":"6e984a474cdf","requestId":"687f93c6-07aa-453d-b464-9ee351619b1e","ms":7,"msg":"route_success"}
+{"level":30,"time":1755757148952,"pid":20,"hostname":"6e984a474cdf","requestId":"327ceb78-d6f9-42ab-8bd6-b95377defff8","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757148953,"pid":20,"hostname":"6e984a474cdf","requestId":"64d118b6-8a75-4a26-907c-8cca047d5da3","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757148954,"pid":20,"hostname":"6e984a474cdf","requestId":"168cd6ca-23b3-4691-bdc0-55e50f47ce26","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757148955,"pid":20,"hostname":"6e984a474cdf","requestId":"8a38ce5a-cf26-45b4-a9c1-a85da67103ae","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757149323,"pid":20,"hostname":"6e984a474cdf","requestId":"feae2a63-f021-4962-9f13-1eab11603e4d","ms":2,"msg":"route_success"}
+{"level":30,"time":1755757149325,"pid":20,"hostname":"6e984a474cdf","requestId":"dafef41b-13f3-4311-ba7e-d2f5a2d8cffc","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757149325,"pid":20,"hostname":"6e984a474cdf","requestId":"a51e76b7-5f64-4806-9189-a506e194168a","ms":0,"msg":"route_success"}
+PASS tests/unit/api.providers.ratelimit.spec.ts
+PASS tests/unit/api.admin.export.spec.ts
+{"level":30,"time":1755757149725,"pid":20,"hostname":"6e984a474cdf","requestId":"43d4862c-da05-4c1b-b924-1e150f014aa9","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757149726,"pid":20,"hostname":"6e984a474cdf","requestId":"4c2fc7c7-e064-4f79-8f97-a92a5d9858f9","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757149726,"pid":20,"hostname":"6e984a474cdf","requestId":"01f23cf6-4ff2-4c31-bed2-c7bed79fb9ba","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757149727,"pid":20,"hostname":"6e984a474cdf","requestId":"7a1f94fc-f198-49e9-b56f-e311b86468ad","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757149728,"pid":20,"hostname":"6e984a474cdf","requestId":"6c9d650b-ce6b-450d-a934-4b8e2b5d4e16","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757149741,"pid":20,"hostname":"6e984a474cdf","requestId":"6e846ee4-aa29-4f81-925b-d42ce12ef1ce","ms":12,"msg":"route_success"}
+{"level":30,"time":1755757150760,"pid":20,"hostname":"6e984a474cdf","requestId":"e90aa6d5-bf27-4af1-84f2-eb28a8290ae5","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757150762,"pid":20,"hostname":"6e984a474cdf","requestId":"359c0de4-96ae-4226-aafd-39970afd8411","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757150762,"pid":20,"hostname":"6e984a474cdf","requestId":"2aa096d9-5133-4e6c-904b-850b299ba292","ms":0,"msg":"route_success"}
+PASS tests/unit/api.providers.dto-and-ratelimit.spec.ts
+PASS tests/unit/api.providers.health.spec.ts
+{"level":30,"time":1755757151073,"pid":20,"hostname":"6e984a474cdf","requestId":"a9d08cd3-873d-48a3-ac2e-8689410d893c","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757151074,"pid":20,"hostname":"6e984a474cdf","requestId":"d1c1c56d-8bfd-462e-8be3-6d6952258019","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757151075,"pid":20,"hostname":"6e984a474cdf","requestId":"rid-1","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757151335,"pid":20,"hostname":"6e984a474cdf","requestId":"99dd14f5-aefd-415f-8506-e665b51bdddb","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757151336,"pid":20,"hostname":"6e984a474cdf","requestId":"b9b94441-f3f0-422c-99b8-19f2bf6d2fd7","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757151337,"pid":20,"hostname":"6e984a474cdf","requestId":"ac6e51a9-661e-49a8-aeb1-4f6f9799019c","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757151338,"pid":20,"hostname":"6e984a474cdf","requestId":"0ab299f0-745c-45c7-8f8b-c75bfc8efc5c","ms":0,"msg":"route_success"}
+PASS tests/unit/api.providers.patch.rate-limit-auth.spec.ts
+PASS tests/unit/api.registry.courses.auth-rate.spec.ts
+{"level":30,"time":1755757151614,"pid":20,"hostname":"6e984a474cdf","requestId":"6cb51870-ad3d-483d-ba02-d7bac8629865","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757151614,"pid":20,"hostname":"6e984a474cdf","requestId":"f0b50f4f-f47b-49b7-b7cd-fce64a3a8b85","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757151615,"pid":20,"hostname":"6e984a474cdf","requestId":"f260c844-f17a-4c30-ac45-923181e39659","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757151615,"pid":20,"hostname":"6e984a474cdf","requestId":"f1511800-4924-4b15-bc18-1c2ac368e002","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757151890,"pid":20,"hostname":"6e984a474cdf","requestId":"85b2d96a-5eec-4db2-bb54-7fda3f083453","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757151891,"pid":20,"hostname":"6e984a474cdf","requestId":"2144648d-6952-4b53-bd4b-63cb82869721","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757151892,"pid":20,"hostname":"6e984a474cdf","requestId":"0d2d11e9-6ae8-4e93-843b-92c42ddd3154","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757151892,"pid":20,"hostname":"6e984a474cdf","requestId":"cc42e38d-8d1c-4cc6-88de-1da7813cc513","ms":0,"msg":"route_success"}
+PASS tests/unit/api.registry.versions.auth-rate.spec.ts
+PASS tests/unit/api.registry.rate-limit-and-auth.spec.ts
+{"level":30,"time":1755757152152,"pid":20,"hostname":"6e984a474cdf","requestId":"ad18f747-f55a-41e5-932e-aabaabcb1af6","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757152152,"pid":20,"hostname":"6e984a474cdf","requestId":"cc4f6f78-7410-4ce9-94bb-08a8e55d8677","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757152152,"pid":20,"hostname":"6e984a474cdf","requestId":"a3af0b25-4fb5-41c7-af0e-1f6524778e74","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757152930,"pid":20,"hostname":"6e984a474cdf","requestId":"2f274238-0fc6-45a2-bc01-de295b52a7a9","ms":1,"msg":"route_success"}
+PASS tests/unit/api.admin.quotas.ratelimit.headers.spec.ts
+PASS tests/unit/api.admin.quotas.auth.spec.ts
+{"level":30,"time":1755757153237,"pid":20,"hostname":"6e984a474cdf","requestId":"6c7046d0-5d17-4cfe-be39-4d9b3eba256c","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757153238,"pid":20,"hostname":"6e984a474cdf","requestId":"f635b6d2-b7f0-4e7b-8bd5-cfc49e14d31f","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757153238,"pid":20,"hostname":"6e984a474cdf","requestId":"7619af9c-a172-419b-b413-7149bac9216f","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757153242,"pid":20,"hostname":"6e984a474cdf","requestId":"b01f4902-84bf-4901-9269-ebba35134701","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757153530,"pid":20,"hostname":"6e984a474cdf","requestId":"68e275a4-2b0e-47a1-a16f-2138fa53fc87","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757153531,"pid":20,"hostname":"6e984a474cdf","requestId":"b7fdc68d-f8a3-41b9-8cbd-2e55a23b49f5","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757153532,"pid":20,"hostname":"6e984a474cdf","requestId":"388b76ee-8adc-4d2d-9043-1e83113ffeb1","ms":0,"msg":"route_success"}
+PASS tests/unit/api.admin.export.usage-deadletters.csv.spec.ts
+PASS tests/unit/api.providers.get.spec.ts
+{"level":30,"time":1755757153866,"pid":20,"hostname":"6e984a474cdf","requestId":"3258964d-933d-4ebc-aff0-f1e18c8bfef1","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757153867,"pid":20,"hostname":"6e984a474cdf","requestId":"ca1b5635-b272-4da5-8df2-4df446175df0","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757154152,"pid":20,"hostname":"6e984a474cdf","requestId":"171157a9-f832-48f0-b9dc-7108373a9ee2","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757154153,"pid":20,"hostname":"6e984a474cdf","requestId":"69ba7e57-5cd9-4cee-bfdd-259fa3bfec11","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757154154,"pid":20,"hostname":"6e984a474cdf","requestId":"940e5567-e665-4f77-b5d0-2466f55820b0","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757154154,"pid":20,"hostname":"6e984a474cdf","requestId":"44d12741-3e0a-4bd9-afe3-57fc61475944","ms":0,"msg":"route_success"}
+PASS tests/unit/api.admin.quotas.patch.spec.ts
+PASS tests/unit/api.providers.create.negatives.spec.ts
+{"level":30,"time":1755757154474,"pid":20,"hostname":"6e984a474cdf","requestId":"b7c105e5-d077-45b9-994c-4af2d093b054","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757154475,"pid":20,"hostname":"6e984a474cdf","requestId":"3b19edb6-6fb4-4e55-b6ee-87f599b41250","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757154866,"pid":20,"hostname":"6e984a474cdf","requestId":"2da49801-62a8-4295-a1d0-b2434a45f893","ms":1,"msg":"route_success"}
+PASS tests/unit/api.providers.create.happy-path.spec.ts
+PASS tests/unit/api.providers.health.ratelimit.spec.ts
+{"level":30,"time":1755757155128,"pid":20,"hostname":"6e984a474cdf","requestId":"aab0e6c7-9ceb-49b7-9f9e-c0f75706fe5e","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757155128,"pid":20,"hostname":"6e984a474cdf","requestId":"e3bef5af-1591-4678-9148-0821c90d3668","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757155404,"pid":20,"hostname":"6e984a474cdf","requestId":"1e168379-14e3-4c87-817c-5a6a02c6b4d5","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757155404,"pid":20,"hostname":"6e984a474cdf","requestId":"f0fb4a76-af31-452d-bd1d-2c79bb22f3de","ms":0,"msg":"route_success"}
+PASS tests/unit/api.registry.versions.rate-limit.spec.ts
+PASS tests/unit/api.admin.metrics.spec.ts
+{"level":30,"time":1755757155671,"pid":20,"hostname":"6e984a474cdf","requestId":"f9086e84-f675-4801-a997-0f0bd1b5fcca","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757155672,"pid":20,"hostname":"6e984a474cdf","requestId":"b42bb54d-6fc2-4cf3-91dc-2416dcce0414","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757155672,"pid":20,"hostname":"6e984a474cdf","requestId":"d59638c5-fa0b-4779-82cf-89a403e23015","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757155860,"pid":20,"hostname":"6e984a474cdf","requestId":"54e18daf-b3d0-4557-8223-03e549e927d0","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757155860,"pid":20,"hostname":"6e984a474cdf","requestId":"0a67e18a-cdc3-48a6-9d50-2019682a0de1","ms":0,"msg":"route_success"}
+PASS tests/unit/api.providers.health.rate-limit.spec.ts
+PASS tests/unit/api.registry.courses.rate-limit.spec.ts
+{"level":30,"time":1755757156107,"pid":20,"hostname":"6e984a474cdf","requestId":"8f901971-e91f-4bed-b5c7-bb6b50638d7b","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757156107,"pid":20,"hostname":"6e984a474cdf","requestId":"e967eba4-59b9-4700-a1ee-be187121aae7","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757156305,"pid":20,"hostname":"6e984a474cdf","requestId":"e11596be-5db2-4a0d-8ce2-ae6af764760b","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757156306,"pid":20,"hostname":"6e984a474cdf","requestId":"ad556754-0b2c-4dc7-8428-b353dd6eb746","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757156306,"pid":20,"hostname":"6e984a474cdf","requestId":"a8f66263-6396-4087-ba8a-2697c4d863d2","ms":0,"msg":"route_success"}
+PASS tests/unit/api.admin.dlq.auth.spec.ts
+PASS tests/unit/api.admin.audit-logs.spec.ts
+{"level":30,"time":1755757156585,"pid":20,"hostname":"6e984a474cdf","requestId":"44daec03-6728-4055-a7d7-bac3ae130229","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757156586,"pid":20,"hostname":"6e984a474cdf","requestId":"eec66c07-d0bc-4cc1-b9e2-0552345fd127","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757156586,"pid":20,"hostname":"6e984a474cdf","requestId":"a3e792d9-138f-451c-83d7-46532d721537","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757156808,"pid":20,"hostname":"6e984a474cdf","requestId":"e0a2cb78-2943-48e4-8aee-27f1eb6b779d","ms":0,"msg":"route_success"}
+PASS tests/unit/api.admin.quotas.ratelimit.spec.ts
+PASS tests/unit/api.providers.health.ratelimit.headers.spec.ts
+{"level":30,"time":1755757157046,"pid":20,"hostname":"6e984a474cdf","requestId":"7fa28e87-0666-4b34-b96d-0ee941800d7a","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757157291,"pid":20,"hostname":"6e984a474cdf","requestId":"c9192d02-d1f5-4b4e-b799-a2031680f6e3","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757157292,"pid":20,"hostname":"6e984a474cdf","requestId":"47f5ae91-0868-45d1-a34a-8b35e16f46c3","ms":0,"msg":"route_success"}
+PASS tests/unit/api.registry.licenses.auth.spec.ts
+PASS tests/unit/api.providers.list.dto.spec.ts
+{"level":30,"time":1755757157510,"pid":20,"hostname":"6e984a474cdf","requestId":"efafd0d2-46c1-46e0-9196-c6088bf72d2b","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757157790,"pid":20,"hostname":"6e984a474cdf","requestId":"aa43f541-39a8-4a40-98fb-5c557985f13d","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757157791,"pid":20,"hostname":"6e984a474cdf","requestId":"7cf514b8-b657-4b5a-ade0-fb577ff87fb3","ms":0,"msg":"route_success"}
+PASS tests/unit/api.providers.health.summaries.spec.ts
+PASS tests/unit/api.providers.health.summaries.auth.spec.ts
+{"level":30,"time":1755757158017,"pid":20,"hostname":"6e984a474cdf","requestId":"00edd38a-a7d8-44de-91e9-7b43e570e03e","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757158018,"pid":20,"hostname":"6e984a474cdf","requestId":"37f95ada-cb9d-4232-9f8f-95bd02710cbd","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757158240,"pid":20,"hostname":"6e984a474cdf","requestId":"811b864e-7ed7-4ded-8134-a6f4ef1ae2c0","ms":1,"msg":"route_success"}
+PASS tests/unit/api.admin.metrics.sanitize-labels.spec.ts
+PASS tests/unit/api.registry.versions.dto.spec.ts
+{"level":30,"time":1755757158466,"pid":20,"hostname":"6e984a474cdf","requestId":"f4e2ce00-5727-45e6-a835-dce9ba7e7c65","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757158726,"pid":20,"hostname":"6e984a474cdf","requestId":"8b392dc7-c44d-45e2-a64d-72c27f5f20d9","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757158727,"pid":20,"hostname":"6e984a474cdf","requestId":"04cbcd5e-9b7e-449d-9d8c-f326d6e07f94","ms":0,"msg":"route_success"}
+PASS tests/unit/api.admin.metrics.auth.spec.ts
+PASS tests/unit/api.admin.export.auth.spec.ts
+{"level":30,"time":1755757158967,"pid":20,"hostname":"6e984a474cdf","requestId":"daab4685-e154-456a-9f50-d62e19083766","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757158968,"pid":20,"hostname":"6e984a474cdf","requestId":"a8cdf964-dd6f-4af7-a9d0-caf81fa2977f","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757159190,"pid":20,"hostname":"6e984a474cdf","requestId":"0dae6534-6f12-41ff-b5a7-5ac589400b6e","ms":1,"msg":"route_success"}
+PASS tests/unit/api.admin.usage.shape.spec.ts
+PASS tests/unit/api.admin.export.notifications.csv.spec.ts
+{"level":30,"time":1755757159445,"pid":20,"hostname":"6e984a474cdf","requestId":"d115271b-1909-4cff-a293-0c3119258b53","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757159685,"pid":20,"hostname":"6e984a474cdf","requestId":"7bf6fb24-a552-4526-be7f-14099dfbcb43","ms":0,"msg":"route_success"}
+PASS tests/unit/api.registry.versions.approve-disable.spec.ts
+PASS tests/unit/api.admin.metrics.text.spec.ts
+{"level":30,"time":1755757159939,"pid":20,"hostname":"6e984a474cdf","requestId":"80f10c97-dec5-422c-bd65-b0850c19a5c8","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757160205,"pid":20,"hostname":"6e984a474cdf","requestId":"1c680ae5-4821-4f2f-b23f-0dd4bef9f7e2","ms":0,"msg":"route_success"}
+PASS tests/unit/api.admin.metrics.accept-text.spec.ts
+PASS tests/unit/api.admin.audit-logs.auth.spec.ts
+{"level":30,"time":1755757160451,"pid":20,"hostname":"6e984a474cdf","requestId":"512373c7-51a7-4795-ae52-144702449e10","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757160452,"pid":20,"hostname":"6e984a474cdf","requestId":"0e3791c0-adcb-4482-90f2-187484063403","ms":1,"msg":"route_success"}
+{"level":30,"time":1755757161138,"pid":20,"hostname":"6e984a474cdf","requestId":"b5ef24c0-564a-4a80-ad86-aeb069e989a1","ms":0,"msg":"route_success"}
+PASS tests/unit/api.admin.dlq.admin.patch.spec.ts
+PASS tests/unit/api.registry.versions.total-count.spec.ts
+{"level":30,"time":1755757161386,"pid":20,"hostname":"6e984a474cdf","requestId":"a605502b-436b-4dc8-bf90-8a6a2bc291d9","ms":0,"msg":"route_success"}
+{"level":30,"time":1755757161642,"pid":20,"hostname":"6e984a474cdf","requestId":"59646877-fac1-4883-8adc-b48775db8560","ms":0,"msg":"route_success"}
+PASS tests/unit/api.admin.usage.auth.spec.ts
+
+Test Suites: 44 passed, 44 total
+Tests:       86 passed, 86 total
+Snapshots:   0 total
+Time:        15.38 s
+Ran all test suites related to files matching /tests\/unit\/api.providers.create.happy-path.spec.ts|tests\/unit\/api.providers.create.negatives.spec.ts|tests\/unit\/api.providers.dto-and-ratelimit.spec.ts|tests\/unit\/api.providers.get.spec.ts|tests\/unit\/api.providers.health.rate-limit.spec.ts|tests\/unit\/api.providers.health.ratelimit.headers.spec.ts|tests\/unit\/api.providers.health.ratelimit.spec.ts|tests\/unit\/api.providers.health.spec.ts|tests\/unit\/api.providers.health.summaries.auth.spec.ts|tests\/unit\/api.providers.health.summaries.spec.ts|tests\/unit\/api.providers.list.dto.spec.ts|tests\/unit\/api.providers.patch.rate-limit-auth.spec.ts|tests\/unit\/api.providers.ratelimit.spec.ts|tests\/unit\/api.registry.courses.auth-rate.spec.ts|tests\/unit\/api.registry.courses.rate-limit.spec.ts|tests\/unit\/api.registry.licenses.auth.spec.ts|tests\/unit\/api.registry.mutations.ratelimit.spec.ts|tests\/unit\/api.registry.rate-limit-and-auth.spec.ts|tests\/unit\/api.registry.spec.ts|tests\/unit\/api.registry.versions.approve-disable.spec.ts|tests\/unit\/api.registry.versions.auth-rate.spec.ts|tests\/unit\/api.registry.versions.dto.spec.ts|tests\/unit\/api.registry.versions.rate-limit.spec.ts|tests\/unit\/api.registry.versions.total-count.spec.ts|tests\/unit\/api.admin.audit-logs.auth.spec.ts|tests\/unit\/api.admin.audit-logs.spec.ts|tests\/unit\/api.admin.dlq.admin.patch.spec.ts|tests\/unit\/api.admin.dlq.auth.spec.ts|tests\/unit\/api.admin.export.auth.spec.ts|tests\/unit\/api.admin.export.notifications.csv.spec.ts|tests\/unit\/api.admin.export.spec.ts|tests\/unit\/api.admin.export.usage-deadletters.csv.spec.ts|tests\/unit\/api.admin.governance.smoke.spec.ts|tests\/unit\/api.admin.metrics.accept-text.spec.ts|tests\/unit\/api.admin.metrics.auth.spec.ts|tests\/unit\/api.admin.metrics.sanitize-labels.spec.ts|tests\/unit\/api.admin.metrics.spec.ts|tests\/unit\/api.admin.metrics.text.spec.ts|tests\/unit\/api.admin.quotas.auth.spec.ts|tests\/unit\/api.admin.quotas.patch.spec.ts|tests\/unit\/api.admin.quotas.ratelimit.headers.spec.ts|tests\/unit\/api.admin.quotas.ratelimit.spec.ts|tests\/unit\/api.admin.usage.auth.spec.ts|tests\/unit\/api.admin.usage.shape.spec.ts/i.

@@ -34,6 +34,7 @@ export * from "./schemas/progress";
 export * from "./schemas/interactive";
 export * from "./schemas/registry";
 export * from "./schemas/ids";
+export * from "./schemas/expertfolio";
 
 // DTOs
 export * from "./dto";

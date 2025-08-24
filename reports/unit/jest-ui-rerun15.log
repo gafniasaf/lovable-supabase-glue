@@ -1,0 +1,98 @@
+FAIL tests/unit/ui/SystemHealthHistory.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 http://web:3022/api/health 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:78:13)
+
+  ● System Health History (labs) › renders delta stats and timestamps with jitter
+
+    HTTP_ERROR: HTTP 404
+
+       98 |     const message = (json as any)?.error?.message || `HTTP ${res.status}`;
+       99 |     const code = (json as any)?.error?.code || 'HTTP_ERROR';
+    > 100 |     throw new Error(`${code}: ${message}`);
+          |           ^
+      101 |   }
+      102 |   return schema.parse(json) as T;
+      103 | }
+
+      at fetchJson (../apps/web/src/lib/serverFetch.ts:100:11)
+      at takeSamples (../apps/web/src/app/labs/system/health-history/page.tsx:11:19)
+      at HealthHistoryPage (../apps/web/src/app/labs/system/health-history/page.tsx:34:19)
+      at Object.<anonymous> (unit/ui/SystemHealthHistory.spec.tsx:15:16)
+
+FAIL tests/unit/ui/SystemUptimeTile.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 http://web:3022/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:78:13)
+
+  ● System Uptime Tile (labs) › renders ok and ts fields under jitter
+
+    Unable to find an element by: [data-testid="uptime-ok"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold"[39m
+          [36m>[39m
+            [0mSystem uptime[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-gray-700"[39m
+          [36m>[39m
+            [0mUnable to load uptime.[0m
+          [36m</p>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      16 |     const ui = await UptimeTilePage();
+      17 |     render(ui);
+    > 18 |     await screen.findByTestId('uptime-ok');
+         |                  ^
+      19 |     await screen.findByTestId('uptime-ts-iso');
+      20 |     await screen.findByTestId('uptime-ts-human');
+      21 |   });
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/SystemUptimeTile.spec.tsx:18:18)
+
+FAIL tests/unit/ui/SystemRoleBadge.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 http://web:3022/api/health 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:78:13)
+
+  ● System Role Badge (labs) › renders role and test mode
+
+    HTTP_ERROR: HTTP 404
+
+       98 |     const message = (json as any)?.error?.message || `HTTP ${res.status}`;
+       99 |     const code = (json as any)?.error?.code || 'HTTP_ERROR';
+    > 100 |     throw new Error(`${code}: ${message}`);
+          |           ^
+      101 |   }
+      102 |   return schema.parse(json) as T;
+      103 | }
+
+      at fetchJson (../apps/web/src/lib/serverFetch.ts:100:11)
+      at SystemRoleBadgePage (../apps/web/src/app/labs/system/role-badge/page.tsx:10:16)
+      at Object.<anonymous> (unit/ui/SystemRoleBadge.spec.tsx:15:16)
+
+Test Suites: 3 failed, 3 total
+Tests:       3 failed, 3 total
+Snapshots:   0 total
+Time:        5.865 s
+Ran all test suites related to files matching /tests\/unit\/ui\/SystemHealthHistory.spec.tsx|tests\/unit\/ui\/SystemUptimeTile.spec.tsx|tests\/unit\/ui\/SystemRoleBadge.spec.tsx/i.

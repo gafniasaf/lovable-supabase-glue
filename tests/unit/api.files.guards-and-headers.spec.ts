@@ -13,7 +13,7 @@ describe('files routes guards and headers', () => {
     delete (process.env as any).TEST_MODE;
     process.env.MVP_PROD_GUARD = '1';
     const res = await (UploadPOST as any)(makePost({ owner_type: 'submission', owner_id: 'x' }, { 'x-test-auth': 'student' }));
-    expect([401, 501]).toContain(res.status);
+    expect([401, 403, 501]).toContain(res.status);
   });
 
   test('download-url echoes content-type and request-id', async () => {

@@ -1,0 +1,25 @@
+PASS tests/unit/middleware.cors.disallowed-origin.spec.ts
+FAIL tests/unit/api.runtime.cors.headers.spec.ts
+  ● runtime CORS headers for allowed origin › includes access-control-allow-origin when origin is allowed
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 403
+    Received array: [200, 201, 204, 400]
+
+      25 |     const res = await (ProgressPOST as any)(post({ authorization: `Bearer ${token}` }));
+      26 |     // success or preflight OK
+    > 27 |     expect([200,201,204,400]).toContain(res.status);
+         |                               ^
+      28 |     // @ts-ignore NextResponse-like headers
+      29 |     const h = res.headers as Headers;
+      30 |     expect(h.get('access-control-allow-origin')).toBe('https://provider.example');
+
+      at Object.<anonymous> (unit/api.runtime.cors.headers.spec.ts:27:31)
+
+Test Suites: 1 failed, 1 passed, 2 total
+Tests:       1 failed, 2 passed, 3 total
+Snapshots:   0 total
+Time:        2.545 s
+Ran all test suites related to files matching /tests\/unit\/middleware.cors.disallowed-origin.spec.ts|tests\/unit\/api.runtime.cors.headers.spec.ts/i.
+{"level":30,"time":1755753861930,"pid":20,"hostname":"8e6a8ece7b8b","requestId":"174d58ba-00ed-412d-b527-6e7ce3036e73","ms":1,"msg":"route_success"}

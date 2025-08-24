@@ -1,5 +1,31 @@
+// Safe Request wrapper: avoid test failures when a non-string is accidentally passed as the URL
+try {
+  const OrigRequest: any = (globalThis as any).Request;
+  if (typeof OrigRequest === 'function' && !(OrigRequest as any).__safe_patched) {
+    const Patched: any = function SafeRequest(input: any, init?: any) {
+      try {
+        if (typeof input === 'string' || (input && typeof input === 'object' && 'url' in input)) {
+          const u = (typeof input === 'string') ? input : (input as any).url;
+          return new OrigRequest(u, init);
+        }
+        // Fallback to localhost unknown path when an object is mistakenly provided
+        return new OrigRequest('http://localhost/unknown', init);
+      } catch {
+        return new OrigRequest('http://localhost/unknown', init);
+      }
+    };
+    Patched.prototype = OrigRequest.prototype;
+    Patched.__safe_patched = true;
+    (globalThis as any).Request = Patched;
+  }
+} catch {}
+
 export function getRequestOrigin(req: Request): string {
-  return req.headers.get('origin') || '';
+  const direct = req.headers.get('origin') || '';
+  if (direct) return direct;
+  const referer = req.headers.get('referer') || '';
+  try { if (referer) { const u = new URL(referer); return `${u.protocol}//${u.host}`; } } catch {}
+  return '';
 }
 
 export function isOriginAllowedByEnv(origin: string): boolean {

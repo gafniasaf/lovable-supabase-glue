@@ -1,0 +1,532 @@
+PASS tests/unit/ui/NotificationsDropdownClient.spec.tsx
+PASS tests/unit/ui/GradeRowClient.spec.tsx
+PASS tests/unit/ui/SystemThroughputProfiler.spec.tsx
+PASS tests/unit/ui/TeacherAnnouncements.spec.tsx
+FAIL tests/unit/ui/TeacherCourseInsightsAdvanced.spec.tsx
+  ● Teacher Course Insights (Advanced) › renders table and totals with jitter
+
+    Unable to find an element by: [data-testid="insights-table"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold mb-4"[39m
+          [36m>[39m
+            [0mCourse Insights (Advanced)[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-gray-500"[39m
+          [36m>[39m
+            [0mNo courses yet.[0m
+          [36m</p>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      27 |     const ui = await TeacherCourseInsightsAdvancedPage();
+      28 |     render(ui);
+    > 29 |     await screen.findByTestId('insights-table');
+         |                  ^
+      30 |     await screen.findByTestId('insights-total-courses');
+      31 |     await screen.findByTestId('insights-total-lessons');
+      32 |   });
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/TeacherCourseInsightsAdvanced.spec.tsx:29:18)
+
+PASS tests/unit/ui/SystemDiagnosticsSuite.spec.tsx
+PASS tests/unit/ui/StudentStudyDigest.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/enrollments 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/StudentLearningOverviewDetailed.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/enrollments 4ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/StudentLearningOverviewAdvanced.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/enrollments 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/ParentAnnouncementsLab.spec.tsx
+PASS tests/unit/ui/StudentLearningOverview.spec.tsx
+PASS tests/unit/ui/SystemPercentileTrends.spec.tsx
+PASS tests/unit/ui/AdminReports.spec.tsx
+PASS tests/unit/ui/StudentUpcomingLessons.spec.tsx
+PASS tests/unit/ui/SystemObserver.spec.tsx
+PASS tests/unit/ui/SystemHealthHistory.spec.tsx
+PASS tests/unit/ui/TeacherCourseInsights.spec.tsx
+PASS tests/unit/ui/SystemRequestId.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/health 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+PASS tests/unit/ui/SystemLatencySampler.spec.tsx
+PASS tests/unit/ui/SystemUptimeTile.spec.tsx
+FAIL tests/unit/ui/StudentProfile.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/user/profile 6ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+  ● Student Profile (labs) › renders email and role when authenticated
+
+    Unable to find an element by: [data-testid="profile-email"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6 space-y-3"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold"[39m
+            [33mdata-testid[39m=[32m"profile-title"[39m
+          [36m>[39m
+            [0mStudent Profile[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-gray-700"[39m
+            [33mdata-testid[39m=[32m"signin-prompt"[39m
+          [36m>[39m
+            [0mYou are not signed in[0m
+          [36m</p>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"underline"[39m
+            [33mdata-testid[39m=[32m"signin-link"[39m
+            [33mhref[39m=[32m"/login"[39m
+          [36m>[39m
+            [0mGo to login[0m
+          [36m</a>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      15 |     const ui = await StudentProfilePage();
+      16 |     render(ui);
+    > 17 |     expect(await screen.findByTestId('profile-email')).toHaveTextContent('s@example.com');
+         |                         ^
+      18 |     expect(await screen.findByTestId('profile-role')).toHaveTextContent('student');
+      19 |   });
+      20 | });
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/StudentProfile.spec.tsx:17:25)
+
+PASS tests/unit/ui/StudentPlanner.spec.tsx
+PASS tests/unit/ui/SystemRoleBadge.spec.tsx
+FAIL tests/unit/ui/SystemAuthCheck.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/user/profile 4ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+  ● System Auth Check (labs) › renders email and role when authenticated
+
+    Unable to find an element by: [data-testid="auth-email"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"border rounded p-4 inline-block"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"text-lg font-medium mb-2"[39m
+            [36m>[39m
+              [0mAuth check (read-only)[0m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"mb-2"[39m
+            [36m>[39m
+              [0mYou are not signed in[0m
+            [36m</p>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"text-blue-600 underline"[39m
+              [33mhref[39m=[32m"/login"[39m
+            [36m>[39m
+              [0mSign in[0m
+            [36m</a>[39m
+          [36m</div>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      15 |     const ui = await AuthCheckPage();
+      16 |     render(ui);
+    > 17 |     expect(await screen.findByTestId('auth-email')).toHaveTextContent('t@example.com');
+         |                         ^
+      18 |     expect(await screen.findByTestId('auth-role')).toHaveTextContent('teacher');
+      19 |   });
+      20 | });
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/SystemAuthCheck.spec.tsx:17:25)
+
+FAIL tests/unit/ui/ParentChildrenReport.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/parent-links?parent_id=test-parent-id 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+  ● Parent Children Report (labs) › renders total and items
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      1
+    Received:
+      0
+
+      17 |     const ui = await ParentChildrenReportPage();
+      18 |     render(ui);
+    > 19 |     expect(await screen.findByTestId('children-total')).toHaveTextContent('1');
+         |                                                         ^
+      20 |   });
+      21 | });
+      22 |
+
+      at Object.<anonymous> (unit/ui/ParentChildrenReport.spec.tsx:19:57)
+
+PASS tests/unit/ui/SystemOkCard.spec.tsx
+PASS tests/unit/ui/TeacherCourseCardsWithCounts.spec.tsx
+PASS tests/unit/ui/TeacherPrintPages.spec.tsx
+PASS tests/unit/ui/NotificationsInboxPage.spec.tsx
+PASS tests/unit/ui/DropdownMenu.spec.tsx
+FAIL tests/unit/ui/ParentChildren.spec.tsx
+  ● Console
+
+    console.debug
+      [serverFetch] 404 /api/parent-links?parent_id=test-parent-id 6ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:90:13)
+
+    console.error
+      Warning: Invalid value for prop `action` on <form> tag. Either remove it from the element, or pass a string or number value to keep it in the DOM. For details, see https://reactjs.org/link/attribute-behavior 
+          at form
+          at main
+
+      14 |     server.use(http.get('/api/parent-links', () => HttpResponse.json([{ id: 'pl-1', parent_id: 'p-1', student_id: 's-1', created_at: new Date().toISOString() }])));
+      15 |     const ui = await ParentChildrenListPage();
+    > 16 |     render(ui);
+         |           ^
+      17 |     await screen.findByTestId('children-list');
+      18 |   });
+      19 | });
+
+      at printWarning (../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnUnknownProperties (../node_modules/react-dom/cjs/react-dom.development.js:3815:7)
+      at validateProperties$2 (../node_modules/react-dom/cjs/react-dom.development.js:3827:3)
+      at validatePropertiesInDevelopment (../node_modules/react-dom/cjs/react-dom.development.js:9541:5)
+      at setInitialProperties (../node_modules/react-dom/cjs/react-dom.development.js:9830:5)
+      at finalizeInitialChildren (../node_modules/react-dom/cjs/react-dom.development.js:10950:3)
+      at completeWork (../node_modules/react-dom/cjs/react-dom.development.js:22232:17)
+      at completeUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26632:16)
+      at performUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26607:5)
+      at workLoopSync (../node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (../node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performConcurrentWorkOnRoot (../node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+      at flushActQueue (../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../node_modules/react/cjs/react.development.js:2582:11)
+      at ../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (../node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (unit/ui/ParentChildren.spec.tsx:16:11)
+
+  ● Parent Children (labs) › renders list with one linked student
+
+    Unable to find an element by: [data-testid="children-list"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold mb-4"[39m
+          [36m>[39m
+            [0mChildren[0m
+          [36m</h1>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"mb-3 flex items-center gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mclass[39m=[32m"border rounded p-2"[39m
+              [33mname[39m=[32m"student_id"[39m
+              [33mplaceholder[39m=[32m"Student ID"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"bg-black text-white rounded px-3 py-1"[39m
+            [36m>[39m
+              [0mLink[0m
+            [36m</button>[39m
+          [36m</form>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"text-gray-600"[39m
+          [36m>[39m
+            [0mNo linked students.[0m
+          [36m</div>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      15 |     const ui = await ParentChildrenListPage();
+      16 |     render(ui);
+    > 17 |     await screen.findByTestId('children-list');
+         |                  ^
+      18 |   });
+      19 | });
+      20 |
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/ParentChildren.spec.tsx:17:18)
+
+PASS tests/unit/ui/TeacherAnalyticsLab.spec.tsx
+PASS tests/unit/ui/DarkModeToggle.spec.tsx
+PASS tests/unit/ui/telemetry.spec.tsx
+PASS tests/unit/ui/SettingsPage.spec.tsx
+PASS tests/unit/ui/TeacherCoursesGrid.spec.tsx
+PASS tests/unit/ui/StudentEnrollmentsGrid.spec.tsx
+PASS tests/unit/ui/SystemHealth.spec.tsx
+
+Summary of all failing tests
+FAIL unit/ui/TeacherCourseInsightsAdvanced.spec.tsx
+  ● Teacher Course Insights (Advanced) › renders table and totals with jitter
+
+    Unable to find an element by: [data-testid="insights-table"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold mb-4"[39m
+          [36m>[39m
+            [0mCourse Insights (Advanced)[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-gray-500"[39m
+          [36m>[39m
+            [0mNo courses yet.[0m
+          [36m</p>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      27 |     const ui = await TeacherCourseInsightsAdvancedPage();
+      28 |     render(ui);
+    > 29 |     await screen.findByTestId('insights-table');
+         |                  ^
+      30 |     await screen.findByTestId('insights-total-courses');
+      31 |     await screen.findByTestId('insights-total-lessons');
+      32 |   });
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/TeacherCourseInsightsAdvanced.spec.tsx:29:18)
+
+FAIL unit/ui/StudentProfile.spec.tsx
+  ● Student Profile (labs) › renders email and role when authenticated
+
+    Unable to find an element by: [data-testid="profile-email"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6 space-y-3"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold"[39m
+            [33mdata-testid[39m=[32m"profile-title"[39m
+          [36m>[39m
+            [0mStudent Profile[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-gray-700"[39m
+            [33mdata-testid[39m=[32m"signin-prompt"[39m
+          [36m>[39m
+            [0mYou are not signed in[0m
+          [36m</p>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"underline"[39m
+            [33mdata-testid[39m=[32m"signin-link"[39m
+            [33mhref[39m=[32m"/login"[39m
+          [36m>[39m
+            [0mGo to login[0m
+          [36m</a>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      15 |     const ui = await StudentProfilePage();
+      16 |     render(ui);
+    > 17 |     expect(await screen.findByTestId('profile-email')).toHaveTextContent('s@example.com');
+         |                         ^
+      18 |     expect(await screen.findByTestId('profile-role')).toHaveTextContent('student');
+      19 |   });
+      20 | });
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/StudentProfile.spec.tsx:17:25)
+
+FAIL unit/ui/SystemAuthCheck.spec.tsx
+  ● System Auth Check (labs) › renders email and role when authenticated
+
+    Unable to find an element by: [data-testid="auth-email"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"border rounded p-4 inline-block"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"text-lg font-medium mb-2"[39m
+            [36m>[39m
+              [0mAuth check (read-only)[0m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"mb-2"[39m
+            [36m>[39m
+              [0mYou are not signed in[0m
+            [36m</p>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"text-blue-600 underline"[39m
+              [33mhref[39m=[32m"/login"[39m
+            [36m>[39m
+              [0mSign in[0m
+            [36m</a>[39m
+          [36m</div>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      15 |     const ui = await AuthCheckPage();
+      16 |     render(ui);
+    > 17 |     expect(await screen.findByTestId('auth-email')).toHaveTextContent('t@example.com');
+         |                         ^
+      18 |     expect(await screen.findByTestId('auth-role')).toHaveTextContent('teacher');
+      19 |   });
+      20 | });
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/SystemAuthCheck.spec.tsx:17:25)
+
+FAIL unit/ui/ParentChildrenReport.spec.tsx
+  ● Parent Children Report (labs) › renders total and items
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      1
+    Received:
+      0
+
+      17 |     const ui = await ParentChildrenReportPage();
+      18 |     render(ui);
+    > 19 |     expect(await screen.findByTestId('children-total')).toHaveTextContent('1');
+         |                                                         ^
+      20 |   });
+      21 | });
+      22 |
+
+      at Object.<anonymous> (unit/ui/ParentChildrenReport.spec.tsx:19:57)
+
+FAIL unit/ui/ParentChildren.spec.tsx
+  ● Parent Children (labs) › renders list with one linked student
+
+    Unable to find an element by: [data-testid="children-list"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold mb-4"[39m
+          [36m>[39m
+            [0mChildren[0m
+          [36m</h1>[39m
+          [36m<form[39m
+            [33mclass[39m=[32m"mb-3 flex items-center gap-2"[39m
+          [36m>[39m
+            [36m<input[39m
+              [33mclass[39m=[32m"border rounded p-2"[39m
+              [33mname[39m=[32m"student_id"[39m
+              [33mplaceholder[39m=[32m"Student ID"[39m
+            [36m/>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"bg-black text-white rounded px-3 py-1"[39m
+            [36m>[39m
+              [0mLink[0m
+            [36m</button>[39m
+          [36m</form>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"text-gray-600"[39m
+          [36m>[39m
+            [0mNo linked students.[0m
+          [36m</div>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+      15 |     const ui = await ParentChildrenListPage();
+      16 |     render(ui);
+    > 17 |     await screen.findByTestId('children-list');
+         |                  ^
+      18 |   });
+      19 | });
+      20 |
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/ParentChildren.spec.tsx:17:18)
+
+
+Test Suites: 5 failed, 33 passed, 38 total
+Tests:       5 failed, 34 passed, 39 total
+Snapshots:   0 total
+Time:        35.407 s
+Ran all test suites.

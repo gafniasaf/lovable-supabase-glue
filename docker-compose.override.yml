@@ -5,3 +5,7 @@ services:
       - TEST_MODE=1
       - NEXT_PUBLIC_TEST_MODE=1
       - CSRF_DOUBLE_SUBMIT=0
+      - FEATURES_EXPERTFOLIO=1
+      - NEXT_PUBLIC_SUPABASE_URL=http://localhost:54321
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=test-anon-key-1234567890
+      - E2E_ALLOW_TEST_MODE=1

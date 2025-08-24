@@ -6,8 +6,12 @@ module.exports = {
   roots: ['<rootDir>/unit'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   transform: {
-    '^.+\\.(ts|tsx)$': '<rootDir>/jest.ts-transformer.cjs'
+    '^.+\.(ts|tsx)$': '<rootDir>/jest.ts-transformer.cjs'
   },
+  transformIgnorePatterns: [
+    // Allow ESM jose to be transformed by our ts transformer
+    '/node_modules/(?!jose/)'
+  ],
   moduleNameMapper: {
     '^next/server$': '<rootDir>/shims/next-server.ts',
     '^next/headers$': '<rootDir>/shims/next-headers.ts',
@@ -16,13 +20,16 @@ module.exports = {
     '^msw$': '<rootDir>/shims/msw.ts',
     '^react-hook-form$': '<rootDir>/shims/react-hook-form.ts',
     '^zod$': maybeZod,
+    '^pino$': '<rootDir>/shims/pino.ts',
+    '^jose$': '<rootDir>/shims/jose.cjs',
     '^@shared$': '<rootDir>/../packages/shared/src/index.ts',
     '^@shared/(.*)$': '<rootDir>/../packages/shared/src/$1',
     '^@education/shared$': '<rootDir>/../packages/shared/src/index.ts',
     '^@education/shared/(.*)$': '<rootDir>/../packages/shared/src/$1',
     '^@/(.*)$': '<rootDir>/../apps/web/src/$1',
+    '@/lib/(.*)$': '<rootDir>/../apps/web/src/lib/$1',
     '^react-hook-form$': '<rootDir>/shims/react-hook-form.ts',
-    '^\.\./helpers/supabaseMock$': '<rootDir>/unit/helpers/supabaseMock.ts'
+    '../helpers/supabaseMock': '<rootDir>/unit/helpers/supabaseMock.ts'
   },
   moduleFileExtensions: ['ts','tsx','js','jsx','json','node'],
   coverageThreshold: {
@@ -55,7 +62,11 @@ module.exports = {
     '!<rootDir>/../apps/web/src/server/**/route.ts',
     '<rootDir>/../packages/shared/src/**/*.ts'
   ],
-  coverageProvider: 'babel'
+  coverageProvider: 'babel',
+  testEnvironmentOptions: {
+    // Ensure prod validation path doesn't get E2E allowances inadvertently
+    E2E_ALLOW_TEST_MODE: '0'
+  }
 };
 
 

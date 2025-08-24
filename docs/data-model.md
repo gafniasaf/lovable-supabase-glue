@@ -158,7 +158,7 @@ Managed by SQL migrations under `supabase/migrations`.
 - course_events (append‑only, implemented)
   - `id uuid pk`, `course_id uuid`, `user_id uuid`, `assignment_id uuid null`, `type text`, `payload jsonb`, `request_id text`, `created_at timestamptz`
 
-- runtime_checkpoints (implemented in `0029_runtime_checkpoints.sql`)
+- runtime_checkpoints (implemented in `0051_runtime_checkpoints.sql`)
   - `id uuid pk`, `course_id uuid`, `alias text`, `key text`, `state jsonb`, `created_at timestamptz`, `updated_at timestamptz`, unique(course_id, alias, key)
 
 - dead_letters (Phase 3)
@@ -172,7 +172,7 @@ RLS (high‑level planned):
 - `assignment_targets`: teacher owner write; students read for own assignments (app‑layer enforced currently)
 - `user_aliases`: user self read; server write
 - `course_events`: server write; admin read; teachers read for own courses; students read own events
-- `runtime_checkpoints`: server writes; reads by alias (app‑layer enforced currently)
+- `runtime_checkpoints`: server writes; teachers can read rows for their courses (enforced in DB policy); alias-based access handled in app layer
 
 #### Indexes
 
@@ -195,7 +195,6 @@ RLS (high‑level planned):
 RLS:
 - select/insert/delete where `user_id = auth.uid()`
 - optional teacher read by joining lessons→courses for owned courses (app-layer checks also apply)
-
 
 #### Security & RLS hardening (planned)
 

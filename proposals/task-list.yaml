@@ -1,0 +1,131 @@
+# Milestones and tasks (Cursor-friendly WBS)
+
+milestones:
+  - name: Foundation scan and planning
+    id: m1
+    tasks:
+      - id: t1
+        name: System scan completed
+        acceptance:
+          - reports/system-scan.md present with linked artifacts
+          - docker build/up health verified under artifacts/scan
+          - DTO and wrappers documented
+      - id: t2
+        name: Gap analysis delivered
+        acceptance:
+          - reports/gap-analysis.md present
+          - risks and mitigations listed
+          - tenancy/RLS gaps identified
+      - id: t3
+        name: Integration plan approved
+        acceptance:
+          - proposals/expertfolio-integration-plan.md finalized
+          - terminology map, migrations outline, tests plan included
+
+  - name: Schema and tenancy groundwork
+    id: m2
+    depends_on: [m1]
+    tasks:
+      - id: t4
+        name: Create ExpertFolio tables migrations
+        acceptance:
+          - migrations include tenant_id, product columns
+          - RLS enabled deny-by-default
+          - indices on (tenant_id, product)
+      - id: t5
+        name: Add tenancy to reused tables if needed
+        acceptance:
+          - attachments or reused tables updated or justified
+          - no RLS regressions (negative tests pass)
+
+  - name: API surfaces and DTOs
+    id: m3
+    depends_on: [m2]
+    tasks:
+      - id: t6
+        name: DTOs for ExpertFolio entities
+        acceptance:
+          - DTOs exported via @education/shared
+          - unit tests validate schema strictness
+      - id: t7
+        name: Assessments CRUD routes
+        acceptance:
+          - withRouteTiming + createApiHandler used
+          - jsonDto on all 2xx
+          - role and CSRF guards enforced
+      - id: t8
+        name: Evaluations submit/review routes
+        acceptance:
+          - request validation via Zod
+          - response validation via jsonDto
+          - notifications emitted
+
+  - name: Read models and dashboards
+    id: m4
+    depends_on: [m3]
+    tasks:
+      - id: t9
+        name: Trainee EPA progress projection
+        acceptance:
+          - service returns validated DTO
+          - deterministic tests with seeded fixtures
+      - id: t10
+        name: Supervisor review queue
+        acceptance:
+          - pagination and counts consistent
+          - negative access tests
+      - id: t11
+        name: Program overview read model
+        acceptance:
+          - aggregated KPIs validated via DTO
+          - performance indices documented
+
+  - name: Files/PHI and notifications
+    id: m5
+    depends_on: [m3]
+    tasks:
+      - id: t12
+        name: Storage paths and MIME policy
+        acceptance:
+          - tenant-prefixed keys (dev prefix in non-prod)
+          - getAllowedUploadMime reused
+      - id: t13
+        name: PHI redaction & retention hooks
+        acceptance:
+          - logs redact evaluation notes
+          - retention policy documented
+      - id: t14
+        name: Notification triggers
+        acceptance:
+          - submit/review events emit notifications
+          - unit tests assert payload shape
+
+  - name: E2E split and CI hygiene
+    id: m6
+    depends_on: [m3]
+    tasks:
+      - id: t15
+        name: Playwright projects for edu and folio
+        acceptance:
+          - per-host baseURL
+          - storageState fixtures set
+      - id: t16
+        name: Compose hygiene adjustments
+        acceptance:
+          - no container_name, parameterized ports
+          - tests profile documented
+
+  - name: Documentation and DoD
+    id: m7
+    depends_on: [m4, m5, m6]
+    tasks:
+      - id: t17
+        name: Update docs (API, ADRs, HOW_TO_RUN)
+        acceptance:
+          - updated endpoints and DTOs documented
+          - runbooks refreshed
+      - id: t18
+        name: Definition of Done verification
+        acceptance:
+          - TDD, Docker-only, RLS, DTOs, headers, logs, docs all validated
+          - reports generated under /reports

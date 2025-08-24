@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import Page from "../page";
+import Page from "@/app/dashboard/teacher/[courseId]/lessons/manage/page";
 
 const meta: Meta<typeof Page> = {
   title: "Teacher/Course/Lessons",

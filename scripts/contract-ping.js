@@ -48,6 +48,16 @@ async function ping() {
     files_upload_url: 800,
     files_put_test: 800,
     files_resolve_guard: 400,
+    admin_dlq: 800,
+    admin_usage: 800,
+    admin_licenses: 800,
+    runtime_outcomes_list: 800,
+    runtime_outcomes_teacher: 800,
+    runtime_outcomes_export: 1200,
+    providers_list: 800,
+    provider_health: 1200,
+    reports_activity: 800,
+    reports_retention: 800,
   };
   // Allow overriding budgets via env, e.g. CONTRACT_BUDGET_messages=1200
   for (const key of Object.keys(process.env)) {
@@ -191,6 +201,95 @@ async function ping() {
     record('files_resolve_guard', r);
     assert(!r.ok || r.status >= 400, 'files resolve should guard');
   }
+
+  // Runtime outcomes (teacher context)
+  try {
+    // List for a course (uses first teacher course id if any, else expect 403/400)
+    let courseId = null;
+    try {
+      const courses = await fetchJson('/api/courses?owned=1');
+      if (Array.isArray(courses.json) && courses.json[0]?.id) courseId = courses.json[0].id;
+    } catch {}
+    const listPath = courseId ? `/api/runtime/outcomes?course_id=${encodeURIComponent(courseId)}` : '/api/runtime/outcomes?course_id=00000000-0000-0000-0000-000000000000';
+    const list = await fetchJson(listPath);
+    record('runtime_outcomes_list', list);
+    if (courseId) {
+      assert(list.ok || list.status === 500, `outcomes list not ok: ${list.status}`);
+    }
+    // Teacher aggregate
+    const t = await fetchJson('/api/runtime/teacher/outcomes');
+    record('runtime_outcomes_teacher', t);
+    assert(t.ok || t.status === 500, `teacher outcomes not ok: ${t.status}`);
+    // Export CSV
+    const expPath = courseId ? `/api/runtime/outcomes/export?course_id=${encodeURIComponent(courseId)}` : '/api/runtime/outcomes/export?course_id=00000000-0000-0000-0000-000000000000';
+    const ex = await fetchJson(expPath);
+    record('runtime_outcomes_export', ex);
+    // Accept 200 (CSV), 403 (not your course), or 500 (DB)
+    assert(ex.status === 200 || ex.status === 403 || ex.status === 500, `outcomes export unexpected: ${ex.status}`);
+    if (ex.status === 200) {
+      // Make a direct fetch to inspect headers of CSV
+      const url = expPath.startsWith('http') ? expPath : `${BASE}${expPath}`;
+      const res = await fetch(url, { headers: HEADERS });
+      const ct = res.headers.get('content-type') || '';
+      const cd = res.headers.get('content-disposition') || '';
+      assert(/text\/csv/.test(ct), 'export missing CSV content-type');
+      assert(/attachment; filename=/.test(cd), 'export missing content-disposition');
+    }
+  } catch {}
+
+  // Reports (activity/retention)
+  try {
+    const a = await fetchJson('/api/reports/activity?limit=10');
+    record('reports_activity', a);
+    if (a.status !== 403) {
+      assert(a.ok, `reports activity not ok: ${a.status}`);
+    }
+    const r = await fetchJson('/api/reports/retention');
+    record('reports_retention', r);
+    if (r.status !== 403) {
+      assert(r.ok, `reports retention not ok: ${r.status}`);
+    }
+  } catch {}
+
+  // Providers (admin context for health; list requires auth)
+  try {
+    const adminHeaders = { ...HEADERS, 'x-test-auth': 'admin' };
+    const list = await fetchJson('/api/providers', { headers: adminHeaders });
+    record('providers_list', list);
+    if (list.ok && Array.isArray(list.json) && list.json.length > 0) {
+      const id = list.json[0]?.id;
+      if (id) {
+        const h = await fetchJson(`/api/providers/health?id=${encodeURIComponent(id)}`, { headers: adminHeaders });
+        record('provider_health', h);
+        if (h.status !== 403) {
+          assert(h.ok || h.status === 500 || h.status === 429, `provider health unexpected: ${h.status}`);
+        }
+      }
+    }
+  } catch {}
+
+  // Admin governance endpoints (admin role)
+  try {
+    const adminHeaders = { ...HEADERS, 'x-test-auth': 'admin' };
+    const dlq = await fetchJson('/api/admin/dlq', { headers: adminHeaders });
+    record('admin_dlq', dlq);
+    if (dlq.status !== 403) {
+      assert(dlq.ok, `admin dlq not ok: ${dlq.status}`);
+      assert(dlq.json && typeof dlq.json === 'object', 'admin dlq invalid');
+    }
+    const usage = await fetchJson('/api/admin/usage', { headers: adminHeaders });
+    record('admin_usage', usage);
+    if (usage.status !== 403) {
+      assert(usage.ok, `admin usage not ok: ${usage.status}`);
+      assert(usage.json && typeof usage.json === 'object', 'admin usage invalid');
+    }
+    const lic = await fetchJson('/api/registry/licenses', { headers: adminHeaders });
+    record('admin_licenses', lic);
+    if (lic.status !== 403) {
+      assert(lic.ok, `admin licenses not ok: ${lic.status}`);
+      assert(lic.json && typeof lic.json === 'object', 'admin licenses invalid');
+    }
+  } catch {}
 
   // Summary
   let failed = 0;

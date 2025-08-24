@@ -1,0 +1,117 @@
+# Page snapshot
+
+```yaml
+- link "Skip to main content":
+  - /url: "#main"
+  - text: Skip to main
+- banner:
+  - link "Dashboard home":
+    - /url: /dashboard
+    - text: Education Platform v2
+  - text: ·
+  - link "Home":
+    - /url: /
+  - search:
+    - textbox "Search"
+  - text: Role
+  - combobox "Role":
+    - option "anon"
+    - option "teacher" [selected]
+    - option "student"
+    - option "parent"
+    - option "admin"
+  - button "Apply"
+  - link "Seed":
+    - /url: /api/test/seed?hard=1
+  - combobox "Language":
+    - option "EN" [selected]
+    - option "ES"
+  - button "Dark"
+  - group: 🔔 4 Polling
+  - text: teacher
+  - button "Sign out"
+- complementary "Primary":
+  - navigation:
+    - link "Dashboard home":
+      - /url: /dashboard
+      - text: Home
+    - text: Student
+    - link "Student dashboard":
+      - /url: /dashboard/student
+      - text: Dashboard
+    - link "Notifications":
+      - /url: /dashboard/notifications
+    - link "Settings":
+      - /url: /dashboard/settings
+    - link "Planner":
+      - /url: /dashboard/student/plan
+    - link "Timeline":
+      - /url: /dashboard/student/timeline
+    - link "Messages":
+      - /url: /dashboard/student/messages
+    - text: Teacher
+    - link "Teacher dashboard":
+      - /url: /dashboard/teacher
+      - text: Dashboard
+    - link "Grading queue":
+      - /url: /dashboard/teacher/grading-queue
+    - link "Enrollments":
+      - /url: /dashboard/teacher/enrollments
+    - text: Admin
+    - link "Admin dashboard":
+      - /url: /dashboard/admin
+      - text: Dashboard
+    - link "Users":
+      - /url: /dashboard/admin/users
+    - link "Roles":
+      - /url: /dashboard/admin/roles
+    - link "Feature flags":
+      - /url: /dashboard/admin/flags
+      - text: Feature Flags
+    - link "System health":
+      - /url: /dashboard/admin/health
+    - link "Reports":
+      - /url: /dashboard/admin/reports
+    - link "Parent links":
+      - /url: /dashboard/admin/parent-links
+      - text: Parent Links
+    - link "Audit logs":
+      - /url: /dashboard/admin/audit
+    - link "Providers":
+      - /url: /dashboard/admin/providers
+    - link "Catalog":
+      - /url: /dashboard/admin/catalog
+- main "Main content":
+  - region "New course":
+    - heading "Create course" [level=1]
+    - textbox "Title": UI Course 1755891551900
+    - textbox "Description": UI flow
+    - text: Launch kind (optional)
+    - combobox:
+      - option "None (standard)" [selected]
+      - option "WebEmbed (iframe)"
+      - option "RemoteContainer (future)" [disabled]
+      - option "StreamedDesktop (future)" [disabled]
+    - text: Launch URL (optional)
+    - textbox "https://provider.example/launch"
+    - text: Provider (optional)
+    - combobox:
+      - option "None" [selected]
+    - text: Scopes (optional)
+    - checkbox "progress.write"
+    - text: progress.write
+    - checkbox "progress.read"
+    - text: progress.read
+    - checkbox "attempts.write"
+    - text: attempts.write
+    - checkbox "attempts.read"
+    - text: attempts.read
+    - checkbox "files.read"
+    - text: files.read
+    - checkbox "files.write"
+    - text: files.write
+    - button "Create"
+    - text: Invalid url Invalid uuid
+- region "Notifications"
+- alert
+```

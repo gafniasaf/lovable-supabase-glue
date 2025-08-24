@@ -23,10 +23,31 @@ export const GET = withRouteTiming(async function GET(req: NextRequest) {
   const requestId = req.headers.get('x-request-id') || crypto.randomUUID();
   if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
   if (isTestMode()) {
+    // Honor rate limits in test-mode when mocking is configured
+    try {
+      const rl = checkRateLimit(`notifications:list:${user.id}`, Number(process.env.NOTIFICATIONS_LIST_LIMIT || 240), Number(process.env.NOTIFICATIONS_LIST_WINDOW_MS || 60000));
+      if (!(rl as any).allowed) {
+        const retry = Math.max(0, (rl as any).resetAt - Date.now());
+        return NextResponse.json(
+          { error: { code: 'TOO_MANY_REQUESTS', message: 'Rate limit' }, requestId },
+          {
+            status: 429,
+            headers: {
+              'x-request-id': requestId,
+              'retry-after': String(Math.ceil(retry / 1000)),
+              'x-rate-limit-remaining': String((rl as any).remaining),
+              'x-rate-limit-reset': String(Math.ceil((rl as any).resetAt / 1000))
+            }
+          }
+        );
+      }
+    } catch {}
     const rows = listTestNotificationsByUser(user.id);
     try {
       const parsed = notificationListDto.parse(rows ?? []);
-      return jsonDto(parsed, notificationListDto as any, { requestId, status: 200 });
+      const res = jsonDto(parsed, notificationListDto as any, { requestId, status: 200 });
+      res.headers.set('x-total-count', String((rows ?? []).length));
+      return res;
     } catch {
       return NextResponse.json({ error: { code: 'INTERNAL', message: 'Invalid notification shape' }, requestId }, { status: 500, headers: { 'x-request-id': requestId } });
     }

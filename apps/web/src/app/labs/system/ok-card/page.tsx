@@ -20,10 +20,7 @@ export default async function SystemOkCardPage() {
   const cookieStore = cookies();
   const incomingHeaders = headers();
 
-  const cookieHeader = cookieStore
-    .getAll()
-    .map((c) => `${c.name}=${c.value}`)
-    .join("; ");
+  const cookieHeader = (() => { try { return cookieStore.getAll().map((c) => `${c.name}=${c.value}`).join("; "); } catch { const one = cookieStore.get?.("x-test-auth")?.value; return one ? `x-test-auth=${one}` : ''; } })();
   const xTestAuth = incomingHeaders.get("x-test-auth") ?? cookieStore.get("x-test-auth")?.value;
 
   let data: Health;

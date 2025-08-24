@@ -38,7 +38,7 @@ describe('runtime outcomes JWKS verification', () => {
     const mock = (supa as any).makeSupabaseMock({
       courses: () => supa.supabaseOk({ id: 'c1', provider_id: 'p1' }),
       course_providers: () => supa.supabaseOk({ jwks_url: 'https://jwks.example/jwks.json' }),
-      interactive_attempts: () => supa.supabaseOk({ id: 'ia1' })
+      interactive_attempts: (p: any) => supa.supabaseOk({ id: 'ia1', course_id: 'c1', user_id: 'u1', score: p?.insert?.score ?? 1, max: p?.insert?.max ?? 1, passed: p?.insert?.passed ?? true })
     } as any);
     jest.spyOn(supa as any, 'getRouteHandlerSupabase').mockReturnValue(mock);
     jest.spyOn<any, any>(global as any, 'import').mockImplementation((path: string) => {

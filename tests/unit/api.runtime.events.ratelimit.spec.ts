@@ -3,6 +3,9 @@ import { POST as EventsPOST } from '../../apps/web/src/app/api/runtime/events/ro
 jest.mock('../../apps/web/src/lib/rateLimit', () => ({
   checkRateLimit: () => ({ allowed: false, remaining: 0, resetAt: Date.now() + 15_000 })
 }), { virtual: true });
+jest.mock('@/lib/rateLimit', () => ({
+  checkRateLimit: () => ({ allowed: false, remaining: 0, resetAt: Date.now() + 15_000 })
+}), { virtual: true });
 
 function base64url(input: Buffer | string) { const b = Buffer.isBuffer(input) ? input : Buffer.from(String(input)); return b.toString('base64').replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_'); }
 function makeJwt(scopes: string[]) {

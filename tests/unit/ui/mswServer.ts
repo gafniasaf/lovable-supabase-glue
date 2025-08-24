@@ -4,7 +4,8 @@ import { http, HttpResponse } from '../../shims/msw';
 
 export const handlers = [
 	// Default safe handlers; specs can override with server.use(...)
-	http.get('/api/health', () => HttpResponse.json({ ok: true })),
+	// Match relative and absolute URLs by normalizing in shim
+	http.get('/api/health', () => HttpResponse.json({ ok: true, ts: Date.now(), testMode: true })),
 ];
 
 export const server = setupServer(...handlers);

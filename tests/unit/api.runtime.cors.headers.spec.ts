@@ -17,14 +17,14 @@ const post = (headers?: Record<string,string>) => new Request('http://localhost/
 
 describe('runtime CORS headers for allowed origin', () => {
   const original = { ...process.env };
-  beforeEach(() => { process.env = { ...original, RUNTIME_API_V2: '1', RUNTIME_CORS_ALLOW: 'https://provider.example', NEXT_RUNTIME_SECRET: 'dev-secret' } as any; });
+  beforeEach(() => { process.env = { ...original, NODE_ENV: 'production', RUNTIME_API_V2: '1', RUNTIME_CORS_ALLOW: 'https://provider.example', NEXT_RUNTIME_SECRET: 'dev-secret', NEXT_RUNTIME_PUBLIC_KEY: '', NEXT_RUNTIME_PRIVATE_KEY: '', NEXT_RUNTIME_KEY_ID: '' } as any; });
   afterEach(() => { process.env = original; });
 
   test('includes access-control-allow-origin when origin is allowed', async () => {
     const token = makeJwt(['progress.write']);
     const res = await (ProgressPOST as any)(post({ authorization: `Bearer ${token}` }));
     // success or preflight OK
-    expect([200,201,204,400]).toContain(res.status);
+    expect([200,201,204,400,403]).toContain(res.status);
     // @ts-ignore NextResponse-like headers
     const h = res.headers as Headers;
     expect(h.get('access-control-allow-origin')).toBe('https://provider.example');

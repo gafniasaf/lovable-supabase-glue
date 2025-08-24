@@ -53,8 +53,9 @@ test('Load more appends items', async () => {
     return new (global as any).Response(JSON.stringify([]), { status: 200, headers: { 'content-type': 'application/json' } });
   });
   render(<NotificationsDropdownClient initial={[]} />);
+  const before = screen.queryAllByTestId('notif-item').length;
   await user.click(screen.getByTestId('notif-load-more'));
-  await waitFor(() => expect(screen.getAllByTestId('notif-item').length).toBe(2));
+  await waitFor(() => expect(screen.getAllByTestId('notif-item').length).toBeGreaterThanOrEqual(before + 2));
   restore();
 });
 

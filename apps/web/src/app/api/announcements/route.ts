@@ -15,12 +15,15 @@ import { z } from "zod";
 import { parseQuery } from "@/lib/zodQuery";
 import { checkRateLimit } from "@/lib/rateLimit";
 import { jsonDto } from "@/lib/jsonDto";
+import { recordEvent } from "@/lib/events";
+
+export const runtime = 'nodejs';
 
 export const POST = withRouteTiming(createApiHandler({
   schema: announcementCreateRequest,
   handler: async (input, ctx) => {
     const requestId = ctx.requestId;
-    const user = await getCurrentUserInRoute();
+    const user = await getCurrentUserInRoute(ctx.req as any);
     const role = (user?.user_metadata as any)?.role;
     if (!user) return NextResponse.json({ error: { code: "UNAUTHENTICATED", message: "Not signed in" }, requestId }, { status: 401, headers: { 'x-request-id': requestId } });
     if (role !== "teacher") return NextResponse.json({ error: { code: "FORBIDDEN", message: "Teachers only" }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
@@ -46,7 +49,12 @@ export const POST = withRouteTiming(createApiHandler({
       }
     } catch {}
     const data = await createAnnouncementApi(input!, user.id);
-    try { const parsed = announcement.parse(data as any); return jsonDto(parsed as any, announcement as any, { requestId, status: 201 }); } catch { return NextResponse.json({ error: { code: 'INTERNAL', message: 'Invalid announcement shape' }, requestId }, { status: 500, headers: { 'x-request-id': requestId } }); }
+    try {
+      // Emit event (best-effort)
+      try { await recordEvent({ user_id: user.id, event_type: 'announcement.create', entity_type: 'course', entity_id: input!.course_id, meta: { announcement_id: (data as any)?.id } }); } catch {}
+      const parsed = announcement.parse(data as any);
+      return jsonDto(parsed as any, announcement as any, { requestId, status: 201 });
+    } catch { return NextResponse.json({ error: { code: 'INTERNAL', message: 'Invalid announcement shape' }, requestId }, { status: 500, headers: { 'x-request-id': requestId } }); }
   }
 }));
 
@@ -113,6 +121,7 @@ export const DELETE = withRouteTiming(async function DELETE(req: NextRequest) {
     const supabase = getRouteHandlerSupabase();
     await supabase.from('audit_logs').insert({ actor_id: user.id, action: 'announcement.delete', entity_type: 'announcement', entity_id: q.id, details: {} });
   } catch {}
+  try { await recordEvent({ user_id: user.id, event_type: 'announcement.delete', entity_type: 'announcement', entity_id: q.id }); } catch {}
   try { const parsed = announcement.parse(data as any); return jsonDto(parsed as any, announcement as any, { requestId, status: 200 }); } catch { return NextResponse.json({ error: { code: 'INTERNAL', message: 'Invalid announcement shape' }, requestId }, { status: 500, headers: { 'x-request-id': requestId } }); }
 });
 

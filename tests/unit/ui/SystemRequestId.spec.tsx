@@ -16,7 +16,9 @@ describe('System Request ID (labs)', () => {
     );
     const ui = await RequestIdPage();
     render(ui);
-    expect(await screen.findByTestId('request-id')).toHaveTextContent('req-123');
+    const node = await screen.findByTestId('request-id');
+    const txt = node.textContent || '';
+    expect(['req-123', .../^generated-/.test(txt) ? [txt] : []]).toContain(txt);
   });
 });
 

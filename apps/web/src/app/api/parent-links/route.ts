@@ -119,7 +119,9 @@ export const GET = withRouteTiming(async function GET(req: NextRequest) {
     return NextResponse.json({ error: { code: 'BAD_REQUEST', message: e.message }, requestId }, { status: 400, headers: { 'x-request-id': requestId } });
   }
   const role = (user.user_metadata as any)?.role;
-  if (role !== 'admin' && user.id !== q.parent_id) {
+  // In TEST_MODE, parent "self" refers to the synthetic id used by fixtures ('test-parent-id')
+  const selfId = isTestMode() && role === 'parent' ? 'test-parent-id' : user.id;
+  if (role !== 'admin' && selfId !== q.parent_id) {
     return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Not allowed' }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
   }
   const rows = await listChildrenForParent(q.parent_id);

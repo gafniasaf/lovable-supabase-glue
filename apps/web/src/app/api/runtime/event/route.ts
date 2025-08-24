@@ -38,6 +38,7 @@ export const POST = withRouteTiming(async function POST(req: NextRequest) {
   if (allowCors) Object.assign(headers, buildCorsHeaders(reqOrigin));
   const res = jsonDto({ ok: true } as any, z.object({ ok: z.boolean() }) as any, { requestId, status: 201 });
   for (const [k, v] of Object.entries(headers)) res.headers.set(k, String(v));
+  try { const { incrementUsageCounter } = await import('@/lib/usage'); await incrementUsageCounter({ metric: 'runtime.event', courseId: (claims as any)?.courseId ?? null }); } catch {}
   return res;
 });
 

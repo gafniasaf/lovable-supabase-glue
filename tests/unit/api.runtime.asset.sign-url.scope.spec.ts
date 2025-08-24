@@ -1,3 +1,20 @@
+import { POST as SignUrlPOST } from '../../apps/web/src/app/api/runtime/asset/sign-url/route';
+
+function post(body: any, headers?: Record<string,string>) {
+  return new Request('http://localhost/api/runtime/asset/sign-url', { method: 'POST', headers: { 'content-type': 'application/json', authorization: 'Bearer dev', ...(headers||{}) } as any, body: JSON.stringify(body) } as any);
+}
+
+describe('runtime asset sign-url scopes (smoke)', () => {
+  const orig = { ...process.env } as any;
+  afterEach(() => { process.env = orig; });
+
+  test('missing scope → 403/401', async () => {
+    process.env = { ...orig, RUNTIME_API_V2: '1' } as any;
+    const res = await (SignUrlPOST as any)(post({ content_type: 'image/png' }));
+    expect([401,403,500]).toContain(res.status);
+  });
+});
+
 import { POST as AssetSignPOST } from '../../apps/web/src/app/api/runtime/asset/sign-url/route';
 
 function base64url(input: Buffer | string) { const b = Buffer.isBuffer(input) ? input : Buffer.from(String(input)); return b.toString('base64').replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_'); }

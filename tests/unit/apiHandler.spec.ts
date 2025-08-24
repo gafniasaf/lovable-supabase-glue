@@ -42,8 +42,7 @@ test('createApiHandler returns 400 on invalid JSON body when schema present', as
     body: '{bad json}' as any
   });
   const res = await handler(badReq);
-  // Current behavior: invalid JSON parse yields 500 (not Zod error)
-  expect(res.status).toBe(500);
+  expect(res.status).toBe(400);
 });
 
 

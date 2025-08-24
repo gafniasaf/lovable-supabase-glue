@@ -15,15 +15,31 @@ import { z } from "zod";
 
 export const POST = withRouteTiming(async function POST(req: NextRequest) {
   const requestId = req.headers.get('x-request-id') || crypto.randomUUID();
-  if (!isRuntimeV2Enabled()) return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Runtime v2 disabled' }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
+  if (!isRuntimeV2Enabled()) {
+    const reqOrigin = getRequestOrigin(req as any);
+    const allowCors = !!reqOrigin && isOriginAllowedByEnv(reqOrigin);
+    const headers: Record<string, string> = { 'x-request-id': requestId };
+    if (allowCors) Object.assign(headers, buildCorsHeaders(reqOrigin));
+    return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Runtime v2 disabled' }, requestId }, { status: 403, headers });
+  }
   const vr = verifyRuntimeAuthorization(req, ['progress.write']);
   if ((vr as any)?.then) {
     const out = await (vr as any);
-    if (!out.ok) return NextResponse.json({ error: { code: out.status === 401 ? 'UNAUTHENTICATED' : 'FORBIDDEN', message: out.message }, requestId }, { status: out.status, headers: { 'x-request-id': requestId } });
+    if (!out.ok) {
+      const reqOrigin = getRequestOrigin(req as any);
+      const allowCors = !!reqOrigin && isOriginAllowedByEnv(reqOrigin);
+      const headers: Record<string, string> = { 'x-request-id': requestId };
+      if (allowCors) Object.assign(headers, buildCorsHeaders(reqOrigin));
+      return NextResponse.json({ error: { code: out.status === 401 ? 'UNAUTHENTICATED' : 'FORBIDDEN', message: out.message }, requestId }, { status: out.status, headers });
+    }
     (global as any).__RT_CLAIMS__ = out.claims;
   } else if (!(vr as any).ok) {
     const out = vr as any;
-    return NextResponse.json({ error: { code: out.status === 401 ? 'UNAUTHENTICATED' : 'FORBIDDEN', message: out.message }, requestId }, { status: out.status, headers: { 'x-request-id': requestId } });
+    const reqOrigin = getRequestOrigin(req as any);
+    const allowCors = !!reqOrigin && isOriginAllowedByEnv(reqOrigin);
+    const headers: Record<string, string> = { 'x-request-id': requestId };
+    if (allowCors) Object.assign(headers, buildCorsHeaders(reqOrigin));
+    return NextResponse.json({ error: { code: out.status === 401 ? 'UNAUTHENTICATED' : 'FORBIDDEN', message: out.message }, requestId }, { status: out.status, headers });
   } else {
     (global as any).__RT_CLAIMS__ = (vr as any).claims;
   }
@@ -69,7 +85,10 @@ export const POST = withRouteTiming(async function POST(req: NextRequest) {
   const headers: Record<string, string> = { 'x-request-id': requestId };
   if (allowCors) Object.assign(headers, buildCorsHeaders(reqOrigin));
   try { incrCounter('rt.progress.ok'); } catch {}
-  return jsonDto({ ok: true } as any, z.object({ ok: z.boolean() }) as any, { requestId, status: 201 });
+  try { const { incrementUsageCounter } = await import('@/lib/usage'); await incrementUsageCounter({ metric: 'runtime.progress', courseId: (claims as any).courseId }); } catch {}
+  const res = jsonDto({ ok: true } as any, z.object({ ok: z.boolean() }) as any, { requestId, status: 201 });
+  for (const [k, v] of Object.entries(headers)) res.headers.set(k, String(v));
+  return res;
 });
 
 export async function OPTIONS(req: NextRequest) {
