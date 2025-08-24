@@ -26,7 +26,7 @@ export default async function StudentStudyDigestPage() {
 
   const enrollments = await createEnrollmentsGateway().list().catch(() => [] as Enrollment[]);
 
-  if (enrollmentsRes.status === 401) {
+  if (!Array.isArray(enrollments)) {
     return (
       <main className="p-6">
         <p className="text-gray-700">
