@@ -78,4 +78,6 @@ export default async function DashboardPage() {
   }
 }
 
+export const dynamic = 'force-dynamic';
+
 

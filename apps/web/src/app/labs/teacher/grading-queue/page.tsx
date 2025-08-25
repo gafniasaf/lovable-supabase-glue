@@ -33,7 +33,7 @@ export default async function GradingQueueLabPage({ searchParams }: { searchPara
       <div className="text-sm text-gray-600">Select a course to view assignments and grade submissions.</div>
       <div>
         <label htmlFor="labs-course-select" className="text-sm mr-2">Course</label>
-        <select id="labs-course-select" className="border rounded p-1" name="course_id" defaultValue={courseId} onChange={() => {}}>
+        <select id="labs-course-select" className="border rounded p-1" name="course_id" defaultValue={courseId}>
           <option value="">Select…</option>
           {courses.map((co: any) => (<option key={co.id} value={co.id}>{co.title}</option>))}
         </select>

@@ -60,6 +60,8 @@ export default async function StudentCoursePage({ params }: { params: { courseId
 	);
 }
 
+export const dynamic = 'force-dynamic';
+
 async function InteractiveEmbed({ courseId, launchUrl }: { courseId: string; launchUrl: string }) {
 	const supabase = getS();
 	const { data: enr } = await supabase.from('enrollments').select('id').eq('course_id', courseId).limit(1);

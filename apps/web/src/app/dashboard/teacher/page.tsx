@@ -144,4 +144,6 @@ export default async function TeacherDashboard() {
   );
 }
 
+export const dynamic = 'force-dynamic';
+
 
