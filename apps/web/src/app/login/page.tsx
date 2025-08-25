@@ -35,8 +35,13 @@ export default function LoginPage() {
     <section className="min-h-screen flex items-center justify-center p-6" aria-labelledby="login-title">
       <Card className="w-full max-w-md shadow-sm">
         <CardHeader className="pb-0">
-          <h1 className="text-xl font-semibold" id="login-title"><Trans keyPath="auth.signin" fallback="Sign in" /></h1>
-          <p className="text-sm text-gray-600">Welcome back. Please enter your credentials.</p>
+          <div className="flex items-center gap-3">
+            <div className="h-8 w-8 rounded-md bg-black text-white grid place-items-center text-xs font-bold">EC</div>
+            <div>
+              <h1 className="text-xl font-semibold" id="login-title"><Trans keyPath="auth.signin" fallback="Sign in" /></h1>
+              <p className="text-sm text-gray-600">Welcome back. Please enter your credentials.</p>
+            </div>
+          </div>
         </CardHeader>
         <CardContent>
           {error ? <div className="mb-3 text-sm text-red-600" role="alert">{error}</div> : null}
