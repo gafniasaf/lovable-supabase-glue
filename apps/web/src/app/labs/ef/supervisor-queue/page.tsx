@@ -1,14 +1,33 @@
 import SupervisorQueue, { QueueItem } from '@/ui/v0/SupervisorQueue';
+import { serverFetch } from '@/lib/serverFetch';
+import { supervisorQueueDto } from '@education/shared';
 
-export default function Page() {
-  const demo: QueueItem[] = [
-    { id: '1', trainee: 'Dr. Sarah Johnson', epa: 'EPA 1.1 - History Taking', submittedAt: 'Jan 15, 2024', status: 'pending' },
-    { id: '2', trainee: 'Dr. Michael Chen', epa: 'EPA 2.3 - Physical Examination', submittedAt: 'Jan 14, 2024', status: 'in-review' },
-    { id: '3', trainee: 'Dr. Emily Rodriguez', epa: 'EPA 3.2 - Clinical Reasoning', submittedAt: 'Jan 13, 2024', status: 'completed' },
-  ];
+export default async function Page() {
+  // In labs, use a placeholder supervisor id when none provided
+  const supervisorId = 'supervisor-demo-id';
+  let items: QueueItem[] = [];
+  try {
+    const res = await serverFetch('/api/ef/read/supervisor', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ supervisorId }),
+      cache: 'no-store'
+    } as any);
+    const json = await res.json();
+    const parsed = supervisorQueueDto.parse(json);
+    items = (parsed.items || []).map((r) => ({
+      id: r.assessmentId,
+      trainee: r.traineeId,
+      epa: r.epaId,
+      submittedAt: r.submittedAt,
+      status: 'pending'
+    }));
+  } catch {
+    // keep empty items on error
+  }
   return (
     <section className="p-6">
-      <SupervisorQueue items={demo} page={1} pageCount={3} onSelect={() => {}} />
+      <SupervisorQueue items={items} page={1} pageCount={1} onSelect={() => {}} />
     </section>
   );
 }
