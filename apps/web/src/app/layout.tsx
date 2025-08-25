@@ -20,6 +20,8 @@ import DirectionProviderClient from "@/app/components/DirectionProviderClient";
 import PrefetchClient from "@/app/components/PrefetchClient";
 import SearchOverlayClient from "@/app/components/SearchOverlayClient";
 import SmartLink from "@/app/components/SmartLinkClient";
+import TopNav from "@/components/ui/TopNav";
+import SidebarNav from "@/components/ui/SidebarNav";
 
 export const metadata: Metadata = {
   title: "Education Platform v2",
@@ -44,55 +46,49 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CommandPaletteClient />
         <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-yellow-200 text-black px-2 py-1 rounded" aria-label="Skip to main content"><Trans keyPath="common.skipToMain" fallback="Skip to main" /></a>
         {isAuthPage ? null : (
-        <header className="px-4 py-2 border-b text-sm text-gray-700 flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <TopNav
+          left={<>
             <a href="/dashboard" className="font-medium" aria-label="Dashboard home">Education Platform v2</a>
             <span className="text-gray-400">·</span>
             <a href="/" className="underline" aria-label="Home"><Trans keyPath="header.home" /></a>
-          </div>
-          <div className="flex items-center gap-3 w-full max-w-[920px] justify-end">
-            <div className="hidden md:flex flex-1 max-w-[520px]">
-              <GlobalSearchClient />
-            </div>
+          </>}
+          right={<>
+            <div className="hidden md:flex flex-1 max-w-[520px]"><GlobalSearchClient /></div>
             <MobileNav />
             <RoleSwitcher />
-            {/* Language switcher lives in avatar/user menu on mobile for consistency; keep in header on desktop */}
             <div className="hidden sm:block"><LanguageSwitcher /></div>
             <DarkModeToggle />
             <Suspense fallback={<span className="text-xs">🔔</span>}><NotificationsBell /></Suspense>
             <WhoAmI />
             <div className="sm:hidden"><SearchOverlayClient /></div>
-          </div>
-        </header>
+          </>}
+        />
         )}
         <div className="flex min-h-[calc(100vh-41px)]">
           {isAuthPage ? null : (
-          <aside className="hidden md:block w-60 border-r p-3 text-sm" aria-label="Primary">
-            <nav className="space-y-2">
-              <SmartLink className="block underline" href="/dashboard" aria-label="Dashboard home"><Trans keyPath="header.home" /></SmartLink>
-              <div className="text-xs text-gray-500 mt-3"><Trans keyPath="nav.groups.student" /></div>
-              <SmartLink className="block underline" href="/dashboard/student" aria-label="Student dashboard"><Trans keyPath="nav.student.dashboard" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/notifications" aria-label="Notifications"><Trans keyPath="nav.notifications" /></SmartLink>
-              <SmartLink className="block underline" href={{ pathname: "/dashboard/settings" }} aria-label="Settings"><Trans keyPath="nav.settings" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/student/plan" aria-label="Planner"><Trans keyPath="nav.student.plan" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/student/timeline" aria-label="Timeline"><Trans keyPath="nav.student.timeline" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/student/messages" aria-label="Messages"><Trans keyPath="nav.messages" /></SmartLink>
-              <div className="text-xs text-gray-500 mt-3"><Trans keyPath="nav.groups.teacher" /></div>
-              <SmartLink className="block underline" href="/dashboard/teacher" aria-label="Teacher dashboard"><Trans keyPath="nav.teacher.dashboard" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/teacher/grading-queue" aria-label="Grading queue"><Trans keyPath="nav.teacher.gradingQueue" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/teacher/enrollments" aria-label="Enrollments"><Trans keyPath="nav.teacher.enrollments" /></SmartLink>
-              <div className="text-xs text-gray-500 mt-3"><Trans keyPath="nav.groups.admin" /></div>
-              <SmartLink className="block underline" href="/dashboard/admin" aria-label="Admin dashboard"><Trans keyPath="nav.admin.dashboard" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/admin/users" aria-label="Users"><Trans keyPath="nav.admin.users" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/admin/roles" aria-label="Roles"><Trans keyPath="nav.admin.roles" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/admin/flags" aria-label="Feature flags"><Trans keyPath="nav.admin.flags" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/admin/health" aria-label="System health"><Trans keyPath="nav.admin.health" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/admin/reports" aria-label="Reports"><Trans keyPath="nav.admin.reports" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/admin/parent-links" aria-label="Parent links"><Trans keyPath="nav.admin.parentLinks" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/admin/audit" aria-label="Audit logs"><Trans keyPath="nav.admin.audit" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/admin/providers" aria-label="Providers"><Trans keyPath="nav.admin.providers" /></SmartLink>
-              <SmartLink className="block underline" href="/dashboard/admin/catalog" aria-label="Catalog"><Trans keyPath="nav.admin.catalog" /></SmartLink>
-            </nav>
+          <aside className="hidden md:block w-60 border-r p-3" aria-label="Primary">
+            <SidebarNav items={[
+              { href: '/dashboard', label: 'Home' },
+              { href: '/dashboard/student', label: 'Student' },
+              { href: '/dashboard/notifications', label: 'Notifications' },
+              { href: '/dashboard/settings', label: 'Settings' },
+              { href: '/dashboard/student/plan', label: 'Planner' },
+              { href: '/dashboard/student/timeline', label: 'Timeline' },
+              { href: '/dashboard/student/messages', label: 'Messages' },
+              { href: '/dashboard/teacher', label: 'Teacher' },
+              { href: '/dashboard/teacher/grading-queue', label: 'Grading queue' },
+              { href: '/dashboard/teacher/enrollments', label: 'Enrollments' },
+              { href: '/dashboard/admin', label: 'Admin' },
+              { href: '/dashboard/admin/users', label: 'Users' },
+              { href: '/dashboard/admin/roles', label: 'Roles' },
+              { href: '/dashboard/admin/flags', label: 'Feature Flags' },
+              { href: '/dashboard/admin/health', label: 'System health' },
+              { href: '/dashboard/admin/reports', label: 'Reports' },
+              { href: '/dashboard/admin/parent-links', label: 'Parent Links' },
+              { href: '/dashboard/admin/audit', label: 'Audit logs' },
+              { href: '/dashboard/admin/providers', label: 'Providers' },
+              { href: '/dashboard/admin/catalog', label: 'Catalog' },
+            ]} />
           </aside>
           )}
           <main id="main" className="flex-1 p-4" tabIndex={-1} aria-label="Main content">
