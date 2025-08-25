@@ -1,0 +1,40 @@
+=== Network (react.dev/418) headers ===
+HTTP/2 200 react.dev OK
+\n=== Supabase PAT check ===
+\n=== Vercel token check ===
+\n--- Supabase /v1/projects ---
+HTTP/2 401 
+date: Sun, 24 Aug 2025 11:24:12 GMT
+content-type: application/json; charset=utf-8
+content-length: 53
+server: cloudflare
+cf-ray: 97427b635a5537f4-SIN
+cf-cache-status: DYNAMIC
+etag: W/"35-s4+EwjfsJQLKGLs0dPQ52yUrv7Q"
+strict-transport-security: max-age=31536000; includeSubDomains; preload
+vary: Origin
+access-control-allow-credentials: true
+access-control-expose-headers: x-connection-encrypted,x-forwarded-for,user-agent,CF-Connecting-IP,Retry-After
+x-powered-by: Express
+set-cookie: __cf_bm=2VIUzmbp4RxMw82C0ow4qvTGZfP_aXK8z9_47aWZpII-1756034652-1.0.1.1-PzuB3BcRnXMzH4RpQQywV8FJVgAaXoY6tukXn74F.bH6LlZAz1OaUvWPhsgVWF_UQaIo0JTx32o9J7duucaghjBfxLL9VKS9JeDA9EXIGCQ; path=/; expires=Sun, 24-Aug-25 11:54:12 GMT; domain=.supabase.com; HttpOnly; Secure; SameSite=None
+
+{"message":"Format is Authorization: Bearer [token]"}
+\n--- Vercel /v2/user ---
+HTTP/2 403 
+date: Sun, 24 Aug 2025 11:24:14 GMT
+content-type: application/json; charset=utf-8
+content-length: 109
+cache-control: private, max-age=0
+access-control-allow-origin: *
+access-control-allow-headers: Authorization, Accept, Content-Type
+access-control-allow-methods: OPTIONS, GET, POST, PUT, PATCH, DELETE
+server: Vercel
+x-vercel-id: sfo1::bs298-1756034654088-9a7632b94d02
+strict-transport-security: max-age=63072000; includeSubDomains; preload
+x-vercel-internal-path-type: api
+x-vercel-internal-cache-level: origin
+server-timing: vcoe_from_proxy;dur=0
+
+{"error":{"code":"forbidden","message":"The request is missing an authentication token","missingToken":true}}
+Supabase HTTP status: 200
+Vercel HTTP status: 200

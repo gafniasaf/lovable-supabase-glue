@@ -68,16 +68,16 @@ export default function ProvidersAdminPage() {
 			<h1 className="text-xl font-semibold">Providers</h1>
 			<form className="space-y-3 max-w-xl" onSubmit={createProvider}>
 				<div className="flex flex-col gap-1">
-					<label className="text-sm">Name</label>
-					<input className="border rounded px-2 py-1" value={name} onChange={e => setName(e.target.value)} required />
+					<label className="text-sm" htmlFor="prov-name">Name</label>
+					<input id="prov-name" className="border rounded px-2 py-1" value={name} onChange={e => setName(e.target.value)} required />
 				</div>
 				<div className="flex flex-col gap-1">
-					<label className="text-sm">JWKS URL (https)</label>
-					<input className="border rounded px-2 py-1" value={jwksUrl} onChange={e => setJwksUrl(e.target.value)} required />
+					<label className="text-sm" htmlFor="prov-jwks">JWKS URL (https)</label>
+					<input id="prov-jwks" className="border rounded px-2 py-1" value={jwksUrl} onChange={e => setJwksUrl(e.target.value)} required />
 				</div>
 				<div className="flex flex-col gap-1">
-					<label className="text-sm">Domain (https origin)</label>
-					<input className="border rounded px-2 py-1" value={domain} onChange={e => setDomain(e.target.value)} required />
+					<label className="text-sm" htmlFor="prov-domain">Domain (https origin)</label>
+					<input id="prov-domain" className="border rounded px-2 py-1" value={domain} onChange={e => setDomain(e.target.value)} required />
 				</div>
 				<div className="flex items-center gap-3">
 					<button className="px-3 py-1 border rounded" type="submit">Create</button>

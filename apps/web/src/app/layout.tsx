@@ -66,8 +66,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         )}
         <div className="flex min-h-[calc(100vh-41px)]">
           {isAuthPage ? null : (
-          <aside className="hidden md:block w-60 border-r p-3" aria-label="Primary">
-            <SidebarNav items={[
+          <aside className="hidden md:block w-64 border-r p-3 bg-white/60" aria-label="Primary">
+            <SidebarNav current={pathname || ''} items={[
               { href: '/dashboard', label: 'Home' },
               { href: '/dashboard/student', label: 'Student' },
               { href: '/dashboard/notifications', label: 'Notifications' },

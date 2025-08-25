@@ -37,13 +37,17 @@ export default async function StudentQuizHistoryPage({ params }: { params: { cou
           </tr>
         </thead>
         <tbody>
-          {rows.map(r => (
-            <tr key={r.id} className="border-t" data-testid="history-row">
-              <td className="p-2" data-testid="history-quiz-title">{r.title}</td>
-              <td className="p-2">{r.submitted_at ?? '-'}</td>
-              <td className="p-2" data-testid="history-score">{r.score ?? '-'}</td>
-            </tr>
-          ))}
+          {rows.map(r => {
+            const hasSubmission = !!r.submitted_at;
+            const scoreDisplay = r.score != null ? String(r.score) : (hasSubmission ? '0' : '-');
+            return (
+              <tr key={r.id} className="border-t" data-testid="history-row">
+                <td className="p-2" data-testid="history-quiz-title">{r.title}</td>
+                <td className="p-2">{r.submitted_at ?? '-'}</td>
+                <td className="p-2" data-testid="history-score">{scoreDisplay}</td>
+              </tr>
+            );
+          })}
           {rows.length === 0 && (
             <tr>
               <td className="p-2 text-gray-500" colSpan={3}>No quizzes yet.</td>

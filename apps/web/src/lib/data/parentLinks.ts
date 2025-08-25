@@ -18,8 +18,15 @@ function buildHttpGateway(): ParentLinksGateway {
   return {
     async listByParent(parent_id) {
       if (isTestMode()) {
+        try {
+          const { listTestParentChildren } = await import('@/lib/testStore');
+          const seeded = (listTestParentChildren as any)(parent_id) as ParentLinkRow[];
+          if (Array.isArray(seeded) && seeded.length > 0) return seeded as any;
+        } catch {}
+        const now = new Date().toISOString();
         return [
-          { id: 'pl-1', parent_id, student_id: 's-1', created_at: new Date().toISOString() }
+          { id: 'pl-1', parent_id, student_id: 's-1', created_at: now },
+          { id: 'pl-2', parent_id, student_id: 's-2', created_at: now }
         ];
       }
       return fetchJson(`/api/parent-links?parent_id=${encodeURIComponent(parent_id)}`, z.array(parentLinkSchema));

@@ -15,8 +15,8 @@
     - textbox "Search"
   - text: Role
   - combobox "Role":
-    - option "anon" [selected]
-    - option "teacher"
+    - option "anon"
+    - option "teacher" [selected]
     - option "student"
     - option "parent"
     - option "admin"
@@ -28,7 +28,7 @@
     - option "ES"
   - button "Dark"
   - group: 🔔 4 Polling
-  - text: anonymous
+  - text: teacher
   - button "Sign out"
 - complementary "Primary":
   - navigation:
@@ -84,10 +84,13 @@
 - main "Main content":
   - region "Dashboard":
     - heading "Dashboard" [level=1]
-    - paragraph:
-      - text: You are not signed in.
-      - link "Sign in":
-        - /url: /login
+    - paragraph: "Role: teacher"
+    - paragraph: "Role: teacher"
+    - text: "Active courses: 0"
+    - link "Manage courses":
+      - /url: /dashboard/teacher
+    - link "Grading queue":
+      - /url: /dashboard/teacher/grading-queue
 - region "Notifications"
 - alert
 ```

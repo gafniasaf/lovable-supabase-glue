@@ -50,14 +50,17 @@ export default async function AdminCatalogPage({ searchParams }: { searchParams?
         <Link className="underline" href="/dashboard/admin">Back</Link>
       </div>
       <form className="border rounded p-3 grid grid-cols-1 md:grid-cols-6 gap-2" action="/dashboard/admin/catalog" method="get">
-        <input name="q" defaultValue={q} className="border rounded px-2 py-1 md:col-span-2" placeholder="Search title" />
-        <select name="status" defaultValue={status} className="border rounded px-2 py-1">
+        <label htmlFor="cat-q" className="sr-only">Search title</label>
+        <input id="cat-q" name="q" defaultValue={q} className="border rounded px-2 py-1 md:col-span-2" placeholder="Search title" />
+        <label htmlFor="cat-status" className="sr-only">Status</label>
+        <select id="cat-status" name="status" defaultValue={status} className="border rounded px-2 py-1">
           <option value="">All statuses</option>
           <option value="draft">draft</option>
           <option value="approved">approved</option>
           <option value="disabled">disabled</option>
         </select>
-        <select name="kind" defaultValue={kind} className="border rounded px-2 py-1">
+        <label htmlFor="cat-kind" className="sr-only">Kind</label>
+        <select id="cat-kind" name="kind" defaultValue={kind} className="border rounded px-2 py-1">
           <option value="">All kinds</option>
           <option value="v2">v2</option>
           <option value="v1">v1</option>

@@ -91,6 +91,10 @@
         - link "s-1":
           - /url: /labs/parent/children/s-1
         - button "Unlink"
+      - listitem:
+        - link "s-2":
+          - /url: /labs/parent/children/s-2
+        - button "Unlink"
 - region "Notifications"
 - alert
 ```

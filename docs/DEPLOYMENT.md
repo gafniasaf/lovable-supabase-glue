@@ -59,18 +59,26 @@ Environment variables (Project Settings > Environment Variables)
   - Optional: `MVP_PROD_GUARD=1` to disable non-MVP endpoints in production
  - Logging: `LOG_LEVEL`, optional pretty logs `PINO_PRETTY=1` (dev only)
 
-Build settings
+Build settings (recommended)
 - Framework: Next.js
-- Root directory: `apps/web`
-- Install command: `npm ci` (repo root) or leave default
-- Build command: `npm --prefix apps/web run build`
-- Output: .next (default)
+- Root directory: leave empty (repository root). The repo includes `vercel.json`.
+- vercel.json at repo root:
+  ```json
+  {
+    "version": 2,
+    "framework": "nextjs",
+    "installCommand": "npm ci --ignore-scripts",
+    "buildCommand": "npm --workspace apps/web run build",
+    "outputDirectory": "apps/web/.next"
+  }
+  ```
 
 Notes
 - Next.js Route Handlers serve the API (no separate backend needed)
 - Use Supabase RLS policies from `supabase/migrations` in your Supabase project
 - Configure a custom domain as needed
 - Security headers: `next.config.mjs` configures CSP, HSTS, Referrer-Policy, and Permissions-Policy; verify in responses
+ - CSP `connect-src`: ensure it contains `'self'` (quoted). Add Supabase host via `RUNTIME_CORS_ALLOW` if needed.
 
 Smoke check after deploy
 - Visit `/api/health` -> `{ ok: true }`
@@ -78,5 +86,11 @@ Smoke check after deploy
 - Security smoke:
   - Attempt a request with `x-test-auth` — should be rejected
   - Check response headers for CSP/HSTS; verify `x-request-id` is returned
+
+Troubleshooting
+- `husky: command not found`: `installCommand` must ignore scripts (`npm ci --ignore-scripts`).
+- Unicode escape in TS: avoid literal `\t` characters; use spaces.
+- Supabase 401/500 on token grant: enable Email/Password providers and verify anon key.
+- Vercel cache stale: use "Redeploy without cache" after env or code changes.
 
 

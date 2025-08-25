@@ -35,17 +35,17 @@ export default async function AdminProfilePage() {
             <div className="w-16 h-16 rounded-full border flex items-center justify-center text-xs text-gray-500">No avatar</div>
           )}
           <div>
-            <label className="block text-sm">Avatar</label>
-            <input type="file" name="avatar" accept="image/*" className="block" />
+            <label className="block text-sm" htmlFor="admin-avatar">Avatar</label>
+            <input id="admin-avatar" type="file" name="avatar" accept="image/*" className="block" />
           </div>
         </div>
         <div>
-          <label className="block text-sm">Display name</label>
-          <input name="display_name" defaultValue={profile?.display_name ?? ''} className="border rounded p-2 w-full" />
+          <label className="block text-sm" htmlFor="admin-display-name">Display name</label>
+          <input id="admin-display-name" name="display_name" defaultValue={profile?.display_name ?? ''} className="border rounded p-2 w-full" />
         </div>
         <div>
-          <label className="block text-sm">Bio</label>
-          <textarea name="bio" defaultValue={profile?.bio ?? ''} className="border rounded p-2 w-full" rows={4} />
+          <label className="block text-sm" htmlFor="admin-bio">Bio</label>
+          <textarea id="admin-bio" name="bio" defaultValue={profile?.bio ?? ''} className="border rounded p-2 w-full" rows={4} />
         </div>
         <button type="submit" className="bg-black text-white rounded px-4 py-2">Save</button>
       </form>

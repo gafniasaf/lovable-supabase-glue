@@ -39,20 +39,20 @@ export default async function NewLessonPage({ params }: { params: { courseId: st
       <h1 className="text-xl font-semibold">New lesson</h1>
       <form action={createLesson} className="space-y-3">
         <div>
-          <label className="block text-sm">Title</label>
-          <input name="title" className="border rounded w-full p-2" required minLength={3} maxLength={200} />
+          <label htmlFor="lesson-title" className="block text-sm">Title</label>
+          <input id="lesson-title" name="title" className="border rounded w-full p-2" required minLength={3} maxLength={200} />
         </div>
         <div>
-          <label className="block text-sm">Content</label>
-          <textarea name="content" className="border rounded w-full p-2" rows={6} />
+          <label htmlFor="lesson-content" className="block text-sm">Content</label>
+          <textarea id="lesson-content" name="content" className="border rounded w-full p-2" rows={6} />
         </div>
         <div>
-          <label className="block text-sm">Order</label>
-          <input name="order_index" type="number" min={1} defaultValue={1} className="border rounded p-2" />
+          <label htmlFor="lesson-order" className="block text-sm">Order</label>
+          <input id="lesson-order" name="order_index" type="number" min={1} defaultValue={1} className="border rounded p-2" />
         </div>
         <div>
-          <label className="block text-sm">Attachment (optional)</label>
-          <input type="file" name="file" className="block" />
+          <label htmlFor="lesson-file" className="block text-sm">Attachment (optional)</label>
+          <input id="lesson-file" type="file" name="file" className="block" />
         </div>
         <button className="bg-black text-white px-3 py-2 rounded" type="submit">Create</button>
       </form>

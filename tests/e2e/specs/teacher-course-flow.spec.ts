@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Teacher course authoring', () => {
-	test('create course, add lesson, student enrolls and marks complete', async ({ page, request }) => {
+	test('create course, add lesson, student enrolls and marks complete', async ({ page, request, baseURL, context }) => {
 		// Seed/reset to a clean state
 		await request.get('/api/test/seed?hard=1');
 
@@ -38,7 +38,8 @@ test.describe('Teacher course authoring', () => {
 		expect(mark.ok()).toBeTruthy();
 
 		// UI spot-checks: navigate to course detail which avoids SSR-relative fetches
-		await page.context().addCookies([{ name: 'x-test-auth', value: 'teacher', domain: 'localhost', path: '/' }]);
+		const base = new URL(process.env.PLAYWRIGHT_BASE_URL || (baseURL || 'http://localhost:3030'));
+		await context.addCookies([{ name: 'x-test-auth', value: 'teacher', domain: base.hostname, path: '/' }] as any);
 		await page.goto(`/dashboard/teacher/${course.id}`);
 		await expect(page.getByRole('heading', { name: /E2E Created Course/ })).toBeVisible();
 	});

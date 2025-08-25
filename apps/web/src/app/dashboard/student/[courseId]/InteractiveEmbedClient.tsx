@@ -49,7 +49,7 @@ export default function InteractiveEmbedClient({ courseId, src, allowedOrigin }:
     };
     window.addEventListener('message', handler);
     return () => { window.removeEventListener('message', handler); window.clearTimeout(timeout); };
-  }, [courseId, allowedOrigin, src]);
+  }, [courseId, allowedOrigin, src, connected]);
 
   return (
     <section className="border rounded">
@@ -71,7 +71,7 @@ export default function InteractiveEmbedClient({ courseId, src, allowedOrigin }:
       {loadError ? (
         <div className="p-4 text-sm text-yellow-800 bg-yellow-50">{loadError}</div>
       ) : null}
-      <iframe ref={frameRef} src={src} className="w-full h-[480px]" sandbox="allow-scripts allow-forms allow-pointer-lock allow-same-origin" />
+      <iframe ref={frameRef} title="Interactive course content" src={src} className="w-full h-[480px]" sandbox="allow-scripts allow-forms allow-pointer-lock allow-same-origin" />
     </section>
   );
 }

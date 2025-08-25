@@ -2,13 +2,14 @@ let client: any = null;
 
 export function getRedis(): any | null {
 	if (client !== null) return client;
-	const url = process.env.REDIS_URL || process.env.UPSTASH_REDIS_REST_URL || '';
-	if (!url) { client = null; return client; }
+	// Only use ioredis for direct Redis URLs. Upstash REST URLs are not compatible with ioredis.
+	const directRedisUrl = process.env.REDIS_URL || '';
+	if (!directRedisUrl) { client = null; return client; }
+	// Avoid static require so bundlers (Next.js) don't try to resolve optional dependency.
 	try {
-		// Prefer ioredis if available, else fetch-based Upstash REST
-		// eslint-disable-next-line @typescript-eslint/no-var-requires
-		const IORedis = require('ioredis');
-		client = new IORedis(url);
+		const nodeRequire = (0, eval)("require") as any;
+		const IORedis = nodeRequire("ioredis");
+		client = new IORedis(directRedisUrl);
 		return client;
 	} catch {
 		client = null; return client;

@@ -64,15 +64,17 @@ export default async function TeacherCourseAnnouncementsPage({ params }: { param
       <div className="text-gray-600">Course: <span className="font-mono" data-testid="ann-course-id">{params.courseId}</span></div>
 
       <form action={createAction} className="space-y-2 border rounded p-3" data-testid="ann-create-form">
-        <input name="title" placeholder="Title" className="border rounded p-2 w-full" data-testid="ann-input-title" />
-        <textarea name="body" placeholder="Body" className="border rounded p-2 w-full" rows={4} data-testid="ann-input-body" />
+        <label htmlFor="ann-title" className="sr-only">Title</label>
+        <input id="ann-title" name="title" placeholder="Title" className="border rounded p-2 w-full" data-testid="ann-input-title" />
+        <label htmlFor="ann-body" className="sr-only">Body</label>
+        <textarea id="ann-body" name="body" placeholder="Body" className="border rounded p-2 w-full" rows={4} data-testid="ann-input-body" />
         <div className="text-sm text-gray-600">
-          <label className="block mb-1">Publish at (optional)</label>
-          <input type="datetime-local" name="publish_at" className="border rounded p-2" />
+          <label className="block mb-1" htmlFor="ann-publish">Publish at (optional)</label>
+          <input id="ann-publish" type="datetime-local" name="publish_at" className="border rounded p-2" />
         </div>
         <div className="text-sm text-gray-600">
-          <label className="block mb-1">Attachment (optional)</label>
-          <input type="file" name="file" className="block" />
+          <label className="block mb-1" htmlFor="ann-file">Attachment (optional)</label>
+          <input id="ann-file" type="file" name="file" className="block" />
         </div>
         <button className="bg-black text-white rounded px-3 py-1" type="submit" data-testid="ann-save">Add</button>
       </form>

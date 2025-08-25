@@ -42,16 +42,22 @@ export default function NewAssignmentPage({ params }: { params: { courseId: stri
       {err && <p className="text-red-600 text-sm">{err}</p>}
       {ok && <p className="text-green-600 text-sm">Created!</p>}
       <form onSubmit={onSubmit} className="space-y-3">
-        <input className="w-full border rounded px-3 py-2" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
-        <textarea className="w-full border rounded px-3 py-2" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+        <div>
+          <label htmlFor="assignment-title" className="block text-sm text-gray-600 mb-1">Title</label>
+          <input id="assignment-title" className="w-full border rounded px-3 py-2" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+        </div>
+        <div>
+          <label htmlFor="assignment-description" className="block text-sm text-gray-600 mb-1">Description</label>
+          <textarea id="assignment-description" className="w-full border rounded px-3 py-2" placeholder="Description" value={description} onChange={(e) => setDescription(e.target.value)} />
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Due at</label>
-            <input className="w-full border rounded px-3 py-2" type="datetime-local" value={dueAt} onChange={(e) => setDueAt(e.target.value)} />
+            <label htmlFor="assignment-due-at" className="block text-sm text-gray-600 mb-1">Due at</label>
+            <input id="assignment-due-at" className="w-full border rounded px-3 py-2" type="datetime-local" value={dueAt} onChange={(e) => setDueAt(e.target.value)} />
           </div>
           <div>
-            <label className="block text-sm text-gray-600 mb-1">Points</label>
-            <input className="w-full border rounded px-3 py-2" type="number" min={0} max={1000} value={points} onChange={(e) => setPoints(Number(e.target.value || 0))} />
+            <label htmlFor="assignment-points" className="block text-sm text-gray-600 mb-1">Points</label>
+            <input id="assignment-points" className="w-full border rounded px-3 py-2" type="number" min={0} max={1000} value={points} onChange={(e) => setPoints(Number(e.target.value || 0))} />
           </div>
         </div>
         <div className="border rounded p-3">

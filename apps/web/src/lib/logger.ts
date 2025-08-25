@@ -7,7 +7,6 @@
 let pino: any;
 try {
   // Defer resolving pino so unit tests need not install it.
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const mod = require("pino");
   pino = (mod && (mod.default || mod)) || mod;
 } catch {

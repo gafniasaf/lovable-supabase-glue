@@ -74,12 +74,12 @@ export default async function StudentSubmitAssignmentPage({ params, searchParams
 
       <form id="submit-form" action={submitAction} className="space-y-3 pb-20" data-testid="submit-form">
         <div>
-          <label className="block text-sm">Your answer</label>
-          <textarea name="text" className="border rounded w-full p-2" rows={6} required minLength={1} data-testid="submit-text" />
+          <label className="block text-sm" htmlFor="submit-text">Your answer</label>
+          <textarea id="submit-text" name="text" className="border rounded w-full p-2" rows={6} required minLength={1} data-testid="submit-text" />
         </div>
         <div>
-          <label className="block text-sm">Attachments (optional)</label>
-          <input type="file" name="file" className="block" multiple data-testid="submit-file-input" />
+          <label className="block text-sm" htmlFor="submit-file-input">Attachments (optional)</label>
+          <input id="submit-file-input" type="file" name="file" className="block" multiple data-testid="submit-file-input" />
         </div>
         <button className="bg-black text-white rounded px-4 py-2" type="submit" data-testid="submit-btn">Submit</button>
       </form>

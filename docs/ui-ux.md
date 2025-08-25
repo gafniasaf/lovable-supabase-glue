@@ -233,7 +233,8 @@ Admin
 ## Execution Plan (Frontend Parity)
 
 P1 — App Shell & Components (Gateway-first)
-- Add shadcn/ui; define tokens; ship Button, Input, Select, Dialog, Tabs, Card, DataTable, Toast.
+- UI kit tokens/components are implemented locally; external UI frameworks are disallowed in v0-generated code by CI (see v0 PR checks).
+  - Ship Button, Input, Select, Dialog, Tabs, Card, DataTable, Toast.
 - Implement role-aware layout in `components/layout/*` and `src/app/layout.tsx`.
 - Introduce a small data gateway layer (`apps/web/src/lib/data/*`) with two backends: SupabaseGateway (real) and TestGateway (in-memory). UI consumes only the gateway interfaces so backend work can proceed independently.
 

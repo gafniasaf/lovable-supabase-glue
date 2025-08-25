@@ -53,6 +53,7 @@ export default function GlobalSearchClient() {
             <button
               key={item.id}
               role="option"
+              aria-selected="false"
               className="w-full text-left px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-800"
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => { setOpen(false); router.push(item.href as any); }}

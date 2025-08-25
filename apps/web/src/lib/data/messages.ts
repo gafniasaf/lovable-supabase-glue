@@ -11,7 +11,7 @@ export type MessagesGateway = {
 	markRead(id: string): Promise<z.infer<typeof message>>;
 };
 
-function useMessagingPort() {
+function isMessagingPortEnabled() {
 	return process.env.MESSAGING_PORT === '1';
 }
 
@@ -28,7 +28,7 @@ function buildHttpGateway(): MessagesGateway {
 			});
 		},
 		async listMessages(thread_id) {
-			if (useMessagingPort()) {
+			if (isMessagingPortEnabled()) {
 				const { createInProcessMessagingAdapter } = await import("@/server/ports/messaging");
 				const port = createInProcessMessagingAdapter();
 				const { rows } = await port.listMessages(thread_id);
@@ -37,7 +37,7 @@ function buildHttpGateway(): MessagesGateway {
 			return fetchJson(`/api/messages?thread_id=${encodeURIComponent(thread_id)}`, z.array(message));
 		},
 		async sendMessage(input) {
-			if (useMessagingPort()) {
+			if (isMessagingPortEnabled()) {
 				const { createInProcessMessagingAdapter } = await import("@/server/ports/messaging");
 				const port = createInProcessMessagingAdapter();
 				const m = await port.sendMessage({ thread_id: input.thread_id, sender_id: 'self', body: input.body } as any);

@@ -4,10 +4,13 @@ globs:
 alwaysApply: true
 ---
 
-- Use Docker exclusively for all development environments without exceptions
-- Execute docker compose build after any file changes or modifications
-- Run docker compose up for service validation after build completion
-- Execute docker compose down for complete cleanup after task completion
-- Avoid complex shell operations that can cause terminal hanging or freezing
-- Use simple sequential file operations with individual creation and verification
-- Validate container health before proceeding with development tasks
+- Use Docker and Docker Compose as the single runtime for local development, CI, and prod-like runs
+- Build images only when Dockerfiles, base images, or lockfiles change; otherwise reuse existing images and rebuild on demand
+- Start the app with `docker compose up -d web` and proceed only after the service reports healthy
+- Pause development sessions with `docker compose stop web`; use `docker compose down` for cleanup and `docker compose down -v` only for a full reset
+- Define a `healthcheck` for every critical service and gate tests or dependent steps on containers being `healthy`
+- Use Compose profiles: keep test runner(s) under the `tests` profile; run E2E via `docker compose --profile tests up tests` or `docker compose run --rm --profile tests tests ...`
+- Capture build and run logs to the `artifacts/` directory during CI or scripted validations
+- Script multi-step flows (PowerShell/Bash) instead of long interactive shell commands; keep commands non-interactive
+- On Windows, use the WSL2 backend and keep the repository inside the Linux filesystem for fast file sharing
+- Optional: if configured, prefer `docker compose watch` for live-reload workflows; otherwise rebuild only when necessary

@@ -47,3 +47,32 @@ Notes
 - Feature flags keep non-MVP endpoints guarded in production (`MVP_PROD_GUARD`).
 
 
+Date: 2025-08-25
+
+Highlights
+- Vercel deployment reliability
+  - `vercel.json` sets `installCommand: npm ci --ignore-scripts` to bypass Husky and builds `apps/web` workspace.
+  - Clear Vercel Root Directory to repository root; build uses monorepo workspace.
+  - Fixed unicode escape in `apps/web/src/app/api/parent/progress/route.ts` and set `export const runtime = 'nodejs'`.
+- CSP and Supabase auth
+  - `apps/web/src/lib/csp.ts`: corrected `connect-src 'self'`; allow Supabase host via `RUNTIME_CORS_ALLOW`.
+  - Ensure `NEXT_PUBLIC_SUPABASE_ANON_KEY` has no hidden newlines; enable email/password providers in Supabase.
+- API and DTO polish
+  - Announcements and ParentLinks gateways: added `list()`/`remove()` aliases; student labs pages use `enrollments` variable consistently.
+- Testing and CI gates
+  - Added E2E specs for CSP/login, session persistence, and logout; Playwright config passes Supabase envs.
+  - `tests/e2e/run-json.sh` emits JSON to `reports/e2e/summary.json` and copies `tests/test-results`.
+  - Introduced `tools/v0-scan.js` with PR workflow to guard v0 UI imports and data-testid usage.
+- Docker/Compose hygiene
+  - Healthcheck switched to `/api/health`.
+  - Tests run inside Playwright container; file writes avoid PowerShell redirection issues.
+- UI/UX refresh
+  - Login page uses UI kit components and router navigation; layout hides chrome on auth pages; subtle theme updates.
+- Grading queue E2E support
+  - `GET /api/teacher/grading-queue` short-circuits in test mode, returning deterministic rows with `x-total-count`.
+
+Notes
+- JSON/E2E artifacts under `reports/e2e/`; mirrors to `artifacts/e2e/` when relevant.
+- If Vercel caches old commits, use "Redeploy without cache".
+
+

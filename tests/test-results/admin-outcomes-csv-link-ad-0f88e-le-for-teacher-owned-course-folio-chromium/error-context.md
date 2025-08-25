@@ -1,0 +1,95 @@
+# Page snapshot
+
+```yaml
+- link "Skip to main content":
+  - /url: "#main"
+  - text: Skip to main
+- banner:
+  - link "Dashboard home":
+    - /url: /dashboard
+    - text: Education Platform v2
+  - text: ·
+  - link "Home":
+    - /url: /
+  - search:
+    - textbox "Search"
+  - text: Role
+  - combobox "Role":
+    - option "anon" [selected]
+    - option "teacher"
+    - option "student"
+    - option "parent"
+    - option "admin"
+  - button "Apply"
+  - link "Seed":
+    - /url: /api/test/seed?hard=1
+  - combobox "Language":
+    - option "EN" [selected]
+    - option "ES"
+  - button "Dark"
+  - group: 🔔 4 Polling
+  - text: anonymous
+  - button "Sign out"
+- complementary "Primary":
+  - navigation:
+    - link "Home":
+      - /url: /dashboard
+    - link "Student":
+      - /url: /dashboard/student
+    - link "Notifications":
+      - /url: /dashboard/notifications
+    - link "Settings":
+      - /url: /dashboard/settings
+    - link "Planner":
+      - /url: /dashboard/student/plan
+    - link "Timeline":
+      - /url: /dashboard/student/timeline
+    - link "Messages":
+      - /url: /dashboard/student/messages
+    - link "Teacher":
+      - /url: /dashboard/teacher
+    - link "Grading queue":
+      - /url: /dashboard/teacher/grading-queue
+    - link "Enrollments":
+      - /url: /dashboard/teacher/enrollments
+    - link "Admin":
+      - /url: /dashboard/admin
+    - link "Users":
+      - /url: /dashboard/admin/users
+    - link "Roles":
+      - /url: /dashboard/admin/roles
+    - link "Feature Flags":
+      - /url: /dashboard/admin/flags
+    - link "System health":
+      - /url: /dashboard/admin/health
+    - link "Reports":
+      - /url: /dashboard/admin/reports
+    - link "Parent Links":
+      - /url: /dashboard/admin/parent-links
+    - link "Audit logs":
+      - /url: /dashboard/admin/audit
+    - link "Providers":
+      - /url: /dashboard/admin/providers
+    - link "Catalog":
+      - /url: /dashboard/admin/catalog
+- main "Main content":
+  - region "Outcomes":
+    - heading "Recent Outcomes" [level=1]
+    - textbox "course UUID": aaaaaaaa-aaaa-aaaa-aaaa-756120428931
+    - button "Load"
+    - link "Download CSV for course aaaaaaaa-aaaa-aaaa-aaaa-756120428931":
+      - /url: /api/runtime/outcomes/export?course_id=aaaaaaaa-aaaa-aaaa-aaaa-756120428931
+      - text: Download CSV
+    - text: 0 rows
+    - table:
+      - rowgroup:
+        - row "When User Type Score/Max Pct/Topic":
+          - cell "When"
+          - cell "User"
+          - cell "Type"
+          - cell "Score/Max"
+          - cell "Pct/Topic"
+      - rowgroup
+- region "Notifications"
+- alert
+```

@@ -31,8 +31,8 @@ export default async function AdminDashboardPage() {
           </div>
         </details>
         <div className="ml-auto flex items-center gap-2">
-          <label className="text-sm">Saved views</label>
-          <select className="border rounded p-1 text-sm" defaultValue="default">
+          <label className="text-sm" htmlFor="admin-saved-views">Saved views</label>
+          <select id="admin-saved-views" className="border rounded p-1 text-sm" defaultValue="default">
             <option value="default">Default</option>
             <option value="ops">Ops: health & flags</option>
             <option value="users">Users by role</option>
