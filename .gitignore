@@ -12,6 +12,11 @@ out/
 coverage/
 *.tsbuildinfo
 
+# Reports and artifacts
+reports/
+artifacts/
+tests/test-results/
+
 # Env
 .env
 .env.*

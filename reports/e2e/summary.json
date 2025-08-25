@@ -1,4 +1,0 @@
-
-> tests@0.1.0 test:e2e
-> playwright test -c ./e2e/playwright.config.ts -c ./e2e/playwright.config.ts --project=folio-chromium -g Student quiz history -g teacher course page CSV link triggers download -g teacher grading queue paginates and returns x-total-count --reporter=json
-

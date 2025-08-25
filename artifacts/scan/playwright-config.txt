@@ -1,2 +1,0 @@
-C:\Users\agafn\Desktop\education system 5\.stryker-tmp\sandbox-Q65LgO\tests\e2e\playwright.config.ts
-C:\Users\agafn\Desktop\education system 5\tests\e2e\playwright.config.ts
