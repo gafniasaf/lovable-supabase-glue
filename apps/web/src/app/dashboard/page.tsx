@@ -2,8 +2,8 @@ import Link from "next/link";
 import { createDashboardGateway } from "@/lib/data/dashboard";
 import Trans from "@/lib/i18n/Trans";
 import { isTestMode } from "@/lib/testMode";
-import dynamic from "next/dynamic";
-const TestModeRoleClient = dynamic(() => import("@/app/components/TestModeRoleClient"), { ssr: false });
+import NextDynamic from "next/dynamic";
+const TestModeRoleClient = NextDynamic(() => import("@/app/components/TestModeRoleClient"), { ssr: false });
 
 export default async function DashboardPage() {
   // Determine role from test header/cookie when in test mode to aid E2E stability

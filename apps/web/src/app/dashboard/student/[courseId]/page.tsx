@@ -9,9 +9,9 @@ import LessonsClient from "./LessonsClient";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { Tabs, TabList, Tab } from "@/components/ui/Tabs";
 import { getServerComponentSupabase as getS } from "@/lib/supabaseServer";
-import dynamic from "next/dynamic";
+import NextDynamic from "next/dynamic";
 import { createEnrollmentsGateway } from "@/lib/data/enrollments";
-const InteractiveEmbedClient = dynamic(() => import('./InteractiveEmbedClient'), { ssr: false });
+const InteractiveEmbedClient = NextDynamic(() => import('./InteractiveEmbedClient'), { ssr: false });
 
 export default async function StudentCoursePage({ params }: { params: { courseId: string } }) {
 	const user = await getCurrentUser();
