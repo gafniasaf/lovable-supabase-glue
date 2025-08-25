@@ -2,6 +2,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Card, CardContent, CardHeader } from "@/components/ui/Card";
+import Input from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
+import FormField from "@/components/ui/FormField";
 import { getSupabaseBrowser } from "@/lib/supabaseBrowser";
 import Trans from "@/lib/i18n/Trans";
 
@@ -29,44 +33,26 @@ export default function LoginPage() {
 
   return (
     <section className="min-h-screen flex items-center justify-center p-6" aria-labelledby="login-title">
-      <form onSubmit={onSubmit} className="w-full max-w-sm space-y-4">
-        <h1 className="text-2xl font-semibold" id="login-title"><Trans keyPath="auth.signin" fallback="Sign in" /></h1>
-        {error && <p className="text-red-600 text-sm">{error}</p>}
-        <label className="sr-only" htmlFor="email">Email</label>
-        <input
-          id="email"
-          className="w-full border rounded px-3 py-2"
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        />
-        <label className="sr-only" htmlFor="password">Password</label>
-        <input
-          id="password"
-          className="w-full border rounded px-3 py-2"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
-        <button className="w-full bg-black text-white py-2 rounded disabled:opacity-50" disabled={loading} aria-labelledby="login-title">
-          {loading ? "Signing in..." : <Trans keyPath="auth.signin" fallback="Sign in" />}
-        </button>
-        <p className="text-sm text-gray-600">
-          No account? <Link className="underline" href="#">Ask admin</Link>
-        </p>
-        <p className="text-sm text-gray-600">
-          Want to sign out? Use the header &quot;Sign out&quot; button, or
-          <button
-            type="button"
-            className="underline ml-1"
-            onClick={async () => { await fetch('/api/auth/logout', { method: 'POST' }); window.location.href = '/'; }}
-          >logout now</button>.
-        </p>
-      </form>
+      <Card className="w-full max-w-md shadow-sm">
+        <CardHeader className="pb-0">
+          <h1 className="text-xl font-semibold" id="login-title"><Trans keyPath="auth.signin" fallback="Sign in" /></h1>
+          <p className="text-sm text-gray-600">Welcome back. Please enter your credentials.</p>
+        </CardHeader>
+        <CardContent>
+          {error ? <div className="mb-3 text-sm text-red-600" role="alert">{error}</div> : null}
+          <form onSubmit={onSubmit} className="space-y-4">
+            <FormField label="Email" htmlFor="email">
+              <Input id="email" type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} required />
+            </FormField>
+            <FormField label="Password" htmlFor="password">
+              <Input id="password" type="password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)} required />
+            </FormField>
+            <Button className="w-full" disabled={loading} aria-labelledby="login-title">{loading ? 'Signing in…' : <Trans keyPath="auth.signin" fallback="Sign in" />}</Button>
+            <p className="text-xs text-gray-600">No account? <Link className="underline" href="#">Ask admin</Link></p>
+            <p className="text-xs text-gray-600">Want to sign out? Use the header &quot;Sign out&quot; button, or <button type="button" className="underline" onClick={async () => { await fetch('/api/auth/logout', { method: 'POST' }); window.location.href = '/'; }}>logout now</button>.</p>
+          </form>
+        </CardContent>
+      </Card>
     </section>
   );
 }
