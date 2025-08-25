@@ -114,5 +114,18 @@ MSW is optional; for unit UI specs, prefer local fetch stubs to keep tests fast 
 
 New route coverage:
 - `GET /api/teacher/grading-queue` has unit tests for unauthenticated/forbidden and query parsing. In tests, Supabase is mocked via a chainable helper that supports `.select().is().range().eq()`.
+- In Playwright E2E, this route short-circuits in test mode to return deterministic rows with `x-total-count`, enabling stable pagination checks.
+
+#### E2E JSON reporting (Docker)
+
+- Generate Playwright JSON and copy artifacts:
+  - `docker compose up -d web`
+  - `docker compose run --rm --profile tests tests bash -lc "bash tests/e2e/run-json.sh"`
+  - `docker compose down`
+- Output locations:
+  - `reports/e2e/summary.json`
+  - `reports/e2e/test-results/` (screens, videos, traces)
+- Re-run a subset by title:
+  - `docker compose --profile tests run --rm tests bash -lc "node tests/e2e/wait-for-health.js && PW_NO_SERVER=1 PLAYWRIGHT_BASE_URL=http://web:3022 npm --workspace tests run test:e2e -- -c ./e2e/playwright.config.ts --project=folio-chromium -g 'Student quiz history' --reporter=json > /workspace/reports/e2e/summary.json || true"`
 
 

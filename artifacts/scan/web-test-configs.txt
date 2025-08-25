@@ -1,1 +1,0 @@
-C:\Users\agafn\Desktop\education system 5\tests\cypress.config.ts

@@ -19,8 +19,8 @@ export default function TargetEditor({ initialTarget, onChange }: { initialTarge
   return (
     <div className="space-y-3">
       <div>
-        <label className="block text-sm text-gray-600 mb-1">Target</label>
-        <select className="border rounded px-2 py-1" value={target?.source || 'native'} onChange={(e) => {
+        <label className="block text-sm text-gray-600 mb-1" htmlFor="target-source">Target</label>
+        <select id="target-source" className="border rounded px-2 py-1" value={target?.source || 'native'} onChange={(e) => {
           const src = e.target.value;
           if (src === 'native') setTarget(null);
           if (src === 'v2') setTarget({ source: 'v2' });
@@ -33,8 +33,8 @@ export default function TargetEditor({ initialTarget, onChange }: { initialTarge
       </div>
       {extEnabled && target?.source === 'v2' && (
         <div>
-          <label className="block text-sm text-gray-600 mb-1">External course</label>
-          <select className="border rounded px-2 py-1" value={target?.external_course_id || ''} onChange={(e) => {
+          <label className="block text-sm text-gray-600 mb-1" htmlFor="target-course">External course</label>
+          <select id="target-course" className="border rounded px-2 py-1" value={target?.external_course_id || ''} onChange={(e) => {
             const id = e.target.value;
             const row = courses.find((x) => x.id === id);
             setTarget(row ? { ...target, external_course_id: row.id, launch_url: row.launch_url } : target);

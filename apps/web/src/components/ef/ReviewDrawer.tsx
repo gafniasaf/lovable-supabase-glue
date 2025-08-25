@@ -27,9 +27,9 @@ export default function ReviewDrawer({ assessmentId, onClose }: { assessmentId: 
     <div style={{ display: 'inline-block' }}>
       <button data-testid="review-open" onClick={() => setOpen(true)}>Review</button>
       {open && (
-        <div role="dialog" aria-modal="true" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)' }} onKeyDown={(e) => { if (e.key === 'Escape') { setOpen(false); onClose?.(); } }}>
+        <div role="dialog" aria-modal="true" aria-labelledby="review-title" tabIndex={-1} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)' }}>
           <div style={{ maxWidth: 520, margin: '10vh auto', background: '#fff', padding: 16, borderRadius: 8 }}>
-            <div ref={titleRef} tabIndex={-1} style={{ fontWeight: 700, marginBottom: 12 }}>Review Evaluation</div>
+            <div id="review-title" ref={titleRef} tabIndex={-1} style={{ fontWeight: 700, marginBottom: 12 }}>Review Evaluation</div>
             <div role="group" aria-labelledby="review-outcome">
               <div id="review-outcome">Outcome</div>
               <label><input data-testid="review-outcome-approve" type="radio" name="outcome" checked={outcome==='approved'} onChange={() => setOutcome('approved')} /> Approve</label>

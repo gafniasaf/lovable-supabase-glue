@@ -76,8 +76,8 @@ export default function ConformancePage() {
 		<section className="p-6 space-y-6" aria-label="Conformance">
 			<h1 className="text-xl font-semibold">External Runtime Conformance</h1>
 			<div className="space-y-3 max-w-2xl">
-				<label className="block text-sm">Launch token</label>
-				<textarea className="w-full border rounded p-2" rows={4} value={token} onChange={e => setToken(e.target.value)} placeholder="paste ?token here" />
+				<label className="block text-sm" htmlFor="conformance-launch-token">Launch token</label>
+				<textarea id="conformance-launch-token" className="w-full border rounded p-2" rows={4} value={token} onChange={e => setToken(e.target.value)} placeholder="paste ?token here" />
 				<div className="flex gap-2">
 					<button className="px-3 py-1 border rounded" onClick={doExchange}>Exchange</button>
 					<span className="text-sm">{status.exchange ?? '-'}</span>

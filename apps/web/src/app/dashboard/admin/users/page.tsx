@@ -36,8 +36,8 @@ export default async function AdminUsersPage({ searchParams }: { searchParams?: 
 					</div>
 				</details>
 				<div className="ml-auto flex items-center gap-2">
-					<label>Saved views</label>
-					<select className="border rounded p-1">
+					<label htmlFor="users-saved-views">Saved views</label>
+					<select id="users-saved-views" className="border rounded p-1">
 						<option>Default</option>
 						<option>New signups</option>
 					</select>

@@ -1,0 +1,42 @@
+name: E2E JSON Report
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'apps/web/**'
+      - 'tests/e2e/**'
+      - 'docker-compose.yml'
+
+jobs:
+  e2e-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build web image
+        run: docker compose build web
+
+      - name: Start web service
+        run: docker compose up -d web
+
+      - name: Generate Playwright JSON report
+        run: docker compose run --rm --profile tests tests bash -lc "bash tests/e2e/run-json.sh"
+
+      - name: Verify JSON report exists
+        run: |
+          test -f reports/e2e/summary.json
+
+      - name: Upload E2E reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-reports
+          path: |
+            reports/e2e/**
+
+      - name: Compose down
+        if: always()
+        run: docker compose down
+
+

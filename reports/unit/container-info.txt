@@ -1,8 +1,0 @@
-npm warn deprecated @babel/plugin-proposal-explicit-resource-management@7.27.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-explicit-resource-management instead.
-
-added 1652 packages in 2m
-npm notice
-npm notice New major version of npm available! 10.8.1 -> 11.5.2
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.5.2
-npm notice To update run: npm install -g npm@11.5.2
-npm notice

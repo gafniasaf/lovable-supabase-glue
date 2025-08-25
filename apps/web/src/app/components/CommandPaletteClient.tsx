@@ -38,11 +38,10 @@ export default function CommandPaletteClient() {
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-[1000]" role="dialog" aria-modal aria-label="Command palette">
-      <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
+      <div className="absolute inset-0 bg-black/40" role="button" tabIndex={0} aria-label="Close" onClick={() => setOpen(false)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setOpen(false); }} />
       <div className="absolute left-1/2 top-24 -translate-x-1/2 w-[90%] max-w-xl bg-white text-black rounded shadow border">
         <div className="p-2 border-b">
           <input
-            autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search… (esc to close)"

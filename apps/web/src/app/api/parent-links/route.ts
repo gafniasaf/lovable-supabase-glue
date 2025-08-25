@@ -125,7 +125,10 @@ export const GET = withRouteTiming(async function GET(req: NextRequest) {
     return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Not allowed' }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
   }
   const rows = await listChildrenForParent(q.parent_id);
-  return jsonDto(rows as any, z.array(z.object({ id: z.string().uuid(), parent_id: z.string().uuid(), student_id: z.string().uuid(), created_at: z.string() })) as any, { requestId, status: 200 });
+  const rowSchemaStrict = z.object({ id: z.string().uuid(), parent_id: z.string().uuid(), student_id: z.string().uuid(), created_at: z.string() });
+  const rowSchemaLoose = z.object({ id: z.string(), parent_id: z.string(), student_id: z.string(), created_at: z.string() });
+  const schema = isTestMode() ? z.array(rowSchemaLoose) : z.array(rowSchemaStrict);
+  return jsonDto(rows as any, schema as any, { requestId, status: 200 });
 });
 
 

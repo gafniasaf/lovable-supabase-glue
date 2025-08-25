@@ -56,31 +56,31 @@ export default function Page() {
     setHasMore(false);
   }
 
-  React.useEffect(() => { load(0); /* initial */ }, []);
+  React.useEffect(() => { load(0); /* initial */ }, [levels, sinceMs, traceId, n, stack, load]);
 
   return (
     <div style={{ padding: 16 }}>
       <h2>Diagnostics: Server Logs</h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, minmax(0, 1fr))', gap: 8, alignItems: 'end', marginBottom: 12 }}>
         <div>
-          <label>Levels</label>
-          <input value={levels} onChange={e => setLevels(e.target.value)} placeholder="all or comma list" />
+          <label htmlFor="diag-levels">Levels</label>
+          <input id="diag-levels" value={levels} onChange={e => setLevels(e.target.value)} placeholder="all or comma list" />
         </div>
         <div>
-          <label>Since (ms)</label>
-          <input type="number" value={sinceMs} onChange={e => setSinceMs(Number(e.target.value))} />
+          <label htmlFor="diag-since">Since (ms)</label>
+          <input id="diag-since" type="number" value={sinceMs} onChange={e => setSinceMs(Number(e.target.value))} />
         </div>
         <div>
-          <label>TraceId</label>
-          <input value={traceId} onChange={e => setTraceId(e.target.value)} placeholder="request id" />
+          <label htmlFor="diag-trace">TraceId</label>
+          <input id="diag-trace" value={traceId} onChange={e => setTraceId(e.target.value)} placeholder="request id" />
         </div>
         <div>
-          <label>Limit</label>
-          <input type="number" value={n} onChange={e => setN(Number(e.target.value))} />
+          <label htmlFor="diag-limit">Limit</label>
+          <input id="diag-limit" type="number" value={n} onChange={e => setN(Number(e.target.value))} />
         </div>
         <div>
-          <label>Include Stack</label>
-          <input type="checkbox" checked={stack} onChange={e => setStack(e.target.checked)} />
+          <label htmlFor="diag-stack">Include Stack</label>
+          <input id="diag-stack" type="checkbox" checked={stack} onChange={e => setStack(e.target.checked)} />
         </div>
         <div style={{ display: 'flex', gap: 8 }}>
           <button onClick={() => load(0)}>Apply</button>

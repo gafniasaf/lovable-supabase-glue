@@ -24,7 +24,7 @@ export default function VersionsAdminPage() {
     } finally { setLoading(false); }
   }
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => { load(); }, [courseId, load]);
 
   const filtered = useMemo(() => {
     const term = q.trim().toLowerCase();

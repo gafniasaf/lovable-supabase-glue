@@ -1,1 +1,0 @@
-{"ok":true,"ts":1755837004820,"testRole":null,"testMode":true,"interactive":false,"dbOk":true,"storageOk":false,"providers":{"okCount":0,"total":0},"flags":{"TEST_MODE":true,"MVP_PROD_GUARD":false,"RUNTIME_API_V2":false},"requiredEnvs":{"NEXT_PUBLIC_SUPABASE_URL":true,"NEXT_PUBLIC_SUPABASE_ANON_KEY":true},"csrfDoubleSubmit":false,"version":null,"rateLimits":{}}

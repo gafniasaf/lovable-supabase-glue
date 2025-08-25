@@ -27,9 +27,9 @@ export default function QuickSubmitDrawer({ traineeId, programId, epaOptions }: 
     <div>
       <button onClick={() => setOpen(true)} data-testid="submit-open">Quick submit</button>
       {open && (
-        <div role="dialog" aria-modal="true" style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)' }} onKeyDown={(e) => { if (e.key === 'Escape') setOpen(false); }}>
+        <div role="dialog" aria-modal="true" aria-labelledby="quick-submit-title" tabIndex={-1} style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.3)' }}>
           <div style={{ maxWidth: 520, margin: '10vh auto', background: '#fff', padding: 16, borderRadius: 8 }}>
-            <div ref={titleRef} tabIndex={-1} style={{ fontWeight: 700, marginBottom: 12 }}>Quick Submit</div>
+            <div id="quick-submit-title" ref={titleRef} tabIndex={-1} style={{ fontWeight: 700, marginBottom: 12 }}>Quick Submit</div>
             <label htmlFor="submit-epa-select">EPA</label>
             <select id="submit-epa-select" value={epaId} onChange={(e) => setEpaId(e.currentTarget.value)}>
               {epaOptions.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}

@@ -2,7 +2,7 @@ import React from "react";
 
 type Item = { href: string; label: string; icon?: string };
 
-export default function SidebarNav({ items, current }: { items: Item[]; current: string }) {
+export default function SidebarNav({ items, current = "" }: { items: Item[]; current?: string }) {
   return (
     <nav className="space-y-1 text-sm">
       {items.map((it) => {

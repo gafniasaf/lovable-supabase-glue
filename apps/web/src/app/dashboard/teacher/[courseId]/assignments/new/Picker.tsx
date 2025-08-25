@@ -36,8 +36,8 @@ export default function AssignmentPicker({ onChange }: { onChange: (target: any 
   return (
     <div className="space-y-3">
       <div>
-        <label className="block text-sm text-gray-600 mb-1">Source</label>
-        <select className="border rounded px-2 py-1" value={source} onChange={(e) => setSource(e.target.value as any)}>
+        <label className="block text-sm text-gray-600 mb-1" htmlFor="picker-source">Source</label>
+        <select id="picker-source" className="border rounded px-2 py-1" value={source} onChange={(e) => setSource(e.target.value as any)}>
           <option value="native">Native lesson</option>
           <option value="v1" disabled={!extEnabled}>External bundle (v1)</option>
           <option value="v2" disabled={!extEnabled}>External (v2)</option>
@@ -45,8 +45,8 @@ export default function AssignmentPicker({ onChange }: { onChange: (target: any 
       </div>
       {extEnabled && source === 'v2' && (
         <div>
-          <label className="block text-sm text-gray-600 mb-1">External course</label>
-          <select className="border rounded px-2 py-1" value={selectedCourseId} onChange={(e) => {
+          <label className="block text-sm text-gray-600 mb-1" htmlFor="picker-course">External course</label>
+          <select id="picker-course" className="border rounded px-2 py-1" value={selectedCourseId} onChange={(e) => {
             const id = e.target.value;
             setSelectedCourseId(id);
             const row = courses.find((x) => x.id === id);
@@ -59,8 +59,8 @@ export default function AssignmentPicker({ onChange }: { onChange: (target: any 
           </select>
           {selectedCourseId && (
             <div className="mt-2">
-              <label className="block text-sm text-gray-600 mb-1">Version (optional)</label>
-              <select className="border rounded px-2 py-1" onChange={(e) => {
+              <label className="block text-sm text-gray-600 mb-1" htmlFor="picker-version">Version (optional)</label>
+              <select id="picker-version" className="border rounded px-2 py-1" onChange={(e) => {
                 const vid = e.target.value;
                 if (!vid) return onChange({ source: 'v2', external_course_id: selectedCourseId, version_id: null, lesson_slug: null });
                 onChange({ source: 'v2', external_course_id: selectedCourseId, version_id: vid, lesson_slug: null });

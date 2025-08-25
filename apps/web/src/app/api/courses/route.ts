@@ -43,7 +43,8 @@ export const POST = withRouteTiming(createApiHandler({
 		const testRole = val === 'teacher' || val === 'student' || val === 'parent' || val === 'admin' ? val : null;
 		if (isTestMode() && testRole) {
 			if (testRole !== 'teacher') return NextResponse.json({ error: { code: 'FORBIDDEN', message: 'Teachers only' }, requestId }, { status: 403, headers: { 'x-request-id': requestId } });
-			const fakeUser = { id: 'test-teacher-id' } as any;
+			// Use the stable test teacher id so listings match seeded/user id expectations
+			const fakeUser = { id: '11111111-1111-1111-1111-111111111111' } as any;
 			const data = await createCourseApi(fakeUser, input!);
 			const mapped = { id: (data as any).id, title: (data as any).title, description: (data as any).description ?? null, teacherId: (data as any).teacher_id, createdAt: (data as any).created_at } as any;
 			return jsonDto(mapped, course, { requestId, status: 201 });

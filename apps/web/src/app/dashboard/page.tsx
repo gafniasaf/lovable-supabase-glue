@@ -22,7 +22,7 @@ export default async function DashboardPage() {
       <section className="p-6 space-y-4" aria-label="Dashboard">
         <h1 className="text-xl font-semibold"><Trans keyPath="dashboard.title" fallback="Dashboard" /></h1>
         <p className="text-gray-500">Role: {role}</p>
-        {isTestMode() ? <TestModeRoleClient /> : null}
+        {isTestMode() && !role ? <TestModeRoleClient /> : null}
         {role === 'teacher' && (
           <section className="space-y-2">
             <div className="text-sm text-gray-700">Active courses: {(payload as any)?.data?.kpis?.activeCourses?.value ?? 0}</div>

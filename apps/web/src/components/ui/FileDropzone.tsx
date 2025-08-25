@@ -31,6 +31,7 @@ export default function FileDropzone({ onFiles, label = "Drop files here or clic
       role="button"
       tabIndex={0}
       onClick={pick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } }}
       onDragOver={(e) => { e.preventDefault(); setHover(true); }}
       onDragLeave={() => setHover(false)}
       onDrop={onDrop}
