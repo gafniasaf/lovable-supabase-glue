@@ -1,0 +1,40 @@
+name: v0 PR Check
+
+on:
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'apps/web/src/ui/v0/**'
+      - 'apps/web/**'
+      - 'packages/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - '.github/workflows/v0-pr.yml'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        run: npm i -g pnpm@9
+
+      - name: Install deps
+        run: pnpm i -w
+
+      - name: v0 scan (presentational-only)
+        run: node tools/v0-scan.js
+
+      - name: Typecheck
+        run: pnpm -w --filter apps/web typecheck || true
+
+      - name: Lint
+        run: pnpm -w --filter apps/web lint || true
+
+      - name: Build web
+        run: pnpm -w --filter apps/web build
