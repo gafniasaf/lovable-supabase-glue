@@ -80,6 +80,25 @@ Notes
 - Security headers: `next.config.mjs` configures CSP, HSTS, Referrer-Policy, and Permissions-Policy; verify in responses
  - CSP `connect-src`: ensure it contains `'self'` (quoted). Add Supabase host via `RUNTIME_CORS_ALLOW` if needed.
 
+#### Automatic deploys via GitHub Actions Deploy Hook
+
+If Vercel does not auto-deploy on push, or you prefer an explicit trigger, this repo includes a workflow that calls a Vercel Deploy Hook on every push to `main`.
+
+Setup
+- In Vercel → Project → Settings → Deploy Hooks:
+  - Create Hook: Name `github-main`, Branch `main`, Environment `Production`.
+  - Copy the generated Deploy Hook URL.
+- In GitHub → Repo → Settings → Secrets and variables → Actions → New repository secret:
+  - Name: `VERCEL_DEPLOY_HOOK_URL`
+  - Value: paste the Deploy Hook URL → Save.
+
+Trigger
+- Push to `main` normally; the workflow `.github/workflows/vercel-deploy.yml` will POST to the hook.
+- Or manually run GitHub Actions → "Vercel Deploy (main)" → Run workflow on `main`.
+
+Verify
+- Vercel → Deployments should show a new Production deploy for `main` within ~1–2 minutes.
+
 Smoke check after deploy
 - Visit `/api/health` -> `{ ok: true }`
 - Open `/dashboard` and test sign-in/out
