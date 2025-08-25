@@ -66,6 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </header>
         )}
         <div className="flex min-h-[calc(100vh-41px)]">
+          {isAuthPage ? null : (
           <aside className="hidden md:block w-60 border-r p-3 text-sm" aria-label="Primary">
             <nav className="space-y-2">
               <SmartLink className="block underline" href="/dashboard" aria-label="Dashboard home"><Trans keyPath="header.home" /></SmartLink>
@@ -93,12 +94,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <SmartLink className="block underline" href="/dashboard/admin/catalog" aria-label="Catalog"><Trans keyPath="nav.admin.catalog" /></SmartLink>
             </nav>
           </aside>
+          )}
           <main id="main" className="flex-1 p-4" tabIndex={-1} aria-label="Main content">
             {children}
           </main>
         </div>
         <ToastMount />
-        <StudentBottomBar />
+        {isAuthPage ? null : <StudentBottomBar />}
         </I18nProvider>
         {nonce ? (<script nonce={nonce} dangerouslySetInnerHTML={{ __html: 'window.__APP_LOADED__=true' }} />) : null}
       </body>
