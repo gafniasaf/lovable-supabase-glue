@@ -5,12 +5,11 @@ import { createLessonsGateway } from "@/lib/data/lessons";
 import { createProgressGateway } from "@/lib/data/progress";
 import Link from "next/link";
 import Trans from "@/lib/i18n/Trans";
-import LessonsClient from "./LessonsClient";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
-import { Tabs, TabList, Tab } from "@/components/ui/Tabs";
 import { getServerComponentSupabase as getS } from "@/lib/supabaseServer";
 import NextDynamic from "next/dynamic";
 import { createEnrollmentsGateway } from "@/lib/data/enrollments";
+import StudentCourseOverview from "@/ui/v0/StudentCourseOverview";
 const InteractiveEmbedClient = NextDynamic(() => import('./InteractiveEmbedClient'), { ssr: false });
 
 export default async function StudentCoursePage({ params }: { params: { courseId: string } }) {
@@ -29,32 +28,30 @@ export default async function StudentCoursePage({ params }: { params: { courseId
 		const { data: c } = await supabase.from('courses').select('id,launch_kind,launch_url,provider_id').eq('id', params.courseId).single();
 		course = c ?? null;
 	}
+	// Build props for v0 UI
+	const total = lessons.length;
+	const completed = lessons.filter((l: any) => l.isCompleted).length;
+	const progressPct = total > 0 ? Math.round((completed / total) * 100) : 0;
+	const firstIncomplete = lessons.find((l: any) => !l.isCompleted) as any | undefined;
+	const nextLesson = firstIncomplete ? { title: firstIncomplete.title || 'Next lesson', hint: undefined, ctaLabel: 'Continue', href: `/dashboard/student/${params.courseId}#${firstIncomplete.id}` } : null;
+	const header = {
+		courseTitle: 'Course',
+		progressPct,
+		tabLinks: [
+			{ id: 'overview', label: 'Overview', href: `/dashboard/student/${params.courseId}`, current: true },
+			{ id: 'assignments', label: 'Assignments', href: `/dashboard/student/${params.courseId}/assignments` },
+			{ id: 'quizzes', label: 'Quizzes', href: `/dashboard/student/${params.courseId}/quizzes/history` }
+		]
+	};
+	const list = lessons.map((l: any) => ({ id: l.id, title: l.title, isCompleted: !!l.isCompleted, duration: l.duration || undefined, href: `/dashboard/student/${params.courseId}#${l.id}` }));
+	const state: 'default' | 'empty' = list.length === 0 ? 'empty' : 'default';
 	return (
-		<section className="p-6 space-y-4" aria-label="Course">
+		<section className="p-6" aria-label="Course">
 			<Breadcrumbs items={[{ label: "Dashboard", href: "/dashboard/student" }, { label: "Course" }]} />
-			<Tabs>
-				<TabList>
-					<Tab href={`/dashboard/student/${params.courseId}`} active>Overview</Tab>
-					<Tab href={`/dashboard/student/${params.courseId}/assignments`}>Assignments</Tab>
-					<Tab href={`/dashboard/student/${params.courseId}/quizzes/history`}>Quizzes</Tab>
-				</TabList>
-			</Tabs>
-			<h1 className="text-xl font-semibold">Course</h1>
 			{course?.launch_kind === 'WebEmbed' && course?.launch_url ? (
 				<InteractiveEmbed courseId={params.courseId} launchUrl={course.launch_url} />
 			) : null}
-			{Array.isArray(lessons) ? (
-				lessons.length === 0 ? (
-					<div className="text-gray-500">No lessons yet.</div>
-				) : (
-					<LessonsClient courseId={params.courseId} initialLessons={lessons} />
-				)
-			) : (
-				<div className="space-y-2">
-					<div className="skeleton h-10 w-full" />
-					<div className="skeleton h-10 w-full" />
-				</div>
-			)}
+			<StudentCourseOverview header={header} nextLesson={nextLesson} lessons={list} state={state} />
 			<Link className="underline" href="/dashboard/student">Back to dashboard</Link>
 		</section>
 	);
