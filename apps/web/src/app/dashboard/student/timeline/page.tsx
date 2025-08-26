@@ -2,8 +2,10 @@ import { createEnrollmentsGateway } from "@/lib/data/enrollments";
 import { createLessonsGateway } from "@/lib/data/lessons";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import Trans from "@/lib/i18n/Trans";
+import StudentTimeline from "@/ui/v0/StudentTimeline";
 
 type Enrollment = { id: string; course_id: string };
+
 type Lesson = { id: string; title: string; order_index: number; content?: string };
 
 function distributeOverSevenDays(totalMinutes: number): number[] {
@@ -37,49 +39,11 @@ export default async function StudentTimelinePage() {
 	for (const r of perCourse) for (let i = 0; i < 7; i++) totals[i] += r.days[i];
 	const grandTotal = totals.reduce((a, b) => a + b, 0);
 	const csvHref = buildCsv(perCourse);
+	const rows = perCourse.map((r) => ({ courseId: r.course_id, days: r.days, total: r.total }));
 	return (
 		<section className="p-6 space-y-3" aria-label="Timeline">
 			<Breadcrumbs items={[{ label: "Dashboard", href: "/dashboard/student" }, { label: "Timeline" }]} />
-			<div className="flex items-center justify-between">
-				<h1 className="text-xl font-semibold">Study timeline (7 days)</h1>
-				<a className="underline" href={csvHref} download="study-timeline.csv" data-testid="timeline-csv-link"><Trans keyPath="actions.downloadCsv" fallback="Download CSV" /></a>
-			</div>
-			<table className="min-w-full border" data-testid="timeline-table">
-				<thead>
-					<tr className="bg-gray-50">
-						<th className="border p-2 text-left">Course</th>
-						{Array.from({ length: 7 }).map((_, i) => (
-							<th key={i} className="border p-2 text-center">Day {i + 1}</th>
-						))}
-						<th className="border p-2 text-right">Total</th>
-					</tr>
-				</thead>
-				<tbody>
-					{(perCourse ?? []).map((r) => (
-						<tr key={r.course_id} className="odd:bg-white even:bg-gray-50" data-testid="timeline-row">
-							<td className="border p-2 font-mono" data-testid="cell-course-id">{r.course_id}</td>
-							{r.days.map((v, i) => (
-								<td key={i} className="border p-2 text-center" data-testid={`cell-day-${i + 1}`}>{v}</td>
-							))}
-							<td className="border p-2 text-right" data-testid="timeline-total-minutes">{r.total}</td>
-						</tr>
-					))}
-					{(!enrollments || enrollments.length === 0) && (
-						<tr>
-							<td className="border p-2 text-gray-500" colSpan={9}>No enrollments yet.</td>
-						</tr>
-					)}
-				</tbody>
-				<tfoot>
-					<tr className="bg-gray-50 font-medium">
-						<td className="border p-2 text-right">Totals</td>
-						{totals.map((v, i) => (
-							<td key={i} className="border p-2 text-center">{v}</td>
-						))}
-						<td className="border p-2 text-right">{grandTotal}</td>
-					</tr>
-				</tfoot>
-			</table>
+			<StudentTimeline rows={rows as any} totals={totals as any} grandTotal={grandTotal} csvHref={csvHref} />
 		</section>
 	);
 }
