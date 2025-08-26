@@ -1,15 +1,20 @@
 "use client";
-import { createClient } from "@supabase/supabase-js";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+
+let browserClient: any | null = null;
 
 export function getSupabaseBrowser() {
-	const url = process.env.NEXT_PUBLIC_SUPABASE_URL as string | undefined;
-	const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string | undefined;
-	if (url && anon) {
-		return createClient(url, anon, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
+	if (browserClient) return browserClient;
+	try {
+		const url = process.env.NEXT_PUBLIC_SUPABASE_URL as string | undefined;
+		const anon = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string | undefined;
+		browserClient = createClientComponentClient({ supabaseUrl: url, supabaseKey: anon });
+		return browserClient;
+	} catch {
+		// Last resort (dev): create with default env resolution
+		browserClient = createClientComponentClient();
+		return browserClient;
 	}
-	// Fallback to helper default if envs not present (dev)
-	const { createClientComponentClient } = require("@supabase/auth-helpers-nextjs");
-	return createClientComponentClient();
 }
 
 
