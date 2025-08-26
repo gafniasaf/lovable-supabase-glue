@@ -1,5 +1,4 @@
 import { getCurrentUser } from "@/lib/supabaseServer";
-import Trans from "@/lib/i18n/Trans";
 import { createCoursesGateway } from "@/lib/data/courses";
 import { createGradingGateway } from "@/lib/data/grading";
 import { createDashboardGateway } from "@/lib/data/dashboard";
@@ -11,7 +10,7 @@ export default async function GradingQueuePage({ searchParams }: { searchParams?
   const user = await getCurrentUser();
   if (!user) return (
     <section className="p-6" aria-label="Grading queue">
-      <span><Trans keyPath="auth.notSignedIn" fallback="You are not signed in." /> <a className="underline" href="/login"><Trans keyPath="auth.signin" fallback="Sign in" /></a></span>
+      <span>You are not signed in. <a className="underline" href="/login">Sign in</a></span>
     </section>
   );
   const courseId = searchParams?.courseId || undefined;
