@@ -2,11 +2,14 @@ import { cookies, headers } from "next/headers";
 import { createModulesGateway } from "@/lib/data/modules";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { Tabs, TabList, Tab } from "@/components/ui/Tabs";
+import TeacherModulesList from "@/ui/v0/TeacherModulesList";
 
 type Module = { id: string; course_id: string; title: string; order_index: number; created_at: string };
 
 export default async function CourseModulesPage({ params }: { params: { courseId: string } }) {
   const modules: Module[] = await createModulesGateway().listByCourse(params.courseId).catch(() => []);
+  const items = (modules || []).map((m) => ({ id: m.id, order: m.order_index, title: m.title, href: undefined as string | undefined }));
+  const state: 'default' | 'empty' = (items.length === 0) ? 'empty' : 'default';
 
   return (
     <section className="p-6 space-y-3" aria-label="Modules">
@@ -21,17 +24,12 @@ export default async function CourseModulesPage({ params }: { params: { courseId
           <Tab href={`/dashboard/teacher/${params.courseId}/analytics`}>Analytics</Tab>
         </TabList>
       </Tabs>
-      <h1 className="text-xl font-semibold">Modules</h1>
-      <ul className="space-y-2" data-testid="modules-list">
-        {modules.map(m => (
-          <li key={m.id} className="border rounded p-2" data-testid="module-row">
-            <span className="font-medium" data-testid="module-title">#{m.order_index} - {m.title}</span>
-          </li>
-        ))}
-        {(!modules || modules.length === 0) && (
-          <li className="text-gray-500">No modules yet.</li>
-        )}
-      </ul>
+      <TeacherModulesList
+        header={{ title: 'Modules' }}
+        actions={[]}
+        items={items}
+        state={state}
+      />
       <a className="underline" href={`/dashboard/teacher/${params.courseId}`}>Back to course</a>
     </section>
   );
