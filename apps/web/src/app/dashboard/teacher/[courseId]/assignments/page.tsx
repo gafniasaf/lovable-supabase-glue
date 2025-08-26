@@ -2,6 +2,7 @@ import { headers, cookies } from "next/headers";
 import { createAssignmentsGateway } from "@/lib/data/assignments";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { Tabs, TabList, Tab } from "@/components/ui/Tabs";
+import TeacherAssignmentsList from "@/ui/v0/TeacherAssignmentsList";
 
 export default async function TeacherAssignmentsPage({ params }: { params: { courseId: string } }) {
   const h = headers();
@@ -10,6 +11,8 @@ export default async function TeacherAssignmentsPage({ params }: { params: { cou
 
   try {
     const rows = await createAssignmentsGateway().listByCourse(params.courseId);
+    const items = (rows || []).map((a: any) => ({ id: a.id, title: a.title, dueAt: a.due_at ?? null, href: undefined as string | undefined }));
+    const state: 'default' | 'empty' = (items.length === 0) ? 'empty' : 'default';
     return (
       <section className="p-6 space-y-3" aria-label="Assignments">
         <Breadcrumbs items={[{ label: "Dashboard", href: "/dashboard/teacher" }, { label: "Course", href: `/dashboard/teacher/${params.courseId}` }, { label: "Assignments" }]} />
@@ -23,26 +26,12 @@ export default async function TeacherAssignmentsPage({ params }: { params: { cou
             <Tab href={`/dashboard/teacher/${params.courseId}/analytics`}>Analytics</Tab>
           </TabList>
         </Tabs>
-        <div className="flex items-center justify-between">
-          <h1 className="text-xl font-semibold">Assignments</h1>
-          <details>
-            <summary className="underline cursor-pointer select-none">Actions</summary>
-            <div className="mt-2 text-sm">
-              <a className="underline" href={`/dashboard/teacher/${params.courseId}/assignments/new`}>New assignment</a>
-            </div>
-          </details>
-        </div>
-        <ol className="space-y-2" data-testid="assignments-list">
-          {(rows ?? []).map((a: any) => (
-            <li key={a.id} className="border rounded p-3" data-testid="assignment-row">
-              <div className="font-medium" data-testid="assignment-title">{a.title}</div>
-              <div className="text-gray-600 text-sm" data-testid="assignment-due">{a.due_at ?? "No due date"}</div>
-            </li>
-          ))}
-          {(!rows || rows.length === 0) && (
-            <li className="text-gray-500">No assignments yet.</li>
-          )}
-        </ol>
+        <TeacherAssignmentsList
+          header={{ title: 'Assignments' }}
+          actions={[{ id: 'new', label: 'New assignment', href: `/dashboard/teacher/${params.courseId}/assignments/new` }]}
+          items={items as any}
+          state={state}
+        />
         <a className="underline" href={`/dashboard/teacher/${params.courseId}`}>Back to course</a>
       </section>
     );
