@@ -35,4 +35,36 @@ html.dark body {
   color: var(--fg);
 }
 
+/* v0 design tokens (Tailwind reads these via theme colors above) */
+:root {
+  /* Light */
+  --background: 255 255 255;
+  --foreground: 17 24 39; /* slate-900 */
+  --card: 255 255 255;
+  --card-foreground: 17 24 39;
+  --muted: 248 250 252; /* slate-50 */
+  --muted-foreground: 100 116 139; /* slate-500 */
+  --border: 226 232 240; /* slate-200 */
+  --primary: 37 99 235; /* blue-600 */
+  --primary-foreground: 255 255 255;
+  --secondary: 99 102 241; /* indigo-500 */
+  --secondary-foreground: 255 255 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 15 23 42; /* slate-900 */
+    --foreground: 226 232 240; /* slate-200 */
+    --card: 2 6 23; /* slate-950 */
+    --card-foreground: 226 232 240;
+    --muted: 30 41 59; /* slate-800 */
+    --muted-foreground: 148 163 184; /* slate-400 */
+    --border: 51 65 85; /* slate-700 */
+    --primary: 59 130 246; /* blue-500 */
+    --primary-foreground: 255 255 255;
+    --secondary: 99 102 241; /* indigo-500 */
+    --secondary-foreground: 255 255 255;
+  }
+}
+
 

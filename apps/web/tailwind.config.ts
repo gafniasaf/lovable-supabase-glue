@@ -9,6 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Brand remains for legacy usages
         brand: {
           DEFAULT: "#2563eb",
           50: "#eff6ff",
@@ -21,7 +22,19 @@ export default {
           700: "#1d4ed8",
           800: "#1e40af",
           900: "#1e3a8a"
-        }
+        },
+        // v0 token colors (RGB space-separated in CSS vars). Supports /opacity suffix.
+        background: "rgb(var(--background) / <alpha-value>)",
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
+        card: "rgb(var(--card) / <alpha-value>)",
+        "card-foreground": "rgb(var(--card-foreground) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
+        "muted-foreground": "rgb(var(--muted-foreground) / <alpha-value>)",
+        border: "rgb(var(--border) / <alpha-value>)",
+        primary: "rgb(var(--primary) / <alpha-value>)",
+        "primary-foreground": "rgb(var(--primary-foreground) / <alpha-value>)",
+        secondary: "rgb(var(--secondary) / <alpha-value>)",
+        "secondary-foreground": "rgb(var(--secondary-foreground) / <alpha-value>)"
       },
       spacing: {
         13: '3.25rem',
