@@ -8,6 +8,7 @@ import { createInteractiveOutcomesGateway } from "@/lib/data/interactiveOutcomes
 import Trans from "@/lib/i18n/Trans";
 import Breadcrumbs from "@/components/ui/Breadcrumbs";
 import { Tabs, TabList, Tab } from "@/components/ui/Tabs";
+import TeacherCourseOverview from "@/ui/v0/TeacherCourseOverview";
 // Avoid Next Link here to prevent client hook usage in SSR; use plain anchors instead
 
 export default async function CourseDetailPage({ params }: { params: { courseId: string } }) {
@@ -51,108 +52,30 @@ export default async function CourseDetailPage({ params }: { params: { courseId:
     interactive = ia || [];
   }
 
+  const tabLinks = [
+    { id: 'overview', label: 'Overview', href: `/dashboard/teacher/${params.courseId}`, current: true },
+    { id: 'lessons', label: 'Lessons', href: `/dashboard/teacher/${params.courseId}/lessons/manage` },
+    { id: 'modules', label: 'Modules', href: `/dashboard/teacher/${params.courseId}/modules` },
+    { id: 'assignments', label: 'Assignments', href: `/dashboard/teacher/${params.courseId}/assignments` },
+    { id: 'quizzes', label: 'Quizzes', href: `/dashboard/teacher/${params.courseId}/quizzes` },
+    { id: 'analytics', label: 'Analytics', href: `/dashboard/teacher/${params.courseId}/analytics` },
+  ];
+  const actions = [
+    { id: 'new-lesson', label: 'New lesson', href: `/dashboard/teacher/${params.courseId}/lessons/new` },
+    { id: 'new-assignment', label: 'New assignment', href: `/dashboard/teacher/${params.courseId}/assignments/new` },
+    { id: 'view-student', label: 'View as student', href: `/dashboard/student/${params.courseId}` },
+  ];
+  const header = { title: course?.title ?? 'Course', description: course?.description ?? null, tabLinks, actions };
+  const lessonItems = (lessons ?? []).map((l: any) => ({ id: l.id, order: l.order_index, title: l.title, completedCount: counts[l.id] || 0 }));
+  const perStudentRows = (perStudent ?? []).map((s) => ({ id: s.student_id, name: s.name ?? s.student_id, completed: s.completedLessons, total: s.totalLessons, percent: s.percent }));
+  const attempts = (interactive ?? []).map((r: any) => ({ id: r.id, userId: r.user_id, score: r.score, max: r.max, passed: r.passed, pct: r.pct, topic: r.topic, at: r.created_at }));
+  const state: 'default' | 'empty' = (lessonItems.length === 0 && perStudentRows.length === 0 && attempts.length === 0) ? 'empty' : 'default';
+
   return (
     <section className="p-6 space-y-3" aria-label="Course">
-      <Breadcrumbs items={[{ label: "Dashboard", href: "/dashboard/teacher" }, { label: course?.title ?? "Course" }]} />
-      <Tabs>
-        <TabList>
-          <Tab href={`/dashboard/teacher/${params.courseId}`} active>Overview</Tab>
-          <Tab href={`/dashboard/teacher/${params.courseId}/lessons/manage`}>Lessons</Tab>
-          <Tab href={`/dashboard/teacher/${params.courseId}/modules`}>Modules</Tab>
-          <Tab href={`/dashboard/teacher/${params.courseId}/assignments`}>Assignments</Tab>
-          <Tab href={`/dashboard/teacher/${params.courseId}/quizzes`}>Quizzes</Tab>
-          <Tab href={`/dashboard/teacher/${params.courseId}/analytics`}>Analytics</Tab>
-        </TabList>
-      </Tabs>
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl font-semibold">{course?.title}</h1>
-        <div className="space-x-4">
-          <a className="underline" href={`/dashboard/teacher/${params.courseId}/lessons/new`}>New lesson</a>
-          <a className="underline" href={`/dashboard/teacher/${params.courseId}/assignments/new`}>New assignment</a>
-          <a className="underline" href={`/dashboard/student/${params.courseId}`}>View as student</a>
-        </div>
-      </div>
-      <p className="text-gray-600">{course?.description}</p>
-      <h2 className="font-medium mt-4">Lessons</h2>
-      {!lessons ? (
-        <div className="space-y-2">
-          <div className="skeleton h-10 w-full" />
-          <div className="skeleton h-10 w-full" />
-        </div>
-      ) : null}
-      <ul className="space-y-2">
-        {(lessons ?? []).map(l => (
-          <li key={l.id} className="border rounded p-2 flex items-center justify-between">
-            <span>#{l.order_index} - {l.title}</span>
-            <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600">completed by {counts[l.id] || 0}</span>
-            <form action={async () => {
-              "use server";
-              const { createLessonsGateway } = await import("@/lib/data/lessons");
-              await createLessonsGateway().markComplete(l.id);
-            }}>
-              <button type="submit" className="text-sm underline">Mark complete</button>
-            </form>
-          </li>
-        ))}
-        {(!lessons || lessons.length === 0) && <li className="text-gray-500">No lessons yet.</li>}
-      </ul>
-      <h2 className="font-medium mt-6">Student progress</h2>
-      {(!perStudent || perStudent.length === 0) ? (
-        <div className="text-gray-500">No enrolled students yet.</div>
-      ) : (
-        <table className="w-full text-sm border mt-2">
-          <thead>
-            <tr className="bg-gray-50 text-left">
-              <th className="p-2 border">Student</th>
-              <th className="p-2 border">Completed</th>
-              <th className="p-2 border">Total</th>
-              <th className="p-2 border">Percent</th>
-            </tr>
-          </thead>
-          <tbody>
-            {perStudent.map((s) => (
-              <tr key={s.student_id} className="border-b">
-                <td className="p-2 border">{s.name ?? s.student_id}</td>
-                <td className="p-2 border">{s.completedLessons}</td>
-                <td className="p-2 border">{s.totalLessons}</td>
-                <td className="p-2 border">{s.percent}%</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-      <h2 className="font-medium mt-6">Interactive attempts</h2>
+      <Breadcrumbs items={[{ label: "Dashboard", href: "/dashboard/teacher" }, { label: header.title }]} />
+      <TeacherCourseOverview header={header} lessons={lessonItems} perStudent={perStudentRows} attempts={attempts} state={state} />
       <div className="text-sm"><a className="underline" href={`/api/runtime/outcomes/export?course_id=${params.courseId}`}><Trans keyPath="actions.downloadCsv" fallback="Download CSV" /></a></div>
-      {(!interactive || interactive.length === 0) ? (
-        <div className="text-gray-500">No interactive attempts yet.</div>
-      ) : (
-        <table className="w-full text-sm border mt-2">
-          <thead>
-            <tr className="bg-gray-50 text-left">
-              <th className="p-2 border">Student</th>
-              <th className="p-2 border">Score</th>
-              <th className="p-2 border">Max</th>
-              <th className="p-2 border">Passed</th>
-              <th className="p-2 border">Pct</th>
-              <th className="p-2 border">Topic</th>
-              <th className="p-2 border">At</th>
-            </tr>
-          </thead>
-          <tbody>
-            {interactive.map((r: any) => (
-              <tr key={r.id} className="border-b">
-                <td className="p-2 border font-mono text-xs">{r.user_id}</td>
-                <td className="p-2 border">{r.score ?? '-'}</td>
-                <td className="p-2 border">{r.max ?? '-'}</td>
-                <td className="p-2 border">{r.passed == null ? '-' : (r.passed ? 'Yes' : 'No')}</td>
-                <td className="p-2 border">{r.pct == null ? '-' : `${r.pct}%`}</td>
-                <td className="p-2 border">{r.topic ?? '-'}</td>
-                <td className="p-2 border">{r.created_at ? new Date(r.created_at).toLocaleString() : '-'}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
       <a className="underline" href="/dashboard/teacher"><Trans keyPath="common.backToCourses" fallback="Back to courses" /></a>
     </section>
   );
