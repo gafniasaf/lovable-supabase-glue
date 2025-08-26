@@ -18,7 +18,17 @@ export default async function GradingQueuePage({ searchParams }: { searchParams?
   const assignmentId = searchParams?.assignmentId || undefined;
   const page = Number(searchParams?.page || 1);
   const pageSize = Math.max(5, Math.min(100, Number(searchParams?.pageSize || 20)));
-  const { rows, totalEstimated } = await createGradingGateway().listUngraded({ courseId, assignmentId, page, limit: pageSize });
+  let rows: SubmissionRow[] = [];
+  let totalEstimated = 0;
+  try {
+    const res = await createGradingGateway().listUngraded({ courseId, assignmentId, page, limit: pageSize });
+    rows = res.rows as any;
+    totalEstimated = res.totalEstimated || 0;
+  } catch {
+    // Graceful fallback: show empty state if unauthorized or API error
+    rows = [] as any;
+    totalEstimated = 0;
+  }
   const courses = await createCoursesGateway().listForTeacher().catch(() => [] as any[]);
   // Load assignments for the selected course (server-side)
   let assignments: any[] = [];
@@ -104,5 +114,7 @@ export default async function GradingQueuePage({ searchParams }: { searchParams?
     </section>
   );
 }
+
+export const dynamic = 'force-dynamic';
 
 
