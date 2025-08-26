@@ -78,7 +78,6 @@ export default function GradingQueue({ header, filters, items, pagination, state
                     if (course?.href) window.location.href = course.href;
                   }}
                 >
-                  <option value="">All</option>
                   {filters.courses.map((course) => (
                     <option key={course.id} value={course.id}>{course.label}</option>
                   ))}
@@ -98,7 +97,6 @@ export default function GradingQueue({ header, filters, items, pagination, state
                     if (assignment?.href) window.location.href = assignment.href;
                   }}
                 >
-                  <option value="">All</option>
                   {filters.assignments.map((assignment) => (
                     <option key={assignment.id} value={assignment.id}>{assignment.label}</option>
                   ))}
