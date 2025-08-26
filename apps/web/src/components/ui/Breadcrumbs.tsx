@@ -12,7 +12,7 @@ export default function Breadcrumbs({ items }: { items: Crumb[] }) {
 						{idx === items.length - 1 && c.siblings && c.siblings.length > 0 ? (
 							<DropdownMenu
 								label={<span aria-current="page" className="text-gray-900">{c.label}</span>}
-								items={(c.siblings || []).map((s) => ({ key: s.key || s.href, label: s.label, onSelect: () => { window.location.href = s.href; } }))}
+								items={(c.siblings || []).map((s) => ({ key: s.key || s.href, label: <a href={s.href} className="block w-full text-left">{s.label}</a> }))}
 							/>
 						) : c.href ? (
 							<a className="underline" href={c.href}>{c.label}</a>
