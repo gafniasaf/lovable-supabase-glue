@@ -27,7 +27,7 @@ export default async function Page() {
   }
   return (
     <section className="p-6">
-      <SupervisorQueue items={items} page={1} pageCount={1} onSelect={() => {}} />
+      <SupervisorQueue items={items} page={1} pageCount={1} />
     </section>
   );
 }
