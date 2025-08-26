@@ -1,5 +1,6 @@
 import { headers, cookies } from "next/headers";
 import { createAssignmentsGateway } from "@/lib/data/assignments";
+import StudentAssignmentsList from "@/ui/v0/StudentAssignmentsList";
 
 export default async function StudentAssignmentsPage({ params }: { params: { courseId: string } }) {
   const h = headers();
@@ -8,24 +9,10 @@ export default async function StudentAssignmentsPage({ params }: { params: { cou
 
   try {
     const rows = await createAssignmentsGateway().listByCourse(params.courseId);
+    const items = (rows || []).map((a: any) => ({ id: a.id, title: a.title, dueAt: a.due_at ?? null, href: `/dashboard/student/${params.courseId}/assignments/${a.id}/submit` }));
+    const state: 'default' | 'empty' = (items.length === 0) ? 'empty' : 'default';
     return (
-      <section className="p-6 space-y-3" aria-label="Assignments">
-        <h1 className="text-xl font-semibold">Assignments</h1>
-        <ol className="space-y-2" data-testid="student-assignments-list">
-          {(rows ?? []).map((a: any) => (
-            <li key={a.id} className="border rounded p-3" data-testid="student-assignment-row">
-              <div className="font-medium">{a.title}</div>
-              <div className="mt-1 text-sm text-gray-600">Due: {a.due_at ? new Date(a.due_at).toLocaleString() : '—'}</div>
-              <div className="mt-2">
-                <a className="underline text-sm" href={`/dashboard/student/${params.courseId}/assignments/${a.id}/submit`}>Open</a>
-              </div>
-            </li>
-          ))}
-          {(!rows || rows.length === 0) && (
-            <li className="text-gray-500">No assignments yet.</li>
-          )}
-        </ol>
-      </section>
+      <StudentAssignmentsList header={{ title: 'Assignments' }} items={items as any} state={state} />
     );
   } catch (e: any) {
     return (
