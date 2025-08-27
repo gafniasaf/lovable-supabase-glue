@@ -10,6 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useAuth } from '@/hooks/useAuth';
 import { useProfile } from '@/hooks/useProfile';
 import { useRealTimeUpdates } from '@/hooks/useRealTimeUpdates';
+import { useMessaging } from '@/hooks/useMessaging';
+import { useRealTimeNotifications } from '@/hooks/useRealTimeNotifications';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { formatDistanceToNow } from 'date-fns';
@@ -59,7 +61,18 @@ export const Communications: React.FC = () => {
   const { profile } = useProfile();
   const { toast } = useToast();
   
-  const [messages, setMessages] = useState<Message[]>([]);
+  // Use messaging hook for enhanced functionality
+  const { 
+    threads, 
+    messages, 
+    sendMessage: sendDirectMessage, 
+    createThread,
+    loading: messagingLoading 
+  } = useMessaging({ autoRefresh: true });
+  
+  // Use notifications hook
+  const { notifications, unreadCount } = useRealTimeNotifications();
+  
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [courses, setCourses] = useState<any[]>([]);
   const [students, setStudents] = useState<any[]>([]);
@@ -86,8 +99,8 @@ export const Communications: React.FC = () => {
 
   // Real-time updates
   const handleRealTimeUpdate = (table: string, payload: any) => {
-    if (table === 'messages' || table === 'announcements') {
-      fetchCommunications();
+    if (table === 'announcements') {
+      fetchAnnouncements();
     }
   };
 
@@ -95,7 +108,7 @@ export const Communications: React.FC = () => {
 
   useEffect(() => {
     if (user && profile) {
-      fetchCommunications();
+      fetchAnnouncements();
       fetchCourses();
       if (profile.role === 'teacher') {
         fetchStudents();
@@ -103,42 +116,11 @@ export const Communications: React.FC = () => {
     }
   }, [user, profile]);
 
-  const fetchCommunications = async () => {
+  const fetchAnnouncements = async () => {
     if (!user) return;
 
     try {
       setLoading(true);
-
-      // Fetch messages
-      const { data: messagesData } = await supabase
-        .from('messages')
-        .select('*')
-        .or(`sender_id.eq.${user.id},recipient_id.eq.${user.id}`)
-        .order('created_at', { ascending: false })
-        .limit(50);
-
-      if (messagesData) {
-        // Fetch sender and recipient profiles
-        const userIds = [
-          ...new Set([
-            ...messagesData.map(m => m.sender_id),
-            ...messagesData.map(m => m.recipient_id)
-          ])
-        ];
-
-        const { data: profiles } = await supabase
-          .from('profiles')
-          .select('id, first_name, last_name, email')
-          .in('id', userIds);
-
-        const messagesWithProfiles = messagesData.map(message => ({
-          ...message,
-          sender: profiles?.find(p => p.id === message.sender_id),
-          recipient: profiles?.find(p => p.id === message.recipient_id),
-        }));
-
-        setMessages(messagesWithProfiles);
-      }
 
       // Fetch announcements
       const { data: announcementsData } = await supabase
@@ -167,10 +149,10 @@ export const Communications: React.FC = () => {
       }
 
     } catch (error) {
-      console.error('Error fetching communications:', error);
+      console.error('Error fetching announcements:', error);
       toast({
         title: "Error",
-        description: "Failed to load communications",
+        description: "Failed to load announcements",
         variant: "destructive",
       });
     } finally {
@@ -239,17 +221,12 @@ export const Communications: React.FC = () => {
     }
 
     try {
-      const { error } = await supabase
-        .from('messages')
-        .insert({
-          sender_id: user.id,
-          recipient_id: newMessage.recipient_id,
-          subject: newMessage.subject || null,
-          content: newMessage.content,
-          course_id: newMessage.course_id || null,
-        });
-
-      if (error) throw error;
+      // Use the messaging hook's sendMessage function
+      await sendDirectMessage(
+        newMessage.recipient_id,
+        newMessage.content,
+        newMessage.subject || undefined
+      );
 
       toast({
         title: "Success",
@@ -263,7 +240,6 @@ export const Communications: React.FC = () => {
         course_id: '',
       });
       setIsMessageDialogOpen(false);
-      fetchCommunications();
     } catch (error) {
       console.error('Error sending message:', error);
       toast({
@@ -311,7 +287,7 @@ export const Communications: React.FC = () => {
         expires_at: '',
       });
       setIsAnnouncementDialogOpen(false);
-      fetchCommunications();
+      fetchAnnouncements();
     } catch (error) {
       console.error('Error creating announcement:', error);
       toast({
@@ -331,7 +307,7 @@ export const Communications: React.FC = () => {
         .eq('recipient_id', user?.id);
 
       if (error) throw error;
-      fetchCommunications();
+      // The messaging hook will handle real-time updates
     } catch (error) {
       console.error('Error marking message as read:', error);
     }
@@ -574,10 +550,7 @@ export const Communications: React.FC = () => {
                         <div className="flex items-center gap-2">
                           <CardTitle className="text-base">
                             {message.sender_id === user?.id ? 'To: ' : 'From: '}
-                            {message.sender_id === user?.id 
-                              ? getUserDisplayName(message.recipient)
-                              : getUserDisplayName(message.sender)
-                            }
+                            Message Participant
                           </CardTitle>
                           {message.recipient_id === user?.id && !message.read_at && (
                             <Badge variant="default" className="text-xs">Unread</Badge>
