@@ -16,6 +16,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/hooks/useAuth";
+import { FileUpload } from "@/components/FileUpload";
 
 interface Course {
   id: string;
@@ -40,6 +41,7 @@ export const CreateAssignmentDialog = ({ courseId, onAssignmentCreated }: Create
     due_date: "",
     points_possible: "100",
   });
+  const [resourceFiles, setResourceFiles] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -79,15 +81,16 @@ export const CreateAssignmentDialog = ({ courseId, onAssignmentCreated }: Create
 
     setLoading(true);
     try {
-      const { error } = await supabase
-        .from('assignments')
-        .insert({
-          title: formData.title,
-          description: formData.description,
-          course_id: formData.course_id,
-          due_date: formData.due_date ? new Date(formData.due_date).toISOString() : null,
-          points_possible: parseInt(formData.points_possible),
-        });
+        const { error } = await supabase
+          .from('assignments')
+          .insert({
+            title: formData.title,
+            description: formData.description,
+            course_id: formData.course_id,
+            due_date: formData.due_date ? new Date(formData.due_date).toISOString() : null,
+            points_possible: parseInt(formData.points_possible),
+            resource_files: JSON.parse(JSON.stringify(resourceFiles)),
+          });
 
       if (error) {
         console.error('Error creating assignment:', error);
@@ -105,6 +108,7 @@ export const CreateAssignmentDialog = ({ courseId, onAssignmentCreated }: Create
       });
       
       setFormData({ title: "", description: "", course_id: "", due_date: "", points_possible: "100" });
+      setResourceFiles([]);
       setOpen(false);
       onAssignmentCreated();
     } catch (error) {
@@ -192,6 +196,17 @@ export const CreateAssignmentDialog = ({ courseId, onAssignmentCreated }: Create
                 value={formData.points_possible}
                 onChange={(e) => setFormData({ ...formData, points_possible: e.target.value })}
                 placeholder="100"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label>Assignment Resources</Label>
+              <FileUpload
+                bucketName="course-resources"
+                folder={formData.course_id || 'temp'}
+                existingFiles={resourceFiles}
+                onFilesChange={setResourceFiles}
+                maxFiles={3}
+                acceptedTypes={['.pdf', '.doc', '.docx', '.txt', '.jpg', '.jpeg', '.png']}
               />
             </div>
           </div>

@@ -13,7 +13,10 @@ import { useToast } from "@/hooks/use-toast";
 import { FileUpload } from "@/components/FileUpload";
 import { CreateRubricDialog } from "@/components/CreateRubricDialog";
 import { RubricGrading } from "@/components/RubricGrading";
-import { ArrowLeft, Calendar, FileText, Users, CheckCircle, Clock, AlertCircle, Paperclip } from "lucide-react";
+import { SubmissionTracking } from "@/components/SubmissionTracking";
+import { AssignmentAnalytics } from "@/components/AssignmentAnalytics";
+import { EnhancedGradingInterface } from "@/components/EnhancedGradingInterface";
+import { ArrowLeft, Calendar, FileText, Users, CheckCircle, Clock, AlertCircle, Paperclip, BarChart3 } from "lucide-react";
 
 interface FileAttachment {
   id: string;
@@ -73,6 +76,9 @@ const AssignmentDetails = () => {
   const [selectedRubric, setSelectedRubric] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [selectedSubmission, setSelectedSubmission] = useState<Submission | null>(null);
+  const [showEnhancedGrading, setShowEnhancedGrading] = useState(false);
+  const [analyticsData, setAnalyticsData] = useState<any>(null);
 
   const fetchRubrics = async () => {
     if (!assignmentId) return;
@@ -188,6 +194,11 @@ const AssignmentDetails = () => {
 
       // Fetch rubrics
       await fetchRubrics();
+      
+      // Fetch analytics data for teachers
+      if (profile?.role === 'teacher') {
+        await fetchAnalyticsData();
+      }
     } catch (error) {
       console.error('Error:', error);
       toast({
@@ -333,6 +344,97 @@ const AssignmentDetails = () => {
     }
     
     return { status: "submitted", label: "Submitted", icon: CheckCircle, variant: "default" as const };
+  };
+
+  const fetchAnalyticsData = async () => {
+    if (!assignmentId || !assignment) return;
+
+    try {
+      // Calculate submission stats
+      const totalStudents = await getTotalStudentsCount();
+      const submissionStats = {
+        totalStudents,
+        submitted: submissions.length,
+        graded: submissions.filter(s => s.grade !== null && s.grade !== undefined).length,
+        pending: submissions.filter(s => s.grade === null || s.grade === undefined).length,
+        overdue: submissions.filter(s => 
+          assignment.due_date && new Date(s.submitted_at) > new Date(assignment.due_date)
+        ).length,
+      };
+
+      // Calculate grade distribution
+      const gradedSubmissions = submissions.filter(s => s.grade !== null && s.grade !== undefined);
+      const gradeDistribution = calculateGradeDistribution(gradedSubmissions, assignment.points_possible || 100);
+      
+      // Calculate averages
+      const averageGrade = gradedSubmissions.length > 0 
+        ? gradedSubmissions.reduce((sum, s) => sum + (s.grade || 0), 0) / gradedSubmissions.length
+        : 0;
+      
+      const averageSubmissionTime = calculateAverageSubmissionTime(submissions, assignment.due_date);
+
+      setAnalyticsData({
+        averageGrade,
+        maxPossiblePoints: assignment.points_possible || 100,
+        submissionCount: submissions.length,
+        gradeDistribution,
+        completionRate: totalStudents > 0 ? (submissions.length / totalStudents) * 100 : 0,
+        averageSubmissionTime,
+        totalStudents,
+        submissionStats,
+      });
+    } catch (error) {
+      console.error('Error fetching analytics data:', error);
+    }
+  };
+
+  const getTotalStudentsCount = async () => {
+    if (!assignment?.course_id) return 0;
+    
+    const { count } = await supabase
+      .from('enrollments')
+      .select('*', { count: 'exact', head: true })
+      .eq('course_id', assignment.course_id);
+    
+    return count || 0;
+  };
+
+  const calculateGradeDistribution = (gradedSubmissions: Submission[], maxPoints: number) => {
+    const ranges = [
+      { range: '90-100', min: 90, max: 100 },
+      { range: '80-89', min: 80, max: 89 },
+      { range: '70-79', min: 70, max: 79 },
+      { range: '60-69', min: 60, max: 69 },
+      { range: '<60', min: 0, max: 59 },
+    ];
+
+    return ranges.map(({ range, min, max }) => {
+      const count = gradedSubmissions.filter(s => {
+        const percentage = ((s.grade || 0) / maxPoints) * 100;
+        return percentage >= min && percentage <= max;
+      }).length;
+      
+      const percentage = gradedSubmissions.length > 0 ? (count / gradedSubmissions.length) * 100 : 0;
+      
+      return { range, count, percentage };
+    });
+  };
+
+  const calculateAverageSubmissionTime = (submissions: Submission[], dueDate?: string) => {
+    if (!dueDate || submissions.length === 0) return 0;
+    
+    const dueDateObj = new Date(dueDate);
+    const validSubmissions = submissions.filter(s => new Date(s.submitted_at) <= dueDateObj);
+    
+    if (validSubmissions.length === 0) return 0;
+    
+    const totalHours = validSubmissions.reduce((sum, s) => {
+      const submissionDate = new Date(s.submitted_at);
+      const hoursEarly = (dueDateObj.getTime() - submissionDate.getTime()) / (1000 * 60 * 60);
+      return sum + Math.max(0, hoursEarly);
+    }, 0);
+    
+    return totalHours / validSubmissions.length;
   };
 
   const formatDate = (dateString: string) => {
@@ -526,12 +628,53 @@ const AssignmentDetails = () => {
           // Teacher View - Submissions Management
           <Tabs defaultValue="submissions" className="space-y-6">
             <TabsList>
+              <TabsTrigger value="overview">Overview</TabsTrigger>
               <TabsTrigger value="submissions">
                 Submissions ({submissions.length})
               </TabsTrigger>
+              <TabsTrigger value="grading">Enhanced Grading</TabsTrigger>
+              <TabsTrigger value="analytics">Analytics</TabsTrigger>
               <TabsTrigger value="rubrics">Rubrics</TabsTrigger>
-              <TabsTrigger value="details">Assignment Details</TabsTrigger>
             </TabsList>
+
+            <TabsContent value="overview" className="space-y-6">
+              {analyticsData && (
+                <SubmissionTracking 
+                  stats={analyticsData.submissionStats}
+                  dueDate={assignment.due_date}
+                />
+              )}
+              
+              <Card>
+                <CardHeader>
+                  <CardTitle>Assignment Information</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-sm font-medium">Course:</Label>
+                      <p>{assignment.course?.title}</p>
+                    </div>
+                    <div>
+                      <Label className="text-sm font-medium">Created:</Label>
+                      <p>{formatDate(assignment.created_at)}</p>
+                    </div>
+                    {assignment.due_date && (
+                      <div>
+                        <Label className="text-sm font-medium">Due Date:</Label>
+                        <p>{formatDate(assignment.due_date)}</p>
+                      </div>
+                    )}
+                    {assignment.points_possible && (
+                      <div>
+                        <Label className="text-sm font-medium">Points Possible:</Label>
+                        <p>{assignment.points_possible}</p>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
 
             <TabsContent value="submissions" className="space-y-4">
               {submissions.length === 0 ? (
@@ -610,6 +753,16 @@ const AssignmentDetails = () => {
                           <Button 
                             size="sm"
                             onClick={() => {
+                              setSelectedSubmission(submission);
+                              setShowEnhancedGrading(true);
+                            }}
+                          >
+                            {submission.grade !== null && submission.grade !== undefined ? "Update Grade" : "Grade"}
+                          </Button>
+                          <Button 
+                            size="sm"
+                            variant="outline"
+                            onClick={() => {
                               const grade = prompt("Enter grade (0-" + assignment.points_possible + "):");
                               const feedback = prompt("Enter feedback:");
                               if (grade !== null && feedback !== null) {
@@ -617,7 +770,7 @@ const AssignmentDetails = () => {
                               }
                             }}
                           >
-                            {submission.grade !== null && submission.grade !== undefined ? "Update Grade" : "Grade"}
+                            Quick Grade
                           </Button>
                         </div>
 
@@ -636,6 +789,62 @@ const AssignmentDetails = () => {
                     </CardContent>
                   </Card>
                 ))
+              )}
+            </TabsContent>
+
+            <TabsContent value="grading" className="space-y-4">
+              {selectedSubmission ? (
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-medium">Enhanced Grading Interface</h3>
+                    <Button 
+                      variant="outline" 
+                      onClick={() => {
+                        setSelectedSubmission(null);
+                        setShowEnhancedGrading(false);
+                      }}
+                    >
+                      Back to Submissions
+                    </Button>
+                  </div>
+                  <EnhancedGradingInterface
+                    submission={selectedSubmission}
+                    assignmentTitle={assignment.title}
+                    maxPoints={assignment.points_possible || 100}
+                    rubricCriteria={rubrics.find(r => r.id === selectedRubric)?.criteria || []}
+                    onGradeSubmitted={async (submissionId, grade, feedback) => {
+                      await handleGradeSubmission(submissionId, grade, feedback);
+                      setSelectedSubmission(null);
+                      setShowEnhancedGrading(false);
+                    }}
+                  />
+                </div>
+              ) : (
+                <Card>
+                  <CardContent className="pt-6 text-center">
+                    <Users className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
+                    <h3 className="text-lg font-medium mb-2">Select a Submission to Grade</h3>
+                    <p className="text-muted-foreground">
+                      Choose a submission from the Submissions tab to use the enhanced grading interface
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
+            </TabsContent>
+
+            <TabsContent value="analytics" className="space-y-4">
+              {analyticsData ? (
+                <AssignmentAnalytics data={analyticsData} />
+              ) : (
+                <Card>
+                  <CardContent className="pt-6 text-center">
+                    <BarChart3 className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
+                    <h3 className="text-lg font-medium mb-2">No Analytics Data</h3>
+                    <p className="text-muted-foreground">
+                      Analytics will be available once students start submitting assignments
+                    </p>
+                  </CardContent>
+                </Card>
               )}
             </TabsContent>
 
@@ -698,36 +907,6 @@ const AssignmentDetails = () => {
                   ))}
                 </div>
               )}
-            </TabsContent>
-
-            <TabsContent value="details">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Assignment Information</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <Label className="text-sm font-medium">Course:</Label>
-                    <p>{assignment.course?.title}</p>
-                  </div>
-                  <div>
-                    <Label className="text-sm font-medium">Created:</Label>
-                    <p>{formatDate(assignment.created_at)}</p>
-                  </div>
-                  {assignment.due_date && (
-                    <div>
-                      <Label className="text-sm font-medium">Due Date:</Label>
-                      <p>{formatDate(assignment.due_date)}</p>
-                    </div>
-                  )}
-                  {assignment.points_possible && (
-                    <div>
-                      <Label className="text-sm font-medium">Points Possible:</Label>
-                      <p>{assignment.points_possible}</p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
             </TabsContent>
           </Tabs>
         )}
