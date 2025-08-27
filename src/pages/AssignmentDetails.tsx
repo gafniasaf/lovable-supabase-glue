@@ -11,6 +11,8 @@ import { useProfile } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { FileUpload } from "@/components/FileUpload";
+import { CreateRubricDialog } from "@/components/CreateRubricDialog";
+import { RubricGrading } from "@/components/RubricGrading";
 import { ArrowLeft, Calendar, FileText, Users, CheckCircle, Clock, AlertCircle, Paperclip } from "lucide-react";
 
 interface FileAttachment {
@@ -67,8 +69,32 @@ const AssignmentDetails = () => {
   const [userSubmission, setUserSubmission] = useState<Submission | null>(null);
   const [submissionContent, setSubmissionContent] = useState("");
   const [submissionFiles, setSubmissionFiles] = useState<FileAttachment[]>([]);
+  const [rubrics, setRubrics] = useState<any[]>([]);
+  const [selectedRubric, setSelectedRubric] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+
+  const fetchRubrics = async () => {
+    if (!assignmentId) return;
+
+    try {
+      const { data: rubricsData, error } = await supabase
+        .from('rubrics')
+        .select('*')
+        .eq('assignment_id', assignmentId);
+
+      if (error) {
+        console.error('Error fetching rubrics:', error);
+      } else {
+        setRubrics(rubricsData || []);
+        if (rubricsData && rubricsData.length > 0) {
+          setSelectedRubric(rubricsData[0].id);
+        }
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   const fetchAssignmentData = async () => {
     if (!assignmentId || !user) return;
@@ -159,6 +185,9 @@ const AssignmentDetails = () => {
           }
         }
       }
+
+      // Fetch rubrics
+      await fetchRubrics();
     } catch (error) {
       console.error('Error:', error);
       toast({
@@ -500,6 +529,7 @@ const AssignmentDetails = () => {
               <TabsTrigger value="submissions">
                 Submissions ({submissions.length})
               </TabsTrigger>
+              <TabsTrigger value="rubrics">Rubrics</TabsTrigger>
               <TabsTrigger value="details">Assignment Details</TabsTrigger>
             </TabsList>
 
@@ -590,10 +620,83 @@ const AssignmentDetails = () => {
                             {submission.grade !== null && submission.grade !== undefined ? "Update Grade" : "Grade"}
                           </Button>
                         </div>
+
+                        {/* Rubric Grading */}
+                        {selectedRubric && (
+                          <div className="mt-4 pt-4 border-t">
+                            <h4 className="text-sm font-medium mb-3">Rubric Grading</h4>
+                            <RubricGrading 
+                              submissionId={submission.id}
+                              rubricId={selectedRubric}
+                              readOnly={false}
+                            />
+                          </div>
+                        )}
                       </div>
                     </CardContent>
                   </Card>
                 ))
+              )}
+            </TabsContent>
+
+            <TabsContent value="rubrics" className="space-y-4">
+              <div className="flex items-center justify-between">
+                <h3 className="text-lg font-medium">Grading Rubrics</h3>
+                <CreateRubricDialog 
+                  assignmentId={assignmentId!}
+                  onRubricCreated={fetchRubrics}
+                />
+              </div>
+
+              {rubrics.length === 0 ? (
+                <Card>
+                  <CardContent className="pt-6 text-center">
+                    <div className="space-y-3">
+                      <div className="mx-auto h-12 w-12 bg-muted rounded-full flex items-center justify-center">
+                        <FileText className="h-6 w-6 text-muted-foreground" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-medium">No rubrics yet</h3>
+                        <p className="text-muted-foreground">
+                          Create a rubric to standardize grading for this assignment
+                        </p>
+                      </div>
+                      <CreateRubricDialog 
+                        assignmentId={assignmentId!}
+                        onRubricCreated={fetchRubrics}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              ) : (
+                <div className="space-y-4">
+                  {rubrics.map((rubric) => (
+                    <Card key={rubric.id}>
+                      <CardHeader>
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <CardTitle>{rubric.title}</CardTitle>
+                            <CardDescription>
+                              {rubric.description || "No description provided"}
+                            </CardDescription>
+                          </div>
+                          <Badge variant="outline">
+                            {rubric.total_points} points
+                          </Badge>
+                        </div>
+                      </CardHeader>
+                      <CardContent>
+                        <Button 
+                          variant={selectedRubric === rubric.id ? "default" : "outline"}
+                          size="sm"
+                          onClick={() => setSelectedRubric(rubric.id)}
+                        >
+                          {selectedRubric === rubric.id ? "Active" : "Use for Grading"}
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               )}
             </TabsContent>
 
