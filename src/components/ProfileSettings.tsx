@@ -35,7 +35,7 @@ interface UserPreferences {
 
 export const ProfileSettings: React.FC = () => {
   const { user, signOut } = useAuth();
-  const { profile, refreshProfile } = useProfile();
+  const { profile, refetchProfile } = useProfile();
   const { toast } = useToast();
   
   const [profileData, setProfileData] = useState<ProfileData>({
@@ -120,7 +120,7 @@ export const ProfileSettings: React.FC = () => {
       });
       
       // Refresh profile data
-      refreshProfile();
+      refetchProfile();
     } catch (error) {
       console.error('Error updating profile:', error);
       toast({
@@ -194,7 +194,7 @@ export const ProfileSettings: React.FC = () => {
         description: "Avatar updated successfully",
       });
       
-      refreshProfile();
+      refetchProfile();
     } catch (error) {
       console.error('Error uploading avatar:', error);
       toast({
