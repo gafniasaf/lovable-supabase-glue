@@ -131,6 +131,121 @@ export type Database = {
         }
         Relationships: []
       }
+      collaboration_participants: {
+        Row: {
+          id: string
+          joined_at: string | null
+          left_at: string | null
+          role: string
+          session_id: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          joined_at?: string | null
+          left_at?: string | null
+          role?: string
+          session_id: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          joined_at?: string | null
+          left_at?: string | null
+          role?: string
+          session_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collaboration_participants_session_id_fkey"
+            columns: ["session_id"]
+            isOneToOne: false
+            referencedRelation: "collaboration_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      collaboration_sessions: {
+        Row: {
+          assignment_id: string | null
+          course_id: string
+          created_at: string | null
+          created_by: string
+          description: string | null
+          id: string
+          max_participants: number | null
+          meeting_link: string | null
+          scheduled_end: string | null
+          scheduled_start: string | null
+          session_type: string
+          status: string | null
+          title: string
+          updated_at: string | null
+        }
+        Insert: {
+          assignment_id?: string | null
+          course_id: string
+          created_at?: string | null
+          created_by: string
+          description?: string | null
+          id?: string
+          max_participants?: number | null
+          meeting_link?: string | null
+          scheduled_end?: string | null
+          scheduled_start?: string | null
+          session_type?: string
+          status?: string | null
+          title: string
+          updated_at?: string | null
+        }
+        Update: {
+          assignment_id?: string | null
+          course_id?: string
+          created_at?: string | null
+          created_by?: string
+          description?: string | null
+          id?: string
+          max_participants?: number | null
+          meeting_link?: string | null
+          scheduled_end?: string | null
+          scheduled_start?: string | null
+          session_type?: string
+          status?: string | null
+          title?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collaboration_sessions_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "assignments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "collaboration_sessions_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["assignment_id"]
+          },
+          {
+            foreignKeyName: "collaboration_sessions_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "collaboration_sessions_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["course_id"]
+          },
+        ]
+      }
       content_interactions: {
         Row: {
           content_item_id: string
@@ -322,7 +437,11 @@ export type Database = {
           created_at: string
           created_by: string
           description: string | null
+          forum_type: string | null
           id: string
+          is_locked: boolean | null
+          is_pinned: boolean | null
+          tags: string[] | null
           title: string
           updated_at: string
         }
@@ -332,7 +451,11 @@ export type Database = {
           created_at?: string
           created_by: string
           description?: string | null
+          forum_type?: string | null
           id?: string
+          is_locked?: boolean | null
+          is_pinned?: boolean | null
+          tags?: string[] | null
           title: string
           updated_at?: string
         }
@@ -342,7 +465,11 @@ export type Database = {
           created_at?: string
           created_by?: string
           description?: string | null
+          forum_type?: string | null
           id?: string
+          is_locked?: boolean | null
+          is_pinned?: boolean | null
+          tags?: string[] | null
           title?: string
           updated_at?: string
         }
@@ -379,31 +506,43 @@ export type Database = {
       }
       discussion_posts: {
         Row: {
+          attachments: Json | null
           author_id: string
           content: string
           created_at: string
+          edited_at: string | null
           forum_id: string
           id: string
+          is_solution: boolean | null
           parent_post_id: string | null
           updated_at: string
+          votes: number | null
         }
         Insert: {
+          attachments?: Json | null
           author_id: string
           content: string
           created_at?: string
+          edited_at?: string | null
           forum_id: string
           id?: string
+          is_solution?: boolean | null
           parent_post_id?: string | null
           updated_at?: string
+          votes?: number | null
         }
         Update: {
+          attachments?: Json | null
           author_id?: string
           content?: string
           created_at?: string
+          edited_at?: string | null
           forum_id?: string
           id?: string
+          is_solution?: boolean | null
           parent_post_id?: string | null
           updated_at?: string
+          votes?: number | null
         }
         Relationships: [
           {
@@ -502,12 +641,64 @@ export type Database = {
           },
         ]
       }
+      message_threads: {
+        Row: {
+          course_id: string | null
+          created_at: string | null
+          created_by: string
+          id: string
+          is_archived: boolean | null
+          participants: string[] | null
+          subject: string
+          updated_at: string | null
+        }
+        Insert: {
+          course_id?: string | null
+          created_at?: string | null
+          created_by: string
+          id?: string
+          is_archived?: boolean | null
+          participants?: string[] | null
+          subject: string
+          updated_at?: string | null
+        }
+        Update: {
+          course_id?: string | null
+          created_at?: string | null
+          created_by?: string
+          id?: string
+          is_archived?: boolean | null
+          participants?: string[] | null
+          subject?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "message_threads_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "message_threads_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["course_id"]
+          },
+        ]
+      }
       messages: {
         Row: {
+          attachments: Json | null
           content: string
           course_id: string | null
           created_at: string
           id: string
+          is_draft: boolean | null
+          message_thread_id: string | null
+          message_type: string | null
           read_at: string | null
           recipient_id: string
           sender_id: string
@@ -515,10 +706,14 @@ export type Database = {
           thread_id: string | null
         }
         Insert: {
+          attachments?: Json | null
           content: string
           course_id?: string | null
           created_at?: string
           id?: string
+          is_draft?: boolean | null
+          message_thread_id?: string | null
+          message_type?: string | null
           read_at?: string | null
           recipient_id: string
           sender_id: string
@@ -526,10 +721,14 @@ export type Database = {
           thread_id?: string | null
         }
         Update: {
+          attachments?: Json | null
           content?: string
           course_id?: string | null
           created_at?: string
           id?: string
+          is_draft?: boolean | null
+          message_thread_id?: string | null
+          message_type?: string | null
           read_at?: string | null
           recipient_id?: string
           sender_id?: string
@@ -551,7 +750,53 @@ export type Database = {
             referencedRelation: "grade_analytics"
             referencedColumns: ["course_id"]
           },
+          {
+            foreignKeyName: "messages_message_thread_id_fkey"
+            columns: ["message_thread_id"]
+            isOneToOne: false
+            referencedRelation: "message_threads"
+            referencedColumns: ["id"]
+          },
         ]
+      }
+      notifications: {
+        Row: {
+          action_url: string | null
+          created_at: string | null
+          data: Json | null
+          expires_at: string | null
+          id: string
+          is_read: boolean | null
+          message: string
+          title: string
+          type: string
+          user_id: string
+        }
+        Insert: {
+          action_url?: string | null
+          created_at?: string | null
+          data?: Json | null
+          expires_at?: string | null
+          id?: string
+          is_read?: boolean | null
+          message: string
+          title: string
+          type: string
+          user_id: string
+        }
+        Update: {
+          action_url?: string | null
+          created_at?: string | null
+          data?: Json | null
+          expires_at?: string | null
+          id?: string
+          is_read?: boolean | null
+          message?: string
+          title?: string
+          type?: string
+          user_id?: string
+        }
+        Relationships: []
       }
       parent_links: {
         Row: {
@@ -573,6 +818,38 @@ export type Database = {
           student_id?: string
         }
         Relationships: []
+      }
+      post_votes: {
+        Row: {
+          created_at: string | null
+          id: string
+          post_id: string
+          user_id: string
+          vote_type: string
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          post_id: string
+          user_id: string
+          vote_type: string
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          post_id?: string
+          user_id?: string
+          vote_type?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "post_votes_post_id_fkey"
+            columns: ["post_id"]
+            isOneToOne: false
+            referencedRelation: "discussion_posts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -854,6 +1131,33 @@ export type Database = {
         }
         Relationships: []
       }
+      user_presence: {
+        Row: {
+          current_page: string | null
+          id: string
+          last_seen: string | null
+          status: string
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          current_page?: string | null
+          id?: string
+          last_seen?: string | null
+          status?: string
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          current_page?: string | null
+          id?: string
+          last_seen?: string | null
+          status?: string
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       grade_analytics: {
@@ -880,6 +1184,17 @@ export type Database = {
       calculate_module_completion: {
         Args: { module_uuid: string; student_uuid: string }
         Returns: number
+      }
+      create_notification: {
+        Args: {
+          notification_action_url?: string
+          notification_data?: Json
+          notification_message: string
+          notification_title: string
+          notification_type: string
+          target_user_id: string
+        }
+        Returns: string
       }
       dev_upsert_user_with_role: {
         Args: { p_email: string; p_password: string; p_role: string }

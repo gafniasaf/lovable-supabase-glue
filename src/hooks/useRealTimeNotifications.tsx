@@ -6,53 +6,236 @@ import { useToast } from '@/hooks/use-toast';
 
 export interface Notification {
   id: string;
-  type: 'assignment' | 'submission' | 'grade' | 'enrollment';
+  user_id: string;
   title: string;
   message: string;
-  timestamp: string;
-  read: boolean;
-  entityId?: string;
-  courseId?: string;
+  type: 'assignment' | 'grade' | 'discussion' | 'message' | 'announcement' | 'reminder';
+  data: Record<string, any>;
+  is_read: boolean;
+  created_at: string;
+  expires_at?: string;
+  action_url?: string;
 }
 
-export const useRealTimeNotifications = () => {
+interface UseRealTimeNotificationsOptions {
+  markAsReadOnView?: boolean;
+  autoRefresh?: boolean;
+}
+
+export const useRealTimeNotifications = ({
+  markAsReadOnView = true,
+  autoRefresh = true
+}: UseRealTimeNotificationsOptions = {}) => {
   const { user } = useAuth();
   const { profile } = useProfile();
   const { toast } = useToast();
+  
   const [notifications, setNotifications] = useState<Notification[]>([]);
+  const [unreadCount, setUnreadCount] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const addNotification = useCallback((notification: Omit<Notification, 'id' | 'timestamp' | 'read'>) => {
-    const newNotification: Notification = {
-      ...notification,
-      id: Math.random().toString(36).substr(2, 9),
-      timestamp: new Date().toISOString(),
-      read: false,
-    };
+  // Fetch notifications from database
+  const fetchNotifications = useCallback(async () => {
+    if (!user?.id) return;
 
-    setNotifications(prev => [newNotification, ...prev.slice(0, 49)]); // Keep only 50 notifications
+    try {
+      setLoading(true);
+      setError(null);
 
-    // Show toast for new notifications
-    toast({
-      title: notification.title,
-      description: notification.message,
-    });
-  }, [toast]);
+      const { data, error } = await supabase
+        .from('notifications')
+        .select('*')
+        .eq('user_id', user.id)
+        .or('expires_at.is.null,expires_at.gte.now()')
+        .order('created_at', { ascending: false })
+        .limit(50);
 
-  const markAsRead = useCallback((id: string) => {
-    setNotifications(prev =>
-      prev.map(notification =>
-        notification.id === id ? { ...notification, read: true } : notification
+      if (error) throw error;
+
+      const typedData = (data || []).map(notification => ({
+        ...notification,
+        type: notification.type as Notification['type'],
+        data: notification.data as Record<string, any>,
+      }));
+
+      setNotifications(typedData);
+      setUnreadCount(typedData.filter(n => !n.is_read).length);
+    } catch (err) {
+      console.error('Error fetching notifications:', err);
+      setError('Failed to load notifications');
+    } finally {
+      setLoading(false);
+    }
+  }, [user?.id]);
+
+  // Mark notification as read
+  const markAsRead = useCallback(async (notificationId: string) => {
+    if (!user?.id) return;
+
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .update({ is_read: true })
+        .eq('id', notificationId)
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+
+      setNotifications(prev => 
+        prev.map(n => 
+          n.id === notificationId ? { ...n, is_read: true } : n
+        )
+      );
+      setUnreadCount(prev => Math.max(0, prev - 1));
+    } catch (err) {
+      console.error('Error marking notification as read:', err);
+    }
+  }, [user?.id]);
+
+  // Mark all notifications as read
+  const markAllAsRead = useCallback(async () => {
+    if (!user?.id) return;
+
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .update({ is_read: true })
+        .eq('user_id', user.id)
+        .eq('is_read', false);
+
+      if (error) throw error;
+
+      setNotifications(prev => 
+        prev.map(n => ({ ...n, is_read: true }))
+      );
+      setUnreadCount(0);
+    } catch (err) {
+      console.error('Error marking all notifications as read:', err);
+    }
+  }, [user?.id]);
+
+  // Delete notification
+  const clearNotification = useCallback(async (notificationId: string) => {
+    if (!user?.id) return;
+
+    try {
+      const { error } = await supabase
+        .from('notifications')
+        .delete()
+        .eq('id', notificationId)
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+
+      setNotifications(prev => {
+        const filtered = prev.filter(n => n.id !== notificationId);
+        const unreadRemaining = filtered.filter(n => !n.is_read).length;
+        setUnreadCount(unreadRemaining);
+        return filtered;
+      });
+    } catch (err) {
+      console.error('Error deleting notification:', err);
+    }
+  }, [user?.id]);
+
+  // Create notification helper
+  const addNotification = useCallback(async (
+    targetUserId: string,
+    title: string,
+    message: string,
+    type: Notification['type'],
+    data: Record<string, any> = {},
+    actionUrl?: string
+  ) => {
+    try {
+      const { data: notificationData, error } = await supabase
+        .rpc('create_notification', {
+          target_user_id: targetUserId,
+          notification_title: title,
+          notification_message: message,
+          notification_type: type,
+          notification_data: data,
+          notification_action_url: actionUrl
+        });
+
+      if (error) throw error;
+      return notificationData;
+    } catch (err) {
+      console.error('Error creating notification:', err);
+      throw err;
+    }
+  }, []);
+
+  // Set up real-time subscription for new notifications
+  useEffect(() => {
+    if (!user?.id) return;
+
+    const channel = supabase
+      .channel('notifications')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'notifications',
+          filter: `user_id=eq.${user.id}`
+        },
+        (payload) => {
+          const newNotification = payload.new as Notification;
+          
+          // Add to notifications list
+          setNotifications(prev => [newNotification, ...prev.slice(0, 49)]);
+          setUnreadCount(prev => prev + 1);
+          
+          // Show toast notification
+          toast({
+            title: newNotification.title,
+            description: newNotification.message,
+          });
+        }
       )
-    );
-  }, []);
+      .on(
+        'postgres_changes',
+        {
+          event: 'UPDATE',
+          schema: 'public',
+          table: 'notifications',
+          filter: `user_id=eq.${user.id}`
+        },
+        (payload) => {
+          const updatedNotification = payload.new as Notification;
+          setNotifications(prev =>
+            prev.map(n =>
+              n.id === updatedNotification.id ? updatedNotification : n
+            )
+          );
+        }
+      )
+      .on(
+        'postgres_changes',
+        {
+          event: 'DELETE',
+          schema: 'public',
+          table: 'notifications',
+          filter: `user_id=eq.${user.id}`
+        },
+        (payload) => {
+          const deletedNotification = payload.old as Notification;
+          setNotifications(prev => prev.filter(n => n.id !== deletedNotification.id));
+          if (!deletedNotification.is_read) {
+            setUnreadCount(prev => Math.max(0, prev - 1));
+          }
+        }
+      )
+      .subscribe();
 
-  const clearNotification = useCallback((id: string) => {
-    setNotifications(prev => prev.filter(notification => notification.id !== id));
-  }, []);
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user?.id, toast]);
 
-  const unreadCount = notifications.filter(n => !n.read).length;
-
-  // Set up real-time subscriptions
+  // Legacy real-time notifications for existing events
   useEffect(() => {
     if (!user || !profile) return;
 
@@ -86,13 +269,14 @@ export const useRealTimeNotifications = () => {
                 .eq('id', payload.new.course_id)
                 .single();
 
-              addNotification({
-                type: 'assignment',
-                title: 'New Assignment Available',
-                message: `"${payload.new.title}" has been posted in ${course?.title || 'your course'}`,
-                entityId: payload.new.id,
-                courseId: payload.new.course_id,
-              });
+              await addNotification(
+                user.id,
+                'New Assignment Available',
+                `"${payload.new.title}" has been posted in ${course?.title || 'your course'}`,
+                'assignment',
+                { assignmentId: payload.new.id, courseId: payload.new.course_id },
+                `/assignments/${payload.new.id}`
+              );
             }
           }
         )
@@ -141,13 +325,14 @@ export const useRealTimeNotifications = () => {
               const studentName = student ? 
                 `${student.first_name || ''} ${student.last_name || ''}`.trim() || 'A student' : 'A student';
 
-              addNotification({
-                type: 'submission',
-                title: 'New Submission Received',
-                message: `${studentName} submitted "${assignment?.title}" in ${course?.title}`,
-                entityId: payload.new.id,
-                courseId: assignment?.course_id,
-              });
+              await addNotification(
+                user.id,
+                'New Submission Received',
+                `${studentName} submitted "${assignment?.title}" in ${course?.title}`,
+                'assignment',
+                { submissionId: payload.new.id, assignmentId: assignment?.course_id },
+                `/assignments/${payload.new.assignment_id}`
+              );
             }
           }
         )
@@ -180,12 +365,14 @@ export const useRealTimeNotifications = () => {
                 .eq('id', payload.new.assignment_id)
                 .single();
 
-              addNotification({
-                type: 'grade',
-                title: 'Assignment Graded',
-                message: `Your submission for "${assignment?.title}" has been graded: ${payload.new.grade}/${assignment?.points_possible || '?'} points`,
-                entityId: payload.new.id,
-              });
+              await addNotification(
+                user.id,
+                'Assignment Graded',
+                `Your submission for "${assignment?.title}" has been graded: ${payload.new.grade}/${assignment?.points_possible || '?'} points`,
+                'grade',
+                { submissionId: payload.new.id },
+                `/assignments/${payload.new.assignment_id}`
+              );
             }
           }
         )
@@ -194,53 +381,6 @@ export const useRealTimeNotifications = () => {
       channels.push(gradesChannel);
     }
 
-    // Listen for new enrollments (teachers only)
-    if (profile.role === 'teacher') {
-      const enrollmentsChannel = supabase
-        .channel('enrollments-realtime')
-        .on(
-          'postgres_changes',
-          {
-            event: 'INSERT',
-            schema: 'public',
-            table: 'enrollments'
-          },
-          async (payload) => {
-            // Get course info
-            const { data: course } = await supabase
-              .from('courses')
-              .select('title, teacher_id')
-              .eq('id', payload.new.course_id)
-              .single();
-
-            // Check if this is the teacher's course
-            if (course?.teacher_id === user.id) {
-              // Get student name
-              const { data: student } = await supabase
-                .from('profiles')
-                .select('first_name, last_name')
-                .eq('id', payload.new.student_id)
-                .single();
-
-              const studentName = student ? 
-                `${student.first_name || ''} ${student.last_name || ''}`.trim() || 'A student' : 'A student';
-
-              addNotification({
-                type: 'enrollment',
-                title: 'New Student Enrolled',
-                message: `${studentName} enrolled in your course "${course?.title}"`,
-                entityId: payload.new.id,
-                courseId: payload.new.course_id,
-              });
-            }
-          }
-        )
-        .subscribe();
-
-      channels.push(enrollmentsChannel);
-    }
-
-    // Cleanup function
     return () => {
       channels.forEach(channel => {
         supabase.removeChannel(channel);
@@ -248,11 +388,30 @@ export const useRealTimeNotifications = () => {
     };
   }, [user, profile, addNotification]);
 
+  // Initial fetch
+  useEffect(() => {
+    if (user?.id) {
+      fetchNotifications();
+    }
+  }, [user?.id, fetchNotifications]);
+
+  // Auto-refresh notifications
+  useEffect(() => {
+    if (!autoRefresh || !user?.id) return;
+
+    const interval = setInterval(fetchNotifications, 60000); // Refresh every minute
+    return () => clearInterval(interval);
+  }, [autoRefresh, user?.id, fetchNotifications]);
+
   return {
     notifications,
     unreadCount,
+    loading,
+    error,
     markAsRead,
+    markAllAsRead,
     clearNotification,
     addNotification,
+    refetch: fetchNotifications,
   };
 };

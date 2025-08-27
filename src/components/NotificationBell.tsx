@@ -63,7 +63,7 @@ export const NotificationBell: React.FC = () => {
                   <div
                     key={notification.id}
                     className={`p-4 border-b cursor-pointer hover:bg-muted/50 transition-colors ${
-                      !notification.read ? 'bg-primary/5' : ''
+                      !notification.is_read ? 'bg-primary/5' : ''
                     }`}
                     onClick={() => handleNotificationClick(notification.id)}
                   >
@@ -80,9 +80,9 @@ export const NotificationBell: React.FC = () => {
                         </p>
                         <div className="flex items-center justify-between mt-2">
                           <span className="text-xs text-muted-foreground">
-                            {formatRelativeTime(notification.timestamp)}
+                            {formatRelativeTime(notification.created_at)}
                           </span>
-                          {!notification.read && (
+                          {!notification.is_read && (
                             <Badge variant="secondary" className="text-xs px-2 py-0">
                               New
                             </Badge>
