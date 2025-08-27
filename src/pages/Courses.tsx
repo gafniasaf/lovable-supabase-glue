@@ -32,46 +32,57 @@ const Courses = () => {
   }, [user, loading, navigate]);
 
   const fetchCourses = async () => {
-      if (!user) return;
+    if (!user) return;
 
-      try {
-        let query = supabase
-          .from('courses')
-          .select(`
-            *,
-            enrollments(count)
-          `);
+    try {
+      // Fetch courses first without enrollment counts to avoid RLS recursion
+      const { data: coursesData, error } = await supabase
+        .from('courses')
+        .select('*');
 
-        const { data: coursesData, error } = await query;
-
-        if (error) {
-          console.error('Error fetching courses:', error);
-          toast({
-            title: "Error",
-            description: "Failed to load courses",
-            variant: "destructive",
-          });
-          return;
-        }
-
-        // Transform the data to include enrollment count
-        const coursesWithCount = coursesData?.map(course => ({
-          ...course,
-          enrolled_count: course.enrollments?.[0]?.count || 0
-        })) || [];
-
-        setCourses(coursesWithCount);
-      } catch (error) {
-        console.error('Error:', error);
+      if (error) {
+        console.error('Error fetching courses:', error);
         toast({
           title: "Error",
           description: "Failed to load courses",
           variant: "destructive",
         });
-      } finally {
-        setLoadingCourses(false);
+        return;
       }
-    };
+
+      // For each course, fetch enrollment count separately if user is a teacher
+      const coursesWithCount = await Promise.all(
+        (coursesData || []).map(async (course) => {
+          let enrolled_count = 0;
+          
+          // Only fetch enrollment count if user is the teacher of this course
+          if (course.teacher_id === user.id) {
+            const { count } = await supabase
+              .from('enrollments')
+              .select('*', { count: 'exact', head: true })
+              .eq('course_id', course.id);
+            enrolled_count = count || 0;
+          }
+          
+          return {
+            ...course,
+            enrolled_count,
+          };
+        })
+      );
+
+      setCourses(coursesWithCount);
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load courses",
+        variant: "destructive",
+      });
+    } finally {
+      setLoadingCourses(false);
+    }
+  };
 
   useEffect(() => {
       if (!user) return;
