@@ -13,7 +13,8 @@ import {
   MessageSquare,
   Activity,
   TrendingUp,
-  Award
+  Award,
+  Brain
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
@@ -48,7 +49,8 @@ const NAVIGATION_ITEMS = {
     { title: "Analytics", url: "/analytics", icon: BarChart3 },
     { title: "Advanced Analytics", url: "/advanced-analytics", icon: TrendingUp },
     { title: "Quiz Assessment", url: "/quiz-assessment", icon: Award },
-  { title: "Students", url: "/students", icon: Users },
+    { title: "AI Dashboard", url: "/ai-dashboard", icon: Brain },
+    { title: "Students", url: "/students", icon: Users },
   { title: "Profile", url: "/profile", icon: Settings },
   ],
   student: [
