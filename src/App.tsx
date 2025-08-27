@@ -5,6 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/hooks/useAuth";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { Layout } from "./components/Layout";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
@@ -27,12 +29,48 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/:courseId" element={<CourseDetails />} />
-            <Route path="/assignments" element={<Assignments />} />
-            <Route path="/assignments/:assignmentId" element={<AssignmentDetails />} />
-            <Route path="/students" element={<Students />} />
+            <Route path="/dashboard" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Dashboard />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/courses" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Courses />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/courses/:courseId" element={
+              <ProtectedRoute>
+                <Layout>
+                  <CourseDetails />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/assignments" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Assignments />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/assignments/:assignmentId" element={
+              <ProtectedRoute>
+                <Layout>
+                  <AssignmentDetails />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/students" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Students />
+                </Layout>
+              </ProtectedRoute>
+            } />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>

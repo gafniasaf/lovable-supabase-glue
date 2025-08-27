@@ -29,36 +29,26 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 
-// Static navigation items to prevent recreation
+// Static navigation items to prevent recreation - only existing routes
 const NAVIGATION_ITEMS = {
   teacher: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
     { title: "Courses", url: "/courses", icon: BookOpen },
     { title: "Assignments", url: "/assignments", icon: FileText },
     { title: "Students", url: "/students", icon: Users },
-    { title: "Analytics", url: "/analytics", icon: BarChart3 },
-    { title: "Grading Queue", url: "/grading", icon: GraduationCap },
   ],
   student: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
     { title: "My Courses", url: "/courses", icon: BookOpen },
     { title: "Assignments", url: "/assignments", icon: FileText },
-    { title: "Planner", url: "/planner", icon: Calendar },
-    { title: "Timeline", url: "/timeline", icon: Calendar },
-    { title: "Leaderboard", url: "/leaderboard", icon: Trophy },
-    { title: "Achievements", url: "/achievements", icon: Star },
   ],
   parent: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
-    { title: "My Children", url: "/children", icon: Users },
-    { title: "Progress", url: "/progress", icon: BarChart3 },
   ],
   admin: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
-    { title: "Users", url: "/users", icon: Users },
     { title: "Courses", url: "/courses", icon: BookOpen },
-    { title: "System", url: "/admin", icon: Settings },
-    { title: "Analytics", url: "/analytics", icon: BarChart3 },
+    { title: "Students", url: "/students", icon: Users },
   ],
 } as const;
 
