@@ -495,7 +495,9 @@ export type Database = {
       submissions: {
         Row: {
           assignment_id: string
+          auto_save_timestamp: string | null
           content: string | null
+          draft_content: string | null
           feedback: string | null
           file_attachments: Json | null
           grade: number | null
@@ -503,11 +505,14 @@ export type Database = {
           graded_by: string | null
           id: string
           student_id: string
+          submission_version: number | null
           submitted_at: string
         }
         Insert: {
           assignment_id: string
+          auto_save_timestamp?: string | null
           content?: string | null
+          draft_content?: string | null
           feedback?: string | null
           file_attachments?: Json | null
           grade?: number | null
@@ -515,11 +520,14 @@ export type Database = {
           graded_by?: string | null
           id?: string
           student_id: string
+          submission_version?: number | null
           submitted_at?: string
         }
         Update: {
           assignment_id?: string
+          auto_save_timestamp?: string | null
           content?: string | null
+          draft_content?: string | null
           feedback?: string | null
           file_attachments?: Json | null
           grade?: number | null
@@ -527,6 +535,7 @@ export type Database = {
           graded_by?: string | null
           id?: string
           student_id?: string
+          submission_version?: number | null
           submitted_at?: string
         }
         Relationships: []

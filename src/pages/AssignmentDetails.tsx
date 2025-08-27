@@ -16,6 +16,7 @@ import { RubricGrading } from "@/components/RubricGrading";
 import { SubmissionTracking } from "@/components/SubmissionTracking";
 import { AssignmentAnalytics } from "@/components/AssignmentAnalytics";
 import { EnhancedGradingInterface } from "@/components/EnhancedGradingInterface";
+import { StudentSubmissionInterface } from "@/components/assignments/StudentSubmissionInterface";
 import { ArrowLeft, Calendar, FileText, Users, CheckCircle, Clock, AlertCircle, Paperclip, BarChart3 } from "lucide-react";
 
 interface FileAttachment {
@@ -543,87 +544,11 @@ const AssignmentDetails = () => {
         )}
 
         {profile?.role === 'student' ? (
-          // Student View - Submission Interface
-          <Card>
-            <CardHeader>
-              <CardTitle>Your Submission</CardTitle>
-              <CardDescription>
-                {userSubmission 
-                  ? `Last submitted: ${formatDate(userSubmission.submitted_at)}`
-                  : "Submit your work for this assignment"
-                }
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {userSubmission?.grade !== null && userSubmission?.grade !== undefined && (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                  <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-semibold text-green-800">Grade: {userSubmission.grade}/{assignment.points_possible}</h3>
-                    {userSubmission.graded_at && (
-                      <span className="text-sm text-green-600">
-                        Graded: {formatDate(userSubmission.graded_at)}
-                      </span>
-                    )}
-                  </div>
-                  {userSubmission.feedback && (
-                    <div>
-                      <p className="text-sm font-medium text-green-800 mb-1">Feedback:</p>
-                      <p className="text-green-700">{userSubmission.feedback}</p>
-                    </div>
-                  )}
-                </div>
-              )}
-
-              {isOverdue && !userSubmission && (
-                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                  <p className="text-red-800 font-medium">This assignment is overdue</p>
-                </div>
-              )}
-
-              <div className="space-y-2">
-                <Label htmlFor="submission">Your Answer</Label>
-                <Textarea
-                  id="submission"
-                  value={submissionContent}
-                  onChange={(e) => setSubmissionContent(e.target.value)}
-                  placeholder="Enter your submission here..."
-                  rows={6}
-                  disabled={userSubmission?.grade !== null && userSubmission?.grade !== undefined}
-                />
-              </div>
-
-              {/* File Upload */}
-              <div className="space-y-2">
-                <Label className="flex items-center gap-2">
-                  <Paperclip className="w-4 h-4" />
-                  File Attachments
-                </Label>
-                <FileUpload
-                  bucketName="assignment-files"
-                  folder={`${user?.id}/${assignmentId}`}
-                  existingFiles={submissionFiles}
-                  onFilesChange={setSubmissionFiles}
-                  maxFiles={3}
-                  disabled={userSubmission?.grade !== null && userSubmission?.grade !== undefined}
-                />
-              </div>
-
-              {(userSubmission?.grade === null || userSubmission?.grade === undefined) && (
-                <Button 
-                  onClick={handleSubmitAssignment}
-                  disabled={submitting || (!submissionContent.trim() && submissionFiles.length === 0)}
-                  className="w-full"
-                >
-                  {submitting 
-                    ? "Submitting..." 
-                    : userSubmission 
-                      ? "Update Submission" 
-                      : "Submit Assignment"
-                  }
-                </Button>
-              )}
-            </CardContent>
-          </Card>
+          // Student View - Enhanced Submission Interface
+          <StudentSubmissionInterface 
+            assignment={assignment}
+            onSubmissionComplete={() => fetchAssignmentData()}
+          />
         ) : (
           // Teacher View - Submissions Management
           <Tabs defaultValue="submissions" className="space-y-6">
