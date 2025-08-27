@@ -56,6 +56,13 @@ export type Database = {
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "announcements_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["course_id"]
+          },
         ]
       }
       assignments: {
@@ -188,11 +195,25 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
+            foreignKeyName: "discussion_forums_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["assignment_id"]
+          },
+          {
             foreignKeyName: "discussion_forums_course_id_fkey"
             columns: ["course_id"]
             isOneToOne: false
             referencedRelation: "courses"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "discussion_forums_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["course_id"]
           },
         ]
       }
@@ -268,6 +289,57 @@ export type Database = {
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "enrollments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["course_id"]
+          },
+        ]
+      }
+      grade_history: {
+        Row: {
+          change_reason: string | null
+          changed_at: string
+          changed_by: string
+          id: string
+          new_feedback: string | null
+          new_grade: number | null
+          previous_feedback: string | null
+          previous_grade: number | null
+          submission_id: string
+        }
+        Insert: {
+          change_reason?: string | null
+          changed_at?: string
+          changed_by: string
+          id?: string
+          new_feedback?: string | null
+          new_grade?: number | null
+          previous_feedback?: string | null
+          previous_grade?: number | null
+          submission_id: string
+        }
+        Update: {
+          change_reason?: string | null
+          changed_at?: string
+          changed_by?: string
+          id?: string
+          new_feedback?: string | null
+          new_grade?: number | null
+          previous_feedback?: string | null
+          previous_grade?: number | null
+          submission_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_grade_history_submission"
+            columns: ["submission_id"]
+            isOneToOne: false
+            referencedRelation: "submissions"
+            referencedColumns: ["id"]
+          },
         ]
       }
       messages: {
@@ -311,6 +383,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "courses"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "messages_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["course_id"]
           },
         ]
       }
@@ -490,6 +569,13 @@ export type Database = {
             referencedRelation: "assignments"
             referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "rubrics_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["assignment_id"]
+          },
         ]
       }
       submissions: {
@@ -498,56 +584,103 @@ export type Database = {
           auto_save_timestamp: string | null
           content: string | null
           draft_content: string | null
+          extra_credit_points: number | null
           feedback: string | null
           file_attachments: Json | null
           grade: number | null
+          grade_comments: string | null
+          grade_override: boolean | null
+          grade_scale: string | null
           graded_at: string | null
           graded_by: string | null
           id: string
+          late_penalty_applied: number | null
           student_id: string
           submission_version: number | null
           submitted_at: string
+          time_spent_grading: number | null
         }
         Insert: {
           assignment_id: string
           auto_save_timestamp?: string | null
           content?: string | null
           draft_content?: string | null
+          extra_credit_points?: number | null
           feedback?: string | null
           file_attachments?: Json | null
           grade?: number | null
+          grade_comments?: string | null
+          grade_override?: boolean | null
+          grade_scale?: string | null
           graded_at?: string | null
           graded_by?: string | null
           id?: string
+          late_penalty_applied?: number | null
           student_id: string
           submission_version?: number | null
           submitted_at?: string
+          time_spent_grading?: number | null
         }
         Update: {
           assignment_id?: string
           auto_save_timestamp?: string | null
           content?: string | null
           draft_content?: string | null
+          extra_credit_points?: number | null
           feedback?: string | null
           file_attachments?: Json | null
           grade?: number | null
+          grade_comments?: string | null
+          grade_override?: boolean | null
+          grade_scale?: string | null
           graded_at?: string | null
           graded_by?: string | null
           id?: string
+          late_penalty_applied?: number | null
           student_id?: string
           submission_version?: number | null
           submitted_at?: string
+          time_spent_grading?: number | null
         }
         Relationships: []
       }
     }
     Views: {
-      [_ in never]: never
+      grade_analytics: {
+        Row: {
+          assignment_id: string | null
+          assignment_title: string | null
+          average_grade: number | null
+          avg_grading_time: number | null
+          course_id: string | null
+          course_title: string | null
+          grade_stddev: number | null
+          graded_submissions: number | null
+          late_submissions: number | null
+          max_grade: number | null
+          min_grade: number | null
+          points_possible: number | null
+          teacher_id: string | null
+          total_submissions: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       dev_upsert_user_with_role: {
         Args: { p_email: string; p_password: string; p_role: string }
         Returns: string
+      }
+      get_grade_statistics: {
+        Args: { assignment_uuid: string }
+        Returns: {
+          average_grade: number
+          completion_rate: number
+          grade_distribution: Json
+          graded_submissions: number
+          median_grade: number
+          total_submissions: number
+        }[]
       }
       get_user_role: {
         Args: { user_uuid: string }
