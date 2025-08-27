@@ -540,6 +540,18 @@ export type Database = {
         Args: { p_email: string; p_password: string; p_role: string }
         Returns: string
       }
+      get_user_role: {
+        Args: { user_uuid: string }
+        Returns: string
+      }
+      is_course_student: {
+        Args: { course_uuid: string; user_uuid: string }
+        Returns: boolean
+      }
+      is_course_teacher: {
+        Args: { course_uuid: string; user_uuid: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never
