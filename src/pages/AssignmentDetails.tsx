@@ -17,6 +17,8 @@ import { SubmissionTracking } from "@/components/SubmissionTracking";
 import { AssignmentAnalytics } from "@/components/AssignmentAnalytics";
 import { EnhancedGradingInterface } from "@/components/EnhancedGradingInterface";
 import { StudentSubmissionInterface } from "@/components/assignments/StudentSubmissionInterface";
+import { GradeAnalyticsDashboard } from "@/components/grading/GradeAnalyticsDashboard";
+import { EnhancedGradingForm } from "@/components/grading/EnhancedGradingForm";
 import { ArrowLeft, Calendar, FileText, Users, CheckCircle, Clock, AlertCircle, Paperclip, BarChart3 } from "lucide-react";
 
 interface FileAttachment {
@@ -733,11 +735,16 @@ const AssignmentDetails = () => {
                       Back to Submissions
                     </Button>
                   </div>
-                  <EnhancedGradingInterface
-                    submission={selectedSubmission}
+                  <EnhancedGradingForm
+                    submissionId={selectedSubmission.id}
                     assignmentTitle={assignment.title}
+                    studentName={selectedSubmission.student?.first_name && selectedSubmission.student?.last_name
+                      ? `${selectedSubmission.student.first_name} ${selectedSubmission.student.last_name}`
+                      : selectedSubmission.student?.email || 'Unknown Student'
+                    }
                     maxPoints={assignment.points_possible || 100}
-                    rubricCriteria={rubrics.find(r => r.id === selectedRubric)?.criteria || []}
+                    currentGrade={selectedSubmission.grade}
+                    currentFeedback={selectedSubmission.feedback}
                     onGradeSubmitted={async (submissionId, grade, feedback) => {
                       await handleGradeSubmission(submissionId, grade, feedback);
                       setSelectedSubmission(null);
@@ -759,19 +766,10 @@ const AssignmentDetails = () => {
             </TabsContent>
 
             <TabsContent value="analytics" className="space-y-4">
-              {analyticsData ? (
-                <AssignmentAnalytics data={analyticsData} />
-              ) : (
-                <Card>
-                  <CardContent className="pt-6 text-center">
-                    <BarChart3 className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-                    <h3 className="text-lg font-medium mb-2">No Analytics Data</h3>
-                    <p className="text-muted-foreground">
-                      Analytics will be available once students start submitting assignments
-                    </p>
-                  </CardContent>
-                </Card>
-              )}
+              <GradeAnalyticsDashboard 
+                assignmentId={assignmentId}
+                maxPoints={assignment.points_possible || 100}
+              />
             </TabsContent>
 
             <TabsContent value="rubrics" className="space-y-4">
