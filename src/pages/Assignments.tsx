@@ -139,6 +139,32 @@ const Assignments = () => {
     fetchAssignments();
   }, [user, profile, selectedCourseId]);
 
+  // Set up real-time subscription for assignments
+  useEffect(() => {
+    if (!user || !profile) return;
+
+    const channel = supabase
+      .channel('assignments-page-realtime')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'assignments'
+        },
+        (payload) => {
+          console.log('Assignment change detected:', payload);
+          // Refetch assignments when changes occur
+          fetchAssignments();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [user, profile, fetchAssignments]);
+
   const getAssignmentStatus = (assignment: Assignment) => {
     if (!assignment.due_date) return "active";
     
