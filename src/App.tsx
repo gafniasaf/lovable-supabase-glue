@@ -14,6 +14,7 @@ import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
 import AssignmentDetails from "./pages/AssignmentDetails";
 import Analytics from "./pages/Analytics";
+import Communications from "./pages/Communications";
 import Assignments from "./pages/Assignments";
 import Students from "./pages/Students";
 import NotFound from "./pages/NotFound";
@@ -72,6 +73,7 @@ const App = () => (
                 </Layout>
               </ProtectedRoute>
             } />
+            <Route path="/communications" element={<ProtectedRoute><Layout><Communications /></Layout></ProtectedRoute>} />
             <Route path="/students" element={
               <ProtectedRoute>
                 <Layout>

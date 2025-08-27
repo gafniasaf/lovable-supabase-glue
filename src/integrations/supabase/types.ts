@@ -14,6 +14,50 @@ export type Database = {
   }
   public: {
     Tables: {
+      announcements: {
+        Row: {
+          author_id: string
+          content: string
+          course_id: string
+          created_at: string
+          expires_at: string | null
+          id: string
+          priority: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          content: string
+          course_id: string
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          priority?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          content?: string
+          course_id?: string
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          priority?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "announcements_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       assignments: {
         Row: {
           course_id: string
@@ -104,6 +148,99 @@ export type Database = {
         }
         Relationships: []
       }
+      discussion_forums: {
+        Row: {
+          assignment_id: string | null
+          course_id: string | null
+          created_at: string
+          created_by: string
+          description: string | null
+          id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          assignment_id?: string | null
+          course_id?: string | null
+          created_at?: string
+          created_by: string
+          description?: string | null
+          id?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          assignment_id?: string | null
+          course_id?: string | null
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "discussion_forums_assignment_id_fkey"
+            columns: ["assignment_id"]
+            isOneToOne: false
+            referencedRelation: "assignments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "discussion_forums_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      discussion_posts: {
+        Row: {
+          author_id: string
+          content: string
+          created_at: string
+          forum_id: string
+          id: string
+          parent_post_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          content: string
+          created_at?: string
+          forum_id: string
+          id?: string
+          parent_post_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          author_id?: string
+          content?: string
+          created_at?: string
+          forum_id?: string
+          id?: string
+          parent_post_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "discussion_posts_forum_id_fkey"
+            columns: ["forum_id"]
+            isOneToOne: false
+            referencedRelation: "discussion_forums"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "discussion_posts_parent_post_id_fkey"
+            columns: ["parent_post_id"]
+            isOneToOne: false
+            referencedRelation: "discussion_posts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       enrollments: {
         Row: {
           course_id: string
@@ -126,6 +263,50 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "enrollments_course_id_fkey"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      messages: {
+        Row: {
+          content: string
+          course_id: string | null
+          created_at: string
+          id: string
+          read_at: string | null
+          recipient_id: string
+          sender_id: string
+          subject: string | null
+          thread_id: string | null
+        }
+        Insert: {
+          content: string
+          course_id?: string | null
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id: string
+          sender_id: string
+          subject?: string | null
+          thread_id?: string | null
+        }
+        Update: {
+          content?: string
+          course_id?: string | null
+          created_at?: string
+          id?: string
+          read_at?: string | null
+          recipient_id?: string
+          sender_id?: string
+          subject?: string | null
+          thread_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "messages_course_id_fkey"
             columns: ["course_id"]
             isOneToOne: false
             referencedRelation: "courses"

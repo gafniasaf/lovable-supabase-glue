@@ -9,7 +9,8 @@ import {
   Trophy,
   Star,
   Settings,
-  Home
+  Home,
+  MessageSquare
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
@@ -36,6 +37,7 @@ const NAVIGATION_ITEMS = {
     { title: "Dashboard", url: "/dashboard", icon: Home },
     { title: "Courses", url: "/courses", icon: BookOpen },
     { title: "Assignments", url: "/assignments", icon: FileText },
+    { title: "Communications", url: "/communications", icon: MessageSquare },
     { title: "Analytics", url: "/analytics", icon: BarChart3 },
     { title: "Students", url: "/students", icon: Users },
   ],
@@ -43,6 +45,7 @@ const NAVIGATION_ITEMS = {
     { title: "Dashboard", url: "/dashboard", icon: Home },
     { title: "My Courses", url: "/courses", icon: BookOpen },
     { title: "Assignments", url: "/assignments", icon: FileText },
+    { title: "Communications", url: "/communications", icon: MessageSquare },
     { title: "Analytics", url: "/analytics", icon: BarChart3 },
   ],
   parent: [
