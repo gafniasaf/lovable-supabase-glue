@@ -1,14 +1,29 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { NotificationBell } from "@/components/NotificationBell";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export const Layout = ({ children }: LayoutProps) => {
+  const { user } = useAuth();
+  const { profile } = useProfile();
+
+  const getInitials = () => {
+    if (profile?.first_name && profile?.last_name) {
+      return `${profile.first_name.charAt(0)}${profile.last_name.charAt(0)}`.toUpperCase();
+    }
+    return user?.email?.charAt(0).toUpperCase() || 'U';
+  };
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">
@@ -23,18 +38,22 @@ export const Layout = ({ children }: LayoutProps) => {
             <div className="flex items-center gap-2">
               <NotificationBell />
               <Button variant="ghost" size="sm" asChild>
-                <a href="/profile" className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-primary-foreground text-sm font-medium">
-                    {/* User initials or avatar */}
-                    U
-                  </div>
-                </a>
+                <Link to="/profile" className="flex items-center gap-2">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src={profile?.avatar_url} alt="Profile" />
+                    <AvatarFallback className="text-xs">
+                      {getInitials()}
+                    </AvatarFallback>
+                  </Avatar>
+                </Link>
               </Button>
             </div>
           </header>
           
           <main className="flex-1 overflow-auto">
-            {children}
+            <ErrorBoundary>
+              {children}
+            </ErrorBoundary>
           </main>
         </div>
       </div>

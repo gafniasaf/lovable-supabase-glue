@@ -41,7 +41,8 @@ const NAVIGATION_ITEMS = {
     { title: "Discussions", url: "/discussions", icon: Users },
     { title: "Calendar", url: "/calendar", icon: Calendar },
     { title: "Analytics", url: "/analytics", icon: BarChart3 },
-    { title: "Students", url: "/students", icon: Users },
+  { title: "Students", url: "/students", icon: Users },
+  { title: "Profile", url: "/profile", icon: Settings },
   ],
   student: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
@@ -50,7 +51,8 @@ const NAVIGATION_ITEMS = {
     { title: "Communications", url: "/communications", icon: MessageSquare },
     { title: "Discussions", url: "/discussions", icon: Users },
     { title: "Calendar", url: "/calendar", icon: Calendar },
-    { title: "Analytics", url: "/analytics", icon: BarChart3 },
+  { title: "Analytics", url: "/analytics", icon: BarChart3 },
+  { title: "Profile", url: "/profile", icon: Settings },
   ],
   parent: [
     { title: "Dashboard", url: "/dashboard", icon: Home },

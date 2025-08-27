@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
+import { PageLoading } from "@/components/LoadingSpinner";
 import { BookOpen, Users, FileText, TrendingUp } from "lucide-react";
 
 interface DashboardStats {
@@ -112,11 +113,7 @@ const Dashboard = () => {
   }, [user, profile]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-lg">Loading dashboard...</div>
-      </div>
-    );
+    return <PageLoading text="Loading dashboard..." />;
   }
 
   return (
