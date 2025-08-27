@@ -25,6 +25,7 @@ import AdvancedAnalyticsPage from "./pages/AdvancedAnalytics";
 import ParentPortalPage from "./pages/ParentPortal";
 import QuizAssessmentPage from "./pages/QuizAssessment";
 import AIDashboardPage from "./pages/AIDashboard";
+import MobileDashboardPage from "./pages/MobileDashboard";
 import Students from "./pages/Students";
 import NotFound from "./pages/NotFound";
 
@@ -97,6 +98,7 @@ const App = () => (
             <Route path="/parent-portal" element={<ProtectedRoute><Layout><ParentPortalPage /></Layout></ProtectedRoute>} />
             <Route path="/quiz-assessment" element={<ProtectedRoute><Layout><QuizAssessmentPage /></Layout></ProtectedRoute>} />
             <Route path="/ai-dashboard" element={<ProtectedRoute><Layout><AIDashboardPage /></Layout></ProtectedRoute>} />
+            <Route path="/mobile-dashboard" element={<ProtectedRoute><Layout><MobileDashboardPage /></Layout></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Layout><ProfilePage /></Layout></ProtectedRoute>} />
             <Route path="/students" element={
               <ProtectedRoute>

@@ -859,6 +859,7 @@ export type Database = {
           first_name: string | null
           id: string
           last_name: string | null
+          push_token: string | null
           role: string
           updated_at: string | null
           user_id: string | null
@@ -870,6 +871,7 @@ export type Database = {
           first_name?: string | null
           id: string
           last_name?: string | null
+          push_token?: string | null
           role: string
           updated_at?: string | null
           user_id?: string | null
@@ -881,6 +883,7 @@ export type Database = {
           first_name?: string | null
           id?: string
           last_name?: string | null
+          push_token?: string | null
           role?: string
           updated_at?: string | null
           user_id?: string | null
