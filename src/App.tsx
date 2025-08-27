@@ -13,6 +13,7 @@ import Dashboard from "./pages/Dashboard";
 import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
 import AssignmentDetails from "./pages/AssignmentDetails";
+import Analytics from "./pages/Analytics";
 import Assignments from "./pages/Assignments";
 import Students from "./pages/Students";
 import NotFound from "./pages/NotFound";
@@ -61,6 +62,13 @@ const App = () => (
               <ProtectedRoute>
                 <Layout>
                   <AssignmentDetails />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/analytics" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Analytics />
                 </Layout>
               </ProtectedRoute>
             } />

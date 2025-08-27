@@ -36,12 +36,14 @@ const NAVIGATION_ITEMS = {
     { title: "Dashboard", url: "/dashboard", icon: Home },
     { title: "Courses", url: "/courses", icon: BookOpen },
     { title: "Assignments", url: "/assignments", icon: FileText },
+    { title: "Analytics", url: "/analytics", icon: BarChart3 },
     { title: "Students", url: "/students", icon: Users },
   ],
   student: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
     { title: "My Courses", url: "/courses", icon: BookOpen },
     { title: "Assignments", url: "/assignments", icon: FileText },
+    { title: "Analytics", url: "/analytics", icon: BarChart3 },
   ],
   parent: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
