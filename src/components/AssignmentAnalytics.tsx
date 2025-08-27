@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { TrendingUp, Award, Clock, Users } from 'lucide-react';
 
 interface GradeDistribution {
@@ -118,7 +117,7 @@ export const AssignmentAnalytics: React.FC<AssignmentAnalyticsProps> = ({
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        {/* Grade Distribution Bar Chart */}
+        {/* Grade Distribution Chart - Simplified */}
         <Card>
           <CardHeader>
             <CardTitle>Grade Distribution</CardTitle>
@@ -127,19 +126,21 @@ export const AssignmentAnalytics: React.FC<AssignmentAnalyticsProps> = ({
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={data.gradeDistribution}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="range" />
-                <YAxis />
-                <Tooltip />
-                <Bar dataKey="count" fill="#3b82f6" />
-              </BarChart>
-            </ResponsiveContainer>
+            <div className="space-y-4">
+              {data.gradeDistribution.map((item, index) => (
+                <div key={item.range} className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span>{item.range}%</span>
+                    <span>{item.count} students</span>
+                  </div>
+                  <Progress value={item.percentage} className="h-2" />
+                </div>
+              ))}
+            </div>
           </CardContent>
         </Card>
 
-        {/* Performance Pie Chart */}
+        {/* Performance Overview - Simplified */}
         <Card>
           <CardHeader>
             <CardTitle>Performance Overview</CardTitle>
@@ -148,23 +149,20 @@ export const AssignmentAnalytics: React.FC<AssignmentAnalyticsProps> = ({
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie
-                  data={performanceLevels.filter(level => level.value > 0)}
-                  cx="50%"
-                  cy="50%"
-                  outerRadius={80}
-                  dataKey="value"
-                  label={({ name, value }) => `${name.split(' ')[0]}: ${value}`}
-                >
-                  {performanceLevels.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip />
-              </PieChart>
-            </ResponsiveContainer>
+            <div className="space-y-4">
+              {performanceLevels.filter(level => level.value > 0).map((level, index) => (
+                <div key={level.name} className="flex items-center justify-between p-3 border rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <div 
+                      className="w-4 h-4 rounded" 
+                      style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                    />
+                    <span className="text-sm font-medium">{level.name}</span>
+                  </div>
+                  <Badge variant="outline">{level.value} students</Badge>
+                </div>
+              ))}
+            </div>
           </CardContent>
         </Card>
       </div>

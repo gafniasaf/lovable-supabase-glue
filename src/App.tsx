@@ -19,6 +19,7 @@ import DiscussionForums from "./pages/DiscussionForums";
 import CalendarPage from "./pages/CalendarPage";
 import ProfilePage from "./pages/ProfilePage";
 import Assignments from "./pages/Assignments";
+import AssignmentManagement from "./pages/AssignmentManagement";
 import Students from "./pages/Students";
 import NotFound from "./pages/NotFound";
 
@@ -59,6 +60,13 @@ const App = () => (
               <ProtectedRoute>
                 <Layout>
                   <Assignments />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/assignment-management" element={
+              <ProtectedRoute>
+                <Layout>
+                  <AssignmentManagement />
                 </Layout>
               </ProtectedRoute>
             } />

@@ -37,6 +37,7 @@ const NAVIGATION_ITEMS = {
     { title: "Dashboard", url: "/dashboard", icon: Home },
     { title: "Courses", url: "/courses", icon: BookOpen },
     { title: "Assignments", url: "/assignments", icon: FileText },
+    { title: "Assignment Manager", url: "/assignment-management", icon: BarChart3 },
     { title: "Communications", url: "/communications", icon: MessageSquare },
     { title: "Discussions", url: "/discussions", icon: Users },
     { title: "Calendar", url: "/calendar", icon: Calendar },
