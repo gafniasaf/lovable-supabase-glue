@@ -8,10 +8,19 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
-import { FileUpload } from "@/components/FileUpload";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Calendar, FileText, Users, CheckCircle, Clock, AlertCircle } from "lucide-react";
+import { FileUpload } from "@/components/FileUpload";
+import { ArrowLeft, Calendar, FileText, Users, CheckCircle, Clock, AlertCircle, Paperclip } from "lucide-react";
+
+interface FileAttachment {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  url: string;
+  uploadedAt: string;
+}
 
 interface Assignment {
   id: string;
@@ -21,6 +30,7 @@ interface Assignment {
   points_possible?: number;
   created_at: string;
   course_id: string;
+  resource_files?: FileAttachment[];
   course?: {
     title: string;
     teacher_id: string;
@@ -37,20 +47,12 @@ interface Submission {
   submitted_at: string;
   graded_at?: string;
   graded_by?: string;
-  file_attachments?: FileInfo[];
+  file_attachments?: FileAttachment[];
   student?: {
     first_name?: string;
     last_name?: string;
     email: string;
   };
-}
-
-interface FileInfo {
-  name: string;
-  url: string;
-  type: string;
-  size: number;
-  path: string;
 }
 
 const AssignmentDetails = () => {
@@ -64,7 +66,7 @@ const AssignmentDetails = () => {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [userSubmission, setUserSubmission] = useState<Submission | null>(null);
   const [submissionContent, setSubmissionContent] = useState("");
-  const [submissionFiles, setSubmissionFiles] = useState<FileInfo[]>([]);
+  const [submissionFiles, setSubmissionFiles] = useState<FileAttachment[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
@@ -99,6 +101,7 @@ const AssignmentDetails = () => {
       setAssignment({
         ...assignmentData,
         course: courseData || { title: "Unknown Course", teacher_id: "" },
+        resource_files: Array.isArray(assignmentData.resource_files) ? (assignmentData.resource_files as unknown as FileAttachment[]) : [],
       });
 
       // If user is a teacher, fetch all submissions
@@ -121,23 +124,10 @@ const AssignmentDetails = () => {
                 .eq('id', submission.student_id)
                 .single();
 
-              // Parse file attachments safely
-              let fileAttachments: FileInfo[] = [];
-              try {
-                if (submission.file_attachments) {
-                  const parsed = typeof submission.file_attachments === 'string' 
-                    ? JSON.parse(submission.file_attachments)
-                    : submission.file_attachments;
-                  fileAttachments = Array.isArray(parsed) ? parsed : [];
-                }
-              } catch (error) {
-                console.error('Error parsing file attachments:', error);
-              }
-
               return {
                 ...submission,
                 student: studentData || { first_name: "", last_name: "", email: "Unknown" },
-                file_attachments: fileAttachments,
+                file_attachments: Array.isArray(submission.file_attachments) ? (submission.file_attachments as unknown as FileAttachment[]) : [],
               };
             })
           );
@@ -159,23 +149,14 @@ const AssignmentDetails = () => {
         } else if (userSubmissionData) {
           setUserSubmission({
             ...userSubmissionData,
-            file_attachments: [], // Will be parsed below
+            file_attachments: Array.isArray(userSubmissionData.file_attachments) ? (userSubmissionData.file_attachments as unknown as FileAttachment[]) : [],
           });
           setSubmissionContent(userSubmissionData.content || "");
           
-          // Parse file attachments safely
-          let fileAttachments: FileInfo[] = [];
-          try {
-            if (userSubmissionData.file_attachments) {
-              const parsed = typeof userSubmissionData.file_attachments === 'string'
-                ? JSON.parse(userSubmissionData.file_attachments)
-                : userSubmissionData.file_attachments;
-              fileAttachments = Array.isArray(parsed) ? parsed : [];
-            }
-          } catch (error) {
-            console.error('Error parsing file attachments:', error);
+          // Parse file attachments from JSONB
+          if (userSubmissionData.file_attachments && Array.isArray(userSubmissionData.file_attachments)) {
+            setSubmissionFiles(userSubmissionData.file_attachments as unknown as FileAttachment[]);
           }
-          setSubmissionFiles(fileAttachments);
         }
       }
     } catch (error) {
@@ -191,13 +172,20 @@ const AssignmentDetails = () => {
   };
 
   const handleSubmitAssignment = async () => {
-    if (!user || !assignmentId) return;
+    if (!user || !assignmentId || (!submissionContent.trim() && submissionFiles.length === 0)) {
+      toast({
+        title: "Error",
+        description: "Please provide content or upload files",
+        variant: "destructive",
+      });
+      return;
+    }
 
     setSubmitting(true);
     try {
       const submissionData = {
         content: submissionContent || null,
-        file_attachments: JSON.stringify(submissionFiles),
+        file_attachments: JSON.parse(JSON.stringify(submissionFiles)),
         submitted_at: new Date().toISOString(),
       };
 
@@ -229,7 +217,8 @@ const AssignmentDetails = () => {
           .insert({
             student_id: user.id,
             assignment_id: assignmentId,
-            ...submissionData,
+            content: submissionContent || null,
+            file_attachments: JSON.parse(JSON.stringify(submissionFiles)),
           });
 
         if (error) {
@@ -400,6 +389,28 @@ const AssignmentDetails = () => {
           </div>
         </div>
 
+        {/* Assignment Resources */}
+        {assignment.resource_files && assignment.resource_files.length > 0 && (
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Paperclip className="w-5 h-5" />
+                Assignment Resources
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <FileUpload
+                bucketName="course-resources"
+                folder={assignment.course_id}
+                existingFiles={assignment.resource_files}
+                onFilesChange={() => {}} // Read-only
+                disabled={true}
+                maxFiles={5}
+              />
+            </CardContent>
+          </Card>
+        )}
+
         {profile?.role === 'student' ? (
           // Student View - Submission Interface
           <Card>
@@ -444,21 +455,25 @@ const AssignmentDetails = () => {
                   id="submission"
                   value={submissionContent}
                   onChange={(e) => setSubmissionContent(e.target.value)}
-                  placeholder="Enter your written response here..."
+                  placeholder="Enter your submission here..."
                   rows={6}
                   disabled={userSubmission?.grade !== null && userSubmission?.grade !== undefined}
                 />
               </div>
 
+              {/* File Upload */}
               <div className="space-y-2">
-                <Label>File Attachments</Label>
+                <Label className="flex items-center gap-2">
+                  <Paperclip className="w-4 h-4" />
+                  File Attachments
+                </Label>
                 <FileUpload
                   bucketName="assignment-files"
-                  folder={`${user.id}/${assignmentId}`}
-                  onUploadComplete={setSubmissionFiles}
-                  maxFiles={3}
+                  folder={`${user?.id}/${assignmentId}`}
                   existingFiles={submissionFiles}
-                  acceptedTypes={['.pdf', '.doc', '.docx', '.txt', '.jpg', '.jpeg', '.png']}
+                  onFilesChange={setSubmissionFiles}
+                  maxFiles={3}
+                  disabled={userSubmission?.grade !== null && userSubmission?.grade !== undefined}
                 />
               </div>
 
@@ -527,7 +542,7 @@ const AssignmentDetails = () => {
                       <div className="space-y-4">
                         <div>
                           <Label className="text-sm font-medium">Submission:</Label>
-                          <div className="mt-1 space-y-2">
+                          <div className="mt-1 space-y-3">
                             {submission.content && (
                               <div className="p-3 bg-muted rounded-md">
                                 <p className="text-sm whitespace-pre-wrap">
@@ -536,28 +551,17 @@ const AssignmentDetails = () => {
                               </div>
                             )}
                             
-                            {submission.file_attachments && submission.file_attachments.length > 0 && (
-                              <div className="space-y-2">
-                                <Label className="text-xs font-medium text-muted-foreground">Attached Files:</Label>
-                                {submission.file_attachments.map((file, index) => (
-                                  <div key={index} className="flex items-center gap-2 p-2 bg-muted rounded">
-                                    <FileText className="h-4 w-4" />
-                                    <a 
-                                      href={file.url} 
-                                      target="_blank" 
-                                      rel="noopener noreferrer"
-                                      className="text-sm text-blue-600 hover:underline"
-                                    >
-                                      {file.name}
-                                    </a>
-                                  </div>
-                                ))}
-                              </div>
-                            )}
-                            
-                            {!submission.content && (!submission.file_attachments || submission.file_attachments.length === 0) && (
-                              <div className="p-3 bg-muted rounded-md">
-                                <p className="text-sm text-muted-foreground">No content provided</p>
+                            {submission.file_attachments && Array.isArray(submission.file_attachments) && submission.file_attachments.length > 0 && (
+                              <div>
+                                <Label className="text-xs font-medium text-muted-foreground">File Attachments:</Label>
+                                <FileUpload
+                                  bucketName="assignment-files"
+                                  folder={`${submission.student_id}/${assignmentId}`}
+                                  existingFiles={submission.file_attachments}
+                                  onFilesChange={() => {}} // Read-only for teacher view
+                                  disabled={true}
+                                  maxFiles={3}
+                                />
                               </div>
                             )}
                           </div>
