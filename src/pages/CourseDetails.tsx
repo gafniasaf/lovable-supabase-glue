@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Users, BookOpen } from "lucide-react";
+import { CreateAssignmentDialog } from "@/components/CreateAssignmentDialog";
 
 interface Course {
   id: string;
@@ -54,89 +55,89 @@ const CourseDetails = () => {
     }
   }, [user, loading, navigate]);
 
-  useEffect(() => {
-    const fetchCourseData = async () => {
-      if (!user || !courseId) return;
+  const fetchCourseData = async () => {
+    if (!user || !courseId) return;
 
-      try {
-        // Fetch course details
-        const { data: courseData, error: courseError } = await supabase
-          .from('courses')
-          .select('*')
-          .eq('id', courseId)
-          .single();
+    try {
+      // Fetch course details
+      const { data: courseData, error: courseError } = await supabase
+        .from('courses')
+        .select('*')
+        .eq('id', courseId)
+        .single();
 
-        if (courseError) {
-          console.error('Error fetching course:', courseError);
-          toast({
-            title: "Error",
-            description: "Failed to load course",
-            variant: "destructive",
-          });
-          navigate("/courses");
-          return;
-        }
-
-        setCourse(courseData);
-
-        // Fetch assignments for this course
-        const { data: assignmentsData, error: assignmentsError } = await supabase
-          .from('assignments')
-          .select('*')
-          .eq('course_id', courseId)
-          .order('created_at', { ascending: false });
-
-        if (assignmentsError) {
-          console.error('Error fetching assignments:', assignmentsError);
-        } else {
-          setAssignments(assignmentsData || []);
-        }
-
-        // Fetch enrollments for this course with profiles
-        const { data: enrollmentsData, error: enrollmentsError } = await supabase
-          .from('enrollments')
-          .select('*')
-          .eq('course_id', courseId);
-
-        if (enrollmentsError) {
-          console.error('Error fetching enrollments:', enrollmentsError);
-        } else {
-          // Fetch profiles separately for enrolled students
-          if (enrollmentsData && enrollmentsData.length > 0) {
-            const studentIds = enrollmentsData.map(e => e.student_id);
-            const { data: profilesData } = await supabase
-              .from('profiles')
-              .select('id, first_name, last_name, email')
-              .in('id', studentIds);
-
-            // Combine enrollment and profile data
-            const enrollmentsWithProfiles = enrollmentsData.map(enrollment => ({
-              ...enrollment,
-              profiles: profilesData?.find(profile => profile.id === enrollment.student_id) || {
-                first_name: '',
-                last_name: '',
-                email: 'Unknown'
-              }
-            }));
-
-            setEnrollments(enrollmentsWithProfiles);
-          } else {
-            setEnrollments([]);
-          }
-        }
-
-      } catch (error) {
-        console.error('Error:', error);
+      if (courseError) {
+        console.error('Error fetching course:', courseError);
         toast({
           title: "Error",
-          description: "Failed to load course data",
+          description: "Failed to load course",
           variant: "destructive",
         });
-      } finally {
-        setLoadingData(false);
+        navigate("/courses");
+        return;
       }
-    };
 
+      setCourse(courseData);
+
+      // Fetch assignments for this course
+      const { data: assignmentsData, error: assignmentsError } = await supabase
+        .from('assignments')
+        .select('*')
+        .eq('course_id', courseId)
+        .order('created_at', { ascending: false });
+
+      if (assignmentsError) {
+        console.error('Error fetching assignments:', assignmentsError);
+      } else {
+        setAssignments(assignmentsData || []);
+      }
+
+      // Fetch enrollments for this course with profiles
+      const { data: enrollmentsData, error: enrollmentsError } = await supabase
+        .from('enrollments')
+        .select('*')
+        .eq('course_id', courseId);
+
+      if (enrollmentsError) {
+        console.error('Error fetching enrollments:', enrollmentsError);
+      } else {
+        // Fetch profiles separately for enrolled students
+        if (enrollmentsData && enrollmentsData.length > 0) {
+          const studentIds = enrollmentsData.map(e => e.student_id);
+          const { data: profilesData } = await supabase
+            .from('profiles')
+            .select('id, first_name, last_name, email')
+            .in('id', studentIds);
+
+          // Combine enrollment and profile data
+          const enrollmentsWithProfiles = enrollmentsData.map(enrollment => ({
+            ...enrollment,
+            profiles: profilesData?.find(profile => profile.id === enrollment.student_id) || {
+              first_name: '',
+              last_name: '',
+              email: 'Unknown'
+            }
+          }));
+
+          setEnrollments(enrollmentsWithProfiles);
+        } else {
+          setEnrollments([]);
+        }
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to load course data",
+        variant: "destructive",
+      });
+    } finally {
+      setLoadingData(false);
+    }
+  };
+
+  useEffect(() => {
     fetchCourseData();
   }, [user, courseId, toast, navigate]);
 
@@ -238,7 +239,7 @@ const CourseDetails = () => {
           <TabsContent value="assignments" className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-semibold">Assignments</h2>
-              <Button>Add Assignment</Button>
+              <CreateAssignmentDialog courseId={courseId!} onAssignmentCreated={fetchCourseData} />
             </div>
             
             {assignments.length === 0 ? (
@@ -271,7 +272,13 @@ const CourseDetails = () => {
                             </span>
                           )}
                         </div>
-                        <Button variant="outline" size="sm">Manage</Button>
+                        <Button 
+                          variant="outline" 
+                          size="sm"
+                          onClick={() => navigate(`/assignments/${assignment.id}`)}
+                        >
+                          Manage
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>

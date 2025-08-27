@@ -10,6 +10,7 @@ import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Courses from "./pages/Courses";
 import CourseDetails from "./pages/CourseDetails";
+import AssignmentDetails from "./pages/AssignmentDetails";
 import Assignments from "./pages/Assignments";
 import Students from "./pages/Students";
 import NotFound from "./pages/NotFound";
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:courseId" element={<CourseDetails />} />
             <Route path="/assignments" element={<Assignments />} />
+            <Route path="/assignments/:assignmentId" element={<AssignmentDetails />} />
             <Route path="/students" element={<Students />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
