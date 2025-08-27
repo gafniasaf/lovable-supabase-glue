@@ -15,6 +15,8 @@ import CourseDetails from "./pages/CourseDetails";
 import AssignmentDetails from "./pages/AssignmentDetails";
 import Analytics from "./pages/Analytics";
 import Communications from "./pages/Communications";
+import DiscussionForums from "./pages/DiscussionForums";
+import CalendarPage from "./pages/CalendarPage";
 import Assignments from "./pages/Assignments";
 import Students from "./pages/Students";
 import NotFound from "./pages/NotFound";
@@ -74,6 +76,8 @@ const App = () => (
               </ProtectedRoute>
             } />
             <Route path="/communications" element={<ProtectedRoute><Layout><Communications /></Layout></ProtectedRoute>} />
+            <Route path="/discussions" element={<ProtectedRoute><Layout><DiscussionForums /></Layout></ProtectedRoute>} />
+            <Route path="/calendar" element={<ProtectedRoute><Layout><CalendarPage /></Layout></ProtectedRoute>} />
             <Route path="/students" element={
               <ProtectedRoute>
                 <Layout>

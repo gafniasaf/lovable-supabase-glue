@@ -38,6 +38,8 @@ const NAVIGATION_ITEMS = {
     { title: "Courses", url: "/courses", icon: BookOpen },
     { title: "Assignments", url: "/assignments", icon: FileText },
     { title: "Communications", url: "/communications", icon: MessageSquare },
+    { title: "Discussions", url: "/discussions", icon: Users },
+    { title: "Calendar", url: "/calendar", icon: Calendar },
     { title: "Analytics", url: "/analytics", icon: BarChart3 },
     { title: "Students", url: "/students", icon: Users },
   ],
@@ -46,6 +48,8 @@ const NAVIGATION_ITEMS = {
     { title: "My Courses", url: "/courses", icon: BookOpen },
     { title: "Assignments", url: "/assignments", icon: FileText },
     { title: "Communications", url: "/communications", icon: MessageSquare },
+    { title: "Discussions", url: "/discussions", icon: Users },
+    { title: "Calendar", url: "/calendar", icon: Calendar },
     { title: "Analytics", url: "/analytics", icon: BarChart3 },
   ],
   parent: [
