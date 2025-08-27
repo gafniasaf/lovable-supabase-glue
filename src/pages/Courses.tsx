@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { CreateCourseDialog } from "@/components/CreateCourseDialog";
 
 interface Course {
   id: string;
@@ -30,14 +31,16 @@ const Courses = () => {
     }
   }, [user, loading, navigate]);
 
-  useEffect(() => {
-    const fetchCourses = async () => {
+  const fetchCourses = async () => {
       if (!user) return;
 
       try {
         let query = supabase
           .from('courses')
-          .select('*');
+          .select(`
+            *,
+            enrollments(count)
+          `);
 
         const { data: coursesData, error } = await query;
 
@@ -51,7 +54,13 @@ const Courses = () => {
           return;
         }
 
-        setCourses(coursesData || []);
+        // Transform the data to include enrollment count
+        const coursesWithCount = coursesData?.map(course => ({
+          ...course,
+          enrolled_count: course.enrollments?.[0]?.count || 0
+        })) || [];
+
+        setCourses(coursesWithCount);
       } catch (error) {
         console.error('Error:', error);
         toast({
@@ -63,6 +72,9 @@ const Courses = () => {
         setLoadingCourses(false);
       }
     };
+
+  useEffect(() => {
+      if (!user) return;
 
     fetchCourses();
   }, [user, toast]);
@@ -76,11 +88,11 @@ const Courses = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
+    <div className="min-h-screen bg-background p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Courses</h1>
-          <p className="text-gray-600">Manage your course content and curriculum</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Courses</h1>
+          <p className="text-muted-foreground">Manage your course content and curriculum</p>
         </div>
         
         {loadingCourses ? (
@@ -88,10 +100,10 @@ const Courses = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {courses.length === 0 ? (
-              <Card className="col-span-full">
+                <Card className="col-span-full">
                 <CardContent className="pt-6 text-center">
-                  <p className="text-gray-500">No courses found</p>
-                  <p className="text-sm text-gray-400 mt-2">Create your first course to get started</p>
+                  <p className="text-muted-foreground">No courses found</p>
+                  <p className="text-sm text-muted-foreground mt-2">Create your first course to get started</p>
                 </CardContent>
               </Card>
             ) : (
@@ -106,10 +118,15 @@ const Courses = () => {
                       <Badge variant="secondary">{course.enrolled_count || 0} students</Badge>
                       <Badge>Active</Badge>
                     </div>
-                    <p className="text-sm text-gray-600 mb-4">
+                    <p className="text-sm text-muted-foreground mb-4">
                       Created: {new Date(course.created_at).toLocaleDateString()}
                     </p>
-                    <Button className="w-full">Manage Course</Button>
+                    <Button 
+                      className="w-full" 
+                      onClick={() => navigate(`/courses/${course.id}`)}
+                    >
+                      Manage Course
+                    </Button>
                   </CardContent>
                 </Card>
               ))
@@ -118,7 +135,7 @@ const Courses = () => {
         )}
         
         <div className="flex gap-4 justify-center">
-          <Button>Add New Course</Button>
+          <CreateCourseDialog onCourseCreated={fetchCourses} />
           <Button asChild variant="outline">
             <Link to="/dashboard">Back to Dashboard</Link>
           </Button>
