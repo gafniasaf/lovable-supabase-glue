@@ -11,6 +11,8 @@ import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/hooks/useAuth';
 import { GradeHistoryViewer } from './GradeHistoryViewer';
+import { AIFeedbackGenerator } from '@/components/ai/AIFeedbackGenerator';
+import { PlagiarismDetector } from '@/components/ai/PlagiarismDetector';
 import { formatDistanceToNow } from 'date-fns';
 import { 
   Save, 
@@ -19,7 +21,8 @@ import {
   CheckCircle,
   Calculator,
   History,
-  Timer
+  Timer,
+  Brain
 } from 'lucide-react';
 
 interface EnhancedGradingFormProps {
@@ -55,6 +58,7 @@ export const EnhancedGradingForm: React.FC<EnhancedGradingFormProps> = ({
   const [gradeScale, setGradeScale] = useState<'percentage' | 'points'>('percentage');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
+  const [showAITools, setShowAITools] = useState(false);
   const [startTime] = useState(Date.now());
 
   const numericGrade = parseFloat(grade) || 0;
@@ -267,11 +271,11 @@ export const EnhancedGradingForm: React.FC<EnhancedGradingFormProps> = ({
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-2">
+              <div className="space-y-2">
                 <Button 
                   onClick={handleSubmit} 
                   disabled={isSubmitting || !grade.trim()}
-                  className="flex-1"
+                  className="w-full"
                 >
                   {isSubmitting ? (
                     <Timer className="h-4 w-4 animate-spin mr-2" />
@@ -281,13 +285,22 @@ export const EnhancedGradingForm: React.FC<EnhancedGradingFormProps> = ({
                   {currentGrade !== null ? 'Update Grade' : 'Submit Grade'}
                 </Button>
                 
-                <Button 
-                  variant="outline" 
-                  onClick={() => setShowHistory(!showHistory)}
-                >
-                  <History className="h-4 w-4 mr-2" />
-                  History
-                </Button>
+                <div className="grid grid-cols-2 gap-2">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setShowHistory(!showHistory)}
+                  >
+                    <History className="h-4 w-4 mr-2" />
+                    {showHistory ? 'Hide' : 'View'} History
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowAITools(!showAITools)}
+                  >
+                    <Brain className="h-4 w-4 mr-2" />
+                    {showAITools ? 'Hide' : 'Show'} AI Tools
+                  </Button>
+                </div>
               </div>
 
               {/* Current Grade Info */}
@@ -301,13 +314,49 @@ export const EnhancedGradingForm: React.FC<EnhancedGradingFormProps> = ({
           </Card>
         </div>
 
-        {/* Grade History */}
+        {/* Grade History & AI Tools */}
         <div className="space-y-6">
           {showHistory && (
             <GradeHistoryViewer 
               submissionId={submissionId}
               maxPoints={maxPoints}
             />
+          )}
+
+          {showAITools && (
+            <div className="space-y-4">
+              <AIFeedbackGenerator
+                assignmentContent={""} // This would come from submission content
+                assignmentTitle={assignmentTitle}
+                maxPoints={maxPoints}
+                onFeedbackGenerated={(aiFeedback) => {
+                  setFeedback(aiFeedback.detailed_feedback);
+                  setGrade(aiFeedback.grade_recommendation.toString());
+                  toast({
+                    title: "AI Feedback Applied",
+                    description: "AI-generated feedback and grade have been applied.",
+                  });
+                }}
+              />
+              <PlagiarismDetector
+                content={""} // This would come from submission content
+                assignmentTitle={assignmentTitle}
+                onResultGenerated={(result) => {
+                  if (result.risk_level === 'high') {
+                    const currentFeedbackText = feedback;
+                    setFeedback(currentFeedbackText + 
+                      (currentFeedbackText ? '\n\n' : '') + 
+                      `⚠️ Plagiarism Check: High similarity detected (${result.overall_similarity}%). Please review for proper citations and original work.`
+                    );
+                    toast({
+                      title: "Plagiarism Alert",
+                      description: "High similarity detected. Please review submission carefully.",
+                      variant: "destructive",
+                    });
+                  }
+                }}
+              />
+            </div>
           )}
           
           {/* Grading Tips */}
