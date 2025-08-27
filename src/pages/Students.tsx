@@ -8,6 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { PageLoading } from "@/components/LoadingSpinner";
 import { Users, BookOpen, UserPlus, GraduationCap } from "lucide-react";
 
 interface Student {
@@ -266,11 +267,7 @@ const Students = () => {
   }, [user, profile]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-lg">Loading...</div>
-      </div>
-    );
+    return <PageLoading text="Loading..." />;
   }
 
   // Teacher View

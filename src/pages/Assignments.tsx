@@ -10,6 +10,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { CreateAssignmentDialog } from "@/components/CreateAssignmentDialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PageLoading } from "@/components/LoadingSpinner";
 import { Calendar, FileText, Users } from "lucide-react";
 
 interface Assignment {
@@ -198,11 +199,7 @@ const Assignments = () => {
   };
 
   if (loading) {
-    return (
-      <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-lg">Loading assignments...</div>
-      </div>
-    );
+    return <PageLoading text="Loading assignments..." />;
   }
 
   return (

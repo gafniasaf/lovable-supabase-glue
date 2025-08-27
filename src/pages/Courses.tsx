@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
+import { PageLoading } from "@/components/LoadingSpinner";
 import { CreateCourseDialog } from "@/components/CreateCourseDialog";
 
 interface Course {
@@ -91,11 +92,7 @@ const Courses = () => {
   }, [user, toast]);
 
   if (loading || !user) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center">
-        <div className="text-lg">Loading...</div>
-      </div>
-    );
+    return <PageLoading text="Loading courses..." />;
   }
 
   return (

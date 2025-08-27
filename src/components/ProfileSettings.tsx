@@ -159,10 +159,10 @@ export const ProfileSettings: React.FC = () => {
 
     setIsUploading(true);
     try {
-      // Create unique filename
+      // Create unique filename with user ID folder structure for RLS
       const fileExt = file.name.split('.').pop();
-      const fileName = `${user.id}-${Date.now()}.${fileExt}`;
-      const filePath = `avatars/${fileName}`;
+      const fileName = `${Date.now()}.${fileExt}`;
+      const filePath = `${user.id}/${fileName}`;
 
       // Upload to Supabase Storage
       const { error: uploadError } = await supabase.storage

@@ -61,6 +61,7 @@ const NAVIGATION_ITEMS = {
     { title: "Dashboard", url: "/dashboard", icon: Home },
     { title: "Courses", url: "/courses", icon: BookOpen },
     { title: "Students", url: "/students", icon: Users },
+    { title: "Profile", url: "/profile", icon: Settings },
   ],
 } as const;
 
