@@ -76,9 +76,9 @@ export const SubmissionDraftManager: React.FC<SubmissionDraftManagerProps> = ({
           submission_version,
           created_at,
           file_attachments,
-          assignments (
+          assignments!inner (
             title,
-            courses (title)
+            courses!inner (title)
           )
         `)
         .eq('student_id', user.id)
@@ -99,9 +99,12 @@ export const SubmissionDraftManager: React.FC<SubmissionDraftManagerProps> = ({
           submission_version: draftData.submission_version,
           created_at: draftData.created_at,
           file_attachments: draftData.file_attachments,
-          assignment: Array.isArray(draftData.assignments) 
-            ? draftData.assignments[0] 
-            : draftData.assignments,
+          assignment: {
+            title: draftData.assignments?.title || 'Unknown Assignment',
+            course: {
+              title: draftData.assignments?.courses?.title || 'Unknown Course'
+            }
+          },
         };
       });
 

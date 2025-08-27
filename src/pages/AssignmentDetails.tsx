@@ -175,6 +175,7 @@ const AssignmentDetails = () => {
           .select('*')
           .eq('assignment_id', assignmentId)
           .eq('student_id', user.id)
+          .not('submitted_at', 'is', null)
           .maybeSingle();
 
         if (userSubmissionError) {
