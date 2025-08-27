@@ -35,11 +35,13 @@ const Dashboard = () => {
       if (!user || !profile) return;
 
       try {
-        // Fetch courses count based on user role
         let coursesCount = 0;
         let recentCourses = [];
+        let assignmentsCount = 0;
+        let studentsCount = 0;
         
         if (profile.role === 'teacher') {
+          // For teachers, get all their courses
           const { count } = await supabase
             .from('courses')
             .select('*', { count: 'exact', head: true });
@@ -51,53 +53,53 @@ const Dashboard = () => {
             .order('created_at', { ascending: false })
             .limit(3);
           recentCourses = data || [];
-        } else {
-          // For students, get enrolled courses
-          const { count } = await supabase
-            .from('courses')
-            .select('*, enrollments!inner(student_id)', { count: 'exact', head: true })
-            .eq('enrollments.student_id', user.id);
-          coursesCount = count || 0;
           
-          const { data } = await supabase
-            .from('courses')
-            .select('id, title, created_at, enrollments!inner(student_id)')
-            .eq('enrollments.student_id', user.id)
-            .order('created_at', { ascending: false })
-            .limit(3);
-          recentCourses = data || [];
-        }
-
-        // Fetch assignments count based on user role
-        let assignmentsCount = 0;
-        if (profile.role === 'teacher') {
-          const { count } = await supabase
+          // Get assignments count
+          const { count: assignmentCount } = await supabase
             .from('assignments')
             .select('*', { count: 'exact', head: true });
-          assignmentsCount = count || 0;
-        } else {
-          // For students, count assignments from enrolled courses
-          const { count } = await supabase
-            .from('assignments')
-            .select('*, courses!inner(enrollments!inner(student_id))', { count: 'exact', head: true })
-            .eq('courses.enrollments.student_id', user.id);
-          assignmentsCount = count || 0;
-        }
-
-        // Fetch students count based on user role
-        let studentsCount = 0;
-        if (profile.role === 'teacher') {
-          const { count } = await supabase
+          assignmentsCount = assignmentCount || 0;
+          
+          // Get students count
+          const { count: studentCount } = await supabase
             .from('enrollments')
             .select('*', { count: 'exact', head: true });
-          studentsCount = count || 0;
+          studentsCount = studentCount || 0;
+        } else {
+          // For students, first get their enrollments
+          const { data: enrollments } = await supabase
+            .from('enrollments')
+            .select('course_id')
+            .eq('student_id', user.id);
+          
+          if (enrollments && enrollments.length > 0) {
+            const courseIds = enrollments.map(e => e.course_id);
+            
+            // Get course count and details
+            coursesCount = courseIds.length;
+            
+            const { data } = await supabase
+              .from('courses')
+              .select('id, title, created_at')
+              .in('id', courseIds)
+              .order('created_at', { ascending: false })
+              .limit(3);
+            recentCourses = data || [];
+            
+            // Get assignments count for enrolled courses
+            const { count: assignmentCount } = await supabase
+              .from('assignments')
+              .select('*', { count: 'exact', head: true })
+              .in('course_id', courseIds);
+            assignmentsCount = assignmentCount || 0;
+          }
         }
 
         setStats({
-          totalCourses: coursesCount || 0,
+          totalCourses: coursesCount,
           totalStudents: studentsCount,
           totalAssignments: assignmentsCount,
-          recentCourses: recentCourses || [],
+          recentCourses: recentCourses,
         });
       } catch (error) {
         console.error('Error fetching dashboard data:', error);
