@@ -11,7 +11,9 @@ import {
   Settings,
   Home,
   MessageSquare,
-  Activity
+  Activity,
+  TrendingUp,
+  Award
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
@@ -44,6 +46,8 @@ const NAVIGATION_ITEMS = {
     { title: "Calendar", url: "/calendar", icon: Calendar },
     { title: "Real-Time Dashboard", url: "/realtime-dashboard", icon: Activity },
     { title: "Analytics", url: "/analytics", icon: BarChart3 },
+    { title: "Advanced Analytics", url: "/advanced-analytics", icon: TrendingUp },
+    { title: "Quiz Assessment", url: "/quiz-assessment", icon: Award },
   { title: "Students", url: "/students", icon: Users },
   { title: "Profile", url: "/profile", icon: Settings },
   ],
@@ -60,6 +64,8 @@ const NAVIGATION_ITEMS = {
   ],
   parent: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
+    { title: "Parent Portal", url: "/parent-portal", icon: Users },
+    { title: "Profile", url: "/profile", icon: Settings },
   ],
   admin: [
     { title: "Dashboard", url: "/dashboard", icon: Home },

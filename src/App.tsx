@@ -21,6 +21,9 @@ import ProfilePage from "./pages/ProfilePage";
 import Assignments from "./pages/Assignments";
 import AssignmentManagement from "./pages/AssignmentManagement";
 import RealTimeDashboardPage from "./pages/RealTimeDashboard";
+import AdvancedAnalyticsPage from "./pages/AdvancedAnalytics";
+import ParentPortalPage from "./pages/ParentPortal";
+import QuizAssessmentPage from "./pages/QuizAssessment";
 import Students from "./pages/Students";
 import NotFound from "./pages/NotFound";
 
@@ -89,6 +92,9 @@ const App = () => (
             <Route path="/discussions" element={<ProtectedRoute><Layout><DiscussionForums /></Layout></ProtectedRoute>} />
             <Route path="/calendar" element={<ProtectedRoute><Layout><CalendarPage /></Layout></ProtectedRoute>} />
             <Route path="/realtime-dashboard" element={<ProtectedRoute><Layout><RealTimeDashboardPage /></Layout></ProtectedRoute>} />
+            <Route path="/advanced-analytics" element={<ProtectedRoute><Layout><AdvancedAnalyticsPage /></Layout></ProtectedRoute>} />
+            <Route path="/parent-portal" element={<ProtectedRoute><Layout><ParentPortalPage /></Layout></ProtectedRoute>} />
+            <Route path="/quiz-assessment" element={<ProtectedRoute><Layout><QuizAssessmentPage /></Layout></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Layout><ProfilePage /></Layout></ProtectedRoute>} />
             <Route path="/students" element={
               <ProtectedRoute>
