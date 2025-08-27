@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { 
   BookOpen, 
   FileText, 
@@ -29,59 +29,61 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 
-// Navigation items based on user role
-const getNavigationItems = (role: string) => {
-  const commonItems = [
+// Static navigation items to prevent recreation
+const NAVIGATION_ITEMS = {
+  teacher: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
-  ];
-
-  const roleItems = {
-    teacher: [
-      { title: "Courses", url: "/courses", icon: BookOpen },
-      { title: "Assignments", url: "/assignments", icon: FileText },
-      { title: "Students", url: "/students", icon: Users },
-      { title: "Analytics", url: "/analytics", icon: BarChart3 },
-      { title: "Grading Queue", url: "/grading", icon: GraduationCap },
-    ],
-    student: [
-      { title: "My Courses", url: "/courses", icon: BookOpen },
-      { title: "Assignments", url: "/assignments", icon: FileText },
-      { title: "Planner", url: "/planner", icon: Calendar },
-      { title: "Timeline", url: "/timeline", icon: Calendar },
-      { title: "Leaderboard", url: "/leaderboard", icon: Trophy },
-      { title: "Achievements", url: "/achievements", icon: Star },
-    ],
-    parent: [
-      { title: "My Children", url: "/children", icon: Users },
-      { title: "Progress", url: "/progress", icon: BarChart3 },
-    ],
-    admin: [
-      { title: "Users", url: "/users", icon: Users },
-      { title: "Courses", url: "/courses", icon: BookOpen },
-      { title: "System", url: "/admin", icon: Settings },
-      { title: "Analytics", url: "/analytics", icon: BarChart3 },
-    ],
-  };
-
-  return [...commonItems, ...(roleItems[role as keyof typeof roleItems] || [])];
-};
+    { title: "Courses", url: "/courses", icon: BookOpen },
+    { title: "Assignments", url: "/assignments", icon: FileText },
+    { title: "Students", url: "/students", icon: Users },
+    { title: "Analytics", url: "/analytics", icon: BarChart3 },
+    { title: "Grading Queue", url: "/grading", icon: GraduationCap },
+  ],
+  student: [
+    { title: "Dashboard", url: "/dashboard", icon: Home },
+    { title: "My Courses", url: "/courses", icon: BookOpen },
+    { title: "Assignments", url: "/assignments", icon: FileText },
+    { title: "Planner", url: "/planner", icon: Calendar },
+    { title: "Timeline", url: "/timeline", icon: Calendar },
+    { title: "Leaderboard", url: "/leaderboard", icon: Trophy },
+    { title: "Achievements", url: "/achievements", icon: Star },
+  ],
+  parent: [
+    { title: "Dashboard", url: "/dashboard", icon: Home },
+    { title: "My Children", url: "/children", icon: Users },
+    { title: "Progress", url: "/progress", icon: BarChart3 },
+  ],
+  admin: [
+    { title: "Dashboard", url: "/dashboard", icon: Home },
+    { title: "Users", url: "/users", icon: Users },
+    { title: "Courses", url: "/courses", icon: BookOpen },
+    { title: "System", url: "/admin", icon: Settings },
+    { title: "Analytics", url: "/analytics", icon: BarChart3 },
+  ],
+} as const;
 
 export function AppSidebar() {
   const { state } = useSidebar();
   const { user, signOut } = useAuth();
   const location = useLocation();
-  const currentPath = location.pathname;
 
-  // Get user role from profiles (you'll need to fetch this)
-  const userRole = "teacher"; // TODO: Get from user profile data
+  // Memoize user role
+  const userRole = useMemo(() => "teacher", []); // TODO: Get from user profile data
 
-  const items = useMemo(() => getNavigationItems(userRole), [userRole]);
+  // Memoize navigation items
+  const items = useMemo(() => {
+    return NAVIGATION_ITEMS[userRole as keyof typeof NAVIGATION_ITEMS] || NAVIGATION_ITEMS.teacher;
+  }, [userRole]);
 
-  const collapsed = state === "collapsed";
-  const isActive = (path: string) => currentPath === path;
-  const getNavCls = useMemo(() => ({ isActive }: { isActive: boolean }) =>
-    isActive ? "bg-accent text-accent-foreground font-medium" : "hover:bg-accent/50"
-  , []);
+  // Memoize collapsed state
+  const collapsed = useMemo(() => state === "collapsed", [state]);
+
+  // Memoize className function
+  const getNavCls = useCallback(({ isActive }: { isActive: boolean }) => {
+    return isActive 
+      ? "bg-accent text-accent-foreground font-medium" 
+      : "hover:bg-accent/50";
+  }, []);
 
   // Don't render sidebar if user is not authenticated
   if (!user) {
@@ -89,9 +91,7 @@ export function AppSidebar() {
   }
 
   return (
-    <Sidebar
-      className={collapsed ? "w-14" : "w-60"}
-    >
+    <Sidebar className={collapsed ? "w-14" : "w-60"}>
       <SidebarHeader className="border-b p-4">
         <div className="flex items-center gap-2">
           <GraduationCap className="h-6 w-6 text-primary" />
@@ -112,7 +112,7 @@ export function AppSidebar() {
                     <NavLink 
                       to={item.url} 
                       end 
-                      className={({ isActive }) => getNavCls({ isActive })}
+                      className={getNavCls}
                     >
                       <item.icon className="mr-2 h-4 w-4" />
                       {!collapsed && <span>{item.title}</span>}
