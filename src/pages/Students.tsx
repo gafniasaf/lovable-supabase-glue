@@ -8,21 +8,21 @@ import { useAuth } from "@/hooks/useAuth";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 
-interface Course {
+interface Student {
   id: string;
-  title: string;
-  description?: string;
-  teacher_id: string;
-  created_at: string;
-  enrolled_count?: number;
+  email: string;
+  first_name?: string;
+  last_name?: string;
+  role: string;
+  enrolled_courses?: number;
 }
 
-const Courses = () => {
-  const { user, loading, signOut } = useAuth();
+const Students = () => {
+  const { user, loading } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [courses, setCourses] = useState<Course[]>([]);
-  const [loadingCourses, setLoadingCourses] = useState(true);
+  const [students, setStudents] = useState<Student[]>([]);
+  const [loadingStudents, setLoadingStudents] = useState(true);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -31,40 +31,40 @@ const Courses = () => {
   }, [user, loading, navigate]);
 
   useEffect(() => {
-    const fetchCourses = async () => {
+    const fetchStudents = async () => {
       if (!user) return;
 
       try {
-        let query = supabase
-          .from('courses')
-          .select('*');
-
-        const { data: coursesData, error } = await query;
+        // Get all student profiles
+        const { data: studentProfiles, error } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('role', 'student');
 
         if (error) {
-          console.error('Error fetching courses:', error);
+          console.error('Error fetching students:', error);
           toast({
             title: "Error",
-            description: "Failed to load courses",
+            description: "Failed to load students",
             variant: "destructive",
           });
           return;
         }
 
-        setCourses(coursesData || []);
+        setStudents(studentProfiles || []);
       } catch (error) {
         console.error('Error:', error);
         toast({
           title: "Error",
-          description: "Failed to load courses",
+          description: "Failed to load students",
           variant: "destructive",
         });
       } finally {
-        setLoadingCourses(false);
+        setLoadingStudents(false);
       }
     };
 
-    fetchCourses();
+    fetchStudents();
   }, [user, toast]);
 
   if (loading || !user) {
@@ -79,37 +79,41 @@ const Courses = () => {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Courses</h1>
-          <p className="text-gray-600">Manage your course content and curriculum</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Students</h1>
+          <p className="text-gray-600">Manage student accounts and enrollments</p>
         </div>
         
-        {loadingCourses ? (
-          <div className="text-center py-8">Loading courses...</div>
+        {loadingStudents ? (
+          <div className="text-center py-8">Loading students...</div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {courses.length === 0 ? (
+            {students.length === 0 ? (
               <Card className="col-span-full">
                 <CardContent className="pt-6 text-center">
-                  <p className="text-gray-500">No courses found</p>
-                  <p className="text-sm text-gray-400 mt-2">Create your first course to get started</p>
+                  <p className="text-gray-500">No students found</p>
                 </CardContent>
               </Card>
             ) : (
-              courses.map((course) => (
-                <Card key={course.id}>
+              students.map((student) => (
+                <Card key={student.id}>
                   <CardHeader>
-                    <CardTitle>{course.title}</CardTitle>
-                    <CardDescription>{course.description || "No description available"}</CardDescription>
+                    <CardTitle>
+                      {student.first_name && student.last_name 
+                        ? `${student.first_name} ${student.last_name}`
+                        : student.email}
+                    </CardTitle>
+                    <CardDescription>{student.email}</CardDescription>
                   </CardHeader>
                   <CardContent>
                     <div className="flex justify-between items-center mb-4">
-                      <Badge variant="secondary">{course.enrolled_count || 0} students</Badge>
-                      <Badge>Active</Badge>
+                      <Badge variant="secondary">{student.role}</Badge>
+                      <Badge variant="outline">
+                        {student.enrolled_courses || 0} courses
+                      </Badge>
                     </div>
-                    <p className="text-sm text-gray-600 mb-4">
-                      Created: {new Date(course.created_at).toLocaleDateString()}
-                    </p>
-                    <Button className="w-full">Manage Course</Button>
+                    <Button className="w-full" variant="outline">
+                      View Details
+                    </Button>
                   </CardContent>
                 </Card>
               ))
@@ -118,12 +122,9 @@ const Courses = () => {
         )}
         
         <div className="flex gap-4 justify-center">
-          <Button>Add New Course</Button>
+          <Button>Add New Student</Button>
           <Button asChild variant="outline">
             <Link to="/dashboard">Back to Dashboard</Link>
-          </Button>
-          <Button onClick={signOut} variant="destructive">
-            Sign Out
           </Button>
         </div>
       </div>
@@ -131,4 +132,4 @@ const Courses = () => {
   );
 };
 
-export default Courses;
+export default Students;
