@@ -31,10 +31,11 @@ interface Enrollment {
   id: string;
   student_id: string;
   enrolled_at: string;
-  profiles: {
+  student?: {
     first_name?: string;
     last_name?: string;
     email: string;
+    role: string;
   };
 }
 
@@ -106,16 +107,17 @@ const CourseDetails = () => {
           const studentIds = enrollmentsData.map(e => e.student_id);
           const { data: profilesData } = await supabase
             .from('profiles')
-            .select('id, first_name, last_name, email')
+            .select('id, first_name, last_name, email, role')
             .in('id', studentIds);
 
           // Combine enrollment and profile data
           const enrollmentsWithProfiles = enrollmentsData.map(enrollment => ({
             ...enrollment,
-            profiles: profilesData?.find(profile => profile.id === enrollment.student_id) || {
+            student: profilesData?.find(profile => profile.id === enrollment.student_id) || {
               first_name: '',
               last_name: '',
-              email: 'Unknown'
+              email: 'Unknown',
+              role: 'student'
             }
           }));
 
@@ -308,12 +310,12 @@ const CourseDetails = () => {
                       <div className="flex justify-between items-center">
                         <div>
                           <h3 className="font-medium">
-                            {enrollment.profiles?.first_name || enrollment.profiles?.last_name 
-                              ? `${enrollment.profiles.first_name || ''} ${enrollment.profiles.last_name || ''}`.trim()
-                              : enrollment.profiles?.email || 'Unknown Student'
+                            {enrollment.student?.first_name || enrollment.student?.last_name 
+                              ? `${enrollment.student.first_name || ''} ${enrollment.student.last_name || ''}`.trim()
+                              : enrollment.student?.email || 'Unknown Student'
                             }
                           </h3>
-                          <p className="text-sm text-muted-foreground">{enrollment.profiles?.email}</p>
+                          <p className="text-sm text-muted-foreground">{enrollment.student?.email}</p>
                           <p className="text-xs text-muted-foreground">
                             Enrolled: {new Date(enrollment.enrolled_at).toLocaleDateString()}
                           </p>
