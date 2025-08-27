@@ -1,11 +1,11 @@
 import React from 'react';
-import { AdvancedAnalytics } from '@/components/AdvancedAnalytics';
+import { AdvancedAnalyticsDashboard } from '@/components/analytics/AdvancedAnalyticsDashboard';
 
 const AdvancedAnalyticsPage = () => {
   return (
     <div className="min-h-screen bg-background p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-        <AdvancedAnalytics />
+        <AdvancedAnalyticsDashboard />
       </div>
     </div>
   );
