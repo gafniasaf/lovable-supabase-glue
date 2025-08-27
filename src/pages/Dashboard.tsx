@@ -35,17 +35,38 @@ const Dashboard = () => {
       if (!user || !profile) return;
 
       try {
-        // Fetch courses count
-        const { count: coursesCount } = await supabase
-          .from('courses')
-          .select('*', { count: 'exact', head: true });
-
-        // Fetch recent courses
-        const { data: recentCourses } = await supabase
-          .from('courses')
-          .select('id, title, created_at')
-          .order('created_at', { ascending: false })
-          .limit(3);
+        // Fetch courses count based on user role
+        let coursesCount = 0;
+        let recentCourses = [];
+        
+        if (profile.role === 'teacher') {
+          const { count } = await supabase
+            .from('courses')
+            .select('*', { count: 'exact', head: true });
+          coursesCount = count || 0;
+          
+          const { data } = await supabase
+            .from('courses')
+            .select('id, title, created_at')
+            .order('created_at', { ascending: false })
+            .limit(3);
+          recentCourses = data || [];
+        } else {
+          // For students, get enrolled courses
+          const { count } = await supabase
+            .from('courses')
+            .select('*, enrollments!inner(student_id)', { count: 'exact', head: true })
+            .eq('enrollments.student_id', user.id);
+          coursesCount = count || 0;
+          
+          const { data } = await supabase
+            .from('courses')
+            .select('id, title, created_at, enrollments!inner(student_id)')
+            .eq('enrollments.student_id', user.id)
+            .order('created_at', { ascending: false })
+            .limit(3);
+          recentCourses = data || [];
+        }
 
         // Fetch assignments count based on user role
         let assignmentsCount = 0;
@@ -53,6 +74,13 @@ const Dashboard = () => {
           const { count } = await supabase
             .from('assignments')
             .select('*', { count: 'exact', head: true });
+          assignmentsCount = count || 0;
+        } else {
+          // For students, count assignments from enrolled courses
+          const { count } = await supabase
+            .from('assignments')
+            .select('*, courses!inner(enrollments!inner(student_id))', { count: 'exact', head: true })
+            .eq('courses.enrollments.student_id', user.id);
           assignmentsCount = count || 0;
         }
 
