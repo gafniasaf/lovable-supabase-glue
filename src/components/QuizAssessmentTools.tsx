@@ -133,38 +133,77 @@ export const QuizAssessmentTools: React.FC = () => {
     try {
       setLoading(true);
 
-      // Note: This is a placeholder implementation since we don't have quiz tables yet
-      // In a real implementation, you would create quiz tables in the database
-      
-      // For now, we'll create mock data to demonstrate the interface
-      const mockQuizzes: Quiz[] = [
-        {
-          id: '1',
-          title: 'Math Chapter 1 Quiz',
-          description: 'Basic algebra and equations',
-          course_id: courses[0]?.id || '1',
-          time_limit: 30,
-          attempts_allowed: 2,
-          is_published: true,
-          created_at: new Date().toISOString(),
-          questions: [
-            {
-              id: '1',
-              quiz_id: '1',
-              question_text: 'What is 2 + 2?',
-              question_type: 'multiple_choice',
-              options: ['3', '4', '5', '6'],
-              correct_answer: '4',
-              points: 1,
-              order_index: 1,
-            }
-          ],
-          course: { title: courses[0]?.title || 'Sample Course' },
-          attempts: [],
-        }
-      ];
+      let query = supabase
+        .from('quizzes')
+        .select(`
+          *,
+          course:courses(title),
+          quiz_questions(*),
+          quiz_attempts(*)
+        `)
+        .order('created_at', { ascending: false });
 
-      setQuizzes(mockQuizzes);
+      if (profile.role === 'teacher') {
+        // Teachers see their own quizzes
+        const { data: teacherCourses } = await supabase
+          .from('courses')
+          .select('id')
+          .eq('teacher_id', user.id);
+        
+        if (teacherCourses && teacherCourses.length > 0) {
+          const courseIds = teacherCourses.map(c => c.id);
+          query = query.in('course_id', courseIds);
+        }
+      } else {
+        // Students see published quizzes from their enrolled courses
+        const { data: enrollments } = await supabase
+          .from('enrollments')
+          .select('course_id')
+          .eq('student_id', user.id);
+        
+        if (enrollments && enrollments.length > 0) {
+          const courseIds = enrollments.map(e => e.course_id);
+          query = query.in('course_id', courseIds).eq('is_published', true);
+        }
+      }
+
+      const { data, error } = await query;
+      
+      if (error) throw error;
+
+      // Transform data to match interface
+      const transformedQuizzes: Quiz[] = (data || []).map(quiz => ({
+        id: quiz.id,
+        title: quiz.title,
+        description: quiz.description,
+        course_id: quiz.course_id,
+        time_limit: quiz.time_limit,
+        attempts_allowed: quiz.attempts_allowed,
+        is_published: quiz.is_published,
+        created_at: quiz.created_at,
+        course: quiz.course || undefined,
+        questions: (quiz.quiz_questions || []).map((q: any) => ({
+          id: q.id,
+          quiz_id: q.quiz_id,
+          question_text: q.question_text,
+          question_type: q.question_type as 'multiple_choice' | 'true_false' | 'short_answer',
+          options: Array.isArray(q.options) ? q.options : (q.options ? [q.options] : []),
+          correct_answer: q.correct_answer,
+          points: q.points,
+          order_index: q.order_index
+        })),
+        attempts: (quiz.quiz_attempts || []).map((a: any) => ({
+          id: a.id,
+          quiz_id: a.quiz_id,
+          student_id: a.student_id,
+          started_at: a.started_at,
+          completed_at: a.completed_at,
+          score: a.score,
+          answers: Array.isArray(a.answers) ? a.answers : (a.answers ? [a.answers] : [])
+        }))
+      }));
+
+      setQuizzes(transformedQuizzes);
 
     } catch (error) {
       console.error('Error fetching quizzes:', error);
@@ -189,14 +228,24 @@ export const QuizAssessmentTools: React.FC = () => {
     }
 
     try {
-      // In a real implementation, you would insert into a quizzes table
-      const newQuizData: Quiz = {
-        id: Math.random().toString(36).substr(2, 9),
-        ...newQuiz,
-        created_at: new Date().toISOString(),
+      const { data, error } = await supabase
+        .from('quizzes')
+        .insert({
+          ...newQuiz,
+          created_by: user.id
+        })
+        .select(`
+          *,
+          course:courses(title)
+        `)
+        .single();
+
+      if (error) throw error;
+
+      const newQuizData = {
+        ...data,
         questions: [],
-        course: courses.find(c => c.id === newQuiz.course_id),
-        attempts: [],
+        attempts: []
       };
 
       setQuizzes(prev => [newQuizData, ...prev]);
