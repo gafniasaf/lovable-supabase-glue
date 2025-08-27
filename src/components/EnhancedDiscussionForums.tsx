@@ -30,36 +30,36 @@ import { formatDistanceToNow } from 'date-fns';
 interface DiscussionForum {
   id: string;
   title: string;
-  description?: string;
-  course_id?: string;
-  assignment_id?: string;
+  description?: string | null;
+  course_id?: string | null;
+  assignment_id?: string | null;
   created_by: string;
   created_at: string;
   updated_at: string;
-  is_pinned: boolean;
-  is_locked: boolean;
-  tags: string[];
-  forum_type: 'general' | 'announcement' | 'q_and_a' | 'assignment_specific';
+  is_pinned?: boolean | null;
+  is_locked?: boolean | null;
+  tags?: string[] | null;
+  forum_type: string;
 }
 
 interface DiscussionPost {
   id: string;
   forum_id: string;
   author_id: string;
-  parent_post_id?: string;
+  parent_post_id?: string | null;
   content: string;
-  is_solution: boolean;
-  votes: number;
-  edited_at?: string;
-  attachments: any[];
+  is_solution?: boolean | null;
+  votes?: number | null;
+  edited_at?: string | null;
+  attachments: any;
   created_at: string;
   updated_at: string;
   author?: {
-    first_name?: string;
-    last_name?: string;
-    avatar_url?: string;
-  };
-  user_vote?: 'up' | 'down' | null;
+    first_name?: string | null;
+    last_name?: string | null;
+    avatar_url?: string | null;
+  } | null;
+  user_vote?: any;
   replies?: DiscussionPost[];
 }
 
@@ -153,47 +153,84 @@ export function EnhancedDiscussionForums({ courseId, assignmentId }: EnhancedDis
     try {
       setLoading(true);
       
-      // Load posts with author info and user votes
+      // Load posts with a simpler query
       const { data: postsData, error } = await supabase
         .from('discussion_posts')
-        .select(`
-          *,
-          author:profiles!discussion_posts_author_id_fkey(first_name, last_name, avatar_url),
-          user_vote:post_votes!left(vote_type)
-        `)
+        .select('*')
         .eq('forum_id', forumId)
         .is('parent_post_id', null)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
 
-      // Load replies for each post
-      const postsWithReplies = await Promise.all(
+      // Transform and get user profiles separately
+      const postsWithDetails = await Promise.all(
         (postsData || []).map(async (post) => {
-          const { data: replies } = await supabase
+          // Get author profile
+          const { data: authorProfile } = await supabase
+            .from('profiles')
+            .select('first_name, last_name, avatar_url')
+            .eq('id', post.author_id)
+            .single();
+
+          // Get user vote if logged in
+          let userVote = null;
+          if (user?.id) {
+            const { data: voteData } = await supabase
+              .from('post_votes')
+              .select('vote_type')
+              .eq('post_id', post.id)
+              .eq('user_id', user.id)
+              .single();
+            userVote = voteData?.vote_type || null;
+          }
+
+          // Get replies
+          const { data: repliesData } = await supabase
             .from('discussion_posts')
-            .select(`
-              *,
-              author:profiles!discussion_posts_author_id_fkey(first_name, last_name, avatar_url),
-              user_vote:post_votes!left(vote_type)
-            `)
+            .select('*')
             .eq('parent_post_id', post.id)
             .order('created_at', { ascending: true });
 
+          const repliesWithDetails = await Promise.all(
+            (repliesData || []).map(async (reply) => {
+              const { data: replyAuthor } = await supabase
+                .from('profiles')
+                .select('first_name, last_name, avatar_url')
+                .eq('id', reply.author_id)
+                .single();
+
+              let replyVote = null;
+              if (user?.id) {
+                const { data: voteData } = await supabase
+                  .from('post_votes')
+                  .select('vote_type')
+                  .eq('post_id', reply.id)
+                  .eq('user_id', user.id)
+                  .single();
+                replyVote = voteData?.vote_type || null;
+              }
+
+              return {
+                ...reply,
+                author: replyAuthor,
+                user_vote: replyVote,
+                attachments: Array.isArray(reply.attachments) ? reply.attachments : []
+              };
+            })
+          );
+
           return {
             ...post,
-            user_vote: post.user_vote?.[0]?.vote_type || null,
+            author: authorProfile,
+            user_vote: userVote,
             attachments: Array.isArray(post.attachments) ? post.attachments : [],
-            replies: replies?.map(reply => ({
-              ...reply,
-              user_vote: reply.user_vote?.[0]?.vote_type || null,
-              attachments: Array.isArray(reply.attachments) ? reply.attachments : []
-            })) || []
+            replies: repliesWithDetails
           };
         })
       );
 
-      setPosts(postsWithReplies);
+      setPosts(postsWithDetails as DiscussionPost[]);
     } catch (err) {
       console.error('Error loading posts:', err);
       setError('Failed to load posts');
@@ -246,26 +283,32 @@ export function EnhancedDiscussionForums({ courseId, assignmentId }: EnhancedDis
       const { data, error } = await supabase
         .from('discussion_posts')
         .insert(postData)
-        .select(`
-          *,
-          author:profiles!discussion_posts_author_id_fkey(first_name, last_name, avatar_url)
-        `)
+        .select('*')
         .single();
 
       if (error) throw error;
 
+      // Get author profile
+      const { data: authorProfile } = await supabase
+        .from('profiles')
+        .select('first_name, last_name, avatar_url')
+        .eq('id', user.id)
+        .single();
+
+      const newPost = {
+        ...data,
+        author: authorProfile,
+        user_vote: null,
+        attachments: [],
+        replies: []
+      };
+
       if (replyToPost) {
-        // Add as reply to existing post
-        setPosts(prev =>
-          prev.map(post =>
-            post.id === replyToPost
-              ? { ...post, replies: [...(post.replies || []), { ...data, user_vote: null }] }
-              : post
-          )
-        );
+        // Add as reply to existing post - reload posts instead
+        loadPosts(selectedForum.id);
       } else {
         // Add as new top-level post
-        setPosts(prev => [{ ...data, user_vote: null, replies: [] }, ...prev]);
+        setPosts(prev => [newPost, ...prev]);
       }
 
       setNewPostContent('');
