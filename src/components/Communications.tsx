@@ -9,10 +9,11 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAuth } from '@/hooks/useAuth';
 import { useProfile } from '@/hooks/useProfile';
+import { useRealTimeUpdates } from '@/hooks/useRealTimeUpdates';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { formatDistanceToNow } from 'date-fns';
-import { MessageSquare, Send, Plus, AlertTriangle, Info, CheckCircle } from 'lucide-react';
+import { MessageSquare, Send, Plus, AlertTriangle, Info, CheckCircle, RefreshCw } from 'lucide-react';
 
 interface Message {
   id: string;
@@ -82,6 +83,15 @@ export const Communications: React.FC = () => {
     priority: 'normal' as const,
     expires_at: '',
   });
+
+  // Real-time updates
+  const handleRealTimeUpdate = (table: string, payload: any) => {
+    if (table === 'messages' || table === 'announcements') {
+      fetchCommunications();
+    }
+  };
+
+  useRealTimeUpdates(handleRealTimeUpdate);
 
   useEffect(() => {
     if (user && profile) {
@@ -386,12 +396,16 @@ export const Communications: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header with action buttons */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold">Communications</h2>
           <p className="text-muted-foreground">Stay connected with your class</p>
+          <div className="flex items-center gap-2 mt-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-xs text-muted-foreground">Real-time updates active</span>
+          </div>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Dialog open={isMessageDialogOpen} onOpenChange={setIsMessageDialogOpen}>
             <DialogTrigger asChild>
               <Button>

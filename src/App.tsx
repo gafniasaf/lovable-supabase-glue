@@ -20,6 +20,7 @@ import CalendarPage from "./pages/CalendarPage";
 import ProfilePage from "./pages/ProfilePage";
 import Assignments from "./pages/Assignments";
 import AssignmentManagement from "./pages/AssignmentManagement";
+import RealTimeDashboardPage from "./pages/RealTimeDashboard";
 import Students from "./pages/Students";
 import NotFound from "./pages/NotFound";
 
@@ -87,6 +88,7 @@ const App = () => (
             <Route path="/communications" element={<ProtectedRoute><Layout><Communications /></Layout></ProtectedRoute>} />
             <Route path="/discussions" element={<ProtectedRoute><Layout><DiscussionForums /></Layout></ProtectedRoute>} />
             <Route path="/calendar" element={<ProtectedRoute><Layout><CalendarPage /></Layout></ProtectedRoute>} />
+            <Route path="/realtime-dashboard" element={<ProtectedRoute><Layout><RealTimeDashboardPage /></Layout></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Layout><ProfilePage /></Layout></ProtectedRoute>} />
             <Route path="/students" element={
               <ProtectedRoute>

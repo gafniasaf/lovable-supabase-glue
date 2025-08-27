@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useAuth } from '@/hooks/useAuth';
 import { useProfile } from '@/hooks/useProfile';
+import { useRealTimeUpdates } from '@/hooks/useRealTimeUpdates';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { formatDistanceToNow } from 'date-fns';
@@ -84,6 +85,18 @@ export const DiscussionForums: React.FC = () => {
   // Reply state
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyContent, setReplyContent] = useState('');
+
+  // Real-time updates
+  const handleRealTimeUpdate = (table: string, payload: any) => {
+    if (table === 'discussion_posts') {
+      if (selectedForum) {
+        fetchPosts(selectedForum.id);
+      }
+      fetchForums(); // Update post counts
+    }
+  };
+
+  useRealTimeUpdates(handleRealTimeUpdate);
 
   useEffect(() => {
     if (user && profile) {
