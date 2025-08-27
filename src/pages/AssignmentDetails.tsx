@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/hooks/useAuth";
 import { useProfile } from "@/hooks/useProfile";
+import { FileUpload } from "@/components/FileUpload";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { ArrowLeft, Calendar, FileText, Users, CheckCircle, Clock, AlertCircle } from "lucide-react";
@@ -36,11 +37,20 @@ interface Submission {
   submitted_at: string;
   graded_at?: string;
   graded_by?: string;
+  file_attachments?: FileInfo[];
   student?: {
     first_name?: string;
     last_name?: string;
     email: string;
   };
+}
+
+interface FileInfo {
+  name: string;
+  url: string;
+  type: string;
+  size: number;
+  path: string;
 }
 
 const AssignmentDetails = () => {
@@ -54,6 +64,7 @@ const AssignmentDetails = () => {
   const [submissions, setSubmissions] = useState<Submission[]>([]);
   const [userSubmission, setUserSubmission] = useState<Submission | null>(null);
   const [submissionContent, setSubmissionContent] = useState("");
+  const [submissionFiles, setSubmissionFiles] = useState<FileInfo[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
@@ -110,9 +121,23 @@ const AssignmentDetails = () => {
                 .eq('id', submission.student_id)
                 .single();
 
+              // Parse file attachments safely
+              let fileAttachments: FileInfo[] = [];
+              try {
+                if (submission.file_attachments) {
+                  const parsed = typeof submission.file_attachments === 'string' 
+                    ? JSON.parse(submission.file_attachments)
+                    : submission.file_attachments;
+                  fileAttachments = Array.isArray(parsed) ? parsed : [];
+                }
+              } catch (error) {
+                console.error('Error parsing file attachments:', error);
+              }
+
               return {
                 ...submission,
                 student: studentData || { first_name: "", last_name: "", email: "Unknown" },
+                file_attachments: fileAttachments,
               };
             })
           );
@@ -132,8 +157,25 @@ const AssignmentDetails = () => {
         if (userSubmissionError) {
           console.error('Error fetching user submission:', userSubmissionError);
         } else if (userSubmissionData) {
-          setUserSubmission(userSubmissionData);
+          setUserSubmission({
+            ...userSubmissionData,
+            file_attachments: [], // Will be parsed below
+          });
           setSubmissionContent(userSubmissionData.content || "");
+          
+          // Parse file attachments safely
+          let fileAttachments: FileInfo[] = [];
+          try {
+            if (userSubmissionData.file_attachments) {
+              const parsed = typeof userSubmissionData.file_attachments === 'string'
+                ? JSON.parse(userSubmissionData.file_attachments)
+                : userSubmissionData.file_attachments;
+              fileAttachments = Array.isArray(parsed) ? parsed : [];
+            }
+          } catch (error) {
+            console.error('Error parsing file attachments:', error);
+          }
+          setSubmissionFiles(fileAttachments);
         }
       }
     } catch (error) {
@@ -149,18 +191,21 @@ const AssignmentDetails = () => {
   };
 
   const handleSubmitAssignment = async () => {
-    if (!user || !assignmentId || !submissionContent.trim()) return;
+    if (!user || !assignmentId) return;
 
     setSubmitting(true);
     try {
+      const submissionData = {
+        content: submissionContent || null,
+        file_attachments: JSON.stringify(submissionFiles),
+        submitted_at: new Date().toISOString(),
+      };
+
       if (userSubmission) {
         // Update existing submission
         const { error } = await supabase
           .from('submissions')
-          .update({
-            content: submissionContent,
-            submitted_at: new Date().toISOString(),
-          })
+          .update(submissionData)
           .eq('id', userSubmission.id);
 
         if (error) {
@@ -184,7 +229,7 @@ const AssignmentDetails = () => {
           .insert({
             student_id: user.id,
             assignment_id: assignmentId,
-            content: submissionContent,
+            ...submissionData,
           });
 
         if (error) {
@@ -399,16 +444,28 @@ const AssignmentDetails = () => {
                   id="submission"
                   value={submissionContent}
                   onChange={(e) => setSubmissionContent(e.target.value)}
-                  placeholder="Enter your submission here..."
-                  rows={8}
+                  placeholder="Enter your written response here..."
+                  rows={6}
                   disabled={userSubmission?.grade !== null && userSubmission?.grade !== undefined}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>File Attachments</Label>
+                <FileUpload
+                  bucketName="assignment-files"
+                  folder={`${user.id}/${assignmentId}`}
+                  onUploadComplete={setSubmissionFiles}
+                  maxFiles={3}
+                  existingFiles={submissionFiles}
+                  acceptedTypes={['.pdf', '.doc', '.docx', '.txt', '.jpg', '.jpeg', '.png']}
                 />
               </div>
 
               {(userSubmission?.grade === null || userSubmission?.grade === undefined) && (
                 <Button 
                   onClick={handleSubmitAssignment}
-                  disabled={submitting || !submissionContent.trim()}
+                  disabled={submitting || (!submissionContent.trim() && submissionFiles.length === 0)}
                   className="w-full"
                 >
                   {submitting 
@@ -470,10 +527,39 @@ const AssignmentDetails = () => {
                       <div className="space-y-4">
                         <div>
                           <Label className="text-sm font-medium">Submission:</Label>
-                          <div className="mt-1 p-3 bg-muted rounded-md">
-                            <p className="text-sm whitespace-pre-wrap">
-                              {submission.content || "No content provided"}
-                            </p>
+                          <div className="mt-1 space-y-2">
+                            {submission.content && (
+                              <div className="p-3 bg-muted rounded-md">
+                                <p className="text-sm whitespace-pre-wrap">
+                                  {submission.content}
+                                </p>
+                              </div>
+                            )}
+                            
+                            {submission.file_attachments && submission.file_attachments.length > 0 && (
+                              <div className="space-y-2">
+                                <Label className="text-xs font-medium text-muted-foreground">Attached Files:</Label>
+                                {submission.file_attachments.map((file, index) => (
+                                  <div key={index} className="flex items-center gap-2 p-2 bg-muted rounded">
+                                    <FileText className="h-4 w-4" />
+                                    <a 
+                                      href={file.url} 
+                                      target="_blank" 
+                                      rel="noopener noreferrer"
+                                      className="text-sm text-blue-600 hover:underline"
+                                    >
+                                      {file.name}
+                                    </a>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                            
+                            {!submission.content && (!submission.file_attachments || submission.file_attachments.length === 0) && (
+                              <div className="p-3 bg-muted rounded-md">
+                                <p className="text-sm text-muted-foreground">No content provided</p>
+                              </div>
+                            )}
                           </div>
                         </div>
 

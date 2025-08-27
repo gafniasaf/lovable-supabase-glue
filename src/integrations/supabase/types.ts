@@ -22,6 +22,7 @@ export type Database = {
           due_date: string | null
           id: string
           points_possible: number | null
+          resource_files: Json | null
           title: string
           updated_at: string
         }
@@ -32,6 +33,7 @@ export type Database = {
           due_date?: string | null
           id?: string
           points_possible?: number | null
+          resource_files?: Json | null
           title: string
           updated_at?: string
         }
@@ -42,6 +44,7 @@ export type Database = {
           due_date?: string | null
           id?: string
           points_possible?: number | null
+          resource_files?: Json | null
           title?: string
           updated_at?: string
         }
@@ -192,6 +195,7 @@ export type Database = {
           assignment_id: string
           content: string | null
           feedback: string | null
+          file_attachments: Json | null
           grade: number | null
           graded_at: string | null
           graded_by: string | null
@@ -203,6 +207,7 @@ export type Database = {
           assignment_id: string
           content?: string | null
           feedback?: string | null
+          file_attachments?: Json | null
           grade?: number | null
           graded_at?: string | null
           graded_by?: string | null
@@ -214,6 +219,7 @@ export type Database = {
           assignment_id?: string
           content?: string | null
           feedback?: string | null
+          file_attachments?: Json | null
           grade?: number | null
           graded_at?: string | null
           graded_by?: string | null
