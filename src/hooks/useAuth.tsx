@@ -22,50 +22,32 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { toast } = useToast();
 
   useEffect(() => {
-    if (initialized.current) return;
-    initialized.current = true;
+    let isMounted = true;
 
-    let mounted = true;
+    // Set up listener FIRST to avoid missing events
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, newSession) => {
+      if (!isMounted) return;
+      setSession(newSession);
+      setUser(newSession?.user ?? null);
+    });
 
-    // Get initial session first
-    const initializeAuth = async () => {
-      try {
-        const { data: { session: initialSession } } = await supabase.auth.getSession();
-        
-        if (mounted) {
-          setSession(initialSession);
-          setUser(initialSession?.user ?? null);
-          setLoading(false);
-        }
-
-        // Then set up listener
-        const { data: { subscription } } = supabase.auth.onAuthStateChange(
-          (event, newSession) => {
-            if (mounted) {
-              console.log('Auth state change:', event, newSession?.user?.email);
-              setSession(newSession);
-              setUser(newSession?.user ?? null);
-            }
-          }
-        );
-
-        return () => {
-          mounted = false;
-          subscription.unsubscribe();
-        };
-      } catch (error) {
+    // Then fetch current session and end loading state
+    supabase.auth.getSession()
+      .then(({ data: { session: initialSession } }) => {
+        if (!isMounted) return;
+        setSession(initialSession);
+        setUser(initialSession?.user ?? null);
+      })
+      .catch((error) => {
         console.error('Auth initialization error:', error);
-        if (mounted) {
-          setLoading(false);
-        }
-      }
-    };
-
-    const cleanup = initializeAuth();
+      })
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
 
     return () => {
-      mounted = false;
-      cleanup.then(cleanupFn => cleanupFn?.());
+      isMounted = false;
+      subscription.unsubscribe();
     };
   }, []);
 
