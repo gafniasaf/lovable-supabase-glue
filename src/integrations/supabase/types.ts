@@ -131,6 +131,166 @@ export type Database = {
         }
         Relationships: []
       }
+      content_interactions: {
+        Row: {
+          content_item_id: string
+          id: string
+          interaction_at: string
+          interaction_data: Json | null
+          interaction_type: string
+          student_id: string
+        }
+        Insert: {
+          content_item_id: string
+          id?: string
+          interaction_at?: string
+          interaction_data?: Json | null
+          interaction_type: string
+          student_id: string
+        }
+        Update: {
+          content_item_id?: string
+          id?: string
+          interaction_at?: string
+          interaction_data?: Json | null
+          interaction_type?: string
+          student_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_content_interactions_content_item"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "content_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      content_items: {
+        Row: {
+          content_data: Json
+          content_type: string
+          content_url: string | null
+          created_at: string
+          description: string | null
+          embed_code: string | null
+          estimated_duration: number | null
+          file_attachments: Json | null
+          id: string
+          is_required: boolean | null
+          item_order: number
+          module_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          content_data?: Json
+          content_type: string
+          content_url?: string | null
+          created_at?: string
+          description?: string | null
+          embed_code?: string | null
+          estimated_duration?: number | null
+          file_attachments?: Json | null
+          id?: string
+          is_required?: boolean | null
+          item_order?: number
+          module_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          content_data?: Json
+          content_type?: string
+          content_url?: string | null
+          created_at?: string
+          description?: string | null
+          embed_code?: string | null
+          estimated_duration?: number | null
+          file_attachments?: Json | null
+          id?: string
+          is_required?: boolean | null
+          item_order?: number
+          module_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_content_items_module"
+            columns: ["module_id"]
+            isOneToOne: false
+            referencedRelation: "content_modules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      content_modules: {
+        Row: {
+          course_id: string
+          created_at: string
+          created_by: string
+          description: string | null
+          due_date: string | null
+          estimated_duration: number | null
+          id: string
+          is_published: boolean | null
+          learning_objectives: string[] | null
+          module_order: number
+          prerequisites: string[] | null
+          publish_date: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          course_id: string
+          created_at?: string
+          created_by: string
+          description?: string | null
+          due_date?: string | null
+          estimated_duration?: number | null
+          id?: string
+          is_published?: boolean | null
+          learning_objectives?: string[] | null
+          module_order?: number
+          prerequisites?: string[] | null
+          publish_date?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          course_id?: string
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          due_date?: string | null
+          estimated_duration?: number | null
+          id?: string
+          is_published?: boolean | null
+          learning_objectives?: string[] | null
+          module_order?: number
+          prerequisites?: string[] | null
+          publish_date?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_content_modules_course"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "courses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "fk_content_modules_course"
+            columns: ["course_id"]
+            isOneToOne: false
+            referencedRelation: "grade_analytics"
+            referencedColumns: ["course_id"]
+          },
+        ]
+      }
       courses: {
         Row: {
           created_at: string
@@ -578,6 +738,56 @@ export type Database = {
           },
         ]
       }
+      student_progress: {
+        Row: {
+          bookmarked: boolean | null
+          completed_at: string | null
+          content_item_id: string
+          first_accessed_at: string | null
+          id: string
+          last_accessed_at: string | null
+          notes: string | null
+          progress_percentage: number | null
+          status: string
+          student_id: string
+          time_spent: number | null
+        }
+        Insert: {
+          bookmarked?: boolean | null
+          completed_at?: string | null
+          content_item_id: string
+          first_accessed_at?: string | null
+          id?: string
+          last_accessed_at?: string | null
+          notes?: string | null
+          progress_percentage?: number | null
+          status?: string
+          student_id: string
+          time_spent?: number | null
+        }
+        Update: {
+          bookmarked?: boolean | null
+          completed_at?: string | null
+          content_item_id?: string
+          first_accessed_at?: string | null
+          id?: string
+          last_accessed_at?: string | null
+          notes?: string | null
+          progress_percentage?: number | null
+          status?: string
+          student_id?: string
+          time_spent?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "fk_student_progress_content_item"
+            columns: ["content_item_id"]
+            isOneToOne: false
+            referencedRelation: "content_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       submissions: {
         Row: {
           assignment_id: string
@@ -667,6 +877,10 @@ export type Database = {
       }
     }
     Functions: {
+      calculate_module_completion: {
+        Args: { module_uuid: string; student_uuid: string }
+        Returns: number
+      }
       dev_upsert_user_with_role: {
         Args: { p_email: string; p_password: string; p_role: string }
         Returns: string
@@ -680,6 +894,19 @@ export type Database = {
           graded_submissions: number
           median_grade: number
           total_submissions: number
+        }[]
+      }
+      get_student_learning_analytics: {
+        Args: { course_uuid?: string; student_uuid: string }
+        Returns: {
+          average_completion_rate: number
+          completed_content_items: number
+          completed_modules: number
+          learning_streak: number
+          most_active_content_type: string
+          total_content_items: number
+          total_modules: number
+          total_time_spent: number
         }[]
       }
       get_user_role: {
