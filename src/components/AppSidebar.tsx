@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { 
   BookOpen, 
   FileText, 
@@ -75,12 +75,13 @@ export function AppSidebar() {
   // Get user role from profiles (you'll need to fetch this)
   const userRole = "teacher"; // TODO: Get from user profile data
 
-  const items = getNavigationItems(userRole);
+  const items = useMemo(() => getNavigationItems(userRole), [userRole]);
 
   const collapsed = state === "collapsed";
   const isActive = (path: string) => currentPath === path;
-  const getNavCls = ({ isActive }: { isActive: boolean }) =>
-    isActive ? "bg-accent text-accent-foreground font-medium" : "hover:bg-accent/50";
+  const getNavCls = useMemo(() => ({ isActive }: { isActive: boolean }) =>
+    isActive ? "bg-accent text-accent-foreground font-medium" : "hover:bg-accent/50"
+  , []);
 
   // Don't render sidebar if user is not authenticated
   if (!user) {
