@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useProfile } from "@/hooks/useProfile";
 
 import {
   Sidebar,
@@ -55,10 +56,11 @@ const NAVIGATION_ITEMS = {
 export function AppSidebar() {
   const { state } = useSidebar();
   const { user, signOut } = useAuth();
+  const { profile } = useProfile();
   const location = useLocation();
 
-  // Memoize user role
-  const userRole = useMemo(() => "teacher", []); // TODO: Get from user profile data
+  // Get user role from profile
+  const userRole = useMemo(() => profile?.role || "teacher", [profile?.role]);
 
   // Memoize navigation items
   const items = useMemo(() => {
@@ -122,7 +124,12 @@ export function AppSidebar() {
           </div>
           {!collapsed && (
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium truncate">{user?.email}</p>
+              <p className="text-sm font-medium truncate">
+                {profile?.first_name && profile?.last_name 
+                  ? `${profile.first_name} ${profile.last_name}`
+                  : user?.email
+                }
+              </p>
               <p className="text-xs text-muted-foreground capitalize">{userRole}</p>
             </div>
           )}
