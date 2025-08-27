@@ -1,18 +1,11 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
-import { useAuth } from "@/hooks/useAuth";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
 export const Layout = ({ children }: LayoutProps) => {
-  const { user } = useAuth();
-
-  if (!user) {
-    return <>{children}</>;
-  }
-
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full">

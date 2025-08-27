@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { 
   BookOpen, 
   FileText, 
@@ -81,6 +80,11 @@ export function AppSidebar() {
   const isActive = (path: string) => currentPath === path;
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
     isActive ? "bg-accent text-accent-foreground font-medium" : "hover:bg-accent/50";
+
+  // Don't render sidebar if user is not authenticated
+  if (!user) {
+    return null;
+  }
 
   return (
     <Sidebar
