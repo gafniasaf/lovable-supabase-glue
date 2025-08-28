@@ -1,19 +1,11 @@
-// Adapters index
-// [pkg-04-adapters-index]
 
-export { AdminAuditLogsAdapter, adminAuditLogsAdapter } from './admin-audit-logs';
-export { FilesAdapter, filesAdapter } from './files';
+// Simple adapters for development
+export const adminAuditLogsAdapter = {
+  getLogs: async () => ({ logs: [], total: 0 }),
+  getLogById: async (id: string) => ({ id, message: 'Sample log' })
+};
 
-// Re-export all adapter types
-export type { 
-  AuditLogEntry, 
-  AuditLogsQuery, 
-  AuditLogsResponse 
-} from '../schemas/audit-logs.v1';
-
-export type { 
-  FileFinalizeRequest,
-  FileFinalizeResponse,
-  FileDownloadRequest,
-  FileDownloadResponse
-} from '../schemas/files.v1';
+export const filesAdapter = {
+  finalizeUpload: async () => ({ success: true }),
+  getDownloadUrl: async () => ({ url: '#' })
+};
