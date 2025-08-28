@@ -1,0 +1,1 @@
+{\n   compilerOptions: {\n    target: ES2022,\n    module: ESNext,\n    moduleResolution: Bundler,\n    lib: [ES2022, DOM, DOM.Iterable],\n    strict: true,\n    skipLibCheck: true,\n    resolveJsonModule: true,\n    esModuleInterop: true,\n    forceConsistentCasingInFileNames: true,\n    noEmit: true,\n    baseUrl: .\n  }\n}\n
