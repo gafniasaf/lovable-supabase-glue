@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: import styles from Lovable UI package if provided */
-/* @import "@lovable/expertfolio-ui/styles.css"; */
+@import "../../packages/expertfolio-ui/dist/index.css";
 
 :root {
   --background: 255 255 255;
