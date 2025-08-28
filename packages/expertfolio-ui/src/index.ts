@@ -7,5 +7,8 @@ export * from './components';
 // Pages
 export * from './pages';
 
+// Integration helpers
+export * from './integration';
+
 // Styles
 import './index.css';
