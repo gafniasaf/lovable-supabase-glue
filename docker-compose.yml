@@ -1,0 +1,52 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    image: education-platform-web:local
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-3022}:3022"
+    environment:
+      # App base URL and port
+      - PORT=3022
+      - NEXT_PUBLIC_BASE_URL=http://web:3022
+      # Enable test mode for E2E and allow x-test-auth
+      - TEST_MODE=1
+      - E2E_ALLOW_TEST_MODE=1
+      # Supabase (used if provided). Defaults are safe for TEST_MODE.
+      - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL:-https://ukeqjiattiaokdqjqncf.supabase.co}
+      - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY:-eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVrZXFqaWF0dGlhb2tkcWpxbmNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUwOTI3NzIsImV4cCI6MjA3MDY2ODc3Mn0.sYYDUgwCt4X4k9ME6a_G2R3BA6GftI3WAcWVqBv2h2E}
+      # Optional: file bucket and CORS allowlist for external runtimes
+      - NEXT_PUBLIC_UPLOAD_BUCKET=${NEXT_PUBLIC_UPLOAD_BUCKET:-public}
+      - RUNTIME_CORS_ALLOW=
+      # Security flags
+      - CSRF_DOUBLE_SUBMIT=${CSRF_DOUBLE_SUBMIT:-0}
+      - MVP_PROD_GUARD=${MVP_PROD_GUARD:-0}
+      # Runtime v2 (optional)
+      - RUNTIME_API_V2=${RUNTIME_API_V2:-0}
+      - NEXT_RUNTIME_PUBLIC_KEY
+      - NEXT_RUNTIME_PRIVATE_KEY
+      - NEXT_RUNTIME_KEY_ID
+    healthcheck:
+      test: ["CMD", "node", "-e", "require('http').get('http://127.0.0.1:3022/api/health', r => { try { process.exit(r.statusCode===200?0:1) } catch { process.exit(1) } }).on('error', () => process.exit(1))" ]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+  tests:
+    profiles:
+      - tests
+    image: mcr.microsoft.com/playwright:v1.54.2-jammy
+    working_dir: /workspace
+    depends_on:
+      web:
+        condition: service_started
+    environment:
+      - PW_NO_SERVER=1
+      - PW_WORKERS=1
+      - PLAYWRIGHT_BASE_URL=http://web:3022
+    volumes:
+      - .:/workspace
+      - /workspace/node_modules
+      - /workspace/tests/node_modules
+    command: bash -lc "npm ci && npm --workspace tests run test:e2e && mkdir -p reports/e2e artifacts/e2e && cp -r tests/test-results reports/e2e/ || true && cp -r tests/test-results artifacts/e2e/ || true"
