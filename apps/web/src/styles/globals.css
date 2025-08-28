@@ -1,2 +1,30 @@
-/* minimal placeholder */
-:root { --placeholder: 1; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optional: import styles from Lovable UI package if provided */
+/* @import "@lovable/expertfolio-ui/styles.css"; */
+
+:root {
+  --background: 255 255 255;
+  --foreground: 17 24 39;
+  --card: 255 255 255;
+  --card-foreground: 17 24 39;
+  --muted: 243 244 246;
+  --muted-foreground: 107 114 128;
+  --border: 229 231 235;
+  --primary: 59 130 246;
+  --primary-foreground: 255 255 255;
+  --secondary: 99 102 241;
+  --secondary-foreground: 255 255 255;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: theme('fontFamily.sans');
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+}
