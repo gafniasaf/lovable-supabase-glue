@@ -19,6 +19,8 @@
   "dependencies": {
     "@education/shared": "file:../../packages/shared",
     "@hookform/resolvers": "^5.2.1",
+    "dompurify": "^3.1.7",
+    "lucide-react": "^0.462.0",
     "@supabase/auth-helpers-nextjs": "^0.9.0",
     "@supabase/supabase-js": "^2.45.0",
     "jose": "^6.0.12",
