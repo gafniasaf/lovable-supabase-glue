@@ -1,6 +1,7 @@
 // Security utilities and sanitization helpers
 // [pkg-14-security]
 
+import React from 'react';
 import DOMPurify from 'dompurify';
 
 // Content Security Policy configuration

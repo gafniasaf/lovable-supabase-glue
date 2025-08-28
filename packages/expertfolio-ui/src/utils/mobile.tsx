@@ -1,7 +1,7 @@
 // Mobile optimization utilities and responsive design helpers
 // [pkg-14-mobile]
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 // Mobile detection utilities
 export const useIsMobile = (): boolean => {

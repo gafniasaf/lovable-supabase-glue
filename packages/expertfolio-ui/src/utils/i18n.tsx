@@ -1,7 +1,7 @@
 // Internationalization support
 // [pkg-14-i18n]
 
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 // Supported locales
 export type SupportedLocale = 'en' | 'es' | 'fr' | 'de' | 'pt' | 'zh';

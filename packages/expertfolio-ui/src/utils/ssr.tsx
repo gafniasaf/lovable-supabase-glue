@@ -1,7 +1,7 @@
 // SSR and Next.js compatibility utilities
 // [pkg-14-ssr]
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // Safe client-side only hook
 export const useIsClient = (): boolean => {

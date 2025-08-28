@@ -1,6 +1,8 @@
 // Feature flags and runtime configuration
 // [pkg-12-feature-flags]
 
+import React from 'react';
+
 interface FeatureFlags {
   FEATURE_EXPERTFOLIO: boolean;
   FEATURE_ADVANCED_ANALYTICS: boolean;
