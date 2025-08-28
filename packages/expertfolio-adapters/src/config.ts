@@ -9,25 +9,17 @@ interface AdapterConfig {
   environment: 'development' | 'production' | 'test';
 }
 
-// Read environment variables with fallback logic
+// Read environment variables (Next.js/Node compatible). No import.meta usage.
 const getEnvVar = (name: string, fallback?: string): string => {
-  // Try Next.js style first
-  const nextPublicValue = (globalThis as any)?.process?.env?.[`NEXT_PUBLIC_${name}`] ||
-                          (typeof window !== 'undefined' && (window as any).process?.env?.[`NEXT_PUBLIC_${name}`]);
-  
-  // Fall back to Vite style (for build-time). Guard import.meta for Next/Node.
-  const viteValue = (typeof import !== 'undefined' && (import.meta as any)?.env)
-    ? (import.meta as any).env[`VITE_${name}`]
+  const nextPublicValue = (typeof process !== 'undefined' && process.env)
+    ? process.env[`NEXT_PUBLIC_${name}`]
     : undefined;
-  
-  // Fall back to provided default
-  const value = nextPublicValue || viteValue || fallback;
-  
-  if (!value && !fallback) {
-    throw new Error(`Environment variable NEXT_PUBLIC_${name} or VITE_${name} is required`);
+
+  const value = nextPublicValue ?? fallback;
+  if (value === undefined) {
+    throw new Error(`Environment variable NEXT_PUBLIC_${name} is required`);
   }
-  
-  return value || fallback || '';
+  return value;
 };
 
 // Detect test mode
@@ -37,10 +29,7 @@ const isTestMode = (): boolean => {
     return true;
   }
   
-  // Check Vite test mode (guard import.meta)
-  if ((typeof import !== 'undefined' && (import.meta as any)?.env)?.MODE === 'test') {
-    return true;
-  }
+  // Vite test mode not applicable in Next.js build
   
   return false;
 };
@@ -58,7 +47,7 @@ export const config: AdapterConfig = {
   get testMode() {
     return testModeOverride !== null ? testModeOverride : isTestMode();
   },
-  environment: (typeof process !== 'undefined' ? process.env.NODE_ENV : ((typeof import !== 'undefined' && (import.meta as any)?.env)?.MODE || 'development')) as 'development' | 'production' | 'test'
+  environment: ((typeof process !== 'undefined' && process.env && process.env.NODE_ENV) || 'development') as 'development' | 'production' | 'test'
 };
 
 export default config;
