@@ -9,7 +9,7 @@ const nextConfig = {
     typedRoutes: true,
     optimizePackageImports: ["react", "react-dom"]
   },
-  transpilePackages: ['@shared', '@education/shared'],
+  transpilePackages: ['@shared', '@education/shared', '@lovable/expertfolio-ui', '@lovable/expertfolio-adapters'],
   output: 'standalone',
   headers: async () => [
     {
