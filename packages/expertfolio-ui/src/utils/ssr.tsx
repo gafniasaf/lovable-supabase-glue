@@ -15,7 +15,7 @@ export const useIsClient = (): boolean => {
 };
 
 // Safe local storage hook with SSR support
-export const useLocalStorage = <T>(
+export const useLocalStorage = <T,>(
   key: string,
   initialValue: T
 ): [T, (value: T | ((val: T) => T)) => void] => {
