@@ -11,15 +11,10 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "baseUrl": ".",
-    "jsx": "react-jsx",
-    "paths": {
-      "@/*": ["src/*"],
-      "@lovable/expertfolio-ui": ["packages/expertfolio-ui/src/index.tsx"],
-      "@lovable/expertfolio-ui/*": ["packages/expertfolio-ui/src/*"],
-      "@lovable/expertfolio-adapters": ["packages/expertfolio-adapters/src/adapters/index.ts"],
-      "@lovable/expertfolio-adapters/*": ["packages/expertfolio-adapters/src/*"]
-    }
-  }
+    "jsx": "react-jsx"
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
 }
 
 

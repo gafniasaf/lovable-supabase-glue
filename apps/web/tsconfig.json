@@ -1,0 +1,54 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@lovable/expertfolio-ui": [
+        "../../packages/expertfolio-ui/src/index.ts"
+      ],
+      "@lovable/expertfolio-ui/*": [
+        "../../packages/expertfolio-ui/src/*"
+      ],
+      "@lovable/expertfolio-adapters": [
+        "../../packages/expertfolio-adapters/src/adapters/index.ts"
+      ],
+      "@lovable/expertfolio-adapters/*": [
+        "../../packages/expertfolio-adapters/src/*"
+      ],
+      "@shared": [
+        "../../packages/shared/src/index.ts"
+      ],
+      "@education/shared": [
+        "../../packages/shared/src/index.ts"
+      ],
+      "@shared/*": [
+        "../../packages/shared/src/*"
+      ],
+      "@education/shared/*": [
+        "../../packages/shared/src/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "allowJs": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "strictNullChecks": true
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
