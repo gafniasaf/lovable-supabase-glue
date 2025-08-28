@@ -5,11 +5,13 @@ import { z } from 'zod';
 import { config } from '../config';
 
 // Create relaxed version of strict schemas for test mode
-export const relaxed = <T extends z.ZodTypeAny>(schema: T, relaxations: Record<string, z.ZodTypeAny>) => {
-  return config.testMode 
-    ? schema.extend ? schema.extend(relaxations) 
-    : schema.or(z.object(relaxations))
-    : schema;
+export const relaxed = <T extends z.ZodTypeAny>(schema: T, relaxations: Record<string, z.ZodTypeAny>): T => {
+  if (!config.testMode) return schema;
+  const anySchema = schema as any;
+  if (typeof anySchema.extend === 'function') {
+    return anySchema.extend(relaxations) as T;
+  }
+  return (schema as any).or(z.object(relaxations)) as T;
 };
 
 // Common field types
