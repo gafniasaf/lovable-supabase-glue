@@ -151,6 +151,33 @@ export const useGradeAnalytics = ({
     }
   }, [toast]);
 
+  // Refresh analytics data (for admin/system use)
+  const refreshAnalyticsData = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const { error } = await supabase.rpc('refresh_grade_analytics');
+
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: "Analytics data refreshed successfully",
+      });
+    } catch (err) {
+      console.error('Error refreshing analytics data:', err);
+      setError('Failed to refresh analytics data');
+      toast({
+        title: "Error",
+        description: "Failed to refresh analytics data",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  }, [toast]);
+
   // Auto-fetch data when dependencies change
   useEffect(() => {
     if (assignmentId) {
@@ -202,6 +229,7 @@ export const useGradeAnalytics = ({
     fetchGradeStatistics,
     fetchGradeHistory,
     fetchCourseAnalytics,
+    refreshAnalyticsData,
     getGradeLetter,
     getGradePercentage,
     getFormattedDistribution,

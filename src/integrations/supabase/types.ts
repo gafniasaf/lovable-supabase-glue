@@ -56,13 +56,6 @@ export type Database = {
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "announcements_course_id_fkey"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["course_id"]
-          },
         ]
       }
       assignments: {
@@ -224,25 +217,11 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "collaboration_sessions_assignment_id_fkey"
-            columns: ["assignment_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["assignment_id"]
-          },
-          {
             foreignKeyName: "collaboration_sessions_course_id_fkey"
             columns: ["course_id"]
             isOneToOne: false
             referencedRelation: "courses"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "collaboration_sessions_course_id_fkey"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["course_id"]
           },
         ]
       }
@@ -397,13 +376,6 @@ export type Database = {
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "fk_content_modules_course"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["course_id"]
-          },
         ]
       }
       courses: {
@@ -482,25 +454,11 @@ export type Database = {
             referencedColumns: ["id"]
           },
           {
-            foreignKeyName: "discussion_forums_assignment_id_fkey"
-            columns: ["assignment_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["assignment_id"]
-          },
-          {
             foreignKeyName: "discussion_forums_course_id_fkey"
             columns: ["course_id"]
             isOneToOne: false
             referencedRelation: "courses"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "discussion_forums_course_id_fkey"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["course_id"]
           },
         ]
       }
@@ -588,14 +546,64 @@ export type Database = {
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "enrollments_course_id_fkey"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["course_id"]
-          },
         ]
+      }
+      grade_analytics: {
+        Row: {
+          assignment_id: string | null
+          assignment_title: string | null
+          average_grade: number | null
+          avg_grading_time: number | null
+          course_id: string | null
+          course_title: string | null
+          created_at: string | null
+          grade_stddev: number | null
+          graded_submissions: number | null
+          late_submissions: number | null
+          max_grade: number | null
+          min_grade: number | null
+          points_possible: number | null
+          teacher_id: string | null
+          total_submissions: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          assignment_id?: string | null
+          assignment_title?: string | null
+          average_grade?: number | null
+          avg_grading_time?: number | null
+          course_id?: string | null
+          course_title?: string | null
+          created_at?: string | null
+          grade_stddev?: number | null
+          graded_submissions?: number | null
+          late_submissions?: number | null
+          max_grade?: number | null
+          min_grade?: number | null
+          points_possible?: number | null
+          teacher_id?: string | null
+          total_submissions?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          assignment_id?: string | null
+          assignment_title?: string | null
+          average_grade?: number | null
+          avg_grading_time?: number | null
+          course_id?: string | null
+          course_title?: string | null
+          created_at?: string | null
+          grade_stddev?: number | null
+          graded_submissions?: number | null
+          late_submissions?: number | null
+          max_grade?: number | null
+          min_grade?: number | null
+          points_possible?: number | null
+          teacher_id?: string | null
+          total_submissions?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
       }
       grade_history: {
         Row: {
@@ -680,13 +688,6 @@ export type Database = {
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "message_threads_course_id_fkey"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["course_id"]
-          },
         ]
       }
       messages: {
@@ -742,13 +743,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "courses"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "messages_course_id_fkey"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["course_id"]
           },
           {
             foreignKeyName: "messages_message_thread_id_fkey"
@@ -1020,13 +1014,6 @@ export type Database = {
             referencedRelation: "courses"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "quizzes_course_id_fkey"
-            columns: ["course_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["course_id"]
-          },
         ]
       }
       rubric_criteria: {
@@ -1147,13 +1134,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "assignments"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "rubrics_assignment_id_fkey"
-            columns: ["assignment_id"]
-            isOneToOne: false
-            referencedRelation: "grade_analytics"
-            referencedColumns: ["assignment_id"]
           },
         ]
       }
@@ -1302,25 +1282,7 @@ export type Database = {
       }
     }
     Views: {
-      grade_analytics: {
-        Row: {
-          assignment_id: string | null
-          assignment_title: string | null
-          average_grade: number | null
-          avg_grading_time: number | null
-          course_id: string | null
-          course_title: string | null
-          grade_stddev: number | null
-          graded_submissions: number | null
-          late_submissions: number | null
-          max_grade: number | null
-          min_grade: number | null
-          points_possible: number | null
-          teacher_id: string | null
-          total_submissions: number | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       calculate_module_completion: {
@@ -1377,6 +1339,10 @@ export type Database = {
       is_course_teacher: {
         Args: { course_uuid: string; user_uuid: string }
         Returns: boolean
+      }
+      refresh_grade_analytics: {
+        Args: Record<PropertyKey, never>
+        Returns: undefined
       }
     }
     Enums: {
