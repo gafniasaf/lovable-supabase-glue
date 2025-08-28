@@ -2,14 +2,21 @@ import React, { createContext, useContext, useEffect, useState, useRef } from 'r
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
+import { config } from '@/lib/config';
+
+// [lov-02-auth-role-testmode] Read role from user_metadata.role and honor x-test-auth
+
+export type UserRole = 'admin' | 'teacher' | 'student' | 'parent';
 
 interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
+  role: UserRole | null;
   signUp: (email: string, password: string) => Promise<{ error: any }>;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
+  isTestMode: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -18,8 +25,41 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [role, setRole] = useState<UserRole | null>(null);
   const initialized = useRef(false);
   const { toast } = useToast();
+
+  // Extract role from user metadata
+  const extractUserRole = (user: User | null): UserRole | null => {
+    if (!user) return null;
+    
+    // Check x-test-auth in test mode
+    if (config.isTestMode && config.environment !== 'production') {
+      const testAuthCookie = typeof document !== 'undefined' 
+        ? document.cookie.split(';').find(c => c.trim().startsWith('x-test-auth='))?.split('=')[1]
+        : null;
+      
+      if (testAuthCookie) {
+        try {
+          const testAuth = JSON.parse(decodeURIComponent(testAuthCookie));
+          if (testAuth.role) {
+            return testAuth.role as UserRole;
+          }
+        } catch (e) {
+          console.warn('Failed to parse x-test-auth cookie:', e);
+        }
+      }
+    }
+    
+    // Read from user_metadata.role (primary source)
+    const userRole = user.user_metadata?.role;
+    if (userRole && ['admin', 'teacher', 'student', 'parent'].includes(userRole)) {
+      return userRole as UserRole;
+    }
+    
+    // Fallback to 'student' for existing users without explicit role
+    return 'student';
+  };
 
   useEffect(() => {
     let isMounted = true;
@@ -29,6 +69,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (!isMounted) return;
       setSession(newSession);
       setUser(newSession?.user ?? null);
+      setRole(extractUserRole(newSession?.user ?? null));
     });
 
     // Then fetch current session and end loading state
@@ -37,6 +78,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         if (!isMounted) return;
         setSession(initialSession);
         setUser(initialSession?.user ?? null);
+        setRole(extractUserRole(initialSession?.user ?? null));
       })
       .catch((error) => {
         console.error('Auth initialization error:', error);
@@ -132,9 +174,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     user,
     session,
     loading,
+    role,
     signUp,
     signIn,
     signOut,
+    isTestMode: config.isTestMode,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

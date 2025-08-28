@@ -26,6 +26,7 @@ import ParentPortalPage from "./pages/ParentPortal";
 import QuizAssessmentPage from "./pages/QuizAssessment";
 import AIDashboardPage from "./pages/AIDashboard";
 import MobileDashboardPage from "./pages/MobileDashboard";
+import Admin from "./pages/Admin";
 import Students from "./pages/Students";
 import NotFound from "./pages/NotFound";
 
@@ -104,6 +105,13 @@ const App = () => (
               <ProtectedRoute>
                 <Layout>
                   <Students />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/admin" element={
+              <ProtectedRoute>
+                <Layout>
+                  <Admin />
                 </Layout>
               </ProtectedRoute>
             } />
