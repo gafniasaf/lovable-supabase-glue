@@ -15,7 +15,8 @@ import {
   TrendingUp,
   Award,
   Brain,
-  Smartphone
+  Smartphone,
+  Shield
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
@@ -73,6 +74,7 @@ const NAVIGATION_ITEMS = {
   ],
   admin: [
     { title: "Dashboard", url: "/dashboard", icon: Home },
+    { title: "Admin Panel", url: "/admin", icon: Shield },
     { title: "Courses", url: "/courses", icon: BookOpen },
     { title: "Students", url: "/students", icon: Users },
     { title: "Profile", url: "/profile", icon: Settings },
@@ -81,12 +83,12 @@ const NAVIGATION_ITEMS = {
 
 export function AppSidebar() {
   const { state } = useSidebar();
-  const { user, signOut } = useAuth();
+  const { user, signOut, role } = useAuth();
   const { profile } = useProfile();
   const location = useLocation();
 
-  // Get user role from profile
-  const userRole = useMemo(() => profile?.role || "teacher", [profile?.role]);
+  // Get user role from auth hook (which reads from user_metadata)
+  const userRole = useMemo(() => role || profile?.role || "student", [role, profile?.role]);
 
   // Memoize navigation items
   const items = useMemo(() => {
