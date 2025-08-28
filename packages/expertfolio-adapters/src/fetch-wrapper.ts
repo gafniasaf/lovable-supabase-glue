@@ -151,7 +151,7 @@ export const fetchWrapper = async <T = any>(
       externalSignal?.removeEventListener('abort', abortHandler);
       
       // Parse rate limit info
-      const rateLimitInfo = parseRateLimitHeaders(response.headers);
+      const rateLimitInfo = parseRateLimitHeaders(response.headers) || undefined;
       
       // Handle rate limiting with retry
       if (response.status === 429) {
