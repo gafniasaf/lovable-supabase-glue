@@ -1,3 +1,8 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -11,7 +16,6 @@ const nextConfig = {
   },
   transpilePackages: ['@shared', '@education/shared', '@lovable/expertfolio-ui', '@lovable/expertfolio-adapters'],
   webpack: (config) => {
-    const path = require('path');
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       '@lovable/expertfolio-ui': path.resolve(__dirname, '../../packages/expertfolio-ui/src'),
