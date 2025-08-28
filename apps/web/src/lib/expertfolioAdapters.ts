@@ -1,1 +1,1 @@
-export { adminAuditLogsAdapter, filesAdapter } from "../../../packages/expertfolio-adapters/src/adapters";
+export { adminAuditLogsAdapter, filesAdapter } from "@lovable/expertfolio-adapters";
