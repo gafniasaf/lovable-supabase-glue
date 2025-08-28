@@ -1,7 +1,0 @@
-
-{
-  "name": "@lovable/expertfolio-adapters",
-  "version": "1.0.0",
-  "main": "src/adapters/index.ts",
-  "types": "src/adapters/index.ts"
-}
