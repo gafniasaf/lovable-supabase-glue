@@ -4,6 +4,8 @@
 import React from 'react';
 import type { AdminAuditLogsPageProps } from '../pages/AdminAuditLogsPage';
 import type { FilesPageProps } from '../pages/FilesPage';
+import { AdminAuditLogsPage } from '../pages/AdminAuditLogsPage';
+import { FilesPage } from '../pages/FilesPage';
 
 // Context for managing adapter integration
 export interface ExpertfolioContextValue {
