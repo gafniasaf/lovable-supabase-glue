@@ -7,7 +7,6 @@
     "dev:test": "node scripts/start-dev.js test",
     "dev:e2e": "node scripts/start-dev.js e2e",
     "build": "cross-env NEXT_DISABLE_SWC_NATIVE=1 next build",
-    "prebuild": "node ../../node_modules/typescript/lib/tsc.js -p ../../packages/expertfolio-adapters/tsconfig.json && node ../../node_modules/typescript/lib/tsc.js -p ../../packages/expertfolio-ui/tsconfig.json && node ../../node_modules/tailwindcss/lib/cli.js -i ../../packages/expertfolio-ui/src/index.css -o ../../packages/expertfolio-ui/dist/index.css --minify",
     "start": "next start",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "storybook": "storybook dev",
