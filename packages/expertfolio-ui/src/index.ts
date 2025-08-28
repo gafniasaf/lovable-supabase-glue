@@ -7,7 +7,7 @@ export * from './components';
 // Pages
 export * from './pages';
 
-// Integration helpers
+// Integration helpers (re-export provider and connected pages)
 export * from './integration';
 
 // Utilities

@@ -1,6 +1,5 @@
 "use client";
-import { ExpertfolioProvider } from "@lovable/expertfolio-ui";
-import { ConnectedAdminAuditLogsPage, ConnectedFilesPage } from "@lovable/expertfolio-ui/pages";
+import { ExpertfolioProvider, ConnectedAdminAuditLogsPage, ConnectedFilesPage } from "@lovable/expertfolio-ui";
 import { adminAuditLogsAdapter, filesAdapter } from "@lovable/expertfolio-adapters";
 
 export default function ExpertfolioLabPage() {
