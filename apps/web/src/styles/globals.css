@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "../../packages/expertfolio-ui/dist/index.css";
+@import "../../packages/expertfolio-ui/src/index.css";
 
 :root {
   --background: 255 255 255;
@@ -18,12 +18,9 @@
   --secondary-foreground: 255 255 255;
 }
 
-html, body {
-  height: 100%;
-}
+html, body { height: 100%; }
 
 body {
+  @apply text-base bg-[rgb(var(--background))] text-[rgb(var(--foreground))];
   font-family: theme('fontFamily.sans');
-  background-color: rgb(var(--background));
-  color: rgb(var(--foreground));
 }

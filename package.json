@@ -3,12 +3,19 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "tests"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:packages": "npm run build -w @lovable/expertfolio-adapters && npm run build -w @lovable/expertfolio-ui",
+    "build:web": "npm --workspace apps/web run build"
   },
   "dependencies": {
     "@capacitor/android": "^7.4.3",

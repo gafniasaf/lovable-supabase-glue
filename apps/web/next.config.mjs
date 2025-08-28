@@ -18,6 +18,7 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
+      // Use source paths and let Next transpile them
       '@lovable/expertfolio-ui': path.resolve(__dirname, '../../packages/expertfolio-ui/src'),
       // Pin to server-safe adapters entry (avoids hooks/msw re-exports on the root index)
       '@lovable/expertfolio-adapters$': path.resolve(__dirname, '../../packages/expertfolio-adapters/src/adapters/index.ts'),

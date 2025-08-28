@@ -47,6 +47,11 @@
       "import": "./dist/index.js",
       "require": "./dist/index.js"
     },
+    "./integration": {
+      "types": "./dist/integration/index.d.ts",
+      "import": "./dist/integration/index.js",
+      "require": "./dist/integration/index.js"
+    },
     "./components": {
       "types": "./dist/components/index.d.ts",
       "import": "./dist/components/index.js",

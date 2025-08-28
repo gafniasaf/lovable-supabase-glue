@@ -1,0 +1,26 @@
+{
+  "node": {
+    "9813c10632152b9c983bcd45b1cc723a5e52d981": {
+      "workers": {
+        "app/page": "(rsc)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cagafn%5C%5CDesktop%5C%5Ceducation%20system%205%5C%5Capps%5C%5Cweb%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Clogout.ts%22%2C%5B%22logout%22%5D%5D%5D&__client_imported__=!",
+        "app/labs/teacher/analytics/page": "(rsc)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cagafn%5C%5CDesktop%5C%5Ceducation%20system%205%5C%5Capps%5C%5Cweb%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Clogout.ts%22%2C%5B%22logout%22%5D%5D%5D&__client_imported__=!",
+        "app/labs/teacher/content-quality-report/page": "(rsc)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cagafn%5C%5CDesktop%5C%5Ceducation%20system%205%5C%5Capps%5C%5Cweb%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Clogout.ts%22%2C%5B%22logout%22%5D%5D%5D&__client_imported__=!",
+        "app/labs/teacher/course-insights/page": "(rsc)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cagafn%5C%5CDesktop%5C%5Ceducation%20system%205%5C%5Capps%5C%5Cweb%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Clogout.ts%22%2C%5B%22logout%22%5D%5D%5D&__client_imported__=!",
+        "app/labs/teacher/lesson-catalog/page": "(rsc)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cagafn%5C%5CDesktop%5C%5Ceducation%20system%205%5C%5Capps%5C%5Cweb%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Clogout.ts%22%2C%5B%22logout%22%5D%5D%5D&__client_imported__=!",
+        "app/labs/expertfolio/page": "(rsc)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cagafn%5C%5CDesktop%5C%5Ceducation%20system%205%5C%5Capps%5C%5Cweb%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Clogout.ts%22%2C%5B%22logout%22%5D%5D%5D&__client_imported__=!",
+        "app/_not-found/page": "(rsc)/../../node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5Cagafn%5C%5CDesktop%5C%5Ceducation%20system%205%5C%5Capps%5C%5Cweb%5C%5Csrc%5C%5Capp%5C%5Cactions%5C%5Clogout.ts%22%2C%5B%22logout%22%5D%5D%5D&__client_imported__=!"
+      },
+      "layer": {
+        "app/page": "rsc",
+        "app/labs/teacher/analytics/page": "rsc",
+        "app/labs/teacher/content-quality-report/page": "rsc",
+        "app/labs/teacher/course-insights/page": "rsc",
+        "app/labs/teacher/lesson-catalog/page": "rsc",
+        "app/labs/expertfolio/page": "rsc",
+        "app/_not-found/page": "rsc"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "fpaJHfjEmVTlYerRG/2FWhSb2uUMe1TTyMfr+0s0rg0="
+}
