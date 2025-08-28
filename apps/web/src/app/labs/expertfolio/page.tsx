@@ -1,6 +1,6 @@
 import { isExpertfolioEnabled } from "@/lib/features";
-import { ExpertfolioProvider, ConnectedAdminAuditLogsPage, ConnectedFilesPage } from "@lovable/expertfolio-ui";
-import { adminAuditLogsAdapter, filesAdapter } from "@lovable/expertfolio-adapters";
+import { ExpertfolioProvider, ConnectedAdminAuditLogsPage, ConnectedFilesPage } from "../../../../vendor/lovable/expertfolio/main/packages/expertfolio-ui/src";
+import { adminAuditLogsAdapter, filesAdapter } from "../../../../vendor/lovable/expertfolio/main/packages/expertfolio-adapters/src";
 
 export default function ExpertfolioPlaceholderPage() {
   if (!isExpertfolioEnabled()) {
