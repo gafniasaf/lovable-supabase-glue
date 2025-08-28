@@ -10,5 +10,8 @@ export * from './pages';
 // Integration helpers
 export * from './integration';
 
+// Utilities
+export * from './utils';
+
 // Styles
 import './index.css';
