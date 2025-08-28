@@ -1,3 +1,4 @@
+"use client";
 import { ExpertfolioProvider } from "@lovable/expertfolio-ui";
 import { ConnectedAdminAuditLogsPage, ConnectedFilesPage } from "@lovable/expertfolio-ui/pages";
 import { adminAuditLogsAdapter, filesAdapter } from "@lovable/expertfolio-adapters";
