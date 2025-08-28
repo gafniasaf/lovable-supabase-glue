@@ -1,2 +1,4 @@
 "use client";
-export default function NotificationsBellClient() { return null as any; }
+export default function NotificationsBellClient({ initialUnread }: { initialUnread?: number }) {
+  return (<span aria-label="Notifications">🔔{initialUnread ? ` (${initialUnread})` : ''}</span>) as any;
+}
