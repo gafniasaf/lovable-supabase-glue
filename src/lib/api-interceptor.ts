@@ -1,35 +1,44 @@
 
-// API request interceptor for Vite development
-import { mockApiHandlers } from '../mocks/api';
+import { apiHandlers } from '../api/server'
 
-// Override fetch to intercept API calls
-const originalFetch = window.fetch;
+// Mock API server for development
+const originalFetch = window.fetch
 
 window.fetch = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
-  const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
-  
-  // Handle API routes
-  if (url.includes('/api/admin/audit-logs/') && !url.endsWith('/api/admin/audit-logs')) {
-    // Individual audit log
-    return mockApiHandlers.handleAuditLogByIdRequest(url);
-  }
-  
-  if (url.includes('/api/admin/audit-logs')) {
-    // Audit logs list
-    return mockApiHandlers.handleAuditLogsRequest(url);
-  }
-  
-  if (url.includes('/api/files/finalize')) {
-    const body = init?.body ? JSON.parse(init.body as string) : {};
-    return mockApiHandlers.handleFilesFinalizeRequest(body);
-  }
-  
-  if (url.includes('/api/files/download-url')) {
-    return mockApiHandlers.handleFilesDownloadUrlRequest(url);
-  }
-  
-  // For all other requests, use the original fetch
-  return originalFetch(input, init);
-};
+  const url = typeof input === 'string' ? input : input instanceof URL ? input.toString() : input.url
+  const method = init?.method || 'GET'
 
-export {}; // Make this a module
+  // Only intercept API calls in development
+  if (import.meta.env.DEV && url.startsWith('/api/')) {
+    console.log(`[API Interceptor] ${method} ${url}`)
+    
+    try {
+      // Route to appropriate handler
+      if (url.match(/^\/api\/admin\/audit-logs\/[^/]+$/)) {
+        const id = url.split('/').pop()!
+        return await apiHandlers.getAuditLogById(new Request(url, init), id)
+      } else if (url.startsWith('/api/admin/audit-logs')) {
+        return await apiHandlers.getAuditLogs(new Request(url, init))
+      } else if (url.startsWith('/api/files/finalize')) {
+        return await apiHandlers.finalizeFile(new Request(url, init))
+      } else if (url.startsWith('/api/files/download-url')) {
+        return await apiHandlers.getDownloadUrl(new Request(url, init))
+      }
+    } catch (error) {
+      console.error('[API Interceptor] Error:', error)
+      return new Response(JSON.stringify({
+        error: {
+          code: 'INTERNAL_ERROR',
+          message: 'API interceptor error',
+          statusCode: 500
+        }
+      }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' }
+      })
+    }
+  }
+
+  // Fall back to original fetch for non-API calls
+  return originalFetch(input, init)
+}
