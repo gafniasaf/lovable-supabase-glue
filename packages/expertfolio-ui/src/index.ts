@@ -4,5 +4,8 @@
 // Components
 export * from './components';
 
+// Pages
+export * from './pages';
+
 // Styles
 import './index.css';

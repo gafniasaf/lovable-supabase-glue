@@ -6,6 +6,9 @@ export { config, setTestMode } from './config';
 export { fetchWrapper, api, RateLimitError, TimeoutError } from './fetch-wrapper';
 export type { FetchOptions, RateLimitInfo, ApiResult } from './fetch-wrapper';
 
+// Hooks
+export { useCancellableRequest } from './hooks/useCancellableRequest';
+
 // Adapters
 export * from './adapters';
 

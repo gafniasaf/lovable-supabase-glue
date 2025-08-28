@@ -8,6 +8,7 @@ export interface FetchOptions extends Omit<RequestInit, 'signal'> {
   retries?: number;
   idempotencyKey?: string;
   skipAuth?: boolean;
+  signal?: AbortSignal;
 }
 
 export interface RateLimitInfo {
@@ -95,6 +96,7 @@ export const fetchWrapper = async <T = any>(
     retries = 3,
     idempotencyKey,
     skipAuth = false,
+    signal: externalSignal,
     ...fetchOptions 
   } = options;
   
@@ -104,6 +106,15 @@ export const fetchWrapper = async <T = any>(
   for (let attempt = 0; attempt <= retries; attempt++) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeout);
+    
+    // If external signal is aborted, abort our controller too
+    if (externalSignal?.aborted) {
+      controller.abort();
+    }
+    
+    // Listen for external abort
+    const abortHandler = () => controller.abort();
+    externalSignal?.addEventListener('abort', abortHandler);
     
     try {
       // Prepare headers
@@ -137,6 +148,7 @@ export const fetchWrapper = async <T = any>(
       });
       
       clearTimeout(timeoutId);
+      externalSignal?.removeEventListener('abort', abortHandler);
       
       // Parse rate limit info
       const rateLimitInfo = parseRateLimitHeaders(response.headers);
@@ -241,6 +253,7 @@ export const fetchWrapper = async <T = any>(
       
     } catch (error) {
       clearTimeout(timeoutId);
+      externalSignal?.removeEventListener('abort', abortHandler);
       lastError = error as Error;
       
       // Handle abort (timeout)
