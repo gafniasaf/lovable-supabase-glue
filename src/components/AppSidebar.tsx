@@ -77,6 +77,7 @@ const NAVIGATION_ITEMS = {
     { title: "Admin Panel", url: "/admin", icon: Shield },
     { title: "Courses", url: "/courses", icon: BookOpen },
     { title: "Students", url: "/students", icon: Users },
+    { title: "Expertfolio", url: "/expertfolio", icon: Settings },
     { title: "Profile", url: "/profile", icon: Settings },
   ],
 } as const;
