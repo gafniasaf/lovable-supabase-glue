@@ -15,8 +15,10 @@ const getEnvVar = (name: string, fallback?: string): string => {
   const nextPublicValue = (globalThis as any)?.process?.env?.[`NEXT_PUBLIC_${name}`] ||
                           (typeof window !== 'undefined' && (window as any).process?.env?.[`NEXT_PUBLIC_${name}`]);
   
-  // Fall back to Vite style (for build-time)
-  const viteValue = (import.meta.env as any)?.[`VITE_${name}`];
+  // Fall back to Vite style (for build-time). Guard import.meta for Next/Node.
+  const viteValue = (typeof import !== 'undefined' && (import.meta as any)?.env)
+    ? (import.meta as any).env[`VITE_${name}`]
+    : undefined;
   
   // Fall back to provided default
   const value = nextPublicValue || viteValue || fallback;
@@ -35,8 +37,8 @@ const isTestMode = (): boolean => {
     return true;
   }
   
-  // Check Vite test mode
-  if ((import.meta.env as any)?.MODE === 'test') {
+  // Check Vite test mode (guard import.meta)
+  if ((typeof import !== 'undefined' && (import.meta as any)?.env)?.MODE === 'test') {
     return true;
   }
   
@@ -56,7 +58,7 @@ export const config: AdapterConfig = {
   get testMode() {
     return testModeOverride !== null ? testModeOverride : isTestMode();
   },
-  environment: (typeof process !== 'undefined' ? process.env.NODE_ENV : (import.meta.env as any)?.MODE || 'development') as 'development' | 'production' | 'test'
+  environment: (typeof process !== 'undefined' ? process.env.NODE_ENV : ((typeof import !== 'undefined' && (import.meta as any)?.env)?.MODE || 'development')) as 'development' | 'production' | 'test'
 };
 
 export default config;
