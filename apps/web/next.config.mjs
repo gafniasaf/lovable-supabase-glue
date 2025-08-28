@@ -10,6 +10,15 @@ const nextConfig = {
     optimizePackageImports: ["react", "react-dom"]
   },
   transpilePackages: ['@shared', '@education/shared', '@lovable/expertfolio-ui', '@lovable/expertfolio-adapters'],
+  webpack: (config) => {
+    const path = require('path');
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      '@lovable/expertfolio-ui': path.resolve(__dirname, '../../packages/expertfolio-ui/src'),
+      '@lovable/expertfolio-adapters': path.resolve(__dirname, '../../packages/expertfolio-adapters/src')
+    };
+    return config;
+  },
   output: 'standalone',
   headers: async () => [
     {
