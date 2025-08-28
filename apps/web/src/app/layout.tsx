@@ -51,6 +51,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <a href="/dashboard" className="font-medium" aria-label="Dashboard home">Education Platform v2</a>
             <span className="text-gray-400">·</span>
             <a href="/" className="underline" aria-label="Home"><Trans keyPath="header.home" /></a>
+            <span className="text-gray-400">·</span>
+            <a href="/labs/expertfolio" className="underline" aria-label="Expertfolio">Expertfolio</a>
           </>}
           right={<>
             <div className="hidden md:flex flex-1 max-w-[520px]"><GlobalSearchClient /></div>
@@ -69,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <aside className="hidden md:block w-64 border-r p-3 bg-white/60" aria-label="Primary">
             <SidebarNav current={pathname || ''} items={[
               { href: '/dashboard', label: 'Home' },
+              { href: '/labs/expertfolio', label: 'Expertfolio' },
               { href: '/dashboard/student', label: 'Student' },
               { href: '/dashboard/notifications', label: 'Notifications' },
               { href: '/dashboard/settings', label: 'Settings' },
