@@ -28,6 +28,7 @@ import AIDashboardPage from "./pages/AIDashboard";
 import MobileDashboardPage from "./pages/MobileDashboard";
 import Admin from "./pages/Admin";
 import Students from "./pages/Students";
+import ExpertfolioDashboardPage from "./pages/ExpertfolioDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -112,6 +113,13 @@ const App = () => (
               <ProtectedRoute>
                 <Layout>
                   <Admin />
+                </Layout>
+              </ProtectedRoute>
+            } />
+            <Route path="/expertfolio" element={
+              <ProtectedRoute>
+                <Layout>
+                  <ExpertfolioDashboardPage />
                 </Layout>
               </ProtectedRoute>
             } />
