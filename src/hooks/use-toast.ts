@@ -31,15 +31,19 @@ function genId() {
 
 type ActionType = {
   ADD_TOAST: {
+    type: "ADD_TOAST"
     toast: ToasterToast
   }
   UPDATE_TOAST: {
+    type: "UPDATE_TOAST"
     toast: Partial<ToasterToast>
   }
   DISMISS_TOAST: {
+    type: "DISMISS_TOAST"
     toastId?: ToasterToast["id"]
   }
   REMOVE_TOAST: {
+    type: "REMOVE_TOAST"
     toastId?: ToasterToast["id"]
   }
 }

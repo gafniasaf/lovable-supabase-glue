@@ -8,7 +8,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      '@lovable/expertfolio-ui': path.resolve(__dirname, 'packages/expertfolio-ui/src'),
+      '@lovable/expertfolio-ui': path.resolve(__dirname, 'packages/expertfolio-ui/src/index.tsx'),
+      '@lovable/expertfolio-ui/integration': path.resolve(__dirname, 'packages/expertfolio-ui/src/integration.tsx'),
       '@lovable/expertfolio-adapters': path.resolve(__dirname, 'packages/expertfolio-adapters/src/adapters/index.ts')
     }
   },
