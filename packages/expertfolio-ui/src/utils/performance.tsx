@@ -1,7 +1,7 @@
 // Performance optimization utilities
 // [pkg-12-performance]
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 // Lazy loading with Intersection Observer
 export const useLazyLoading = (threshold = 0.1) => {
@@ -41,7 +41,7 @@ interface VirtualScrollItem {
   height?: number;
 }
 
-export const useVirtualScroll = <T extends VirtualScrollItem>({
+export const useVirtualScroll = <T extends VirtualScrollItem,>({
   items,
   containerHeight,
   itemHeight = 50,
@@ -88,7 +88,7 @@ export const useVirtualScroll = <T extends VirtualScrollItem>({
 };
 
 // Debounced state for search/filter inputs
-export const useDebouncedState = <T>(initialValue: T, delay: number = 300) => {
+export const useDebouncedState = <T,>(initialValue: T, delay: number = 300) => {
   const [value, setValue] = useState<T>(initialValue);
   const [debouncedValue, setDebouncedValue] = useState<T>(initialValue);
 
