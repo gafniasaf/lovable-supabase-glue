@@ -1,5 +1,5 @@
 import { ExpertfolioProvider, ConnectedAdminAuditLogsPage, ConnectedFilesPage } from "@lovable/expertfolio-ui";
-import { adminAuditLogsAdapter, filesAdapter } from "@lovable/expertfolio-adapters";
+import { adminAuditLogsAdapter, filesAdapter } from "@/lib/expertfolioAdapters";
 
 export default function ExpertfolioLabPage() {
   return (
