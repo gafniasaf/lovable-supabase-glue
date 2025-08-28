@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import "../../packages/expertfolio-ui/src/index.css";
+/* Lovable UI global styles temporarily disabled to avoid cross-package CSS import during build. */
 
 :root {
   --background: 255 255 255;
