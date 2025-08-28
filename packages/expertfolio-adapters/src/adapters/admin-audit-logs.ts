@@ -8,7 +8,8 @@ import {
   AuditLogsQuery, 
   AuditLogsResponse,
   AuditLogEntrySchema,
-  AuditLogsResponseSchema
+  AuditLogsResponseSchema,
+  AuditLogsQuerySchema
 } from '../schemas/audit-logs.v1';
 
 export class AdminAuditLogsAdapter {
@@ -19,23 +20,25 @@ export class AdminAuditLogsAdapter {
   /**
    * Fetch audit logs with optional filtering and pagination
    */
-  async getLogs(query: AuditLogsQuery = {}): Promise<AuditLogsResponse> {
+  async getLogs(query: Partial<AuditLogsQuery> = {}): Promise<AuditLogsResponse> {
+    // Apply defaults using Zod schema so callers can pass partial inputs
+    const q = AuditLogsQuerySchema.parse(query);
     const params = new URLSearchParams();
     
     // Add pagination
-    if (query.limit) params.set('limit', query.limit.toString());
-    if (query.offset) params.set('offset', query.offset.toString());
+    if (typeof q.limit === 'number') params.set('limit', q.limit.toString());
+    if (typeof q.offset === 'number') params.set('offset', q.offset.toString());
     
     // Add sorting
-    if (query.sortBy) params.set('sortBy', query.sortBy);
-    if (query.sortOrder) params.set('sortOrder', query.sortOrder);
+    if (q.sortBy) params.set('sortBy', q.sortBy);
+    if (q.sortOrder) params.set('sortOrder', q.sortOrder);
     
     // Add filters
-    if (query.actor_id) params.set('actor_id', query.actor_id);
-    if (query.action) params.set('action', query.action);
-    if (query.entity_type) params.set('entity_type', query.entity_type);
-    if (query.from_date) params.set('from_date', query.from_date);
-    if (query.to_date) params.set('to_date', query.to_date);
+    if (q.actor_id) params.set('actor_id', q.actor_id);
+    if (q.action) params.set('action', q.action);
+    if (q.entity_type) params.set('entity_type', q.entity_type);
+    if (q.from_date) params.set('from_date', q.from_date);
+    if (q.to_date) params.set('to_date', q.to_date);
     
     const url = `${this.getBaseUrl()}/admin/audit-logs${params.toString() ? `?${params.toString()}` : ''}`;
     
