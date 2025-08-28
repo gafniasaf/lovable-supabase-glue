@@ -1,9 +1,9 @@
-import { isExpertfolioEnabled } from "@/lib/features";
-import { ExpertfolioProvider, ConnectedAdminAuditLogsPage, ConnectedFilesPage } from "../../../../vendor/lovable/expertfolio/main/packages/expertfolio-ui/src";
-import { adminAuditLogsAdapter, filesAdapter } from "../../../../vendor/lovable/expertfolio/main/packages/expertfolio-adapters/src";
+import { isExpertFolioEnabled } from "@/lib/features";
+import { ExpertfolioProvider, ConnectedAdminAuditLogsPage, ConnectedFilesPage } from "@lovable/expertfolio-ui";
+import { adminAuditLogsAdapter, filesAdapter } from "@lovable/expertfolio-adapters";
 
 export default function ExpertfolioPlaceholderPage() {
-  if (!isExpertfolioEnabled()) {
+  if (!isExpertFolioEnabled()) {
     return (
       <main className="p-6">
         <div className="text-gray-600">Expertfolio is disabled.</div>
