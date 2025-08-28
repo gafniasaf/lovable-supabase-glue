@@ -1,7 +1,7 @@
 // Accessibility utilities and ARIA helpers
 // [pkg-12-accessibility]
 
-import { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 // ARIA live region manager
 export class AriaLiveRegion {
