@@ -8,7 +8,7 @@
     }
   ],
   "installCommand": "npm install --ignore-scripts --legacy-peer-deps",
-  "buildCommand": "npm run build",
+  "buildCommand": "npm run build:vercel",
   "routes": [
     { "src": "/(.*)", "dest": "/index.html" }
   ]
