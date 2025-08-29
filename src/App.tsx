@@ -17,15 +17,36 @@ export function App(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Try with supabase-js first
     supabase
       .schema('ui_demo')
       .from('audit_logs')
       .select('*')
       .order('created_at', { ascending: false })
       .limit(10)
-      .then(({ data, error }) => {
-        if (error) setError(error.message);
-        else setLogs((data as AuditLog[]) ?? []);
+      .then(async ({ data, error }) => {
+        if (data && !error) {
+          setLogs((data as AuditLog[]) ?? []);
+          return;
+        }
+        // Fallback: direct REST call with explicit Accept-Profile header (avoids 404/406)
+        try {
+          const SUPABASE_URL = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_URL || (import.meta as any).env.VITE_SUPABASE_URL;
+          const SUPABASE_KEY = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_ANON_KEY || (import.meta as any).env.VITE_SUPABASE_PUBLISHABLE_KEY;
+          const resp = await fetch(`${SUPABASE_URL}/rest/v1/audit_logs?select=*&order=created_at.desc&limit=10`, {
+            headers: {
+              apikey: SUPABASE_KEY,
+              Authorization: `Bearer ${SUPABASE_KEY}`,
+              Accept: 'application/json',
+              'Accept-Profile': 'ui_demo'
+            }
+          });
+          if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
+          const rows = (await resp.json()) as AuditLog[];
+          setLogs(rows ?? []);
+        } catch (e: any) {
+          setError(e?.message || 'Failed to load logs');
+        }
       });
   }, []);
 
