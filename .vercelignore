@@ -1,4 +1,5 @@
 demo/
+apps/web/
 README-DEMO-DISABLED.md
 examples/
 packages/**/dist/
