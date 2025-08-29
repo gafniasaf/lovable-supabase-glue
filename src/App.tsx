@@ -17,9 +17,8 @@ export function App(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Try with supabase-js first
+    // Query public view (maps to ui_demo.audit_logs)
     supabase
-      .schema('ui_demo')
       .from('audit_logs')
       .select('*')
       .order('created_at', { ascending: false })
@@ -38,7 +37,7 @@ export function App(): JSX.Element {
               apikey: SUPABASE_KEY,
               Authorization: `Bearer ${SUPABASE_KEY}`,
               Accept: 'application/json',
-              'Accept-Profile': 'ui_demo'
+              // No Accept-Profile needed for public views
             }
           });
           if (!resp.ok) throw new Error(`${resp.status} ${resp.statusText}`);
