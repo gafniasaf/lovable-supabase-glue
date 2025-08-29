@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "framework": null,
+  "framework": "vite",
   "installCommand": "npm install --ignore-scripts --legacy-peer-deps",
   "buildCommand": "npm run build",
   "outputDirectory": "dist"
