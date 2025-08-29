@@ -18,7 +18,8 @@ export function App(): JSX.Element {
 
   useEffect(() => {
     supabase
-      .from('ui_demo.audit_logs')
+      .schema('ui_demo')
+      .from('audit_logs')
       .select('*')
       .order('created_at', { ascending: false })
       .limit(10)
