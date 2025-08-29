@@ -1,6 +1,30 @@
 import React from 'react';
 
+import { supabase } from './integrations/supabase/client';
+import { useEffect, useState } from 'react';
+
+type AuditLog = {
+  id: string;
+  created_at: string;
+  actor_id: string | null;
+  action: string;
+  target: string | null;
+  metadata: Record<string, unknown>;
+};
+
 export function App(): JSX.Element {
+  const [logs, setLogs] = useState<AuditLog[]>([]);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    supabase
+      .rpc('search_audit_logs', { q: null, limit_count: 10, offset_count: 0 })
+      .then(({ data, error }) => {
+        if (error) setError(error.message);
+        else setLogs((data as AuditLog[]) ?? []);
+      });
+  }, []);
+
   return (
     <main
       style={{
@@ -56,6 +80,21 @@ export function App(): JSX.Element {
           >
             Explore UI
           </a>
+        </div>
+        <div style={{ marginTop: 24, textAlign: 'left' }}>
+          <h2 style={{ fontSize: 20, marginBottom: 8 }}>Recent Audit Logs</h2>
+          {error && <div style={{ color: '#fca5a5' }}>Error: {error}</div>}
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {logs.map((l) => (
+              <li key={l.id} style={{ padding: '8px 0', borderBottom: '1px solid #374151' }}>
+                <div style={{ fontSize: 14, opacity: 0.9 }}>{new Date(l.created_at).toLocaleString()}</div>
+                <div style={{ fontSize: 16 }}>
+                  <strong>{l.action}</strong>
+                  {l.target ? ` on ${l.target}` : ''}
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </main>
