@@ -82,7 +82,6 @@ Security hardening (env flags):
 - `docs/product-plan.md` — product plan and External Courses roadmap
 - `docs/roadmap.md` — milestone plan, including External Course Registry phases
 - `docs/DEPLOYMENT.md` — Vercel deployment steps
-- `docs/HOW_TO_RUN.md` — Docker Compose build/run, overrides, profiles
 - `docs/testing.md` — Jest + Playwright, test-mode, examples
 - `docs/observability.md` — logging, request IDs, route timing
 - `docs/roles.md` — application roles and permissions
