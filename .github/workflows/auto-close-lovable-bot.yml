@@ -1,0 +1,18 @@
+name: Close PRs from lovable bot
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    if: github.actor == 'lovable-dev[bot]'
+    steps:
+      - name: Comment and close
+        uses: peter-evans/close-pull@v3
+        with:
+          comment: |
+            This repository is protected. Please use the sandbox or open a PR from a human account.
+          issue-number: ${{ github.event.pull_request.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+
