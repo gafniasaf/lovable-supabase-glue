@@ -7,12 +7,16 @@ if [ "${VERCEL_GIT_COMMIT_AUTHOR_LOGIN:-}" = "lovable-dev[bot]" ]; then
   exit 0
 fi
 
-# Skip if apps/web did not change
 CHANGED=$(git diff --name-only "${VERCEL_GIT_PREVIOUS_COMMIT_SHA:-}" "${VERCEL_GIT_COMMIT_SHA:-}" || true)
-echo "Changed files:\n$CHANGED"
-echo "$CHANGED" | grep -qE '^apps/web/' || { echo "Skip build: no apps/web changes"; exit 0; }
+printf "Changed files:\n%s\n" "$CHANGED"
 
-# Otherwise, proceed with build
-exit 1
+# Proceed only if relevant paths changed
+if echo "$CHANGED" | grep -qE '^(packages/|.github/)'; then
+  echo "Proceed with build: relevant paths changed"
+  exit 1
+fi
+
+echo "Skip build: no relevant changes"
+exit 0
 
 

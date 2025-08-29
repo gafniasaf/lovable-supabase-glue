@@ -1,9 +1,9 @@
 {
   "version": 2,
-  "framework": "nextjs",
+  "framework": null,
   "installCommand": "npm install --ignore-scripts --legacy-peer-deps",
-  "buildCommand": "npm --workspace apps/web run build",
-  "outputDirectory": "apps/web/.next",
+  "buildCommand": "echo 'No build at root; UI packages build in Storybook/CI'",
+  "outputDirectory": "public",
   "ignoreCommand": "bash vercel-ignore.sh"
 }
 
