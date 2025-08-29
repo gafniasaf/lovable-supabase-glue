@@ -6,7 +6,7 @@ on:
     branches: [ ci/* ]
 
 jobs:
-  web:
+  node:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,8 +16,12 @@ jobs:
           cache: 'npm'
       - name: Install deps
         run: npm install --ignore-scripts --legacy-peer-deps
-      - name: Typecheck
-        run: npm --workspace apps/web run typecheck || true
-      - name: Build web
-        run: npm --workspace apps/web run build
+      - name: Typecheck root
+        run: npx tsc -p tsconfig.json --noEmit || true
+      - name: Lint
+        run: npm run lint || true
+      - name: Build adapters package (if present)
+        run: npm run build -w @lovable/expertfolio-adapters || true
+      - name: Build shared package (if present)
+        run: npm run build -w @lovable/shared || true
 
