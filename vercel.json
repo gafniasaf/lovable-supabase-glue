@@ -4,7 +4,7 @@
   "installCommand": "npm install --ignore-scripts --legacy-peer-deps",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "ignoreCommand": "bash vercel-ignore.sh"
+  "ignoreCommand": "bash ./vercel-ignore.sh"
 }
 
 
