@@ -18,6 +18,7 @@ export function App(): JSX.Element {
 
   useEffect(() => {
     supabase
+      .schema('ui_demo')
       .rpc('search_audit_logs', { q: null, limit_count: 10, offset_count: 0 })
       .then(({ data, error }) => {
         if (error) setError(error.message);
