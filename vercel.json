@@ -4,7 +4,7 @@
   "installCommand": "npm install --ignore-scripts --legacy-peer-deps",
   "buildCommand": "npm --workspace apps/web run build",
   "outputDirectory": "apps/web/.next",
-  "ignoreCommand": "bash -lc 'if [ \"$VERCEL_GIT_COMMIT_AUTHOR_LOGIN\" = \"lovable-dev[bot]\" ]; then echo skip: lovable bot; exit 0; fi; CHANGED=$(git diff --name-only \"$VERCEL_GIT_PREVIOUS_COMMIT_SHA\" \"$VERCEL_GIT_COMMIT_SHA\" || true); echo \"$CHANGED\" | grep -qE \"^apps/web/\" || { echo skip: no apps/web changes; exit 0; }; exit 1'"
+  "ignoreCommand": "bash vercel-ignore.sh"
 }
 
 
