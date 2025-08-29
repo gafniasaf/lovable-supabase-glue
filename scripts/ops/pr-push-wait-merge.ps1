@@ -49,9 +49,9 @@ if ($Title) {
     Write-Host "WROTE $bodyFile"
   }
   $cmd = if ($bodyFile) {
-    "gh pr create -R $Repo -H $Branch -B $Base -t \"$titleEsc\" -F $bodyFile"
+    "gh pr create -R $Repo -H $Branch -B $Base -t `"$titleEsc`" -F `"$bodyFile`""
   } else {
-    "gh pr create -R $Repo -H $Branch -B $Base -t \"$titleEsc\""
+    "gh pr create -R $Repo -H $Branch -B $Base -t `"$titleEsc`""
   }
   Invoke-CmdCapture $cmd "pr-create-$Branch"
 } else {
