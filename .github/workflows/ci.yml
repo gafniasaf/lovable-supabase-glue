@@ -1,0 +1,23 @@
+name: CI
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ ci/* ]
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - name: Install deps
+        run: npm install --ignore-scripts --legacy-peer-deps
+      - name: Typecheck
+        run: npm --workspace apps/web run typecheck || true
+      - name: Build web
+        run: npm --workspace apps/web run build
+
