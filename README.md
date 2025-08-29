@@ -386,6 +386,12 @@ Quick helper to capture output:
 powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ops/exec.ps1 "gh pr view 10 --json number,state" -Label pr10 -Json
 ```
 
+Open PR non-interactively (no prompts):
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/ops/open-pr.ps1 -Title "TITLE" -Body "BODY"
+```
+
 
 Built with modern tools and best practices:
 
