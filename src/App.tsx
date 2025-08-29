@@ -19,7 +19,10 @@ export function App(): JSX.Element {
   useEffect(() => {
     supabase
       .schema('ui_demo')
-      .rpc('search_audit_logs', { q: null, limit_count: 10, offset_count: 0 })
+      .from('audit_logs')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(10)
       .then(({ data, error }) => {
         if (error) setError(error.message);
         else setLogs((data as AuditLog[]) ?? []);
