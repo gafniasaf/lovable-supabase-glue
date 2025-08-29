@@ -1,17 +1,9 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "dist" }
-    }
-  ],
+  "framework": null,
   "installCommand": "npm install --ignore-scripts --legacy-peer-deps",
   "buildCommand": "npm run build:vercel",
-  "routes": [
-    { "src": "/(.*)", "dest": "/index.html" }
-  ]
+  "outputDirectory": ".next"
 }
 
 
