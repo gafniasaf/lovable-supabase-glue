@@ -1,0 +1,23 @@
+name: Close non-UI bot PRs
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+    branches: [ main ]
+jobs:
+  close:
+    runs-on: ubuntu-latest
+    if: github.actor == 'lovable-dev[bot]'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Close if outside UI
+        uses: peter-evans/close-pull@v3
+        if: |
+          contains(join(fromJSON(steps.diff.outputs.changed)), 'packages/expertfolio-ui/') == false
+        with:
+          comment: |
+            This PR modifies files outside packages/expertfolio-ui. UI-only changes from the bot are allowed; other paths require a human PR.
+          issue-number: ${{ github.event.pull_request.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
