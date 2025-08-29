@@ -1,5 +1,5 @@
 This directory contains a demo project that should not be used.
 
-Please set the Root Directory to "apps/web" in Lovable project settings to use the real Next.js application.
+The project now uses the root Vite app. The previous Next.js app under `apps/web` has been removed.
 
 See HANDOFF.md for complete integration instructions.

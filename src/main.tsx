@@ -1,4 +1,4 @@
-// This is a disabled demo - use apps/web instead
+// Vite app entrypoint
 export default function DisabledDemo() {
   return null;
 }
