@@ -10,8 +10,8 @@ fi
 CHANGED=$(git diff --name-only "${VERCEL_GIT_PREVIOUS_COMMIT_SHA:-}" "${VERCEL_GIT_COMMIT_SHA:-}" || true)
 printf "Changed files:\n%s\n" "$CHANGED"
 
-# Proceed only if relevant paths changed
-if echo "$CHANGED" | grep -qE '^(packages/|.github/)'; then
+# Proceed if root vite app or configs changed
+if echo "$CHANGED" | grep -qE '^(src/|index.html|vite.config|package.json|public/|tailwind\.config|postcss\.config|\.github/|packages/)'; then
   echo "Proceed with build: relevant paths changed"
   exit 1
 fi

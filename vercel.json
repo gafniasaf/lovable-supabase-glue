@@ -2,8 +2,8 @@
   "version": 2,
   "framework": null,
   "installCommand": "npm install --ignore-scripts --legacy-peer-deps",
-  "buildCommand": "echo 'No build at root; UI packages build in Storybook/CI'",
-  "outputDirectory": "public",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
   "ignoreCommand": "bash vercel-ignore.sh"
 }
 
