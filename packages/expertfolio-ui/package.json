@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 8080",
     "build": "vite build",
     "preview": "vite preview"
   },
-  "peerDependencies": {
+  "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },

@@ -15,7 +15,10 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:packages": "echo 'no packages to build'"
+    "build:packages": "echo 'no packages to build'",
+    "dev:ui": "npm --workspace @expertfolio/ui run dev",
+    "build:ui": "npm --workspace @expertfolio/ui run build",
+    "preview:ui": "npm --workspace @expertfolio/ui run preview"
   },
   "dependencies": {
     "@capacitor/android": "^7.4.3",
