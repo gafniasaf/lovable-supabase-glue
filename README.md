@@ -235,6 +235,11 @@ const isFileSafe = validateInput.fileName('document.pdf');
 - [UI Components API](./packages/expertfolio-ui/README.md)
 - [Storybook Documentation](./packages/expertfolio-ui/.storybook/)
 
+### How to Run
+- See [HOW_TO_RUN.md](./HOW_TO_RUN.md) for local build, test, and E2E instructions, including artifact and report paths.
+- EDU App Routes (Next.js App Router): `/edu/assignments`, `/edu/courses`, `/edu/lessons`, `/edu/sandbox`, `/edu/audit-logs`.
+- PR summary of recent EDU integration work: [PR_SUMMARY.md](./PR_SUMMARY.md)
+
 ### Integration Guides
 - [Next.js Integration](./examples/next-app/README.md)
 - [Production Deployment](./PRODUCTION_DEPLOYMENT.md)

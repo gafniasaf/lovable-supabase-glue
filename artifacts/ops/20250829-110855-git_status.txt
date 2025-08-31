@@ -1,0 +1,8 @@
+﻿## main...lovable/main [ahead 29]
+ M package-lock.json
+ M package.json
+?? artifacts/
+?? jest.config.cjs
+?? reports/
+?? src/App.test.tsx
+?? tests/

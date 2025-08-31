@@ -1,0 +1,16 @@
+﻿
+Running 7 tests using 4 workers
+
+[1A[2K[1/7] [chromium] › tests\e2e\edu-courses.spec.ts:3:1 › courses page renders
+[1A[2K[2/7] [chromium] › tests\e2e\a11y-basic.spec.ts:3:1 › basic a11y landmarks present
+[1A[2K[3/7] [chromium] › tests\e2e\edu-audit-logs.spec.ts:3:1 › audit logs page renders
+[1A[2K[4/7] [chromium] › tests\e2e\edu-assignments.spec.ts:3:1 › assignments page renders
+[1A[2K[5/7] [chromium] › tests\e2e\edu-lessons.spec.ts:3:1 › lessons page renders
+[1A[2K[6/7] [chromium] › tests\e2e\edu-nav.spec.ts:3:1 › header nav contains links to edu pages
+[1A[2K[7/7] [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders
+[1A[2K  7 passed (1.9s)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report reports\e2e\html[39m
+[36m[39m

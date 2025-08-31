@@ -1,0 +1,40 @@
+﻿
+Running 9 tests using 4 workers
+
+[1A[2K[1/9] [chromium] › tests\e2e\a11y-axe.spec.ts:3:1 › no obvious accessibility issues on courses page (landmarks present)
+[1A[2K[2/9] [chromium] › tests\e2e\edu-assignments.spec.ts:3:1 › assignments page renders
+[1A[2K[3/9] [chromium] › tests\e2e\edu-audit-logs.spec.ts:3:1 › audit logs page renders
+[1A[2K[4/9] [chromium] › tests\e2e\a11y-basic.spec.ts:3:1 › basic a11y landmarks present
+[1A[2K[5/9] [chromium] › tests\e2e\edu-courses.spec.ts:3:1 › courses page renders
+[1A[2K[6/9] [chromium] › tests\e2e\edu-nav.spec.ts:3:6 › header nav contains links to edu routes (flaky under streaming)
+[1A[2K[7/9] [chromium] › tests\e2e\edu-lessons.spec.ts:3:1 › lessons page renders
+[1A[2K[8/9] [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders
+[1A[2K[9/9] [chromium] › tests\e2e\visual-header.spec.ts:3:1 › header visual snapshot
+[1A[2K  1) [chromium] › tests\e2e\visual-header.spec.ts:3:1 › header visual snapshot ─────────────────────
+
+    [31mTest timeout of 30000ms exceeded.[39m
+
+    Error: locator.screenshot: Test timeout of 30000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('header[role="banner"]')[22m
+
+
+       6 |   const header = page.locator('header[role="banner"]');
+       7 |   await header.waitFor({ state: 'visible' });
+    >  8 |   const screenshot = await header.screenshot();
+         |                                   ^
+       9 |   // Save screenshot as an artifact-like file; assertion skipped to avoid baseline management
+      10 |   // In CI you could use toHaveScreenshot with a stable baseline
+      11 |   await page.context().tracing.stopChunk?.();
+        at C:\Users\agafn\Desktop\education system 5\tests\e2e\visual-header.spec.ts:8:35
+
+
+[1A[2K  1 failed
+    [chromium] › tests\e2e\visual-header.spec.ts:3:1 › header visual snapshot ──────────────────────
+  1 skipped
+  7 passed (31.8s)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report reports\e2e\html[39m
+[36m[39m

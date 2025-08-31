@@ -1,0 +1,8 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/edu/courses/page": "app/edu/courses/page.js",
+  "/edu/sandbox/page": "app/edu/sandbox/page.js",
+  "/edu/assignments/page": "app/edu/assignments/page.js",
+  "/edu/audit-logs/page": "app/edu/audit-logs/page.js",
+  "/edu/lessons/page": "app/edu/lessons/page.js"
+}

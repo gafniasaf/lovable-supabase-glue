@@ -1,0 +1,80 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 test
+> jest --runInBand --runInBand
+
+node.exe : FAIL apps/web/src/edu/__tests__/DevSandbox.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (FAIL apps/web/s...andbox.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  ● Test suite failed to run
+
+    [96mapps/web/src/edu/__tests__/DevSandbox.test.tsx[0m:[93m5[0m:[93m28[0m - [91merror[0m[90m TS2307: 
+[0mCannot find module '@/edu/DevSandbox' or its corresponding type declarations.
+
+    [7m5[0m import { DevSandbox } from "@/edu/DevSandbox";
+    [7m [0m [91m                           ~~~~~~~~~~~~~~~~~~[0m
+
+FAIL apps/web/src/edu/__tests__/AssignmentsList.test.tsx
+  ● Test suite failed to run
+
+    [96mapps/web/src/edu/__tests__/AssignmentsList.test.tsx[0m:[93m4[0m:[93m33[0m - [91merror[0m[90m TS2307: 
+[0mCannot find module '@/edu/pages/assignments/AssignmentsList' or its corresponding type declarations.
+
+    [7m4[0m import { AssignmentsList } from '@/edu/pages/assignments/AssignmentsList';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL apps/web/src/edu/__tests__/AppShell.test.tsx
+  ● Test suite failed to run
+
+    [96mapps/web/src/edu/__tests__/AppShell.test.tsx[0m:[93m5[0m:[93m26[0m - [91merror[0m[90m TS2307: 
+[0mCannot find module '@/edu/components/AppShell' or its corresponding type declarations.
+
+    [7m5[0m import { AppShell } from "@/edu/components/AppShell";
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL src/App.test.tsx
+  ● Test suite failed to run
+
+    [96msrc/App.tsx[0m:[93m33[0m:[93m33[0m - [91merror[0m[90m TS1343: [0mThe 'import.meta' meta-property is 
+only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', 'node18', 'node20', or 
+'nodenext'.
+
+    [7m33[0m           const SUPABASE_URL = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_URL || (import.meta as 
+any).env.VITE_SUPABASE_URL;
+    [7m  [0m [91m                                ~~~~~~~~~~~[0m
+    [96msrc/App.tsx[0m:[93m33[0m:[93m86[0m - [91merror[0m[90m TS1343: [0mThe 'import.meta' meta-property is 
+only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', 'node18', 'node20', or 
+'nodenext'.
+
+    [7m33[0m           const SUPABASE_URL = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_URL || (import.meta as 
+any).env.VITE_SUPABASE_URL;
+    [7m  [0m [91m                                                                                     ~~~~~~~~~~~[0m
+    [96msrc/App.tsx[0m:[93m34[0m:[93m33[0m - [91merror[0m[90m TS1343: [0mThe 'import.meta' meta-property is 
+only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', 'node18', 'node20', or 
+'nodenext'.
+
+    [7m34[0m           const SUPABASE_KEY = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_ANON_KEY || (import.meta as 
+any).env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    [7m  [0m [91m                                ~~~~~~~~~~~[0m
+    [96msrc/App.tsx[0m:[93m34[0m:[93m91[0m - [91merror[0m[90m TS1343: [0mThe 'import.meta' meta-property is 
+only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', 'node18', 'node20', or 
+'nodenext'.
+
+    [7m34[0m           const SUPABASE_KEY = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_ANON_KEY || (import.meta as 
+any).env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    [7m  [0m [91m                                                                                          
+~~~~~~~~~~~[0m
+
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------|---------|----------|---------|---------|-------------------
+All files |       0 |        0 |       0 |       0 |                   
+----------|---------|----------|---------|---------|-------------------
+Test Suites: 4 failed, 4 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        3.068 s
+Ran all test suites.

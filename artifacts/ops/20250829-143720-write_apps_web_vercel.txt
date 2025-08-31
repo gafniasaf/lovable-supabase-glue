@@ -1,0 +1,7 @@
+﻿WROTE C:\Users\agafn\Desktop\education system 5\..\education-system-5-legacy\apps\web\vercel.json
+Switched to a new branch 'fix/apps-web-vercel-json'
+warning: could not open directory 'apps/apps/web/': No such file or directory
+fatal: pathspec 'apps/web/vercel.json' did not match any files
+## fix/apps-web-vercel-json ?? web/vercel.json ?? ../vercel.json.bak
+remote: Permission to gafniasaf/education-system-5.git denied to gafniasaf.
+fatal: unable to access 'https://github.com/gafniasaf/education-system-5.git/': The requested URL returned error: 403

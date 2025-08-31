@@ -1,0 +1,10 @@
+﻿error: pathspec 'query' did not match any file(s) known to git
+error: pathspec 'ui_demo.audit_logs' did not match any file(s) known to git
+error: pathspec 'via' did not match any file(s) known to git
+error: pathspec 'fully-qualified' did not match any file(s) known to git
+error: pathspec 'table' did not match any file(s) known to git
+error: pathspec 'name' did not match any file(s) known to git
+error: pathspec 'to' did not match any file(s) known to git
+error: pathspec 'satisfy' did not match any file(s) known to git
+error: pathspec 'REST' did not match any file(s) known to git
+error: pathspec '406'' did not match any file(s) known to git

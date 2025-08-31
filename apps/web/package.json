@@ -1,0 +1,28 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "set NEXT_DISABLE_SWC_NATIVE=1&& next build",
+    "start": "next start",
+    "start:e2e": "set NEXT_DISABLE_SWC_NATIVE=1&& next build && next start -p 3077 -H 127.0.0.1",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.462.0",
+    "next": "14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.16.5",
+    "@types/react": "^18.3.3",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "15.5.2",
+    "typescript": "^5.8.3"
+  }
+}

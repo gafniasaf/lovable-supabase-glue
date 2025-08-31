@@ -1,0 +1,2793 @@
+﻿PASS unit/lib.runtimeAuth.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://evil.example',
+        scopes: [ 'progress.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'events.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.write' ], scopes: [ 'events.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'progress.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.write' ], scopes: [ 'progress.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/api.runtime.outcomes.rate-limit.spec.ts
+PASS unit/api.reports.spec.ts
+PASS unit/future.notifications.spec.ts
+PASS unit/api.flags.providers.users.spec.ts
+PASS unit/future.messaging.spec.ts
+PASS unit/api.registry.mutations.ratelimit.spec.ts
+PASS unit/api.pagination.headers.spec.ts
+PASS unit/api.quiz-attempts.spec.ts
+PASS unit/api.quizzes.spec.ts
+PASS unit/api.runtime.auth.exchange.spec.ts
+PASS unit/api.runtime.guard.matrix.spec.ts
+PASS unit/api.files.download-ownership.spec.ts
+PASS unit/api.runtime.v2.spec.ts
+PASS unit/api.runtime.asset.sign-url.scope.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: []
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'files.write' ], scopes: [] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'files.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'files.write' ], scopes: [ 'files.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'files.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'files.write' ], scopes: [ 'files.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/api.runtime.spec.ts
+PASS unit/lib.serverFetch.spec.ts
+PASS unit/api.runtime.outcomes.jwks.spec.ts
+PASS unit/api.parent-links.spec.ts
+PASS unit/api.validation.bad-request.matrix.spec.ts
+PASS unit/api.submissions.rate-limit.spec.ts
+PASS unit/future.files.spec.ts
+PASS unit/middleware.headers-and-guards.spec.ts
+PASS unit/api.messages.threads-and-messages.spec.ts
+PASS unit/api.announcements.spec.ts
+PASS unit/api.registry.spec.ts
+PASS unit/api.runtime.checkpoint.scopes.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: []
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.write' ], scopes: [] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'progress.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.write' ], scopes: [ 'progress.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: []
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.read' ], scopes: [] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'progress.read' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.read' ], scopes: [ 'progress.read' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/api.files.download-url.permissions.spec.ts
+PASS unit/api.reports.activity.retention.rate-limit.spec.ts
+PASS unit/api.admin.governance.smoke.spec.ts
+PASS unit/api.runtime.events.scopes.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: []
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'progress.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: []
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'attempts.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+PASS unit/security.csrf.double-submit.spec.ts
+PASS unit/api.assignments.crud.spec.ts
+PASS unit/api.runtime.teacher.outcomes.spec.ts
+PASS unit/api.ef.read.routes.spec.ts
+PASS unit/api.ef.routes.spec.ts
+PASS unit/lib.logger.redaction.spec.ts
+PASS unit/api.runtime.outcomes.runtime-token.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'attempts.write' ], scopes: [] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'attempts.write' ], scopes: [ 'attempts.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/apiHandler.csrf.spec.ts
+PASS unit/api.providers.ratelimit.spec.ts
+PASS unit/gateways/SubmissionsGateway.contract.spec.ts
+PASS unit/services.quizAttempts.spec.ts
+PASS unit/api.lessons.complete.spec.ts
+PASS unit/api.listing.headers.matrix.spec.ts
+PASS unit/api.admin.export.spec.ts
+PASS unit/api.runtime.checkpoint.size-limit.spec.ts
+PASS unit/server.scheduler.flags.spec.ts
+PASS unit/api.runtime.gating.spec.ts
+PASS unit/security.single-enforcement.spec.ts
+PASS unit/middleware.cors.disallowed-origin.spec.ts
+PASS unit/testStore.edgecases.spec.ts
+PASS unit/future.observability.logs.spec.ts
+PASS unit/api.messages.read-all.spec.ts
+PASS unit/api.diag.errors.spec.ts
+PASS unit/api.headers.common.matrix.spec.ts
+PASS unit/api.files.upload-url.rate-quota-csrf.spec.ts
+PASS unit/services.submissions.queue.spec.ts
+PASS unit/api.runtime.asset.sign-url.ratelimit.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'files.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'files.write' ], scopes: [ 'files.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'files.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'files.write' ], scopes: [ 'files.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/api.assignments.external-target.spec.ts
+PASS unit/api.courses.id.spec.ts
+PASS unit/expertfolio.readmodels.spec.ts
+PASS unit/api.runtime.events.ratelimit.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'progress.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+PASS unit/api.reports.activity.retention.shape.spec.ts
+PASS unit/lib.serverFetch.csrf-header.spec.ts
+PASS unit/api.runtime.rate-limit.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'progress.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.write' ], scopes: [ 'progress.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/api.files.attachments.spec.ts
+PASS unit/api.launch-token.license.enforcement.spec.ts
+PASS unit/api.role.guard.matrix.extended.spec.ts
+PASS unit/api.courses.transfer-owner.auth.spec.ts
+PASS unit/api.runtime.grade.ratelimit.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'attempts.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'attempts.write' ], scopes: [ 'attempts.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'attempts.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'attempts.write' ], scopes: [ 'attempts.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/api.providers.dto-and-ratelimit.spec.ts
+PASS unit/api.runtime.v2.security.spec.ts
+PASS unit/lib.serverFetch.headers.spec.ts
+PASS unit/api.quiz-questions.spec.ts
+PASS unit/api.runtime.cors.headers.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'progress.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.write' ], scopes: [ 'progress.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/middleware.env-assertions.spec.ts
+PASS unit/api.messages.csrf-double-submit.spec.ts
+PASS unit/expertfolio.dtos.spec.ts
+PASS unit/api.files.roundtrip.spec.ts
+PASS unit/api.runtime.idempotency.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'progress.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.write' ], scopes: [ 'progress.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://provider.example',
+        aud: 'https://provider.example',
+        scopes: [ 'progress.write' ]
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.write' ], scopes: [ 'progress.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/api.quiz-choices.spec.ts
+PASS unit/api.notifications.read-all.csrf.spec.ts
+PASS unit/api.announcements.rate-limit.spec.ts
+PASS unit/api.files.negatives.spec.ts
+PASS unit/api.notifications-preferences.spec.ts
+PASS unit/api.modes.prod-guards.spec.ts
+PASS unit/db.rls.assignments.negative.spec.ts
+PASS unit/db.rls.negative.spec.ts
+PASS unit/api.lessons.reorder.spec.ts
+PASS unit/api.modules.spec.ts
+PASS unit/api.notifications.spec.ts
+PASS unit/api.csrf.double-submit.spec.ts
+PASS unit/middleware.security-headers.more.spec.ts
+PASS unit/api.messages.threads.ratelimit.headers.spec.ts
+PASS unit/api.rls.governance.negative.spec.ts
+PASS unit/api.assignments.target.upsert.spec.ts
+PASS unit/testStore.spec.ts
+FAIL unit/api.enrollments.spec.ts
+  ΓùÅ API /api/enrollments ΓÇ║ POST unauth ΓåÆ 401; non-student ΓåÆ 403; student ΓåÆ 201 with own student_id
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "test-student-id"
+    Received: "22222222-2222-2222-2222-222222222222"
+
+    [0m [90m 28 |[39m 		expect(res[33m.[39mstatus)[33m.[39mtoBe([35m201[39m)[33m;[39m
+     [90m 29 |[39m 		[36mconst[39m json [33m=[39m [36mawait[39m res[33m.[39mjson()[33m;[39m
+    [31m[1m>[22m[39m[90m 30 |[39m 		expect(json[33m.[39mstudent_id)[33m.[39mtoBe([32m'test-student-id'[39m)[33m;[39m
+     [90m    |[39m 		                        [31m[1m^[22m[39m
+     [90m 31 |[39m 	})[33m;[39m
+     [90m 32 |[39m
+     [90m 33 |[39m 	test([32m'GET unauth ΓåÆ 401; echoes x-request-id'[39m[33m,[39m [36masync[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (unit/api.enrollments.spec.ts:30:27)
+
+PASS unit/lib.usage.increment.spec.ts
+PASS unit/api.runtime.preflight.options.spec.ts
+PASS unit/api.runtime.outcomes.jwks.rotation.spec.ts
+PASS unit/api.messages.port-toggle.spec.ts
+PASS unit/server.withRouteTiming.csrf.spec.ts
+PASS unit/api.ef.idempotency.rate.spec.ts
+PASS unit/middleware.csp.centralized.spec.ts
+PASS unit/schemas.env.runtime-keys.required.spec.ts
+PASS unit/api.providers.health.spec.ts
+PASS unit/services.quizzes.spec.ts
+PASS unit/api.health.rate-limits.snapshot.spec.ts
+PASS unit/services.dashboard.spec.ts
+PASS unit/api.messages.threads.nullability.spec.ts
+PASS unit/api.notifications.rate-limit.spec.ts
+PASS unit/api.assignments.post.csrf.spec.ts
+PASS unit/api.quizzes.ratelimit.spec.ts
+PASS unit/api.messages.threads.ratelimit.spec.ts
+PASS unit/api.progress.errors.spec.ts
+PASS unit/services.lessons.spec.ts
+PASS unit/api.files.finalize.permissions.spec.ts
+PASS unit/services.dashboard.needsGrading.spec.ts
+PASS unit/services.submissions.queue.pagination.spec.ts
+PASS unit/api.runtime.asset.sign-url.spec.ts
+PASS unit/api.courses.spec.ts
+FAIL unit/api.teacher.grading-queue.spec.ts
+  ΓùÅ api.teacher.grading-queue ΓÇ║ rejects unauth requests
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 200
+
+    [0m [90m 15 |[39m   test([32m'rejects unauth requests'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m 16 |[39m     [36mconst[39m res [33m=[39m [36mawait[39m ([33mGradingGET[39m [36mas[39m any)(make([32m'http://localhost/api/teacher/grading-queue'[39m))[33m;[39m
+    [31m[1m>[22m[39m[90m 17 |[39m     expect(res[33m.[39mstatus)[33m.[39mtoBe([35m401[39m)[33m;[39m
+     [90m    |[39m                        [31m[1m^[22m[39m
+     [90m 18 |[39m   })[33m;[39m
+     [90m 19 |[39m
+     [90m 20 |[39m   test([32m'rejects non-teacher'[39m[33m,[39m [36masync[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (unit/api.teacher.grading-queue.spec.ts:17:24)
+
+  ΓùÅ api.teacher.grading-queue ΓÇ║ rejects non-teacher
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 403
+    Received: 200
+
+    [0m [90m 22 |[39m     globalThis[33m.[39m__TEST_HEADERS_STORE__[33m?[39m[33m.[39mcookies[33m?[39m[33m.[39m[36mset[39m[33m?[39m[33m.[39m([32m'x-test-auth'[39m[33m,[39m [32m'student'[39m)[33m;[39m
+     [90m 23 |[39m     [36mconst[39m res [33m=[39m [36mawait[39m ([33mGradingGET[39m [36mas[39m any)(make([32m'http://localhost/api/teacher/grading-queue'[39m))[33m;[39m
+    [31m[1m>[22m[39m[90m 24 |[39m     expect(res[33m.[39mstatus)[33m.[39mtoBe([35m403[39m)[33m;[39m
+     [90m    |[39m                        [31m[1m^[22m[39m
+     [90m 25 |[39m   })[33m;[39m
+     [90m 26 |[39m
+     [90m 27 |[39m   test([32m'validates query and paginates'[39m[33m,[39m [36masync[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (unit/api.teacher.grading-queue.spec.ts:24:24)
+
+PASS unit/api.events.behavior.spec.ts
+PASS unit/api.announcements.ratelimit.spec.ts
+PASS unit/future.observability.spec.ts
+PASS unit/api.providers.patch.rate-limit-auth.spec.ts
+PASS unit/api.parent-links.headers.spec.ts
+PASS unit/gateways/health.gateway.spec.ts
+PASS unit/api.announcements.events.spec.ts
+PASS unit/api.requestId.headers.matrix.spec.ts
+PASS unit/api.modules.events.spec.ts
+PASS unit/db.rls.expertfolio.positive.spec.ts
+PASS unit/api.registry.courses.auth-rate.spec.ts
+PASS unit/api.runtime.cors.spec.ts
+PASS unit/api.files.attachment.delete.auth.spec.ts
+FAIL unit/lib.supabaseBrowser.spec.ts
+  ΓùÅ supabaseBrowser client creation ΓÇ║ uses env NEXT_PUBLIC_SUPABASE_URL/ANON when provided
+
+    TypeError: (0 , auth_helpers_nextjs_1.createClientComponentClient) is not a function
+
+    [0m [90m 13 |[39m 	} [36mcatch[39m {
+     [90m 14 |[39m 		[90m// Last resort (dev): create with default env resolution[39m
+    [31m[1m>[22m[39m[90m 15 |[39m 		browserClient [33m=[39m createClientComponentClient()[33m;[39m
+     [90m    |[39m 		                                           [31m[1m^[22m[39m
+     [90m 16 |[39m 		[36mreturn[39m browserClient[33m;[39m
+     [90m 17 |[39m 	}
+     [90m 18 |[39m }[0m
+
+      at getSupabaseBrowser (../apps/web/src/lib/supabaseBrowser.ts:15:46)
+      at Object.<anonymous> (unit/lib.supabaseBrowser.spec.ts:15:20)
+
+PASS unit/api.registry.versions.auth-rate.spec.ts
+PASS unit/server.withRouteTiming.runtime-csrf-skip.spec.ts
+PASS unit/services.announcements.spec.ts
+PASS unit/middleware.csrf-cookie.spec.ts
+PASS unit/apiHandler.spec.ts
+PASS unit/api.files.content-type-default.spec.ts
+PASS unit/api.dto.enforced.on.success.spec.ts
+PASS unit/api.ef.files.routes.spec.ts
+PASS unit/ui/NotificationsDropdownClient.spec.tsx
+PASS unit/api.progress.access.spec.ts
+PASS unit/api.runtime.outcomes.list.spec.ts
+PASS unit/schemas.quiz.spec.ts
+PASS unit/security.headers-and-origin.spec.ts
+PASS unit/api.registry.rate-limit-and-auth.spec.ts
+PASS unit/schemas.dashboard.spec.ts
+PASS unit/api.lessons-complete.spec.ts
+PASS unit/api.files.resolve.spec.ts
+PASS unit/lib.jwksCache.ttl.spec.ts
+PASS unit/security.csrf.double-submit.more-routes.spec.ts
+PASS unit/middleware.coep.toggle.spec.ts
+PASS unit/client.serverFetch.csrf.spec.ts
+PASS unit/middleware.security-headers.spec.ts
+PASS unit/api.admin.quotas.ratelimit.headers.spec.ts
+PASS unit/middleware.csp.frame-allow-header.spec.ts
+PASS unit/api.notifications.prefs.auth.spec.ts
+PASS unit/api.courses.transfer-owner.audit.spec.ts
+PASS unit/db.rls.submissions.negative.spec.ts
+PASS unit/api.admin.quotas.auth.spec.ts
+PASS unit/api.launch-token.license.allow.spec.ts
+PASS unit/api.quizzes.csrf.spec.ts
+PASS unit/api.admin.export.usage-deadletters.csv.spec.ts
+PASS unit/api.providers.get.spec.ts
+PASS unit/runtimeAuth.verify.spec.ts
+PASS unit/api.quiz-choices.dto.spec.ts
+PASS unit/api.files.guards-and-headers.spec.ts
+PASS unit/api.notifications.patch.csrf.spec.ts
+PASS unit/api.headers.security.spec.ts
+PASS unit/ui/GradeRowClient.spec.tsx
+PASS unit/api.quiz-questions.dto.spec.ts
+PASS unit/api.files.upload-put.avscan.spec.ts
+PASS unit/api.csrf.double-submit.negatives.spec.ts
+PASS unit/lib.cors.preflight.spec.ts
+PASS unit/api.health.spec.ts
+PASS unit/api.notifications.prefs.dto.spec.ts
+PASS unit/api.events.producers.spec.ts
+PASS unit/apiHandler.ratelimit.spec.ts
+PASS unit/api.files.upload-url.quota.spec.ts
+PASS unit/api.submissions.csrf.negatives.spec.ts
+PASS unit/api.reports.dto.spec.ts
+PASS unit/api.parent.progress.csv-json.auth.spec.ts
+PASS unit/api.user-profile.put.spec.ts
+PASS unit/api.notifications-preferences.rate-limit.spec.ts
+PASS unit/api.admin.quotas.patch.spec.ts
+PASS unit/api.files.download-url.dev-namespace.spec.ts
+PASS unit/client.serverFetch.request-id.spec.ts
+PASS unit/services.expertfolio.spec.ts
+PASS unit/api.providers.create.negatives.spec.ts
+PASS unit/rate-limit.headers.spec.ts
+PASS unit/schemas.announcement.spec.ts
+PASS unit/api.providers.create.happy-path.spec.ts
+PASS unit/withRouteTiming.global-rate-limit.spec.ts
+PASS unit/env.validation.spec.ts
+PASS unit/api.runtime.outcomes.export.headers.spec.ts
+PASS unit/api.progress.student-map.spec.ts
+PASS unit/server.withRouteTiming.ratelimit.spec.ts
+PASS unit/api.files.download-ownership.student.spec.ts
+PASS unit/components.ef.uploader.spec.tsx
+PASS unit/api.providers.health.ratelimit.spec.ts
+PASS unit/api.files.access.spec.ts
+PASS unit/api.files.quota.enforcement.spec.ts
+PASS unit/api.enrollments.launch-token.spec.ts
+PASS unit/server.withRouteTiming.metrics.spec.ts
+PASS unit/apiHandler.requestId.spec.ts
+PASS unit/gateways/reports.gateway.spec.ts
+PASS unit/services.assignments.spec.ts
+PASS unit/services.messaging.spec.ts
+PASS unit/ui/SystemThroughputProfiler.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 8ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 7ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 6ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 4ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 6ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 6ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 4ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 5)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 6)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 7)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 8)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 9)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 32ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 32ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 31ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 29ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 28ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 27ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 5)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 26ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 6)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 25ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 7)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 24ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 8)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 23ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 9)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 22ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 10)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 21ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 11)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 20ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 12)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 17ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 13)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 13ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 14)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 8ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 8ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 16)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 8ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 17)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 6ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 18)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 19)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 72ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 71ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 69ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 68ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 66ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 65ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 5)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 57ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 6)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 56ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 7)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 55ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 8)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 53ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 9)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 52ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 10)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 51ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 11)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 50ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 12)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 49ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 13)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 48ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 14)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 47ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 46ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 16)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 45ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 17)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 45ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 18)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 41ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 19)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 41ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 20)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 41ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 21)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 39ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 22)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 30ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 23)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 29ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 24)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 28ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 25)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 26ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 26)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 24ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 27)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 23ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 28)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 22ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 29)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 21ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 30)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 20ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 31)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 21ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 32)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 19ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 33)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 16ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 34)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 15ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 35)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 14ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 36)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 8ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 37)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 7ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 38)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 7ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 39)
+
+PASS unit/ui/StudentLearningOverviewDetailed.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/enrollments 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/enrollments 12ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+PASS unit/ui/StudentLearningOverviewAdvanced.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/enrollments 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/enrollments 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+PASS unit/api.runtime.teacher.outcomes.rate-limit.spec.ts
+PASS unit/api.registry.versions.rate-limit.spec.ts
+PASS unit/api.files.av-and-quota.negatives.spec.ts
+PASS unit/api.problem-envelope.matrix.spec.ts
+PASS unit/api.messages.scoping.spec.ts
+PASS unit/api.messages.threads.spec.ts
+PASS unit/api.messages.ratelimit.headers.spec.ts
+PASS unit/api.runtime.checkpoint.preflight.spec.ts
+PASS unit/middleware.coep.flag.spec.ts
+PASS unit/ui/TeacherCourseInsightsAdvanced.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/courses 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/courses 7ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/lessons?course_id=00000000-0000-0000-0000-0000000000c1 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/lessons?course_id=00000000-0000-0000-0000-0000000000c1 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+PASS unit/ui/TeacherAnnouncements.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/courses 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/courses 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/announcements?course_id=00000000-0000-0000-0000-0000000000c1&include_unpublished=1 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.error
+      Warning: Invalid value for prop `action` on <form> tag. Either remove it from the element, or pass a string or number value to keep it in the DOM. For details, see https://reactjs.org/link/attribute-behavior 
+          at form
+          at section
+          at section
+
+    [0m [90m 24 |[39m     )[33m;[39m
+     [90m 25 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mTeacherAnnouncementsPage[39m({})[33m;[39m
+    [31m[1m>[22m[39m[90m 26 |[39m     render(ui [36mas[39m any)[33m;[39m
+     [90m    |[39m           [31m[1m^[22m[39m
+     [90m 27 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'ann-course-count'[39m)[33m;[39m
+     [90m 28 |[39m   })[33m;[39m
+     [90m 29 |[39m })[33m;[39m[0m
+
+      at printWarning (../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnUnknownProperties (../node_modules/react-dom/cjs/react-dom.development.js:3815:7)
+      at validateProperties$2 (../node_modules/react-dom/cjs/react-dom.development.js:3827:3)
+      at validatePropertiesInDevelopment (../node_modules/react-dom/cjs/react-dom.development.js:9541:5)
+      at setInitialProperties (../node_modules/react-dom/cjs/react-dom.development.js:9830:5)
+      at finalizeInitialChildren (../node_modules/react-dom/cjs/react-dom.development.js:10950:3)
+      at completeWork (../node_modules/react-dom/cjs/react-dom.development.js:22232:17)
+      at completeUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26632:16)
+      at performUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26607:5)
+      at workLoopSync (../node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (../node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performConcurrentWorkOnRoot (../node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+      at flushActQueue (../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../node_modules/react/cjs/react.development.js:2582:11)
+      at ../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (../node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (unit/ui/TeacherAnnouncements.spec.tsx:26:11)
+
+PASS unit/api.modules.delete.auth.spec.ts
+PASS unit/api.admin.metrics.spec.ts
+PASS unit/api.runtime.auth.exchange.edgecases.spec.ts
+PASS unit/api.flags.spec.ts
+PASS unit/services.submissions.queue.edges.spec.ts
+PASS unit/api.runtime.jwks.rotation.spec.ts
+PASS unit/api.reports.activity-retention.spec.ts
+PASS unit/api.files.upload-url.spec.ts
+PASS unit/api.runtime.auth.aud-and-scopes.spec.ts
+PASS unit/api.courses.transfer-owner.ratelimit.spec.ts
+PASS unit/api.user.role.auth.spec.ts
+PASS unit/api.assignments.delete.ratelimit.spec.ts
+PASS unit/api.providers.health.rate-limit.spec.ts
+PASS unit/shared.env.loadServerEnv.spec.ts
+PASS unit/api.files.download-url.dev-namespace.guard.spec.ts
+PASS unit/api.progress.rls.negatives.spec.ts
+PASS unit/api.parent-links.ratelimit.spec.ts
+PASS unit/api.files.upload-url.ratelimit.spec.ts
+PASS unit/ui/ParentAnnouncementsLab.spec.tsx
+PASS unit/api.attachments.delete.permissions.spec.ts
+PASS unit/lib.serverFetch.extend.spec.ts
+PASS unit/ui/StudentLearningOverview.spec.tsx
+PASS unit/api.runtime.outcomes.list.headers.spec.ts
+PASS unit/api.user.role.audit.spec.ts
+PASS unit/api.runtime.grade.idempotency.spec.ts
+PASS unit/ui/SystemDiagnosticsSuite.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 22ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 41ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 41ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 39ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 38ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 37ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 5)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 35ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 6)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 34ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 7)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 32ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 8)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 26ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 9)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 38ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 38ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 38ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 37ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 36ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 35ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 5)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 33ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 6)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 32ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 7)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 31ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 8)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 44ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 9)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 43ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 10)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 43ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 11)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 40ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 12)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 38ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 13)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 34ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 14)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 33ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 32ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 16)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 32ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 17)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 26ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 18)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 27ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 19)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 147ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 144ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 138ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 136ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 135ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 128ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 5)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 128ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 6)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 114ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 7)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 107ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 8)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 101ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 9)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 100ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 10)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 99ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 11)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 98ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 12)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 82ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 13)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 81ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 14)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 80ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 59ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 16)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 46ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 17)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 38ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 18)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 32ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 19)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 26ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 20)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 24ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 21)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 23ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 22)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 20ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 23)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 20ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 24)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 19ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 25)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 19ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 26)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 19ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 27)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 28)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 4ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 29)
+
+PASS unit/api.registry.courses.rate-limit.spec.ts
+PASS unit/schemas.message.spec.ts
+PASS unit/ui/StudentStudyDigest.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/enrollments 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/enrollments 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+PASS unit/api.runtime.context.roles.spec.ts
+PASS unit/api.progress.per-student.spec.ts
+PASS unit/schemas.submission.spec.ts
+PASS unit/api.files.download-dev-namespace.spec.ts
+PASS unit/server.withRouteTiming.csrf-double-submit.spec.ts
+PASS unit/api.runtime.progress.idempotency.spec.ts
+PASS unit/api.runtime.teacher.outcomes.count-header.spec.ts
+PASS unit/api.runtime.outcomes.list.count-header.spec.ts
+PASS unit/lib.metrics.inflight.spec.ts
+PASS unit/api.role.access.matrix.spec.ts
+PASS unit/api.messages.list.rate-limit.spec.ts
+PASS unit/api.admin.dlq.auth.spec.ts
+PASS unit/lib.ef.api.spec.ts
+PASS unit/api.lessons.spec.ts
+PASS unit/api.assignments.delete.ratelimit.headers.spec.ts
+PASS unit/api.messages.list.ratelimit.spec.ts
+PASS unit/api.reports.activity.retention.spec.ts
+PASS unit/api.reports.engagement.csv-json.spec.ts
+PASS unit/api.messages.post.ratelimit.spec.ts
+PASS unit/lib.runtimeAuth.scopes-aud.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:aud_check {
+        origin: 'https://good.example',
+        aud: 'https://bad.example',
+        scopes: []
+      }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:81:25)
+
+PASS unit/api.messages.threads.rate-limit.spec.ts
+PASS unit/api.lessons.complete.idempotent.spec.ts
+PASS unit/api.files.download-url.disposition.spec.ts
+PASS unit/api.runtime.outcomes.export.auth.spec.ts
+PASS unit/api.admin.audit-logs.spec.ts
+PASS unit/schemas.lesson.spec.ts
+PASS unit/services.modules.spec.ts
+PASS unit/api.messages.patch.ratelimit.spec.ts
+PASS unit/api.analytics.events.emit.spec.ts
+PASS unit/api.user-profile.spec.ts
+PASS unit/db.rls.parent-links.negative.spec.ts
+PASS unit/db.rls.announcements.negative.spec.ts
+PASS unit/api.internal.metrics.token.spec.ts
+PASS unit/api.modules.delete.ratelimit.spec.ts
+PASS unit/gateways/enrollments.gateway.spec.ts
+PASS unit/api.admin.quotas.ratelimit.spec.ts
+PASS unit/ui/AdminReports.spec.tsx
+PASS unit/api.reports.grade-distribution.csv-json.spec.ts
+PASS unit/ui/SystemPercentileTrends.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 4ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 11ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 9ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 8ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 7ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 6ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 5ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 22ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 21ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 20ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 4ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+PASS unit/db.rls.courses.negative.spec.ts
+PASS unit/api.submissions.list.pagination.spec.ts
+PASS unit/logger.redaction.spec.ts
+PASS unit/schemas.assignment.spec.ts
+PASS unit/api.providers.health.ratelimit.headers.spec.ts
+PASS unit/api.submissions.grade.spec.ts
+FAIL unit/ui/SystemAuthCheck.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/user/profile 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+  ΓùÅ System Auth Check (labs) ΓÇ║ renders email and role when authenticated
+
+    Unable to find an element by: [data-testid="auth-email"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"border rounded p-4 inline-block"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"text-lg font-medium mb-2"[39m
+            [36m>[39m
+              [0mAuth check (read-only)[0m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"mb-2"[39m
+            [36m>[39m
+              [0mYou are not signed in[0m
+            [36m</p>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"text-blue-600 underline"[39m
+              [33mhref[39m=[32m"/login"[39m
+            [36m>[39m
+              [0mSign in[0m
+            [36m</a>[39m
+          [36m</div>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 20 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mAuthCheckPage[39m()[33m;[39m
+     [90m 21 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 22 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'auth-email'[39m))[33m.[39mtoHaveTextContent([32m't@example.com'[39m)[33m;[39m
+     [90m    |[39m                         [31m[1m^[22m[39m
+     [90m 23 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'auth-role'[39m))[33m.[39mtoHaveTextContent([32m'teacher'[39m)[33m;[39m
+     [90m 24 |[39m   })[33m;[39m
+     [90m 25 |[39m })[33m;[39m[0m
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/SystemAuthCheck.spec.tsx:22:25)
+
+PASS unit/api.runtime.checkpoint.roundtrip.spec.ts
+PASS unit/lib.runtimeAuth.clockskew.spec.ts
+  ΓùÅ Console
+
+    console.log
+      verifyRuntimeAuthorization:scopes_check { requiredScopes: [ 'progress.write' ], scopes: [ 'progress.write' ] }
+
+      at proceed (../apps/web/src/lib/runtimeAuth.ts:89:23)
+
+PASS unit/api.notifications.auth.spec.ts
+PASS unit/ui/StudentUpcomingLessons.spec.tsx
+PASS unit/lib.rateLimit.redis-fallback.spec.ts
+PASS unit/ui/TeacherCourseInsights.spec.tsx
+PASS unit/api.reports.usage.spec.ts
+PASS unit/api.runtime.idempotency.progress.spec.ts
+PASS unit/lib.csp.frame-src-allow.spec.ts
+PASS unit/api.runtime.outcomes.iss-aud.negatives.spec.ts
+PASS unit/api.registry.licenses.auth.spec.ts
+PASS unit/api.dashboard.spec.ts
+PASS unit/ui/SystemRequestId.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 2ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+FAIL unit/ui/SystemHealthHistory.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 3ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+  ΓùÅ System Health History (labs) ΓÇ║ renders delta stats and timestamps with jitter
+
+    HTTP_ERROR: HTTP 404
+
+    [0m [90m 156 |[39m     [36mconst[39m message [33m=[39m (json [36mas[39m any)[33m?[39m[33m.[39merror[33m?[39m[33m.[39mmessage [33m||[39m [32m`HTTP ${res.status}`[39m[33m;[39m
+     [90m 157 |[39m     [36mconst[39m code [33m=[39m (json [36mas[39m any)[33m?[39m[33m.[39merror[33m?[39m[33m.[39mcode [33m||[39m [32m'HTTP_ERROR'[39m[33m;[39m
+    [31m[1m>[22m[39m[90m 158 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`${code}: ${message}`[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 159 |[39m   }
+     [90m 160 |[39m   [36mreturn[39m schema[33m.[39mparse(json) [36mas[39m [33mT[39m[33m;[39m
+     [90m 161 |[39m }[0m
+
+      at fetchJson (../apps/web/src/lib/serverFetch.ts:158:11)
+      at takeSamples (../apps/web/src/app/labs/system/health-history/page.tsx:11:19)
+      at HealthHistoryPage (../apps/web/src/app/labs/system/health-history/page.tsx:34:19)
+      at Object.<anonymous> (unit/ui/SystemHealthHistory.spec.tsx:15:16)
+
+PASS unit/db.rls.quiz-attempts.negative.spec.ts
+PASS unit/ui/SystemObserver.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 51ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 0)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 67ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 1)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 66ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 2)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 64ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 3)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 61ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 4)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 61ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 5)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 58ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 6)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 56ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 7)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 54ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 8)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 53ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 9)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 46ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 10)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 27ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 11)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 27ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 12)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 26ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 13)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 26ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 14)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 26ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 26ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 16)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 25ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 17)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 24ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 18)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 22ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+          at async Promise.all (index 19)
+
+PASS unit/api.messages.threads.auth.spec.ts
+PASS unit/schemas.files.spec.ts
+PASS unit/api.submissions.grade.validation.spec.ts
+PASS unit/db.rls.messages.negative.spec.ts
+PASS unit/lib.serverFetch.baseurl.spec.ts
+PASS unit/ui/SystemLatencySampler.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 17ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 0ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+PASS unit/api.reports.grade-distribution.empty.spec.ts
+PASS unit/api.problem.envelope.codes.spec.ts
+PASS unit/api.messages.patch-negatives.spec.ts
+PASS unit/services.assignments.producer.spec.ts
+PASS unit/modules.update.spec.ts
+PASS unit/api.reports.engagement.headers.spec.ts
+PASS unit/server.scheduler.spec.ts
+PASS unit/api.user.profile.auth.spec.ts
+PASS unit/api.runtime.outcomes.preflight.spec.ts
+PASS unit/features.expertfolio.spec.ts
+PASS unit/ui/StudentPlanner.spec.tsx
+PASS unit/api.parent.progress.api.spec.ts
+PASS unit/api.pagination.params.spec.ts
+FAIL unit/ui/SystemRoleBadge.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+  ΓùÅ System Role Badge (labs) ΓÇ║ renders role and test mode
+
+    HTTP_ERROR: HTTP 404
+
+    [0m [90m 156 |[39m     [36mconst[39m message [33m=[39m (json [36mas[39m any)[33m?[39m[33m.[39merror[33m?[39m[33m.[39mmessage [33m||[39m [32m`HTTP ${res.status}`[39m[33m;[39m
+     [90m 157 |[39m     [36mconst[39m code [33m=[39m (json [36mas[39m any)[33m?[39m[33m.[39merror[33m?[39m[33m.[39mcode [33m||[39m [32m'HTTP_ERROR'[39m[33m;[39m
+    [31m[1m>[22m[39m[90m 158 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`${code}: ${message}`[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 159 |[39m   }
+     [90m 160 |[39m   [36mreturn[39m schema[33m.[39mparse(json) [36mas[39m [33mT[39m[33m;[39m
+     [90m 161 |[39m }[0m
+
+      at fetchJson (../apps/web/src/lib/serverFetch.ts:158:11)
+      at SystemRoleBadgePage (../apps/web/src/app/labs/system/role-badge/page.tsx:10:16)
+      at Object.<anonymous> (unit/ui/SystemRoleBadge.spec.tsx:15:16)
+
+PASS unit/services.notifications.spec.ts
+PASS unit/api.files.upload-url.content-type.spec.ts
+PASS unit/api.reports.grade-distribution.headers.spec.ts
+PASS unit/api.runtime.asset.sign-url.preflight.spec.ts
+PASS unit/gateways/announcements.gateway.spec.ts
+PASS unit/services.submissions.spec.ts
+FAIL unit/ui/ParentChildrenReport.spec.tsx
+  ΓùÅ Parent Children Report (labs) ΓÇ║ renders total and items
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      1
+    Received:
+      2
+
+    [0m [90m 17 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mParentChildrenReportPage[39m()[33m;[39m
+     [90m 18 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 19 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'children-total'[39m))[33m.[39mtoHaveTextContent([32m'1'[39m)[33m;[39m
+     [90m    |[39m                                                         [31m[1m^[22m[39m
+     [90m 20 |[39m   })[33m;[39m
+     [90m 21 |[39m })[33m;[39m
+     [90m 22 |[39m[0m
+
+      at Object.<anonymous> (unit/ui/ParentChildrenReport.spec.tsx:19:57)
+
+PASS unit/sdk.fetchJson.spec.ts
+FAIL unit/ui/SystemOkCard.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+  ΓùÅ System OK Card (labs) ΓÇ║ renders ok and ts (human) on success
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      true
+    Received:
+      false
+
+    [0m [90m 16 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mSystemOkCardPage[39m()[33m;[39m
+     [90m 17 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 18 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'ok-value'[39m))[33m.[39mtoHaveTextContent([32m'true'[39m)[33m;[39m
+     [90m    |[39m                                                   [31m[1m^[22m[39m
+     [90m 19 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'ts-human'[39m)[33m;[39m
+     [90m 20 |[39m   })[33m;[39m
+     [90m 21 |[39m })[33m;[39m[0m
+
+      at Object.<anonymous> (unit/ui/SystemOkCard.spec.tsx:18:51)
+
+PASS unit/api.ready.standardized.spec.ts
+PASS unit/api.runtime.outcomes.iss-aud.strict.spec.ts
+PASS unit/api.notifications.guard.spec.ts
+PASS unit/schemas.progress.spec.ts
+PASS unit/ui/TeacherCourseCardsWithCounts.spec.tsx
+PASS unit/api.runtime.events.preflight.spec.ts
+PASS unit/ui/TeacherPrintPages.spec.tsx
+PASS unit/api.routeTiming.spec.ts
+PASS unit/api.runtime.grade.cors.preflight.spec.ts
+PASS unit/api.health.requiredEnvs.spec.ts
+PASS unit/ui/NotificationsInboxPage.spec.tsx
+PASS unit/api.submissions.get-required.spec.ts
+PASS unit/api.internal.metrics.auth.spec.ts
+PASS unit/api.files.upload-url.allowed-mime.spec.ts
+PASS unit/api.messages.list.pagination.params.spec.ts
+PASS unit/api.internal.metrics.content-type.spec.ts
+PASS unit/api.runtime.context.dto-requestid.spec.ts
+PASS unit/lib.tenant.resolver.spec.ts
+PASS unit/api.messages.threads.pagination.params.spec.ts
+PASS unit/middleware.coep.spec.ts
+PASS unit/ui/DropdownMenu.spec.tsx
+PASS unit/api.runtime.outcomes.alg-kid-iss-aud.spec.ts
+PASS unit/api.reports.csv.content-type.spec.ts
+PASS unit/ui/ParentChildren.spec.tsx
+  ΓùÅ Console
+
+    console.error
+      Warning: Invalid value for prop `action` on <form> tag. Either remove it from the element, or pass a string or number value to keep it in the DOM. For details, see https://reactjs.org/link/attribute-behavior 
+          at form
+          at main
+
+    [0m [90m 14 |[39m     server[33m.[39muse(http[33m.[39m[36mget[39m([32m'/api/parent-links'[39m[33m,[39m () [33m=>[39m [33mHttpResponse[39m[33m.[39mjson([{ id[33m:[39m [32m'pl-1'[39m[33m,[39m parent_id[33m:[39m [32m'p-1'[39m[33m,[39m student_id[33m:[39m [32m's-1'[39m[33m,[39m created_at[33m:[39m [36mnew[39m [33mDate[39m()[33m.[39mtoISOString() }])))[33m;[39m
+     [90m 15 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mParentChildrenListPage[39m()[33m;[39m
+    [31m[1m>[22m[39m[90m 16 |[39m     render(ui)[33m;[39m
+     [90m    |[39m           [31m[1m^[22m[39m
+     [90m 17 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'children-list'[39m)[33m;[39m
+     [90m 18 |[39m   })[33m;[39m
+     [90m 19 |[39m })[33m;[39m[0m
+
+      at printWarning (../node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (../node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnUnknownProperties (../node_modules/react-dom/cjs/react-dom.development.js:3815:7)
+      at validateProperties$2 (../node_modules/react-dom/cjs/react-dom.development.js:3827:3)
+      at validatePropertiesInDevelopment (../node_modules/react-dom/cjs/react-dom.development.js:9541:5)
+      at setInitialProperties (../node_modules/react-dom/cjs/react-dom.development.js:9830:5)
+      at finalizeInitialChildren (../node_modules/react-dom/cjs/react-dom.development.js:10950:3)
+      at completeWork (../node_modules/react-dom/cjs/react-dom.development.js:22232:17)
+      at completeUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26632:16)
+      at performUnitOfWork (../node_modules/react-dom/cjs/react-dom.development.js:26607:5)
+      at workLoopSync (../node_modules/react-dom/cjs/react-dom.development.js:26505:5)
+      at renderRootSync (../node_modules/react-dom/cjs/react-dom.development.js:26473:7)
+      at performConcurrentWorkOnRoot (../node_modules/react-dom/cjs/react-dom.development.js:25777:74)
+      at flushActQueue (../node_modules/react/cjs/react.development.js:2667:24)
+      at act (../node_modules/react/cjs/react.development.js:2582:11)
+      at ../node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (../node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (../node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (unit/ui/ParentChildren.spec.tsx:16:11)
+
+PASS unit/schemas.quiz.extend2.spec.ts
+PASS unit/api.runtime.context.audience.spec.ts
+PASS unit/ui/TeacherAnalyticsLab.spec.tsx
+PASS unit/api.dashboard.teacher-kpis.spec.ts
+PASS unit/api.providers.list.dto.spec.ts
+PASS unit/services.parentLinks.spec.ts
+FAIL unit/ui/SystemUptimeTile.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/health 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+  ΓùÅ System Uptime Tile (labs) ΓÇ║ renders ok and ts fields under jitter
+
+    Unable to find an element by: [data-testid="uptime-ok"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold"[39m
+          [36m>[39m
+            [0mSystem uptime[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-gray-700"[39m
+          [36m>[39m
+            [0mUnable to load uptime.[0m
+          [36m</p>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 16 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mUptimeTilePage[39m()[33m;[39m
+     [90m 17 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 18 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'uptime-ok'[39m)[33m;[39m
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 19 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'uptime-ts-iso'[39m)[33m;[39m
+     [90m 20 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'uptime-ts-human'[39m)[33m;[39m
+     [90m 21 |[39m   })[33m;[39m[0m
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/SystemUptimeTile.spec.tsx:18:18)
+
+PASS unit/schemas.auth.spec.ts
+PASS unit/schemas.strictness.spec.ts
+PASS unit/api.reports.export.headers.spec.ts
+PASS unit/api.notifications.read-all.spec.ts
+PASS unit/api.progress.request-id.spec.ts
+PASS unit/api.runtime.teacher.outcomes.headers.spec.ts
+PASS unit/api.user.role.headers.spec.ts
+PASS unit/api.providers.health.summaries.spec.ts
+PASS unit/api.files.download-url.spec.ts
+PASS unit/lib.testMode.spec.ts
+FAIL unit/ui/StudentProfile.spec.tsx
+  ΓùÅ Console
+
+    console.debug
+      [serverFetch] 404 http://localhost/api/user/profile 1ms
+
+      at serverFetch (../apps/web/src/lib/serverFetch.ts:135:15)
+
+  ΓùÅ Student Profile (labs) ΓÇ║ renders email and role when authenticated
+
+    Unable to find an element by: [data-testid="profile-email"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6 space-y-3"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold"[39m
+            [33mdata-testid[39m=[32m"profile-title"[39m
+          [36m>[39m
+            [0mStudent Profile[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-gray-700"[39m
+            [33mdata-testid[39m=[32m"signin-prompt"[39m
+          [36m>[39m
+            [0mYou are not signed in[0m
+          [36m</p>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"underline"[39m
+            [33mdata-testid[39m=[32m"signin-link"[39m
+            [33mhref[39m=[32m"/login"[39m
+          [36m>[39m
+            [0mGo to login[0m
+          [36m</a>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 15 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mStudentProfilePage[39m()[33m;[39m
+     [90m 16 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 17 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'profile-email'[39m))[33m.[39mtoHaveTextContent([32m's@example.com'[39m)[33m;[39m
+     [90m    |[39m                         [31m[1m^[22m[39m
+     [90m 18 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'profile-role'[39m))[33m.[39mtoHaveTextContent([32m'student'[39m)[33m;[39m
+     [90m 19 |[39m   })[33m;[39m
+     [90m 20 |[39m })[33m;[39m[0m
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/StudentProfile.spec.tsx:17:25)
+
+PASS unit/api.messages.read-all-thread.spec.ts
+PASS unit/schemas.parentLink.spec.ts
+PASS unit/api.user.profile.headers.spec.ts
+PASS unit/gateways.registry.pagination.spec.ts
+PASS unit/api.assignments.patch-missing-id.spec.ts
+PASS unit/api.providers.health.summaries.auth.spec.ts
+PASS unit/api.submissions.list.total-count.spec.ts
+PASS unit/api.messages.guard.spec.ts
+PASS unit/schemas.event.spec.ts
+PASS unit/api.progress.teacher-counts.spec.ts
+PASS unit/api.messages.list.total-count.spec.ts
+PASS unit/api.assignments.list.total-count.spec.ts
+PASS unit/api.messages.missing-thread.spec.ts
+PASS unit/api.admin.metrics.sanitize-labels.spec.ts
+PASS unit/api.assignments.list.spec.ts
+PASS unit/api.registry.versions.dto.spec.ts
+FAIL unit/api.teacher.grading-queue.auth.spec.ts
+  ΓùÅ API /api/teacher/grading-queue auth ΓÇ║ unauthenticated ΓåÆ 401
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 200
+
+    [0m [90m  6 |[39m   test([32m'unauthenticated ΓåÆ 401'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m  7 |[39m     [36mconst[39m res [33m=[39m [36mawait[39m ([33mQueueGET[39m [36mas[39m any)([36mget[39m([32m'http://localhost/api/teacher/grading-queue'[39m))[33m;[39m
+    [31m[1m>[22m[39m[90m  8 |[39m     expect(res[33m.[39mstatus)[33m.[39mtoBe([35m401[39m)[33m;[39m
+     [90m    |[39m                        [31m[1m^[22m[39m
+     [90m  9 |[39m   })[33m;[39m
+     [90m 10 |[39m
+     [90m 11 |[39m   test([32m'non-teacher ΓåÆ 403'[39m[33m,[39m [36masync[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (unit/api.teacher.grading-queue.auth.spec.ts:8:24)
+
+  ΓùÅ API /api/teacher/grading-queue auth ΓÇ║ non-teacher ΓåÆ 403
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 200
+    Received array: [401, 403]
+
+    [0m [90m 11 |[39m   test([32m'non-teacher ΓåÆ 403'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m 12 |[39m     [36mconst[39m res [33m=[39m [36mawait[39m ([33mQueueGET[39m [36mas[39m any)([36mget[39m([32m'http://localhost/api/teacher/grading-queue'[39m[33m,[39m { [32m'x-test-auth'[39m[33m:[39m [32m'student'[39m }))[33m;[39m
+    [31m[1m>[22m[39m[90m 13 |[39m     expect([[35m401[39m[33m,[39m[35m403[39m])[33m.[39mtoContain(res[33m.[39mstatus)[33m;[39m
+     [90m    |[39m                       [31m[1m^[22m[39m
+     [90m 14 |[39m   })[33m;[39m
+     [90m 15 |[39m })[33m;[39m
+     [90m 16 |[39m[0m
+
+      at Object.<anonymous> (unit/api.teacher.grading-queue.auth.spec.ts:13:23)
+
+PASS unit/api.admin.metrics.auth.spec.ts
+PASS unit/api.modules.list.total-count.spec.ts
+PASS unit/api.admin.export.auth.spec.ts
+PASS unit/ui/DarkModeToggle.spec.tsx
+PASS unit/api.quizzes.list.total-count.spec.ts
+PASS unit/db.rls.registry.negative.spec.ts
+PASS unit/gateways.messages.port-flag.spec.ts
+PASS unit/api.admin.export.notifications.csv.spec.ts
+PASS unit/api.registry.versions.approve-disable.spec.ts
+PASS unit/api.admin.usage.shape.spec.ts
+PASS unit/api.lessons.list.total-count.spec.ts
+PASS unit/api.admin.metrics.text.spec.ts
+PASS unit/api.assignments.patch-empty-body.spec.ts
+PASS unit/lib.paginate.edgecases.spec.ts
+PASS unit/api.admin.audit-logs.auth.spec.ts
+PASS unit/api.admin.metrics.accept-text.spec.ts
+PASS unit/schemas.env.numeric-bounds.spec.ts
+PASS unit/ui/telemetry.spec.tsx
+PASS unit/lib.zodQuery.spec.ts
+PASS unit/api.admin.dlq.admin.patch.spec.ts
+PASS unit/schemas.enrollment.spec.ts
+PASS unit/lib.rateLimit.spec.ts
+PASS unit/api.request-id.on.error.spec.ts
+PASS unit/lib.idempotency.ttl.spec.ts
+PASS unit/services.courses.spec.ts
+PASS unit/ui/SettingsPage.spec.tsx
+PASS unit/schemas.env.spec.ts
+PASS unit/api.enrollments.list.total-count.spec.ts
+PASS unit/api.notifications.list.total-count.spec.ts
+PASS unit/api.assignments.query-strict.spec.ts
+PASS unit/api.reports.activity.headers.spec.ts
+PASS unit/api.reports.retention.headers.spec.ts
+PASS unit/api.registry.versions.total-count.spec.ts
+PASS unit/middleware.reject-x-test-auth.spec.ts
+PASS unit/lib.jobs.run-now.spec.ts
+PASS unit/ui/TeacherCoursesGrid.spec.tsx
+PASS unit/gateways/users.gateway.spec.ts
+PASS unit/schemas.problem.spec.ts
+PASS unit/api.request-id.on.success.spec.ts
+PASS unit/services.files.signing.spec.ts
+PASS unit/db.rls.notifications.negative.spec.ts
+PASS unit/ui/StudentEnrollmentsGrid.spec.tsx
+PASS unit/api.runtime.outcomes.options.spec.ts
+PASS unit/api.ready.payload.spec.ts
+PASS unit/api.auth.logout.spec.ts
+PASS unit/gateways/flags.gateway.spec.ts
+PASS unit/db.rls.quiz-choices.negative.spec.ts
+PASS unit/schemas.notification.spec.ts
+PASS unit/schemas.course.spec.ts
+PASS unit/gateways.registry.filters.spec.ts
+PASS unit/db.rls.quiz-questions.negative.spec.ts
+PASS unit/db.rls.providers.negative.spec.ts
+PASS unit/db.rls.lessons.negative.spec.ts
+PASS unit/db.rls.expertfolio.negative.spec.ts
+PASS unit/api.health.payload.spec.ts
+PASS unit/db.rls.quizzes.negative.spec.ts
+PASS unit/schemas.quiz.extend.spec.ts
+PASS unit/ports.messaging.contract.spec.ts
+PASS unit/db.rls.enrollments.negative.spec.ts
+PASS unit/api.dashboard.dto.spec.ts
+PASS unit/db.rls.modules.negative.spec.ts
+PASS unit/db.rls.messages.readall.negative.spec.ts
+PASS unit/lib.metrics.cardinality.spec.ts
+PASS unit/services.progress.spec.ts
+PASS unit/lib.storageKey.spec.ts
+PASS unit/ui/SystemHealth.spec.tsx
+PASS unit/api.notifications.read-all.auth.spec.ts
+FAIL unit/lib.csp.headers.spec.ts
+  ΓùÅ CSP builder ΓÇ║ includes nonce and allowed connect-src
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /connect-src self https:\/\/p1\.example https:\/\/p2\.example/
+    Received string:  "default-src 'self'; script-src 'self' 'nonce-abc123'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://p1.example https://p2.example; frame-ancestors 'none'; frame-src self;"
+
+    [0m [90m  7 |[39m     [36mconst[39m csp [33m=[39m buildDefaultCsp(nonce)[33m;[39m
+     [90m  8 |[39m     expect(csp)[33m.[39mtoMatch([35m/script-src 'self' 'nonce-abc123'/[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m  9 |[39m     expect(csp)[33m.[39mtoMatch([35m/connect-src self https:\/\/p1\.example https:\/\/p2\.example/[39m)[33m;[39m
+     [90m    |[39m                 [31m[1m^[22m[39m
+     [90m 10 |[39m   })[33m;[39m
+     [90m 11 |[39m })[33m;[39m
+     [90m 12 |[39m[0m
+
+      at Object.<anonymous> (unit/lib.csp.headers.spec.ts:9:17)
+
+PASS unit/runtime.headers.vary.origin.spec.ts
+PASS unit/api.runtime.jwks.rotation.positive.spec.ts
+PASS unit/lib.logger.redaction.extended.spec.ts
+PASS unit/db.rls.files.finalize.negative.spec.ts
+PASS unit/admin.outcomes.csv-link.spec.ts
+PASS unit/api.admin.usage.auth.spec.ts
+PASS unit/db.rls.interactive_attempts.negative.spec.ts
+PASS unit/api.runtime.checkpoint.spec.ts
+PASS unit/db.rls.reports.negative.spec.ts
+PASS unit/api.parent.progress.ui.spec.tsx
+PASS unit/services.users.spec.ts
+PASS unit/future.access-control.spec.ts
+PASS unit/future.analytics.spec.ts
+PASS unit/schemas.dashboard.parent.spec.ts
+PASS unit/api.runtime.asset-sign-url.spec.ts
+PASS unit/future.profile-avatar.spec.ts
+PASS unit/schemas.assignment.extend.spec.ts
+PASS unit/example.spec.ts
+PASS unit/api.events.spec.ts
+
+Summary of all failing tests
+FAIL unit/api.enrollments.spec.ts
+  ΓùÅ API /api/enrollments ΓÇ║ POST unauth ΓåÆ 401; non-student ΓåÆ 403; student ΓåÆ 201 with own student_id
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: "test-student-id"
+    Received: "22222222-2222-2222-2222-222222222222"
+
+    [0m [90m 28 |[39m 		expect(res[33m.[39mstatus)[33m.[39mtoBe([35m201[39m)[33m;[39m
+     [90m 29 |[39m 		[36mconst[39m json [33m=[39m [36mawait[39m res[33m.[39mjson()[33m;[39m
+    [31m[1m>[22m[39m[90m 30 |[39m 		expect(json[33m.[39mstudent_id)[33m.[39mtoBe([32m'test-student-id'[39m)[33m;[39m
+     [90m    |[39m 		                        [31m[1m^[22m[39m
+     [90m 31 |[39m 	})[33m;[39m
+     [90m 32 |[39m
+     [90m 33 |[39m 	test([32m'GET unauth ΓåÆ 401; echoes x-request-id'[39m[33m,[39m [36masync[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (unit/api.enrollments.spec.ts:30:27)
+
+FAIL unit/api.teacher.grading-queue.spec.ts
+  ΓùÅ api.teacher.grading-queue ΓÇ║ rejects unauth requests
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 200
+
+    [0m [90m 15 |[39m   test([32m'rejects unauth requests'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m 16 |[39m     [36mconst[39m res [33m=[39m [36mawait[39m ([33mGradingGET[39m [36mas[39m any)(make([32m'http://localhost/api/teacher/grading-queue'[39m))[33m;[39m
+    [31m[1m>[22m[39m[90m 17 |[39m     expect(res[33m.[39mstatus)[33m.[39mtoBe([35m401[39m)[33m;[39m
+     [90m    |[39m                        [31m[1m^[22m[39m
+     [90m 18 |[39m   })[33m;[39m
+     [90m 19 |[39m
+     [90m 20 |[39m   test([32m'rejects non-teacher'[39m[33m,[39m [36masync[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (unit/api.teacher.grading-queue.spec.ts:17:24)
+
+  ΓùÅ api.teacher.grading-queue ΓÇ║ rejects non-teacher
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 403
+    Received: 200
+
+    [0m [90m 22 |[39m     globalThis[33m.[39m__TEST_HEADERS_STORE__[33m?[39m[33m.[39mcookies[33m?[39m[33m.[39m[36mset[39m[33m?[39m[33m.[39m([32m'x-test-auth'[39m[33m,[39m [32m'student'[39m)[33m;[39m
+     [90m 23 |[39m     [36mconst[39m res [33m=[39m [36mawait[39m ([33mGradingGET[39m [36mas[39m any)(make([32m'http://localhost/api/teacher/grading-queue'[39m))[33m;[39m
+    [31m[1m>[22m[39m[90m 24 |[39m     expect(res[33m.[39mstatus)[33m.[39mtoBe([35m403[39m)[33m;[39m
+     [90m    |[39m                        [31m[1m^[22m[39m
+     [90m 25 |[39m   })[33m;[39m
+     [90m 26 |[39m
+     [90m 27 |[39m   test([32m'validates query and paginates'[39m[33m,[39m [36masync[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (unit/api.teacher.grading-queue.spec.ts:24:24)
+
+FAIL unit/lib.supabaseBrowser.spec.ts
+  ΓùÅ supabaseBrowser client creation ΓÇ║ uses env NEXT_PUBLIC_SUPABASE_URL/ANON when provided
+
+    TypeError: (0 , auth_helpers_nextjs_1.createClientComponentClient) is not a function
+
+    [0m [90m 13 |[39m 	} [36mcatch[39m {
+     [90m 14 |[39m 		[90m// Last resort (dev): create with default env resolution[39m
+    [31m[1m>[22m[39m[90m 15 |[39m 		browserClient [33m=[39m createClientComponentClient()[33m;[39m
+     [90m    |[39m 		                                           [31m[1m^[22m[39m
+     [90m 16 |[39m 		[36mreturn[39m browserClient[33m;[39m
+     [90m 17 |[39m 	}
+     [90m 18 |[39m }[0m
+
+      at getSupabaseBrowser (../apps/web/src/lib/supabaseBrowser.ts:15:46)
+      at Object.<anonymous> (unit/lib.supabaseBrowser.spec.ts:15:20)
+
+FAIL unit/ui/SystemAuthCheck.spec.tsx
+  ΓùÅ System Auth Check (labs) ΓÇ║ renders email and role when authenticated
+
+    Unable to find an element by: [data-testid="auth-email"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"border rounded p-4 inline-block"[39m
+          [36m>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"text-lg font-medium mb-2"[39m
+            [36m>[39m
+              [0mAuth check (read-only)[0m
+            [36m</div>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"mb-2"[39m
+            [36m>[39m
+              [0mYou are not signed in[0m
+            [36m</p>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"text-blue-600 underline"[39m
+              [33mhref[39m=[32m"/login"[39m
+            [36m>[39m
+              [0mSign in[0m
+            [36m</a>[39m
+          [36m</div>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 20 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mAuthCheckPage[39m()[33m;[39m
+     [90m 21 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 22 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'auth-email'[39m))[33m.[39mtoHaveTextContent([32m't@example.com'[39m)[33m;[39m
+     [90m    |[39m                         [31m[1m^[22m[39m
+     [90m 23 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'auth-role'[39m))[33m.[39mtoHaveTextContent([32m'teacher'[39m)[33m;[39m
+     [90m 24 |[39m   })[33m;[39m
+     [90m 25 |[39m })[33m;[39m[0m
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/SystemAuthCheck.spec.tsx:22:25)
+
+FAIL unit/ui/SystemHealthHistory.spec.tsx
+  ΓùÅ System Health History (labs) ΓÇ║ renders delta stats and timestamps with jitter
+
+    HTTP_ERROR: HTTP 404
+
+    [0m [90m 156 |[39m     [36mconst[39m message [33m=[39m (json [36mas[39m any)[33m?[39m[33m.[39merror[33m?[39m[33m.[39mmessage [33m||[39m [32m`HTTP ${res.status}`[39m[33m;[39m
+     [90m 157 |[39m     [36mconst[39m code [33m=[39m (json [36mas[39m any)[33m?[39m[33m.[39merror[33m?[39m[33m.[39mcode [33m||[39m [32m'HTTP_ERROR'[39m[33m;[39m
+    [31m[1m>[22m[39m[90m 158 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`${code}: ${message}`[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 159 |[39m   }
+     [90m 160 |[39m   [36mreturn[39m schema[33m.[39mparse(json) [36mas[39m [33mT[39m[33m;[39m
+     [90m 161 |[39m }[0m
+
+      at fetchJson (../apps/web/src/lib/serverFetch.ts:158:11)
+      at takeSamples (../apps/web/src/app/labs/system/health-history/page.tsx:11:19)
+      at HealthHistoryPage (../apps/web/src/app/labs/system/health-history/page.tsx:34:19)
+      at Object.<anonymous> (unit/ui/SystemHealthHistory.spec.tsx:15:16)
+
+FAIL unit/ui/SystemRoleBadge.spec.tsx
+  ΓùÅ System Role Badge (labs) ΓÇ║ renders role and test mode
+
+    HTTP_ERROR: HTTP 404
+
+    [0m [90m 156 |[39m     [36mconst[39m message [33m=[39m (json [36mas[39m any)[33m?[39m[33m.[39merror[33m?[39m[33m.[39mmessage [33m||[39m [32m`HTTP ${res.status}`[39m[33m;[39m
+     [90m 157 |[39m     [36mconst[39m code [33m=[39m (json [36mas[39m any)[33m?[39m[33m.[39merror[33m?[39m[33m.[39mcode [33m||[39m [32m'HTTP_ERROR'[39m[33m;[39m
+    [31m[1m>[22m[39m[90m 158 |[39m     [36mthrow[39m [36mnew[39m [33mError[39m([32m`${code}: ${message}`[39m)[33m;[39m
+     [90m     |[39m           [31m[1m^[22m[39m
+     [90m 159 |[39m   }
+     [90m 160 |[39m   [36mreturn[39m schema[33m.[39mparse(json) [36mas[39m [33mT[39m[33m;[39m
+     [90m 161 |[39m }[0m
+
+      at fetchJson (../apps/web/src/lib/serverFetch.ts:158:11)
+      at SystemRoleBadgePage (../apps/web/src/app/labs/system/role-badge/page.tsx:10:16)
+      at Object.<anonymous> (unit/ui/SystemRoleBadge.spec.tsx:15:16)
+
+FAIL unit/ui/ParentChildrenReport.spec.tsx
+  ΓùÅ Parent Children Report (labs) ΓÇ║ renders total and items
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      1
+    Received:
+      2
+
+    [0m [90m 17 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mParentChildrenReportPage[39m()[33m;[39m
+     [90m 18 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 19 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'children-total'[39m))[33m.[39mtoHaveTextContent([32m'1'[39m)[33m;[39m
+     [90m    |[39m                                                         [31m[1m^[22m[39m
+     [90m 20 |[39m   })[33m;[39m
+     [90m 21 |[39m })[33m;[39m
+     [90m 22 |[39m[0m
+
+      at Object.<anonymous> (unit/ui/ParentChildrenReport.spec.tsx:19:57)
+
+FAIL unit/ui/SystemOkCard.spec.tsx
+  ΓùÅ System OK Card (labs) ΓÇ║ renders ok and ts (human) on success
+
+    expect(element).toHaveTextContent()
+
+    Expected element to have text content:
+      true
+    Received:
+      false
+
+    [0m [90m 16 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mSystemOkCardPage[39m()[33m;[39m
+     [90m 17 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 18 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'ok-value'[39m))[33m.[39mtoHaveTextContent([32m'true'[39m)[33m;[39m
+     [90m    |[39m                                                   [31m[1m^[22m[39m
+     [90m 19 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'ts-human'[39m)[33m;[39m
+     [90m 20 |[39m   })[33m;[39m
+     [90m 21 |[39m })[33m;[39m[0m
+
+      at Object.<anonymous> (unit/ui/SystemOkCard.spec.tsx:18:51)
+
+FAIL unit/ui/SystemUptimeTile.spec.tsx
+  ΓùÅ System Uptime Tile (labs) ΓÇ║ renders ok and ts fields under jitter
+
+    Unable to find an element by: [data-testid="uptime-ok"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold"[39m
+          [36m>[39m
+            [0mSystem uptime[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-gray-700"[39m
+          [36m>[39m
+            [0mUnable to load uptime.[0m
+          [36m</p>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 16 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mUptimeTilePage[39m()[33m;[39m
+     [90m 17 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 18 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'uptime-ok'[39m)[33m;[39m
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 19 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'uptime-ts-iso'[39m)[33m;[39m
+     [90m 20 |[39m     [36mawait[39m screen[33m.[39mfindByTestId([32m'uptime-ts-human'[39m)[33m;[39m
+     [90m 21 |[39m   })[33m;[39m[0m
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/SystemUptimeTile.spec.tsx:18:18)
+
+FAIL unit/ui/StudentProfile.spec.tsx
+  ΓùÅ Student Profile (labs) ΓÇ║ renders email and role when authenticated
+
+    Unable to find an element by: [data-testid="profile-email"]
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<main[39m
+          [33mclass[39m=[32m"p-6 space-y-3"[39m
+        [36m>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"text-xl font-semibold"[39m
+            [33mdata-testid[39m=[32m"profile-title"[39m
+          [36m>[39m
+            [0mStudent Profile[0m
+          [36m</h1>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-gray-700"[39m
+            [33mdata-testid[39m=[32m"signin-prompt"[39m
+          [36m>[39m
+            [0mYou are not signed in[0m
+          [36m</p>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"underline"[39m
+            [33mdata-testid[39m=[32m"signin-link"[39m
+            [33mhref[39m=[32m"/login"[39m
+          [36m>[39m
+            [0mGo to login[0m
+          [36m</a>[39m
+        [36m</main>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 15 |[39m     [36mconst[39m ui [33m=[39m [36mawait[39m [33mStudentProfilePage[39m()[33m;[39m
+     [90m 16 |[39m     render(ui)[33m;[39m
+    [31m[1m>[22m[39m[90m 17 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'profile-email'[39m))[33m.[39mtoHaveTextContent([32m's@example.com'[39m)[33m;[39m
+     [90m    |[39m                         [31m[1m^[22m[39m
+     [90m 18 |[39m     expect([36mawait[39m screen[33m.[39mfindByTestId([32m'profile-role'[39m))[33m.[39mtoHaveTextContent([32m'student'[39m)[33m;[39m
+     [90m 19 |[39m   })[33m;[39m
+     [90m 20 |[39m })[33m;[39m[0m
+
+      at waitForWrapper (../node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at ../node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+      at Object.<anonymous> (unit/ui/StudentProfile.spec.tsx:17:25)
+
+FAIL unit/api.teacher.grading-queue.auth.spec.ts
+  ΓùÅ API /api/teacher/grading-queue auth ΓÇ║ unauthenticated ΓåÆ 401
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 401
+    Received: 200
+
+    [0m [90m  6 |[39m   test([32m'unauthenticated ΓåÆ 401'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m  7 |[39m     [36mconst[39m res [33m=[39m [36mawait[39m ([33mQueueGET[39m [36mas[39m any)([36mget[39m([32m'http://localhost/api/teacher/grading-queue'[39m))[33m;[39m
+    [31m[1m>[22m[39m[90m  8 |[39m     expect(res[33m.[39mstatus)[33m.[39mtoBe([35m401[39m)[33m;[39m
+     [90m    |[39m                        [31m[1m^[22m[39m
+     [90m  9 |[39m   })[33m;[39m
+     [90m 10 |[39m
+     [90m 11 |[39m   test([32m'non-teacher ΓåÆ 403'[39m[33m,[39m [36masync[39m () [33m=>[39m {[0m
+
+      at Object.<anonymous> (unit/api.teacher.grading-queue.auth.spec.ts:8:24)
+
+  ΓùÅ API /api/teacher/grading-queue auth ΓÇ║ non-teacher ΓåÆ 403
+
+    expect(received).toContain(expected) // indexOf
+
+    Expected value: 200
+    Received array: [401, 403]
+
+    [0m [90m 11 |[39m   test([32m'non-teacher ΓåÆ 403'[39m[33m,[39m [36masync[39m () [33m=>[39m {
+     [90m 12 |[39m     [36mconst[39m res [33m=[39m [36mawait[39m ([33mQueueGET[39m [36mas[39m any)([36mget[39m([32m'http://localhost/api/teacher/grading-queue'[39m[33m,[39m { [32m'x-test-auth'[39m[33m:[39m [32m'student'[39m }))[33m;[39m
+    [31m[1m>[22m[39m[90m 13 |[39m     expect([[35m401[39m[33m,[39m[35m403[39m])[33m.[39mtoContain(res[33m.[39mstatus)[33m;[39m
+     [90m    |[39m                       [31m[1m^[22m[39m
+     [90m 14 |[39m   })[33m;[39m
+     [90m 15 |[39m })[33m;[39m
+     [90m 16 |[39m[0m
+
+      at Object.<anonymous> (unit/api.teacher.grading-queue.auth.spec.ts:13:23)
+
+FAIL unit/lib.csp.headers.spec.ts
+  ΓùÅ CSP builder ΓÇ║ includes nonce and allowed connect-src
+
+    expect(received).toMatch(expected)
+
+    Expected pattern: /connect-src self https:\/\/p1\.example https:\/\/p2\.example/
+    Received string:  "default-src 'self'; script-src 'self' 'nonce-abc123'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://p1.example https://p2.example; frame-ancestors 'none'; frame-src self;"
+
+    [0m [90m  7 |[39m     [36mconst[39m csp [33m=[39m buildDefaultCsp(nonce)[33m;[39m
+     [90m  8 |[39m     expect(csp)[33m.[39mtoMatch([35m/script-src 'self' 'nonce-abc123'/[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m  9 |[39m     expect(csp)[33m.[39mtoMatch([35m/connect-src self https:\/\/p1\.example https:\/\/p2\.example/[39m)[33m;[39m
+     [90m    |[39m                 [31m[1m^[22m[39m
+     [90m 10 |[39m   })[33m;[39m
+     [90m 11 |[39m })[33m;[39m
+     [90m 12 |[39m[0m
+
+      at Object.<anonymous> (unit/lib.csp.headers.spec.ts:9:17)
+
+
+Test Suites: 12 failed, 481 passed, 493 total
+Tests:       14 failed, 1 skipped, 14 todo, 900 passed, 929 total
+Snapshots:   0 total
+Time:        16.199 s
+Ran all test suites.

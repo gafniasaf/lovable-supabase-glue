@@ -1,0 +1,106 @@
+﻿== ACTIVE ROOT: C:\Users\agafn\Desktop\education system 5
+
+Name                                                     Mode   Length
+----                                                     ----   ------
+.github                                                  d-----       
+.husky                                                   d-----       
+.next                                                    d-----       
+apps                                                     d-----       
+artifacts                                                d-----       
+contracts                                                d-----       
+demo                                                     d-----       
+dist                                                     d-----       
+docs                                                     d-----       
+examples                                                 d-----       
+lovable-supabase-glue-main                               d-----       
+node_modules                                             d-----       
+packages                                                 d-----       
+packages_original                                        d-----       
+public                                                   d-----       
+reports                                                  d-----       
+scripts                                                  d-----       
+src                                                      d-----       
+supabase                                                 d-----       
+supabase_original                                        d-----       
+tests                                                    d-----       
+.env                                                     -a---- 353   
+.gitignore                                               -a---- 277   
+.pr-anchor                                               -a---- 16    
+.vercelignore                                            -a---- 138   
+bun.lockb                                                -a---- 197327
+capacitor.config.ts                                      -a---- 616   
+components.json                                          -a---- 432   
+eslint.config.js                                         -a---- 818   
+HANDOFF.md                                               -a---- 6302  
+index.html                                               -a---- 303   
+jest.config.cjs                                          -a---- 831   
+MANIFEST.json                                            -a---- 1978  
+MIGRATION_STATUS.md                                      -a---- 4969  
+package-lock.json                                        -a---- 486834
+package.json                                             -a---- 4019  
+package_original.json                                    -a---- 2722  
+postcss.config.js                                        -a---- 86    
+PRODUCTION_DEPLOYMENT.md                                 -a---- 5623  
+README-DEMO-DISABLED.md                                  -a---- 223   
+README.md                                                -a---- 11660 
+README_ORIGINAL.md                                       -a---- 4093  
+tailwind.config.js                                       -a---- 1544  
+tailwind.config.ts                                       -a---- 2444  
+TECHNICAL_DOCUMENTATION.md                               -a---- 59812 
+tsconfig.app.json                                        -a---- 346   
+tsconfig.base.json                                       -a---- 457   
+tsconfig.jest.json                                       -a---- 411   
+tsconfig.json                                            -a---- 516   
+tsconfig.node.json                                       -a---- 214   
+vercel-ignore.sh                                         -a---- 685   
+vercel.json                                              -a---- 405   
+vite.config.ts                                           -a---- 155   
+vite.config.ts.timestamp-1756434956375-ecc46dfe82ceb.mjs -a---- 2423  
+
+
+
+== LEGACY: C:\Users\agafn\Desktop\education-system-5-legacy
+
+Name                                                                                      Mode   Length
+----                                                                                      ----   ------
+.cursor                                                                                   d-----       
+.github                                                                                   d-----       
+.husky                                                                                    d-----       
+.stryker-tmp                                                                              d-----       
+apps                                                                                      d-----       
+artifacts                                                                                 d-----       
+docs                                                                                      d-----       
+lovablefrontendoutput                                                                     d-----       
+node_modules                                                                              d-----       
+packages                                                                                  d-----       
+proposals                                                                                 d-----       
+scripts                                                                                   d-----       
+supabase                                                                                  d-----       
+test-results                                                                              d-----       
+tests                                                                                     d-----       
+tmp_push                                                                                  d-----       
+tools                                                                                     d-----       
+.dockerignore                                                                             -a---- 385   
+.gitignore                                                                                -a---- 368   
+.node-version                                                                             -a---- 6     
+.nvmrc                                                                                    -a---- 6     
+201                                                                                       -a---- 23    
+analytics.html                                                                            -a---- 9256  
+campus-base-design-main.zip                                                               -a---- 421740
+docker                                                                                    -a---- 0     
+docker-compose.override.yml                                                               -a---- 537   
+docker-compose.yml                                                                        -a---- 2252  
+DtVaEtdjIovhKDwUBkiycjXz=DtVaEtdjIovhKDwUBkiycjXz                                         -a---- 0     
+junit.xml                                                                                 -a---- 132   
+next-3022.err.log                                                                         -a---- 1174  
+next-3022.out.log                                                                         -a---- 37    
+package-lock.json                                                                         -a---- 809785
+package.json                                                                              -a---- 2722  
+README.md                                                                                 -a---- 4093  
+sbp_11ad903a97413f7764f0904235a241b5d9b1d307=sbp_11ad903a97413f7764f0904235a241b5d9b1d307 -a---- 0     
+temp_v0_SupervisorQueue.tsx                                                               -a---- 0     
+tsconfig.base.json                                                                        -a---- 370   
+vercel.json                                                                               -a---- 151   
+vercel.json.bak                                                                           -a---- 151   
+
+

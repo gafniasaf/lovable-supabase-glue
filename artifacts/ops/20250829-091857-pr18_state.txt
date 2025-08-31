@@ -1,0 +1,1 @@
+﻿{"mergedAt":"2025-08-29T07:18:22Z","number":18,"state":"MERGED","url":"https://github.com/gafniasaf/lovable-supabase-glue/pull/18"}

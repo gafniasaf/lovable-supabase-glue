@@ -1,0 +1,2 @@
+﻿## fix/vercel-use-vite-root...lovable/fix/vercel-use-vite-root
+?? artifacts/

@@ -1,0 +1,11 @@
+﻿\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github_pat_11BTISNKA0IbrFz4
+XOxyRy_ThLdv0IKx3FgelFVIFsrCxwMTSWJdZ1bwzkfjAQgiUQI4FM5JLEOjLpMjTl : The term '\github_pat_11BTISNKA0IbrFz4XOxyRy_ThLdv0I
+Kx3FgelFVIFsrCxwMTSWJdZ1bwzkfjAQgiUQI4FM5JLEOjLpMjTlgithub_pat_11BTISNKA0IbrFz4XOxyRy_ThLdv0IKx3FgelFVIFsrCxwMTSWJdZ1bwzk
+fjAQgiUQI4FM5JLEOjLpMjTl' is not recognized as the name of a cmdlet, function, script file, or operable program. Check 
+the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:2
++  \github_pat_11BTISNKA0IbrFz4XOxyRy_ThLdv0IKx3FgelFVIFsrCxwMTSWJdZ1bw ...
++  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (\github_pat_11B...4FM5JLEOjLpMjTl:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+ 

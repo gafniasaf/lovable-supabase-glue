@@ -1,0 +1,6 @@
+﻿error: pathspec 'scaffold' did not match any file(s) known to git
+error: pathspec 'as' did not match any file(s) known to git
+error: pathspec 'a' did not match any file(s) known to git
+error: pathspec 'standalone' did not match any file(s) known to git
+error: pathspec 'presentational' did not match any file(s) known to git
+error: pathspec 'package'' did not match any file(s) known to git

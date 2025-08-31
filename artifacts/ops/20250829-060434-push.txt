@@ -1,0 +1,2 @@
+﻿branch 'fix/vercel-use-vite-root' set up to track 'lovable/fix/vercel-use-vite-root'.
+Everything up-to-date

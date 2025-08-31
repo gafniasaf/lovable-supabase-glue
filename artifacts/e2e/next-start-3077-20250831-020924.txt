@@ -1,0 +1,32 @@
+﻿
+> web@0.1.0 start
+> next start -p 3077 -H 127.0.0.1
+
+  ▲ Next.js 14.2.5
+  - Local:        http://127.0.0.1:3077
+  - Network:      http://127.0.0.1:3077
+
+ ✓ Starting...
+node.exe : Error: Could not find a production build in the '.next' directory. Try building your app 
+with 'next build' before starting the production server. 
+https://nextjs.org/docs/messages/production-start-no-build-id
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Error: Could no...art-no-build-id:String) [], RemoteExc 
+   eption
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    at setupFsCheck (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\server\lib\router-utils\filesystem.js:151:19)
+    at async initialize (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\server\lib\router-server.js:61:23)
+    at async Server.<anonymous> (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\server\lib\start-server.js:249:36)
+npm error Lifecycle script `start` failed with error:
+npm error code 1
+npm error path C:\Users\agafn\Desktop\education system 5\apps\web
+npm error workspace web@0.1.0
+npm error location C:\Users\agafn\Desktop\education system 5\apps\web
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c next start -p 3077 -H 127.0.0.1

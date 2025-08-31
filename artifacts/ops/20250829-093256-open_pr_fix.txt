@@ -1,0 +1,2 @@
+﻿a pull request for branch "fix/vercel-mime-routing" into branch "main" already exists:
+https://github.com/gafniasaf/lovable-supabase-glue/pull/20

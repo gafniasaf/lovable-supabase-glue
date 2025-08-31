@@ -1,0 +1,40 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  lhci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Build and start Next
+        run: |
+          npm --workspace apps/web run build
+          nohup npm --workspace apps/web run start:e2e &
+          npx wait-on http://127.0.0.1:3077/edu/courses
+
+      - name: Run Lighthouse
+        run: |
+          npx -y lighthouse http://127.0.0.1:3077/edu/courses --output html --output json --output-path=./reports/lhci/report
+
+      - name: Upload LHCI report
+        uses: actions/upload-artifact@v4
+        with:
+          name: lhci-report
+          path: reports/lhci/**
+
+

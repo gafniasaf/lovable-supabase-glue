@@ -1,0 +1,75 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 test
+> jest --runInBand --runInBand
+
+node.exe : ts-jest[ts-compiler] (WARN) Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: 
+true". Please set "isolatedModules: true" in your tsconfig.json.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ts-jest[ts-comp... tsconfig.json.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ts-jest[ts-compiler] (WARN) Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". 
+Please set "isolatedModules: true" in your tsconfig.json.
+ts-jest[ts-compiler] (WARN) Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". 
+Please set "isolatedModules: true" in your tsconfig.json.
+PASS apps/web/src/edu/__tests__/DevSandbox.test.tsx
+ts-jest[ts-compiler] (WARN) Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". 
+Please set "isolatedModules: true" in your tsconfig.json.
+ts-jest[ts-compiler] (WARN) Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". 
+Please set "isolatedModules: true" in your tsconfig.json.
+PASS apps/web/src/edu/__tests__/AppShell.test.tsx
+ts-jest[ts-compiler] (WARN) Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". 
+Please set "isolatedModules: true" in your tsconfig.json.
+ts-jest[ts-compiler] (WARN) Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". 
+Please set "isolatedModules: true" in your tsconfig.json.
+ts-jest[ts-compiler] (WARN) Using hybrid module kind (Node16/18/Next) is only supported in "isolatedModules: true". 
+Please set "isolatedModules: true" in your tsconfig.json.
+FAIL src/App.test.tsx
+  ● Test suite failed to run
+
+    [96msrc/App.tsx[0m:[93m33[0m:[93m33[0m - [91merror[0m[90m TS1343: [0mThe 'import.meta' meta-property is 
+only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', 'node18', 'node20', or 
+'nodenext'.
+
+    [7m33[0m           const SUPABASE_URL = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_URL || (import.meta as 
+any).env.VITE_SUPABASE_URL;
+    [7m  [0m [91m                                ~~~~~~~~~~~[0m
+    [96msrc/App.tsx[0m:[93m33[0m:[93m86[0m - [91merror[0m[90m TS1343: [0mThe 'import.meta' meta-property is 
+only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', 'node18', 'node20', or 
+'nodenext'.
+
+    [7m33[0m           const SUPABASE_URL = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_URL || (import.meta as 
+any).env.VITE_SUPABASE_URL;
+    [7m  [0m [91m                                                                                     ~~~~~~~~~~~[0m
+    [96msrc/App.tsx[0m:[93m34[0m:[93m33[0m - [91merror[0m[90m TS1343: [0mThe 'import.meta' meta-property is 
+only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', 'node18', 'node20', or 
+'nodenext'.
+
+    [7m34[0m           const SUPABASE_KEY = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_ANON_KEY || (import.meta as 
+any).env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    [7m  [0m [91m                                ~~~~~~~~~~~[0m
+    [96msrc/App.tsx[0m:[93m34[0m:[93m91[0m - [91merror[0m[90m TS1343: [0mThe 'import.meta' meta-property is 
+only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', 'node18', 'node20', or 
+'nodenext'.
+
+    [7m34[0m           const SUPABASE_KEY = (import.meta as any).env.NEXT_PUBLIC_SUPABASE_ANON_KEY || (import.meta as 
+any).env.VITE_SUPABASE_PUBLISHABLE_KEY;
+    [7m  [0m [91m                                                                                          
+~~~~~~~~~~~[0m
+
+-----------------|---------|----------|---------|---------|-------------------
+File             | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------|---------|----------|---------|---------|-------------------
+All files        |     100 |      100 |     100 |     100 |                   
+ edu             |     100 |      100 |     100 |     100 |                   
+  DevSandbox.tsx |     100 |      100 |     100 |     100 |                   
+ edu/components  |     100 |      100 |     100 |     100 |                   
+  AppShell.tsx   |     100 |      100 |     100 |     100 |                   
+-----------------|---------|----------|---------|---------|-------------------
+Test Suites: 1 failed, 1 skipped, 2 passed, 3 of 4 total
+Tests:       1 skipped, 2 passed, 3 total
+Snapshots:   0 total
+Time:        3.944 s
+Ran all test suites.

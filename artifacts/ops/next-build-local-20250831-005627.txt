@@ -1,0 +1,39 @@
+﻿
+> web@0.1.0 build
+> set NEXT_DISABLE_SWC_NATIVE=1&& next build
+
+  ▲ Next.js 14.2.5
+
+   Creating an optimized production build ...
+node.exe : Failed to compile.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Failed to compile.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+./src/app/edu/assignments/page.tsx
+Module not found: Can't resolve '@/edu/pages/assignments/AssignmentsList'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./src/app/edu/courses/page.tsx
+Module not found: Can't resolve '@/edu/pages/courses/CoursesList'
+
+https://nextjs.org/docs/messages/module-not-found
+
+./src/app/edu/layout.tsx
+Module not found: Can't resolve '@/edu/components/AppShell'
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+> Build failed because of webpack errors
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path C:\Users\agafn\Desktop\education system 5\apps\web
+npm error workspace web@0.1.0
+npm error location C:\Users\agafn\Desktop\education system 5\apps\web
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c set NEXT_DISABLE_SWC_NATIVE=1&& next build

@@ -1,0 +1,21 @@
+﻿## main...lovable/main [ahead 29]
+ M package-lock.json
+ M package.json
+?? .github/workflows/ui-tests.yml
+?? apps/
+?? artifacts/
+?? jest.config.cjs
+?? reports/
+?? scripts/ops/api-commit.ps1
+?? scripts/ops/git-push.ps1
+?? scripts/ops/legacy-apps-web-vercel-gh.ps1
+?? scripts/ops/legacy-vercel-fix-gh.ps1
+?? scripts/ops/legacy-vercel-fix.ps1
+?? scripts/ops/push-apps-web-vercel.ps1
+?? scripts/ops/run-snippet.ps1
+?? scripts/ops/set-gh-token.ps1
+?? scripts/ops/set-vercel-token.ps1
+?? scripts/ops/vercel-run.ps1
+?? scripts/ops/write-apps-web-vercel.ps1
+?? src/App.test.tsx
+?? tests/

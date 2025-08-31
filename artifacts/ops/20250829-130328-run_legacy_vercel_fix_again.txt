@@ -1,0 +1,8 @@
+﻿Backing up vercel.json
+Updating vercel.json to remove workspace buildCommand
+Creating fix branch and committing
+Reset branch 'fix/vercel-next-defaults'
+Pushing branch
+remote: Permission to gafniasaf/education-system-5.git denied to gafniasaf.
+fatal: unable to access 'https://github.com/gafniasaf/education-system-5.git/': The requested URL returned error: 403
+Done. Open a Deploy in Vercel from this branch or merge into main.

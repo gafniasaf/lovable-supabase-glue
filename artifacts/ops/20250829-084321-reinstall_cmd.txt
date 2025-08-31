@@ -1,0 +1,5 @@
+﻿npm error code ETARGET
+npm error notarget No matching version found for @capacitor/preferences@7.4.3.
+npm error notarget In most cases you or one of your dependencies are requesting
+npm error notarget a package version that doesn't exist.
+npm error A complete log of this run can be found in: C:\Users\agafn\AppData\Local\npm-cache\_logs\2025-08-29T06_43_35_095Z-debug-0.log

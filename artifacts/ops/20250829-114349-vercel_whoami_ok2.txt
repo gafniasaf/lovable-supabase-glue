@@ -1,0 +1,7 @@
+﻿VERCEL_TOKEN resolved to empty after sanitization.
+At C:\Users\agafn\Desktop\education system 5\scripts\ops\vercel-run.ps1:23 char:3
++   throw 'VERCEL_TOKEN resolved to empty after sanitization.'
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (VERCEL_TOKEN re...r sanitization.:String) [], RuntimeException
+    + FullyQualifiedErrorId : VERCEL_TOKEN resolved to empty after sanitization.
+ 

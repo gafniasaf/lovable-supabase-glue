@@ -1,0 +1,15 @@
+﻿HEALTH:OK
+
+Running 5 tests using 4 workers
+
+[1A[2K[1/5] [chromium] › tests\e2e\edu-courses.spec.ts:3:1 › courses page renders
+[1A[2K[2/5] [chromium] › tests\e2e\edu-nav.spec.ts:3:1 › can navigate to assignments, courses, lessons routes
+[1A[2K[3/5] [chromium] › tests\e2e\edu-assignments.spec.ts:3:1 › assignments page renders
+[1A[2K[4/5] [chromium] › tests\e2e\edu-lessons.spec.ts:3:1 › lessons page renders
+[1A[2K[5/5] [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders
+[1A[2K  5 passed (1.7s)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report reports\e2e\html[39m
+[36m[39m

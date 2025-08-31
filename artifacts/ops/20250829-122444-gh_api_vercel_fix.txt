@@ -1,0 +1,10 @@
+﻿Fetching main ref
+Ensuring branch fix/vercel-next-defaults from 41678437397d21ac4fb199c951659ed7d48fbb81
+gh: Resource not accessible by personal access token (HTTP 403)
+Reading vercel.json metadata
+Preparing new vercel.json content
+Updating vercel.json on fix/vercel-next-defaults
+gh: Resource not accessible by personal access token (HTTP 403)
+Creating PR
+pull request create failed: GraphQL: Resource not accessible by personal access token (createPullRequest)
+Done.

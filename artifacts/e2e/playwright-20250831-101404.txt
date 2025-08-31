@@ -1,0 +1,12 @@
+﻿
+Running 3 tests using 3 workers
+
+[1A[2K[1/3] [chromium] › tests\e2e\edu-assignments.spec.ts:3:1 › assignments page renders
+[1A[2K[2/3] [chromium] › tests\e2e\edu-courses.spec.ts:3:1 › courses page renders
+[1A[2K[3/3] [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders
+[1A[2K  3 passed (1.6s)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report reports\e2e\html[39m
+[36m[39m

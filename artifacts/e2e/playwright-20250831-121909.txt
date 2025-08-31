@@ -1,0 +1,19 @@
+﻿
+Running 9 tests using 4 workers
+
+[1A[2K[1/9] [chromium] › tests\e2e\a11y-axe.spec.ts:3:1 › no obvious accessibility issues on courses page (landmarks present)
+[1A[2K[2/9] [chromium] › tests\e2e\a11y-basic.spec.ts:3:1 › basic a11y landmarks present
+[1A[2K[3/9] [chromium] › tests\e2e\edu-assignments.spec.ts:3:1 › assignments page renders
+[1A[2K[4/9] [chromium] › tests\e2e\edu-audit-logs.spec.ts:3:1 › audit logs page renders
+[1A[2K[5/9] [chromium] › tests\e2e\edu-courses.spec.ts:3:1 › courses page renders
+[1A[2K[6/9] [chromium] › tests\e2e\edu-nav.spec.ts:3:6 › header nav contains links to edu routes (flaky under streaming)
+[1A[2K[7/9] [chromium] › tests\e2e\edu-lessons.spec.ts:3:1 › lessons page renders
+[1A[2K[8/9] [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders
+[1A[2K[9/9] [chromium] › tests\e2e\visual-header.spec.ts:3:6 › header visual snapshot (disabled in CI; enable locally)
+[1A[2K  2 skipped
+  7 passed (1.9s)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report reports\e2e\html[39m
+[36m[39m

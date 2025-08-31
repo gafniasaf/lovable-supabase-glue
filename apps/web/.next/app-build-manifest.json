@@ -1,0 +1,69 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-e17383529fe6c8b6.js",
+      "static/chunks/1dd3208c-6cfc3540e19fee00.js",
+      "static/chunks/286-8421504bc764681e.js",
+      "static/chunks/main-app-129e3cc917507293.js",
+      "static/chunks/app/_not-found/page-61081680e25af938.js"
+    ],
+    "/edu/courses/page": [
+      "static/chunks/webpack-e17383529fe6c8b6.js",
+      "static/chunks/1dd3208c-6cfc3540e19fee00.js",
+      "static/chunks/286-8421504bc764681e.js",
+      "static/chunks/main-app-129e3cc917507293.js",
+      "static/chunks/app/edu/courses/page-fe5396e3cb1e81f0.js"
+    ],
+    "/edu/layout": [
+      "static/chunks/webpack-e17383529fe6c8b6.js",
+      "static/chunks/1dd3208c-6cfc3540e19fee00.js",
+      "static/chunks/286-8421504bc764681e.js",
+      "static/chunks/main-app-129e3cc917507293.js",
+      "static/chunks/860-645a24a9002e1276.js",
+      "static/chunks/app/edu/layout-7d7d1f999854e94b.js"
+    ],
+    "/edu/error": [
+      "static/chunks/webpack-e17383529fe6c8b6.js",
+      "static/chunks/1dd3208c-6cfc3540e19fee00.js",
+      "static/chunks/286-8421504bc764681e.js",
+      "static/chunks/main-app-129e3cc917507293.js",
+      "static/chunks/app/edu/error-2d3f15843c66f3c4.js"
+    ],
+    "/edu/loading": [
+      "static/chunks/webpack-e17383529fe6c8b6.js",
+      "static/chunks/1dd3208c-6cfc3540e19fee00.js",
+      "static/chunks/286-8421504bc764681e.js",
+      "static/chunks/main-app-129e3cc917507293.js",
+      "static/chunks/app/edu/loading-ce602c8965f700d9.js"
+    ],
+    "/edu/sandbox/page": [
+      "static/chunks/webpack-e17383529fe6c8b6.js",
+      "static/chunks/1dd3208c-6cfc3540e19fee00.js",
+      "static/chunks/286-8421504bc764681e.js",
+      "static/chunks/main-app-129e3cc917507293.js",
+      "static/chunks/app/edu/sandbox/page-3fb83fdf10ddd3e6.js"
+    ],
+    "/edu/assignments/page": [
+      "static/chunks/webpack-e17383529fe6c8b6.js",
+      "static/chunks/1dd3208c-6cfc3540e19fee00.js",
+      "static/chunks/286-8421504bc764681e.js",
+      "static/chunks/main-app-129e3cc917507293.js",
+      "static/chunks/app/edu/assignments/page-2693f44c8de58e9a.js"
+    ],
+    "/edu/audit-logs/page": [
+      "static/chunks/webpack-e17383529fe6c8b6.js",
+      "static/chunks/1dd3208c-6cfc3540e19fee00.js",
+      "static/chunks/286-8421504bc764681e.js",
+      "static/chunks/main-app-129e3cc917507293.js",
+      "static/chunks/218-eaf152bac7cbdfae.js",
+      "static/chunks/app/edu/audit-logs/page-3721e8148bf8b6d6.js"
+    ],
+    "/edu/lessons/page": [
+      "static/chunks/webpack-e17383529fe6c8b6.js",
+      "static/chunks/1dd3208c-6cfc3540e19fee00.js",
+      "static/chunks/286-8421504bc764681e.js",
+      "static/chunks/main-app-129e3cc917507293.js",
+      "static/chunks/app/edu/lessons/page-6e43707b2d294c99.js"
+    ]
+  }
+}

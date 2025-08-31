@@ -1,0 +1,37 @@
+﻿
+> web@0.1.0 build
+> set NEXT_DISABLE_SWC_NATIVE=1&& next build
+
+  ▲ Next.js 14.2.5
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+node.exe : Failed to compile.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Failed to compile.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+./src/components/ui/sidebar.tsx:4:20
+Type error: Cannot find module './Button' or its corresponding type declarations.
+
+[0m [90m 2 |[39m[0m
+[0m [90m 3 |[39m [36mimport[39m [33mReact[39m[33m,[39m { createContext[33m,[39m useContext[33m,[39m 
+useState[33m,[39m [33mReactNode[39m } [36mfrom[39m [32m'react'[39m[33m;[39m[0m
+[0m[31m[1m>[22m[39m[90m 4 |[39m [36mimport[39m [33mButton[39m [36mfrom[39m 
+[32m'./Button'[39m[33m;[39m[0m
+[0m [90m   |[39m                    [31m[1m^[22m[39m[0m
+[0m [90m 5 |[39m [36mimport[39m { [33mMenu[39m[33m,[39m [33mX[39m } [36mfrom[39m 
+[32m'lucide-react'[39m[33m;[39m[0m
+[0m [90m 6 |[39m[0m
+[0m [90m 7 |[39m [36minterface[39m [33mSidebarContextType[39m {[0m
+npm error Lifecycle script `build` failed with error:
+npm error code 1
+npm error path C:\Users\agafn\Desktop\education system 5\apps\web
+npm error workspace web@0.1.0
+npm error location C:\Users\agafn\Desktop\education system 5\apps\web
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c set NEXT_DISABLE_SWC_NATIVE=1&& next build

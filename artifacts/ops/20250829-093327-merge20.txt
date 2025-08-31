@@ -1,0 +1,23 @@
+﻿From https://github.com/gafniasaf/lovable-supabase-glue
+ * branch            main       -> FETCH_HEAD
+   a626137..78614cf  main       -> origin/main
+Updating a626137..78614cf
+Fast-forward
+ apps/web/next-env.d.ts               |  7 -------
+ apps/web/next.config.mjs             |  9 ---------
+ apps/web/package.json                | 23 ---------------------
+ apps/web/src/app/api/health/route.ts |  7 -------
+ apps/web/src/app/layout.tsx          | 14 -------------
+ apps/web/src/app/page.tsx            |  9 ---------
+ apps/web/tsconfig.json               | 26 ------------------------
+ src/App.tsx                          | 39 ++++++++++++++++++++++++++++++++++++
+ src/integrations/supabase/client.ts  |  4 ++--
+ vercel.json                          |  3 ++-
+ 10 files changed, 43 insertions(+), 98 deletions(-)
+ delete mode 100644 apps/web/next-env.d.ts
+ delete mode 100644 apps/web/next.config.mjs
+ delete mode 100644 apps/web/package.json
+ delete mode 100644 apps/web/src/app/api/health/route.ts
+ delete mode 100644 apps/web/src/app/layout.tsx
+ delete mode 100644 apps/web/src/app/page.tsx
+ delete mode 100644 apps/web/tsconfig.json

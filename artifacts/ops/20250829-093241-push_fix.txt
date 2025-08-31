@@ -1,0 +1,2 @@
+﻿branch 'fix/vercel-mime-routing' set up to track 'lovable/fix/vercel-mime-routing'.
+Everything up-to-date

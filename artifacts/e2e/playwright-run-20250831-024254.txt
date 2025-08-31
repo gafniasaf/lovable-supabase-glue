@@ -1,0 +1,31 @@
+﻿
+Running 1 test using 1 worker
+
+  ✘  1 [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders (10.2s)
+
+
+  1) [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders ────────────────────────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  getByText(/EduPlatform/i)
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  10000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for getByText(/EduPlatform/i)[22m
+
+
+      4 |   const url = `${(baseURL || 'http://127.0.0.1:3077').replace(/\/$/, '')}/edu/sandbox`;
+      5 |   await page.goto(url);
+    > 6 |   await expect(page.getByText(/EduPlatform/i)).toBeVisible();
+        |                                                ^
+      7 | });
+      8 |
+      9 |
+        at C:\Users\agafn\Desktop\education system 5\tests\e2e\edu-smoke.spec.ts:6:48
+
+  1 failed
+    [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders ─────────────────────────────

@@ -1,0 +1,6 @@
+﻿
+Running 1 test using 1 worker
+
+  ✓  1 [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders (151ms)
+
+  1 passed (1.2s)

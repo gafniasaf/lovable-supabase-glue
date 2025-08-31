@@ -1,0 +1,32 @@
+﻿
+> web@0.1.0 build
+> set NEXT_DISABLE_SWC_NATIVE=1&& next build
+
+  ▲ Next.js 14.2.5
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/7) ...
+   Generating static pages (1/7) 
+   Generating static pages (3/7) 
+   Generating static pages (5/7) 
+ ✓ Generating static pages (7/7)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /_not-found                          874 B          87.9 kB
+├ ○ /edu/assignments                     592 B          87.6 kB
+├ ○ /edu/courses                         820 B          87.9 kB
+├ ○ /edu/lessons                         277 B          87.3 kB
+└ ○ /edu/sandbox                         295 B          87.3 kB
++ First Load JS shared by all            87 kB
+  ├ chunks/1dd3208c-5b9cb27a130fb09e.js  53.6 kB
+  ├ chunks/286-161939d3a0631ef1.js       31.5 kB
+  └ other shared chunks (total)          1.88 kB
+
+
+○  (Static)  prerendered as static content
+

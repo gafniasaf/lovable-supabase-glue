@@ -1,0 +1,7 @@
+﻿error: pathspec 'use' did not match any file(s) known to git
+error: pathspec '@vercel/static-build' did not match any file(s) known to git
+error: pathspec 'with' did not match any file(s) known to git
+error: pathspec 'distDir' did not match any file(s) known to git
+error: pathspec 'and' did not match any file(s) known to git
+error: pathspec 'SPA' did not match any file(s) known to git
+error: pathspec 'routes'' did not match any file(s) known to git

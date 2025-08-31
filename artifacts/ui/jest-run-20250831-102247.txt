@@ -1,0 +1,261 @@
+﻿node.exe : PASS apps/web/src/edu/__tests__/CoursesPagination.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (PASS apps/web/s...nation.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PASS apps/web/src/edu/__tests__/EduLayout.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderDropdownBehavior.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderDropdownInput.test.tsx
+PASS apps/web/src/edu/__tests__/CoursesSort.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderActions.test.tsx
+PASS apps/web/src/edu/__tests__/Header.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderNav.test.tsx
+PASS apps/web/src/edu/__tests__/AppShell.test.tsx
+PASS apps/web/src/edu/__tests__/AssignmentsList.test.tsx
+PASS apps/web/src/edu/__tests__/Breadcrumbs.test.tsx
+PASS apps/web/src/edu/__tests__/EduAssignmentsPage.test.tsx
+PASS apps/web/src/edu/__tests__/EduCoursesPage.test.tsx
+PASS apps/web/src/edu/__tests__/LessonsList.test.tsx
+PASS apps/web/src/edu/__tests__/ModalIntegration.test.tsx
+PASS apps/web/src/edu/__tests__/CoursesTable.test.tsx
+PASS apps/web/src/edu/__tests__/AssignmentsFilter.test.tsx
+PASS apps/web/src/edu/__tests__/EduSandboxPage.test.tsx
+PASS apps/web/src/edu/__tests__/Toast.test.tsx
+PASS apps/web/src/edu/__tests__/DevSandbox.test.tsx
+PASS apps/web/src/edu/__tests__/CoursesList.test.tsx
+FAIL apps/web/src/edu/__tests__/AuditLogsList.test.tsx
+  ● AuditLogsList › renders logs from Supabase
+
+    Unable to find an element with the text: /User login/i. This could be because the text is broken up by multiple 
+elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<section>[39m
+          [36m<h2>[39m
+            [0mAudit Logs[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mLoading…[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 25 |[39m     expect(screen[33m.[39mgetByRole([32m'heading'[39m[33m,[39m { name[33m:[39m 
+[35m/Audit Logs/i[39m }))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 26 |[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     [36mawait[39m waitFor(() [33m=>[39m {
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 28 |[39m       expect(screen[33m.[39mgetByText([35m/User 
+login/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 29 |[39m       expect(screen[33m.[39mgetByText([35m/Viewed 
+course/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 30 |[39m     })[33m;[39m[0m
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at Object.<anonymous> (apps/web/src/edu/__tests__/AuditLogsList.test.tsx:27:18)
+
+  ● AuditLogsList › renders logs from Supabase
+
+    TypeError: client_1.supabase.from(...).select(...).limit is not a function
+
+    [0m [90m 14 |[39m     ([36masync[39m () [33m=>[39m {
+     [90m 15 |[39m       setLoading([36mtrue[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 16 |[39m       [36mconst[39m { data[33m,[39m error } [33m=[39m [36mawait[39m supab
+ase[33m.[39m[36mfrom[39m([32m'audit_logs'[39m)[33m.[39mselect([32m'*'[39m)[33m.[39mlimit([35m20[39m)[33m;
+[39m
+     [90m    |[39m                                                                             [31m[1m^[22m[39m
+     [90m 17 |[39m       [36mif[39m (cancelled) [36mreturn[39m[33m;[39m
+     [90m 18 |[39m       [36mif[39m (error) {
+     [90m 19 |[39m         setError(error[33m.[39mmessage)[33m;[39m[0m
+
+      at limit (apps/web/src/edu/pages/audit/AuditLogsList.tsx:16:77)
+      at apps/web/src/edu/pages/audit/AuditLogsList.tsx:24:6
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (apps/web/src/edu/__tests__/AuditLogsList.test.tsx:23:11)
+
+  ● AuditLogsList › renders logs from Supabase
+
+    TypeError: client_1.supabase.from(...).select(...).limit is not a function
+
+    [0m [90m 14 |[39m     ([36masync[39m () [33m=>[39m {
+     [90m 15 |[39m       setLoading([36mtrue[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 16 |[39m       [36mconst[39m { data[33m,[39m error } [33m=[39m [36mawait[39m supab
+ase[33m.[39m[36mfrom[39m([32m'audit_logs'[39m)[33m.[39mselect([32m'*'[39m)[33m.[39mlimit([35m20[39m)[33m;
+[39m
+     [90m    |[39m                                                                             [31m[1m^[22m[39m
+     [90m 17 |[39m       [36mif[39m (cancelled) [36mreturn[39m[33m;[39m
+     [90m 18 |[39m       [36mif[39m (error) {
+     [90m 19 |[39m         setError(error[33m.[39mmessage)[33m;[39m[0m
+
+      at limit (apps/web/src/edu/pages/audit/AuditLogsList.tsx:16:77)
+      at apps/web/src/edu/pages/audit/AuditLogsList.tsx:24:6
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (apps/web/src/edu/__tests__/AuditLogsList.test.tsx:23:11)
+
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |    93.5 |    60.93 |   94.82 |   95.53 |                   
+ app/edu               |     100 |      100 |     100 |     100 |                   
+  layout.tsx           |     100 |      100 |     100 |     100 |                   
+ app/edu/assignments   |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/courses       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/sandbox       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ components/ui         |   95.52 |    54.83 |      95 |   96.61 |                   
+  Badge.tsx            |     100 |    66.66 |     100 |     100 | 13                
+  Button.tsx           |     100 |    45.45 |     100 |     100 | 11-12,20,27-29    
+  dropdown-menu.tsx    |   91.89 |    53.33 |   91.66 |   93.75 | 39-40             
+  modal.tsx            |     100 |      100 |     100 |     100 |                   
+ edu                   |     100 |      100 |     100 |     100 |                   
+  DevSandbox.tsx       |     100 |      100 |     100 |     100 |                   
+ edu/components        |   94.44 |       75 |   91.66 |     100 |                   
+  AppShell.tsx         |     100 |      100 |     100 |     100 |                   
+  Breadcrumbs.tsx      |     100 |      100 |     100 |     100 |                   
+  Header.tsx           |     100 |      100 |     100 |     100 |                   
+  ToastProvider.tsx    |   90.32 |    66.66 |    87.5 |     100 | 10-34             
+ edu/pages/assignments |     100 |      100 |     100 |     100 |                   
+  AssignmentsList.tsx  |     100 |      100 |     100 |     100 |                   
+ edu/pages/audit       |   66.66 |    30.76 |      80 |   68.42 |                   
+  AuditLogsList.tsx    |   66.66 |    30.76 |      80 |   68.42 | 17-23,36          
+ edu/pages/courses     |     100 |      100 |     100 |     100 |                   
+  CoursesList.tsx      |     100 |      100 |     100 |     100 |                   
+ edu/pages/lessons     |     100 |      100 |     100 |     100 |                   
+  LessonsList.tsx      |     100 |      100 |     100 |     100 |                   
+ lib                   |     100 |      100 |     100 |     100 |                   
+  utils.ts             |     100 |      100 |     100 |     100 |                   
+-----------------------|---------|----------|---------|---------|-------------------
+Summary of all failing tests
+FAIL apps/web/src/edu/__tests__/AuditLogsList.test.tsx
+  ● AuditLogsList › renders logs from Supabase
+
+    Unable to find an element with the text: /User login/i. This could be because the text is broken up by multiple 
+elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<section>[39m
+          [36m<h2>[39m
+            [0mAudit Logs[0m
+          [36m</h2>[39m
+          [36m<p>[39m
+            [0mLoading…[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 25 |[39m     expect(screen[33m.[39mgetByRole([32m'heading'[39m[33m,[39m { name[33m:[39m 
+[35m/Audit Logs/i[39m }))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 26 |[39m
+    [31m[1m>[22m[39m[90m 27 |[39m     [36mawait[39m waitFor(() [33m=>[39m {
+     [90m    |[39m                  [31m[1m^[22m[39m
+     [90m 28 |[39m       expect(screen[33m.[39mgetByText([35m/User 
+login/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 29 |[39m       expect(screen[33m.[39mgetByText([35m/Viewed 
+course/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 30 |[39m     })[33m;[39m[0m
+
+      at waitForWrapper (node_modules/@testing-library/dom/dist/wait-for.js:163:27)
+      at Object.<anonymous> (apps/web/src/edu/__tests__/AuditLogsList.test.tsx:27:18)
+
+  ● AuditLogsList › renders logs from Supabase
+
+    TypeError: client_1.supabase.from(...).select(...).limit is not a function
+
+    [0m [90m 14 |[39m     ([36masync[39m () [33m=>[39m {
+     [90m 15 |[39m       setLoading([36mtrue[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 16 |[39m       [36mconst[39m { data[33m,[39m error } [33m=[39m [36mawait[39m supab
+ase[33m.[39m[36mfrom[39m([32m'audit_logs'[39m)[33m.[39mselect([32m'*'[39m)[33m.[39mlimit([35m20[39m)[33m;
+[39m
+     [90m    |[39m                                                                             [31m[1m^[22m[39m
+     [90m 17 |[39m       [36mif[39m (cancelled) [36mreturn[39m[33m;[39m
+     [90m 18 |[39m       [36mif[39m (error) {
+     [90m 19 |[39m         setError(error[33m.[39mmessage)[33m;[39m[0m
+
+      at limit (apps/web/src/edu/pages/audit/AuditLogsList.tsx:16:77)
+      at apps/web/src/edu/pages/audit/AuditLogsList.tsx:24:6
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (apps/web/src/edu/__tests__/AuditLogsList.test.tsx:23:11)
+
+  ● AuditLogsList › renders logs from Supabase
+
+    TypeError: client_1.supabase.from(...).select(...).limit is not a function
+
+    [0m [90m 14 |[39m     ([36masync[39m () [33m=>[39m {
+     [90m 15 |[39m       setLoading([36mtrue[39m)[33m;[39m
+    [31m[1m>[22m[39m[90m 16 |[39m       [36mconst[39m { data[33m,[39m error } [33m=[39m [36mawait[39m supab
+ase[33m.[39m[36mfrom[39m([32m'audit_logs'[39m)[33m.[39mselect([32m'*'[39m)[33m.[39mlimit([35m20[39m)[33m;
+[39m
+     [90m    |[39m                                                                             [31m[1m^[22m[39m
+     [90m 17 |[39m       [36mif[39m (cancelled) [36mreturn[39m[33m;[39m
+     [90m 18 |[39m       [36mif[39m (error) {
+     [90m 19 |[39m         setError(error[33m.[39mmessage)[33m;[39m[0m
+
+      at limit (apps/web/src/edu/pages/audit/AuditLogsList.tsx:16:77)
+      at apps/web/src/edu/pages/audit/AuditLogsList.tsx:24:6
+      at commitHookEffectListMount (node_modules/react-dom/cjs/react-dom.development.js:23189:26)
+      at commitPassiveMountOnFiber (node_modules/react-dom/cjs/react-dom.development.js:24970:11)
+      at commitPassiveMountEffects_complete (node_modules/react-dom/cjs/react-dom.development.js:24930:9)
+      at commitPassiveMountEffects_begin (node_modules/react-dom/cjs/react-dom.development.js:24917:7)
+      at commitPassiveMountEffects (node_modules/react-dom/cjs/react-dom.development.js:24905:3)
+      at flushPassiveEffectsImpl (node_modules/react-dom/cjs/react-dom.development.js:27078:3)
+      at flushPassiveEffects (node_modules/react-dom/cjs/react-dom.development.js:27023:14)
+      at node_modules/react-dom/cjs/react-dom.development.js:26808:9
+      at flushActQueue (node_modules/react/cjs/react.development.js:2667:24)
+      at act (node_modules/react/cjs/react.development.js:2582:11)
+      at node_modules/@testing-library/react/dist/act-compat.js:47:25
+      at renderRoot (node_modules/@testing-library/react/dist/pure.js:190:26)
+      at render (node_modules/@testing-library/react/dist/pure.js:292:10)
+      at Object.<anonymous> (apps/web/src/edu/__tests__/AuditLogsList.test.tsx:23:11)
+
+
+Test Suites: 1 failed, 21 passed, 22 total
+Tests:       1 failed, 21 passed, 22 total
+Snapshots:   0 total
+Time:        3.935 s
+Ran all test suites.

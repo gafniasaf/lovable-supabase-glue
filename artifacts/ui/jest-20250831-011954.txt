@@ -1,0 +1,172 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 test
+> jest --runInBand --runInBand
+
+node.exe : PASS apps/web/src/edu/__tests__/HeaderNav.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (PASS apps/web/s...derNav.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PASS apps/web/src/edu/__tests__/EduSandboxPage.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderActions.test.tsx
+PASS apps/web/src/edu/__tests__/EduCoursesPage.test.tsx
+PASS apps/web/src/edu/__tests__/Header.test.tsx
+PASS apps/web/src/edu/__tests__/CoursesList.test.tsx
+PASS apps/web/src/edu/__tests__/EduLayout.test.tsx
+PASS apps/web/src/edu/__tests__/LessonsList.test.tsx
+PASS apps/web/src/edu/__tests__/AssignmentsList.test.tsx
+PASS apps/web/src/edu/__tests__/AppShell.test.tsx
+FAIL apps/web/src/edu/__tests__/Breadcrumbs.test.tsx
+  ● Breadcrumbs › renders breadcrumb trail including Assignments
+
+    TestingLibraryElementError: Found multiple elements with the text: /assignments/i
+
+    Here are the matching elements:
+
+    Ignored nodes: comments, script, style
+    [36m<a[39m
+      [33mhref[39m=[32m"/edu/assignments"[39m
+    [36m>[39m
+      [0mAssignments[0m
+    [36m</a>[39m
+
+    Ignored nodes: comments, script, style
+    [36m<li[39m
+      [33mclass[39m=[32m"capitalize"[39m
+    [36m>[39m
+      [0massignments[0m
+    [36m</li>[39m
+
+    (If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or 
+`findAllByText`)).
+
+    Ignored nodes: comments, script, style
+    [36m<body>[39m
+      [36m<div>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"border-b border-border bg-card/50 sticky top-0 z-40"[39m
+          [33mrole[39m=[32m"banner"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"flex h-12 items-center gap-4 px-4"[39m
+          [36m>[39m
+            [36m<h1[39m
+              [33mclass[39m=[32m"text-base font-semibold"[39m
+            [36m>[39m
+              [0mEduPlatform[0m
+            [36m</h1>[39m
+            [36m<nav[39m
+              [33maria-label[39m=[32m"Primary"[39m
+              [33mclass[39m=[32m"flex items-center gap-3 text-sm"[39m
+            [36m>[39m
+              [36m<a[39m
+                [33mhref[39m=[32m"/edu/assignments"[39m
+              [36m>[39m
+                [0mAssignments[0m
+              [36m</a>[39m
+              [36m<a[39m
+                [33mhref[39m=[32m"/edu/courses"[39m
+              [36m>[39m
+                [0mCourses[0m
+              [36m</a>[39m
+              [36m<a[39m
+                [33mhref[39m=[32m"/edu/lessons"[39m
+              [36m>[39m
+                [0mLessons[0m
+              [36m</a>[39m
+            [36m</nav>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"ml-auto flex items-center gap-3"[39m
+            [36m>[39m
+              [36m<nav[39m
+                [33maria-label[39m=[32m"Breadcrumb"[39m
+                [33mclass[39m=[32m"text-sm text-muted-foreground"[39m
+              [36m>[39m
+                [36m<ol[39m
+                  [33mclass[39m=[32m"flex items-center gap-1"[39m
+                [36m>[39m
+                  [36m<li[39m
+                    [33mclass[39m=[32m"capitalize"[39m
+                  [36m>[39m
+                    [0massignments[0m
+                  [36m</li>[39m
+                [36m</ol>[39m
+              [36m</nav>[39m
+              [36m<button[39m
+                [33maria-label[39m=[32m"Notifications"[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center rounded-md shadow-sm transition-colors 
+focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 
+disabled:pointer-events-none bg-transparent text-gray-900 hover:bg-gray-100 focus-visible:outline-blue-600 h-8 px-3 
+text-sm relative"[39m
+              [36m>[39m
+                [36m<span>[39m
+                  [0mNotifications[0m
+                [36m</span>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"inline-flex items-center rounded-full font-medium transition-colors bg-primary 
+text-primary-foreground hover:bg-primary/80 px-2.5 py-1 text-sm absolute -top-2 -right-2"[39m
+                [36m>[39m
+                  [0m3[0m
+                [36m</span>[39m
+              [36m</button>[39m
+            [36m</div>[39m
+          [36m</div>[39m
+        [36m</header>[39m
+      [36m</div>[39m
+    [36m</body>[39m
+
+    [0m [90m 14 |[39m     
+expect(screen[33m.[39mgetByRole([32m'banner'[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m 15 |[39m     [90m// Minimal assertion: page label appears[39m
+    [31m[1m>[22m[39m[90m 16 |[39m     
+expect(screen[33m.[39mgetByText([35m/assignments/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m    |[39m                   [31m[1m^[22m[39m
+     [90m 17 |[39m   })[33m;[39m
+     [90m 18 |[39m })[33m;[39m
+     [90m 19 |[39m[0m
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at getElementError (node_modules/@testing-library/dom/dist/query-helpers.js:20:35)
+      at getMultipleElementsFoundError (node_modules/@testing-library/dom/dist/query-helpers.js:23:10)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (apps/web/src/edu/__tests__/Breadcrumbs.test.tsx:16:19)
+
+PASS apps/web/src/edu/__tests__/EduAssignmentsPage.test.tsx
+PASS apps/web/src/edu/__tests__/DevSandbox.test.tsx
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |     100 |    43.75 |     100 |     100 |                   
+ app/edu               |     100 |      100 |     100 |     100 |                   
+  layout.tsx           |     100 |      100 |     100 |     100 |                   
+ app/edu/assignments   |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/courses       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/sandbox       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ components/ui         |     100 |    35.71 |     100 |     100 |                   
+  Badge.tsx            |     100 |    66.66 |     100 |     100 | 13                
+  Button.tsx           |     100 |    27.27 |     100 |     100 | 11-29             
+ edu                   |     100 |      100 |     100 |     100 |                   
+  DevSandbox.tsx       |     100 |      100 |     100 |     100 |                   
+ edu/components        |     100 |      100 |     100 |     100 |                   
+  AppShell.tsx         |     100 |      100 |     100 |     100 |                   
+  Breadcrumbs.tsx      |     100 |      100 |     100 |     100 |                   
+  Header.tsx           |     100 |      100 |     100 |     100 |                   
+ edu/pages/assignments |     100 |      100 |     100 |     100 |                   
+  AssignmentsList.tsx  |     100 |      100 |     100 |     100 |                   
+ edu/pages/courses     |     100 |      100 |     100 |     100 |                   
+  CoursesList.tsx      |     100 |      100 |     100 |     100 |                   
+ edu/pages/lessons     |     100 |      100 |     100 |     100 |                   
+  LessonsList.tsx      |     100 |      100 |     100 |     100 |                   
+-----------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 1 failed, 12 passed, 13 total
+Tests:       1 failed, 12 passed, 13 total
+Snapshots:   0 total
+Time:        2.291 s
+Ran all test suites.

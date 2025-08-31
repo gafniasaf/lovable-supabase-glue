@@ -1,0 +1,72 @@
+name: UI and E2E Tests
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  jest-ui:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        shell: pwsh
+
+      - name: Run Jest UI
+        run: npm run test --silent
+        shell: pwsh
+
+      - name: Upload artifacts (UI)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ui-artifacts
+          path: |
+            artifacts/ui/**
+            reports/ui/**
+          if-no-files-found: warn
+
+  e2e:
+    runs-on: windows-latest
+    needs: jest-ui
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        shell: pwsh
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+        shell: pwsh
+
+      - name: Run Playwright E2E via script
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File scripts/e2e/run-e2e.ps1
+        shell: pwsh
+
+      - name: Upload artifacts (E2E)
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-artifacts
+          path: |
+            artifacts/e2e/**
+            reports/e2e/**
+          if-no-files-found: warn
+
+

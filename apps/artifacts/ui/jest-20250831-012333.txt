@@ -1,0 +1,61 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 test
+> jest --runInBand --runInBand
+
+node.exe : PASS apps/web/src/edu/__tests__/HeaderDropdownInput.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (PASS apps/web/s...nInput.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PASS apps/web/src/edu/__tests__/CoursesTable.test.tsx
+PASS apps/web/src/edu/__tests__/Breadcrumbs.test.tsx
+PASS apps/web/src/edu/__tests__/AppShell.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderActions.test.tsx
+PASS apps/web/src/edu/__tests__/EduLayout.test.tsx
+PASS apps/web/src/edu/__tests__/AssignmentsList.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderNav.test.tsx
+PASS apps/web/src/edu/__tests__/Header.test.tsx
+PASS apps/web/src/edu/__tests__/EduAssignmentsPage.test.tsx
+PASS apps/web/src/edu/__tests__/EduCoursesPage.test.tsx
+PASS apps/web/src/edu/__tests__/CoursesList.test.tsx
+PASS apps/web/src/edu/__tests__/LessonsList.test.tsx
+PASS apps/web/src/edu/__tests__/EduSandboxPage.test.tsx
+PASS apps/web/src/edu/__tests__/DevSandbox.test.tsx
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |     100 |    56.25 |     100 |     100 |                   
+ app/edu               |     100 |      100 |     100 |     100 |                   
+  layout.tsx           |     100 |      100 |     100 |     100 |                   
+ app/edu/assignments   |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/courses       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/sandbox       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ components/ui         |     100 |       50 |     100 |     100 |                   
+  Badge.tsx            |     100 |    66.66 |     100 |     100 | 13                
+  Button.tsx           |     100 |    45.45 |     100 |     100 | 11-12,20,27-29    
+ edu                   |     100 |      100 |     100 |     100 |                   
+  DevSandbox.tsx       |     100 |      100 |     100 |     100 |                   
+ edu/components        |     100 |      100 |     100 |     100 |                   
+  AppShell.tsx         |     100 |      100 |     100 |     100 |                   
+  Breadcrumbs.tsx      |     100 |      100 |     100 |     100 |                   
+  Header.tsx           |     100 |      100 |     100 |     100 |                   
+ edu/pages/assignments |     100 |      100 |     100 |     100 |                   
+  AssignmentsList.tsx  |     100 |      100 |     100 |     100 |                   
+ edu/pages/courses     |     100 |      100 |     100 |     100 |                   
+  CoursesList.tsx      |     100 |      100 |     100 |     100 |                   
+ edu/pages/lessons     |     100 |      100 |     100 |     100 |                   
+  LessonsList.tsx      |     100 |      100 |     100 |     100 |                   
+ lib                   |     100 |      100 |     100 |     100 |                   
+  utils.ts             |     100 |      100 |     100 |     100 |                   
+-----------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 15 passed, 15 total
+Tests:       15 passed, 15 total
+Snapshots:   0 total
+Time:        2.637 s
+Ran all test suites.

@@ -1,0 +1,9 @@
+﻿error: pathspec 'switch' did not match any file(s) known to git
+error: pathspec 'to' did not match any file(s) known to git
+error: pathspec '@vercel/static-build' did not match any file(s) known to git
+error: pathspec 'with' did not match any file(s) known to git
+error: pathspec 'dist' did not match any file(s) known to git
+error: pathspec 'output' did not match any file(s) known to git
+error: pathspec 'and' did not match any file(s) known to git
+error: pathspec 'SPA' did not match any file(s) known to git
+error: pathspec 'routes'' did not match any file(s) known to git

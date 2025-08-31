@@ -1,0 +1,134 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 test
+> jest --runInBand --runInBand
+
+node.exe : PASS apps/web/src/edu/__tests__/CoursesSort.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (PASS apps/web/s...esSort.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PASS apps/web/src/edu/__tests__/HeaderDropdownBehavior.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderNav.test.tsx
+PASS apps/web/src/edu/__tests__/Breadcrumbs.test.tsx
+PASS apps/web/src/edu/__tests__/EduLayout.test.tsx
+PASS apps/web/src/edu/__tests__/Header.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderActions.test.tsx
+PASS apps/web/src/edu/__tests__/AssignmentsFilter.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderDropdownInput.test.tsx
+PASS apps/web/src/edu/__tests__/AppShell.test.tsx
+FAIL apps/web/src/edu/__tests__/CoursesTable.test.tsx
+  ● CoursesList table › renders a table with a demo row
+
+    TestingLibraryElementError: Unable to find an element with the text: /introduction to math/i. This could be because 
+the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your 
+matcher more flexible.
+
+    Ignored nodes: comments, script, style
+    [36m<table[39m
+      [33mclass[39m=[32m"mt-3 w-full text-sm"[39m
+      [33mrole[39m=[32m"table"[39m
+    [36m>[39m
+      [36m<thead>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33maria-sort[39m=[32m"none"[39m
+            [33mclass[39m=[32m"text-left cursor-pointer select-none"[39m
+          [36m>[39m
+            [0mCourse[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"text-left"[39m
+          [36m>[39m
+            [0mTeacher[0m
+          [36m</th>[39m
+        [36m</tr>[39m
+      [36m</thead>[39m
+      [36m<tbody>[39m
+        [36m<tr>[39m
+          [36m<td>[39m
+            [0mCalculus[0m
+          [36m</td>[39m
+          [36m<td>[39m
+            [0mJohn Smith[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<td>[39m
+            [0mAlgebra[0m
+          [36m</td>[39m
+          [36m<td>[39m
+            [0mJane Doe[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<td>[39m
+            [0mMath Theory[0m
+          [36m</td>[39m
+          [36m<td>[39m
+            [0mAlan T[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+      [36m</tbody>[39m
+    [36m</table>[39m
+
+    [0m [90m 10 |[39m     [36mconst[39m table [33m=[39m screen[33m.[39mgetByRole([32m'table'[39m)[33m;[39m
+     [90m 11 |[39m     expect(table)[33m.[39mtoBeInTheDocument()[33m;[39m
+    [31m[1m>[22m[39m[90m 12 |[39m     expect(within(table)[33m.[39mgetByText([35m/introduction to 
+math/i[39m))[33m.[39mtoBeInTheDocument()[33m;[39m
+     [90m    |[39m                          [31m[1m^[22m[39m
+     [90m 13 |[39m   })[33m;[39m
+     [90m 14 |[39m })[33m;[39m
+     [90m 15 |[39m[0m
+
+      at Object.getElementError (node_modules/@testing-library/dom/dist/config.js:37:19)
+      at node_modules/@testing-library/dom/dist/query-helpers.js:76:38
+      at node_modules/@testing-library/dom/dist/query-helpers.js:52:17
+      at node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+      at Object.<anonymous> (apps/web/src/edu/__tests__/CoursesTable.test.tsx:12:26)
+
+PASS apps/web/src/edu/__tests__/EduCoursesPage.test.tsx
+PASS apps/web/src/edu/__tests__/AssignmentsList.test.tsx
+PASS apps/web/src/edu/__tests__/LessonsList.test.tsx
+PASS apps/web/src/edu/__tests__/EduAssignmentsPage.test.tsx
+PASS apps/web/src/edu/__tests__/CoursesList.test.tsx
+PASS apps/web/src/edu/__tests__/EduSandboxPage.test.tsx
+PASS apps/web/src/edu/__tests__/DevSandbox.test.tsx
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |   97.47 |    65.85 |   97.05 |   98.18 |                   
+ app/edu               |     100 |      100 |     100 |     100 |                   
+  layout.tsx           |     100 |      100 |     100 |     100 |                   
+ app/edu/assignments   |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/courses       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/sandbox       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ components/ui         |   93.87 |    51.72 |   92.85 |   95.45 |                   
+  Badge.tsx            |     100 |    66.66 |     100 |     100 | 13                
+  Button.tsx           |     100 |    45.45 |     100 |     100 | 11-12,20,27-29    
+  dropdown-menu.tsx    |   91.89 |    53.33 |   91.66 |   93.75 | 39-40             
+ edu                   |     100 |      100 |     100 |     100 |                   
+  DevSandbox.tsx       |     100 |      100 |     100 |     100 |                   
+ edu/components        |     100 |      100 |     100 |     100 |                   
+  AppShell.tsx         |     100 |      100 |     100 |     100 |                   
+  Breadcrumbs.tsx      |     100 |      100 |     100 |     100 |                   
+  Header.tsx           |     100 |      100 |     100 |     100 |                   
+ edu/pages/assignments |     100 |      100 |     100 |     100 |                   
+  AssignmentsList.tsx  |     100 |      100 |     100 |     100 |                   
+ edu/pages/courses     |     100 |      100 |     100 |     100 |                   
+  CoursesList.tsx      |     100 |      100 |     100 |     100 |                   
+ edu/pages/lessons     |     100 |      100 |     100 |     100 |                   
+  LessonsList.tsx      |     100 |      100 |     100 |     100 |                   
+ lib                   |     100 |      100 |     100 |     100 |                   
+  utils.ts             |     100 |      100 |     100 |     100 |                   
+-----------------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 1 failed, 17 passed, 18 total
+Tests:       1 failed, 17 passed, 18 total
+Snapshots:   0 total
+Time:        2.668 s
+Ran all test suites.

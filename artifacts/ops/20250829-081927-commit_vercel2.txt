@@ -1,0 +1,5 @@
+﻿error: pathspec 'align' did not match any file(s) known to git
+error: pathspec 'config' did not match any file(s) known to git
+error: pathspec 'with' did not match any file(s) known to git
+error: pathspec '.next' did not match any file(s) known to git
+error: pathspec 'outputDirectory'' did not match any file(s) known to git

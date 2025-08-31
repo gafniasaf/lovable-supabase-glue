@@ -1,0 +1,8 @@
+﻿too many arguments
+
+Usage:  gh pr close {<number> | <url> | <branch>} [flags]
+
+Flags:
+  -c, --comment string   Leave a closing comment
+  -d, --delete-branch    Delete the local and remote branch after close
+  

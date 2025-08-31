@@ -1,0 +1,5 @@
+﻿github.com
+  Γ£ô Logged in to github.com account gafniasaf (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: github_pat_11BTISNKA0VQTrnvmmcXOY_***********************************************************

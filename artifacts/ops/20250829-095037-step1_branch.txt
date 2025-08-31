@@ -1,0 +1,1 @@
+﻿Switched to a new branch 'fix/supabase-schema-table'

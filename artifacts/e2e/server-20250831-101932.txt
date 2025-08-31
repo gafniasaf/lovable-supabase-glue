@@ -1,0 +1,52 @@
+﻿
+> web@0.1.0 start:e2e
+> set NEXT_DISABLE_SWC_NATIVE=1&& next build && next start -p 3077 -H 127.0.0.1
+
+  Γû▓ Next.js 14.2.5
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/7) ...
+   Generating static pages (1/7) 
+   Generating static pages (3/7) 
+   Generating static pages (5/7) 
+ Γ£ô Generating static pages (7/7)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+Γöî Γùï /_not-found                          874 B          87.9 kB
+Γö£ Γùï /edu/assignments                     592 B          87.6 kB
+Γö£ Γùï /edu/courses                         820 B          87.9 kB
+Γö£ Γùï /edu/lessons                         277 B          87.3 kB
+Γöö Γùï /edu/sandbox                         295 B          87.3 kB
++ First Load JS shared by all            87 kB
+  Γö£ chunks/1dd3208c-5b9cb27a130fb09e.js  53.6 kB
+  Γö£ chunks/286-161939d3a0631ef1.js       31.5 kB
+  Γöö other shared chunks (total)          1.88 kB
+
+
+Γùï  (Static)  prerendered as static content
+
+  Γû▓ Next.js 14.2.5
+  - Local:        http://127.0.0.1:3077
+  - Network:      http://127.0.0.1:3077
+
+ Γ£ô Starting...
+ Γ£ô Ready in 254ms
+node.exe : npm error Lifecycle script `start:e2e` failed with error:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm error Lifec...led with error::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm error code 1
+npm error path C:\Users\agafn\Desktop\education system 5\apps\web
+npm error workspace web@0.1.0
+npm error location C:\Users\agafn\Desktop\education system 5\apps\web
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c set NEXT_DISABLE_SWC_NATIVE=1&& next build && next start -p 
+3077 -H 127.0.0.1

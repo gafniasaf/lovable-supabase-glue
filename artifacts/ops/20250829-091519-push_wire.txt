@@ -1,0 +1,2 @@
+﻿branch 'feat/wire-supabase-demo' set up to track 'lovable/feat/wire-supabase-demo'.
+Everything up-to-date

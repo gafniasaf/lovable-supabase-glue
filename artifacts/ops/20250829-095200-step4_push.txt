@@ -1,0 +1,7 @@
+﻿remote: 
+remote: Create a pull request for 'fix/supabase-schema-table' on GitHub by visiting:        
+remote:      https://github.com/gafniasaf/lovable-supabase-glue/pull/new/fix/supabase-schema-table        
+remote: 
+branch 'fix/supabase-schema-table' set up to track 'lovable/fix/supabase-schema-table'.
+To https://github.com/gafniasaf/lovable-supabase-glue.git
+ * [new branch]      fix/supabase-schema-table -> fix/supabase-schema-table

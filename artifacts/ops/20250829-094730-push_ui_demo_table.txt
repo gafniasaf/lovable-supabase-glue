@@ -1,0 +1,7 @@
+﻿remote: 
+remote: Create a pull request for 'fix/supabase-fully-qualified-table' on GitHub by visiting:        
+remote:      https://github.com/gafniasaf/lovable-supabase-glue/pull/new/fix/supabase-fully-qualified-table        
+remote: 
+branch 'fix/supabase-fully-qualified-table' set up to track 'lovable/fix/supabase-fully-qualified-table'.
+To https://github.com/gafniasaf/lovable-supabase-glue.git
+ * [new branch]      fix/supabase-fully-qualified-table -> fix/supabase-fully-qualified-table

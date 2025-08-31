@@ -1,0 +1,1 @@
+﻿HEAD is now at afc11de feat(web): wire Supabase demo (ui_demo.search_audit_logs) and show recent logs; support NEXT_PUBLIC_* envs in client

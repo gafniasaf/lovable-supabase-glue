@@ -1,0 +1,38 @@
+name: UI Tests
+
+on:
+  pull_request:
+  push:
+    branches: [ main ]
+
+jobs:
+  ui-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run UI Jest suite
+        env:
+          CI: 'true'
+        run: npm run test:ui -- --reporters=default --reporters=jest-junit
+
+      - name: Upload UI test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jest-ui-results
+          path: |
+            tests/test-results/**
+            reports/unit/coverage/**
+
+

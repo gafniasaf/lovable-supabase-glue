@@ -1,0 +1,43 @@
+﻿
+Running 8 tests using 4 workers
+
+[1A[2K[1/8] [chromium] › tests\e2e\edu-assignments.spec.ts:3:1 › assignments page renders
+[1A[2K[2/8] [chromium] › tests\e2e\a11y-axe.spec.ts:3:1 › no obvious accessibility issues on courses page (landmarks present)
+[1A[2K[3/8] [chromium] › tests\e2e\a11y-basic.spec.ts:3:1 › basic a11y landmarks present
+[1A[2K[4/8] [chromium] › tests\e2e\edu-audit-logs.spec.ts:3:1 › audit logs page renders
+[1A[2K[5/8] [chromium] › tests\e2e\edu-courses.spec.ts:3:1 › courses page renders
+[1A[2K[6/8] [chromium] › tests\e2e\edu-lessons.spec.ts:3:1 › lessons page renders
+[1A[2K[7/8] [chromium] › tests\e2e\edu-nav.spec.ts:3:1 › header nav contains links to edu routes
+[1A[2K[8/8] [chromium] › tests\e2e\edu-smoke.spec.ts:3:1 › edu sandbox renders
+[1A[2K  1) [chromium] › tests\e2e\edu-nav.spec.ts:3:1 › header nav contains links to edu routes ──────────
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m()[22m failed
+
+    Locator:  locator('a[href="/edu/assignments"]').first()
+    Expected: visible
+    Received: <element(s) not found>
+    Timeout:  10000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for locator('a[href="/edu/assignments"]').first()[22m
+
+
+       6 |   await page.goto(`${root}/edu/courses`, { waitUntil: 'domcontentloaded' });
+       7 |   await page.locator('header[role="banner"]').first().waitFor({ state: 'visible', timeout: 30000 });
+    >  8 |   await expect(page.locator('a[href="/edu/assignments"]').first()).toBeVisible();
+         |                                                                    ^
+       9 |   await expect(page.locator('a[href="/edu/courses"]').first()).toBeVisible();
+      10 |   await expect(page.locator('a[href="/edu/lessons"]').first()).toBeVisible();
+      11 | });
+        at C:\Users\agafn\Desktop\education system 5\tests\e2e\edu-nav.spec.ts:8:68
+
+
+[1A[2K  1 failed
+    [chromium] › tests\e2e\edu-nav.spec.ts:3:1 › header nav contains links to edu routes ───────────
+  7 passed (12.3s)
+
+To open last HTML report run:
+[36m[39m
+[36m  npx playwright show-report reports\e2e\html[39m
+[36m[39m

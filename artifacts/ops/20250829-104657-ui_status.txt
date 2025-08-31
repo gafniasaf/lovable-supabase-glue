@@ -1,0 +1,2 @@
+﻿## chore/ui-scripts-and-stubs...lovable/chore/ui-scripts-and-stubs
+?? artifacts/

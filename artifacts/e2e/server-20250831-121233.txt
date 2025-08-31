@@ -1,0 +1,60 @@
+﻿
+> web@0.1.0 start:e2e
+> set NEXT_DISABLE_SWC_NATIVE=1&& next build && next start -p 3077 -H 127.0.0.1
+
+  Γû▓ Next.js 14.2.5
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+
+./src/edu/pages/audit/AuditLogsList.tsx
+48:5  Warning: React Hook useEffect has a missing dependency: 'useMock'. Either include it or remove the dependency array.  react-hooks/exhaustive-deps
+
+info  - Need to disable some ESLint rules? Learn more here: https://nextjs.org/docs/basic-features/eslint#disabling-rules
+   Collecting page data ...
+   Generating static pages (0/8) ...
+   Generating static pages (2/8) 
+   Generating static pages (4/8) 
+   Generating static pages (6/8) 
+ Γ£ô Generating static pages (8/8)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+Γöî Γùï /_not-found                          874 B            88 kB
+Γö£ Γùï /edu/assignments                     592 B          87.7 kB
+Γö£ Γùï /edu/audit-logs                      40.5 kB         128 kB
+Γö£ Γùï /edu/courses                         823 B          87.9 kB
+Γö£ Γùï /edu/lessons                         277 B          87.4 kB
+Γöö Γùï /edu/sandbox                         295 B          87.4 kB
++ First Load JS shared by all            87.1 kB
+  Γö£ chunks/1dd3208c-6cfc3540e19fee00.js  53.6 kB
+  Γö£ chunks/286-8421504bc764681e.js       31.5 kB
+  Γöö other shared chunks (total)          1.94 kB
+
+
+╞Æ Middleware                             27 kB
+
+Γùï  (Static)  prerendered as static content
+
+  Γû▓ Next.js 14.2.5
+  - Local:        http://127.0.0.1:3077
+  - Network:      http://127.0.0.1:3077
+
+ Γ£ô Starting...
+ Γ£ô Ready in 286ms
+node.exe : npm error Lifecycle script `start:e2e` failed with error:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm error Lifec...led with error::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm error code 1
+npm error path C:\Users\agafn\Desktop\education system 5\apps\web
+npm error workspace web@0.1.0
+npm error location C:\Users\agafn\Desktop\education system 5\apps\web
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c set NEXT_DISABLE_SWC_NATIVE=1&& next build && next start -p 
+3077 -H 127.0.0.1

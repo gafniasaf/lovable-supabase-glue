@@ -1,0 +1,235 @@
+﻿
+> web@0.1.0 start:e2e
+> set NEXT_DISABLE_SWC_NATIVE=1&& next build && next start -p 3077 -H 127.0.0.1
+
+  Γû▓ Next.js 14.2.5
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/7) ...
+   Generating static pages (1/7) 
+   Generating static pages (3/7) 
+   Generating static pages (5/7) 
+ Γ£ô Generating static pages (7/7)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+Γöî Γùï /_not-found                          874 B          87.9 kB
+Γö£ Γùï /edu/assignments                     592 B          87.6 kB
+Γö£ Γùï /edu/courses                         820 B          87.9 kB
+Γö£ Γùï /edu/lessons                         277 B          87.3 kB
+Γöö Γùï /edu/sandbox                         295 B          87.3 kB
++ First Load JS shared by all            87 kB
+  Γö£ chunks/1dd3208c-5b9cb27a130fb09e.js  53.6 kB
+  Γö£ chunks/286-161939d3a0631ef1.js       31.5 kB
+  Γöö other shared chunks (total)          1.88 kB
+
+
+Γùï  (Static)  prerendered as static content
+
+  Γû▓ Next.js 14.2.5
+  - Local:        http://127.0.0.1:3077
+  - Network:      http://127.0.0.1:3077
+
+ Γ£ô Starting...
+ Γ£ô Ready in 303ms
+node.exe :  Γ¿» Error: Cannot find module 'C:\Users\agafn\Desktop\education system 
+5\apps\web\.next\server\pages\_error.js'
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Γ¿» Error: Can...ages\_error.js':String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Require stack:
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1365:15)
+    at C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
+    at Function._load (node:internal/modules/cjs/loader:1175:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1445:12)
+    at mod.require (C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ Γ¿» Error: Cannot find module 'C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\pages\_error.js'
+Require stack:
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1365:15)
+    at C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
+    at Function._load (node:internal/modules/cjs/loader:1175:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1445:12)
+    at mod.require (C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ Γ¿» Error: Cannot find module 'C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\pages\_error.js'
+Require stack:
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1365:15)
+    at C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
+    at Function._load (node:internal/modules/cjs/loader:1175:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1445:12)
+    at mod.require (C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ Γ¿» Error: Cannot find module 'C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\pages\_error.js'
+Require stack:
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1365:15)
+    at C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
+    at Function._load (node:internal/modules/cjs/loader:1175:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1445:12)
+    at mod.require (C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ Γ¿» Error: Cannot find module 'C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\pages\_error.js'
+Require stack:
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1365:15)
+    at C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
+    at Function._load (node:internal/modules/cjs/loader:1175:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1445:12)
+    at mod.require (C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ Γ¿» Error: Cannot find module 'C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\pages\_error.js'
+Require stack:
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1365:15)
+    at C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
+    at Function._load (node:internal/modules/cjs/loader:1175:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1445:12)
+    at mod.require (C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+ Γ¿» Error: Cannot find module 'C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\pages\_error.js'
+Require stack:
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\next.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\lib\start-server.js
+- C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\cli\next-start.js
+    at Function.<anonymous> (node:internal/modules/cjs/loader:1365:15)
+    at C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:55:36
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1021:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1026:22)
+    at Function._load (node:internal/modules/cjs/loader:1175:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1445:12)
+    at mod.require (C:\Users\agafn\Desktop\education system 5\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:135:16) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\next.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\server\\lib\\start-server.js',
+    'C:\\Users\\agafn\\Desktop\\education system 5\\node_modules\\next\\dist\\cli\\next-start.js'
+  ]
+}
+npm error Lifecycle script `start:e2e` failed with error:
+npm error code 1
+npm error path C:\Users\agafn\Desktop\education system 5\apps\web
+npm error workspace web@0.1.0
+npm error location C:\Users\agafn\Desktop\education system 5\apps\web
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c set NEXT_DISABLE_SWC_NATIVE=1&& next build && next start -p 
+3077 -H 127.0.0.1

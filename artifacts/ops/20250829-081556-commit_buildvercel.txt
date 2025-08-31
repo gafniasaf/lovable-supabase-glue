@@ -1,0 +1,7 @@
+﻿error: pathspec 'output' did not match any file(s) known to git
+error: pathspec '.next' did not match any file(s) known to git
+error: pathspec 'by' did not match any file(s) known to git
+error: pathspec 'moving' did not match any file(s) known to git
+error: pathspec 'dist;' did not match any file(s) known to git
+error: pathspec 'use' did not match any file(s) known to git
+error: pathspec 'build:vercel'' did not match any file(s) known to git

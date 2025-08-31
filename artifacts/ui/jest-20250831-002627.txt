@@ -1,0 +1,27 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 test
+> jest --runInBand --runInBand
+
+node.exe : PASS apps/web/src/edu/__tests__/DevSandbox.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (PASS apps/web/s...andbox.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PASS apps/web/src/edu/__tests__/AppShell.test.tsx
+-----------------|---------|----------|---------|---------|-------------------
+File             | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------|---------|----------|---------|---------|-------------------
+All files        |     100 |      100 |     100 |     100 |                   
+ edu             |     100 |      100 |     100 |     100 |                   
+  DevSandbox.tsx |     100 |      100 |     100 |     100 |                   
+ edu/components  |     100 |      100 |     100 |     100 |                   
+  AppShell.tsx   |     100 |      100 |     100 |     100 |                   
+-----------------|---------|----------|---------|---------|-------------------
+
+Test Suites: 1 skipped, 2 passed, 2 of 3 total
+Tests:       1 skipped, 2 passed, 3 total
+Snapshots:   0 total
+Time:        1.286 s
+Ran all test suites.

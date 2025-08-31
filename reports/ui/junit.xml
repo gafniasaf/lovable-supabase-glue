@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="22" failures="0" errors="0" time="2.598">
+  <testsuite name="AuditLogsList" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:51" time="0.416" tests="1">
+    <testcase classname="AuditLogsList renders logs from Supabase" name="AuditLogsList renders logs from Supabase" time="0.06">
+    </testcase>
+  </testsuite>
+  <testsuite name="/app/edu layout" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.126" tests="1">
+    <testcase classname="/app/edu layout wraps children with AppShell" name="/app/edu layout wraps children with AppShell" time="0.019">
+    </testcase>
+  </testsuite>
+  <testsuite name="Header actions" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.083" tests="1">
+    <testcase classname="Header actions shows notifications button with a badge" name="Header actions shows notifications button with a badge" time="0.018">
+    </testcase>
+  </testsuite>
+  <testsuite name="CoursesList pagination" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.103" tests="1">
+    <testcase classname="CoursesList pagination navigates with Next and Previous buttons" name="CoursesList pagination navigates with Next and Previous buttons" time="0.029">
+    </testcase>
+  </testsuite>
+  <testsuite name="Breadcrumbs" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.082" tests="1">
+    <testcase classname="Breadcrumbs renders breadcrumb trail including Assignments" name="Breadcrumbs renders breadcrumb trail including Assignments" time="0.015">
+    </testcase>
+  </testsuite>
+  <testsuite name="CoursesList sorting" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.085" tests="1">
+    <testcase classname="CoursesList sorting sorts by Course title ascending then descending" name="CoursesList sorting sorts by Course title ascending then descending" time="0.023">
+    </testcase>
+  </testsuite>
+  <testsuite name="AssignmentsList filtering" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.076" tests="1">
+    <testcase classname="AssignmentsList filtering filters rows by search input" name="AssignmentsList filtering filters rows by search input" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppShell" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.079" tests="1">
+    <testcase classname="AppShell renders children content" name="AppShell renders children content" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Header nav" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.073" tests="1">
+    <testcase classname="Header nav renders links to Assignments, Courses, Lessons" name="Header nav renders links to Assignments, Courses, Lessons" time="0.014">
+    </testcase>
+  </testsuite>
+  <testsuite name="Header dropdown behavior" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.08" tests="1">
+    <testcase classname="Header dropdown behavior opens Actions menu and shows items, then closes on item click" name="Header dropdown behavior opens Actions menu and shows items, then closes on item click" time="0.013">
+    </testcase>
+  </testsuite>
+  <testsuite name="/edu/sandbox page" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:52" time="0.051" tests="1">
+    <testcase classname="/edu/sandbox page renders DevSandbox title" name="/edu/sandbox page renders DevSandbox title" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="Header dropdown and input" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.064" tests="1">
+    <testcase classname="Header dropdown and input renders search input placeholder and a dropdown trigger" name="Header dropdown and input renders search input placeholder and a dropdown trigger" time="0.009">
+    </testcase>
+  </testsuite>
+  <testsuite name="Modal" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.056" tests="1">
+    <testcase classname="Modal opens and closes via trigger and close button" name="Modal opens and closes via trigger and close button" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="AssignmentsList" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.05" tests="1">
+    <testcase classname="AssignmentsList renders header &quot;All Assignments&quot;" name="AssignmentsList renders header &quot;All Assignments&quot;" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="Header" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.064" tests="1">
+    <testcase classname="Header renders site title and breadcrumbs container" name="Header renders site title and breadcrumbs container" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="/edu/courses page" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.054" tests="1">
+    <testcase classname="/edu/courses page renders All Courses heading" name="/edu/courses page renders All Courses heading" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="LessonsList" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.057" tests="1">
+    <testcase classname="LessonsList renders header &quot;All Lessons&quot;" name="LessonsList renders header &quot;All Lessons&quot;" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="Toast provider" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.056" tests="1">
+    <testcase classname="Toast provider shows a toast when triggered" name="Toast provider shows a toast when triggered" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="/edu/assignments page" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.053" tests="1">
+    <testcase classname="/edu/assignments page renders All Assignments heading" name="/edu/assignments page renders All Assignments heading" time="0.008">
+    </testcase>
+  </testsuite>
+  <testsuite name="CoursesList table" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.056" tests="1">
+    <testcase classname="CoursesList table renders a table with a demo row" name="CoursesList table renders a table with a demo row" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="DevSandbox" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.052" tests="1">
+    <testcase classname="DevSandbox renders Education Platform v2 title" name="DevSandbox renders Education Platform v2 title" time="0.002">
+    </testcase>
+  </testsuite>
+  <testsuite name="CoursesList" errors="0" failures="0" skipped="0" timestamp="2025-08-31T09:55:53" time="0.055" tests="1">
+    <testcase classname="CoursesList renders header &quot;All Courses&quot;" name="CoursesList renders header &quot;All Courses&quot;" time="0.004">
+    </testcase>
+  </testsuite>
+</testsuites>

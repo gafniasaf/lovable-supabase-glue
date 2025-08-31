@@ -1,0 +1,10 @@
+﻿node.exe : npm error No workspaces found:
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (npm error No workspaces found::String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+npm error   --workspace=apps/web
+npm error A complete log of this run can be found in: 
+C:\Users\agafn\AppData\Local\npm-cache\_logs\2025-08-30T22_39_11_371Z-debug-0.log

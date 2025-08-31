@@ -1,0 +1,128 @@
+﻿node.exe : FAIL apps/web/src/edu/__tests__/AuditLogsList.test.tsx
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (FAIL apps/web/s...gsList.test.tsx:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  ● Test suite failed to run
+
+    Configuration error:
+
+    Could not locate module @/integrations/supabase/client mapped as:
+    C:\Users\agafn\Desktop\education system 5\apps\web\src\$1.
+
+    Please check your configuration for these entries:
+    {
+      "moduleNameMapper": {
+        "/^@\/(.*)$/": "C:\Users\agafn\Desktop\education system 5\apps\web\src\$1"
+      },
+      "resolver": undefined
+    }
+
+    [0m [90m  6 |[39m [36mconst[39m mockSelect [33m=[39m jest[33m.[39mfn()[33m;[39m
+     [90m  7 |[39m [36mconst[39m mockFrom [33m=[39m jest[33m.[39mfn(() [33m=>[39m ({ select[33m:[39m 
+mockSelect }))[33m;[39m
+    [31m[1m>[22m[39m[90m  8 |[39m jest[33m.[39mmock([32m'@/integrations/supabase/client'[39m[33m,[39m () 
+[33m=>[39m ({
+     [90m    |[39m      [31m[1m^[22m[39m
+     [90m  9 |[39m   supabase[33m:[39m { [36mfrom[39m[33m:[39m (table[33m:[39m string) [33m=>[39m 
+mockFrom(table) }[33m,[39m
+     [90m 10 |[39m }))[33m;[39m
+     [90m 11 |[39m[0m
+
+      at createNoMappedModuleFoundError (node_modules/jest-resolve/build/index.js:1117:17)
+      at Object.<anonymous> (apps/web/src/edu/__tests__/AuditLogsList.test.tsx:8:6)
+
+PASS apps/web/src/edu/__tests__/CoursesPagination.test.tsx
+PASS apps/web/src/edu/__tests__/EduLayout.test.tsx
+PASS apps/web/src/edu/__tests__/AssignmentsList.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderDropdownInput.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderDropdownBehavior.test.tsx
+PASS apps/web/src/edu/__tests__/AppShell.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderActions.test.tsx
+PASS apps/web/src/edu/__tests__/CoursesSort.test.tsx
+PASS apps/web/src/edu/__tests__/ModalIntegration.test.tsx
+PASS apps/web/src/edu/__tests__/EduCoursesPage.test.tsx
+PASS apps/web/src/edu/__tests__/Breadcrumbs.test.tsx
+PASS apps/web/src/edu/__tests__/HeaderNav.test.tsx
+PASS apps/web/src/edu/__tests__/Header.test.tsx
+PASS apps/web/src/edu/__tests__/EduSandboxPage.test.tsx
+PASS apps/web/src/edu/__tests__/Toast.test.tsx
+PASS apps/web/src/edu/__tests__/EduAssignmentsPage.test.tsx
+PASS apps/web/src/edu/__tests__/CoursesTable.test.tsx
+PASS apps/web/src/edu/__tests__/LessonsList.test.tsx
+PASS apps/web/src/edu/__tests__/AssignmentsFilter.test.tsx
+PASS apps/web/src/edu/__tests__/DevSandbox.test.tsx
+PASS apps/web/src/edu/__tests__/CoursesList.test.tsx
+-----------------------|---------|----------|---------|---------|-------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-----------------------|---------|----------|---------|---------|-------------------
+All files              |   96.64 |    68.62 |   96.22 |   98.75 |                   
+ app/edu               |     100 |      100 |     100 |     100 |                   
+  layout.tsx           |     100 |      100 |     100 |     100 |                   
+ app/edu/assignments   |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/courses       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ app/edu/sandbox       |     100 |      100 |     100 |     100 |                   
+  page.tsx             |     100 |      100 |     100 |     100 |                   
+ components/ui         |   95.52 |    54.83 |      95 |   96.61 |                   
+  Badge.tsx            |     100 |    66.66 |     100 |     100 | 13                
+  Button.tsx           |     100 |    45.45 |     100 |     100 | 11-12,20,27-29    
+  dropdown-menu.tsx    |   91.89 |    53.33 |   91.66 |   93.75 | 39-40             
+  modal.tsx            |     100 |      100 |     100 |     100 |                   
+ edu                   |     100 |      100 |     100 |     100 |                   
+  DevSandbox.tsx       |     100 |      100 |     100 |     100 |                   
+ edu/components        |   94.44 |       75 |   91.66 |     100 |                   
+  AppShell.tsx         |     100 |      100 |     100 |     100 |                   
+  Breadcrumbs.tsx      |     100 |      100 |     100 |     100 |                   
+  Header.tsx           |     100 |      100 |     100 |     100 |                   
+  ToastProvider.tsx    |   90.32 |    66.66 |    87.5 |     100 | 10-34             
+ edu/pages/assignments |     100 |      100 |     100 |     100 |                   
+  AssignmentsList.tsx  |     100 |      100 |     100 |     100 |                   
+ edu/pages/courses     |     100 |      100 |     100 |     100 |                   
+  CoursesList.tsx      |     100 |      100 |     100 |     100 |                   
+ edu/pages/lessons     |     100 |      100 |     100 |     100 |                   
+  LessonsList.tsx      |     100 |      100 |     100 |     100 |                   
+ lib                   |     100 |      100 |     100 |     100 |                   
+  utils.ts             |     100 |      100 |     100 |     100 |                   
+-----------------------|---------|----------|---------|---------|-------------------
+
+Summary of all failing tests
+FAIL apps/web/src/edu/__tests__/AuditLogsList.test.tsx
+  ● Test suite failed to run
+
+    Configuration error:
+
+    Could not locate module @/integrations/supabase/client mapped as:
+    C:\Users\agafn\Desktop\education system 5\apps\web\src\$1.
+
+    Please check your configuration for these entries:
+    {
+      "moduleNameMapper": {
+        "/^@\/(.*)$/": "C:\Users\agafn\Desktop\education system 5\apps\web\src\$1"
+      },
+      "resolver": undefined
+    }
+
+    [0m [90m  6 |[39m [36mconst[39m mockSelect [33m=[39m jest[33m.[39mfn()[33m;[39m
+     [90m  7 |[39m [36mconst[39m mockFrom [33m=[39m jest[33m.[39mfn(() [33m=>[39m ({ select[33m:[39m 
+mockSelect }))[33m;[39m
+    [31m[1m>[22m[39m[90m  8 |[39m jest[33m.[39mmock([32m'@/integrations/supabase/client'[39m[33m,[39m () 
+[33m=>[39m ({
+     [90m    |[39m      [31m[1m^[22m[39m
+     [90m  9 |[39m   supabase[33m:[39m { [36mfrom[39m[33m:[39m (table[33m:[39m string) [33m=>[39m 
+mockFrom(table) }[33m,[39m
+     [90m 10 |[39m }))[33m;[39m
+     [90m 11 |[39m[0m
+
+      at createNoMappedModuleFoundError (node_modules/jest-resolve/build/index.js:1117:17)
+      at Object.<anonymous> (apps/web/src/edu/__tests__/AuditLogsList.test.tsx:8:6)
+
+
+Test Suites: 1 failed, 21 passed, 22 total
+Tests:       21 passed, 21 total
+Snapshots:   0 total
+Time:        2.542 s
+Ran all test suites.

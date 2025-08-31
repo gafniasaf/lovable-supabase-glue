@@ -1,0 +1,138 @@
+﻿
+> vite_react_shadcn_ts@0.0.0 test
+> jest --runInBand --runInBand
+
+node.exe : ts-jest[config] (WARN) [94mmessage[0m[90m TS151001: [0mIf you have issues related to imports, you should 
+consider setting `esModuleInterop` to `true` in your TypeScript configuration file (usually `tsconfig.json`). See https:/
+/blogs.msdn.microsoft.com/typescript/2018/01/31/announcing-typescript-2-7/#easier-ecmascript-module-interoperability for 
+more information.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ts-jest[config]...re information.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+FAIL apps/web/src/edu/__tests__/AssignmentsList.test.tsx
+  ● Test suite failed to run
+
+    [96mapps/web/src/edu/__tests__/AssignmentsList.test.tsx[0m:[93m1[0m:[93m8[0m - [91merror[0m[90m TS1259: 
+[0mModule '"C:/Users/agafn/Desktop/education system 5/node_modules/@types/react/index"' can only be default-imported 
+using the 'esModuleInterop' flag
+
+    [7m1[0m import React from 'react';
+    [7m [0m [91m       ~~~~~[0m
+
+      [96mnode_modules/@types/react/index.d.ts[0m:[93m47[0m:[93m1[0m
+        [7m47[0m export = React;
+        [7m  [0m [96m~~~~~~~~~~~~~~~[0m
+        This module is declared with 'export =', and can only be used with a default import when using the 
+'esModuleInterop' flag.
+    [96mapps/web/src/edu/__tests__/AssignmentsList.test.tsx[0m:[93m4[0m:[93m33[0m - [91merror[0m[90m TS2307: 
+[0mCannot find module '@/edu/pages/assignments/AssignmentsList' or its corresponding type declarations.
+
+    [7m4[0m import { AssignmentsList } from '@/edu/pages/assignments/AssignmentsList';
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mapps/web/src/edu/__tests__/AssignmentsList.test.tsx[0m:[93m8[0m:[93m12[0m - [91merror[0m[90m TS17004: 
+[0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m8[0m     render(<div className="p-2"><AssignmentsList /></div>);
+    [7m [0m [91m           ~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mapps/web/src/edu/__tests__/AssignmentsList.test.tsx[0m:[93m8[0m:[93m33[0m - [91merror[0m[90m TS17004: 
+[0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m8[0m     render(<div className="p-2"><AssignmentsList /></div>);
+    [7m [0m [91m                                ~~~~~~~~~~~~~~~~~~~[0m
+
+FAIL apps/web/src/edu/__tests__/AppShell.test.tsx
+  ● Test suite failed to run
+
+    [96mapps/web/src/edu/__tests__/AppShell.test.tsx[0m:[93m1[0m:[93m8[0m - [91merror[0m[90m TS1259: [0mModule 
+'"C:/Users/agafn/Desktop/education system 5/node_modules/@types/react/index"' can only be default-imported using the 
+'esModuleInterop' flag
+
+    [7m1[0m import React from "react";
+    [7m [0m [91m       ~~~~~[0m
+
+      [96mnode_modules/@types/react/index.d.ts[0m:[93m47[0m:[93m1[0m
+        [7m47[0m export = React;
+        [7m  [0m [96m~~~~~~~~~~~~~~~[0m
+        This module is declared with 'export =', and can only be used with a default import when using the 
+'esModuleInterop' flag.
+    [96mapps/web/src/edu/__tests__/AppShell.test.tsx[0m:[93m5[0m:[93m26[0m - [91merror[0m[90m TS2307: 
+[0mCannot find module '@/edu/components/AppShell' or its corresponding type declarations.
+
+    [7m5[0m import { AppShell } from "@/edu/components/AppShell";
+    [7m [0m [91m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    [96mapps/web/src/edu/__tests__/AppShell.test.tsx[0m:[93m10[0m:[93m7[0m - [91merror[0m[90m TS17004: 
+[0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m10[0m       <AppShell>
+    [7m  [0m [91m      ~~~~~~~~~~[0m
+    [96mapps/web/src/edu/__tests__/AppShell.test.tsx[0m:[93m11[0m:[93m9[0m - [91merror[0m[90m TS17004: 
+[0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m11[0m         <p>hello</p>
+    [7m  [0m [91m        ~~~[0m
+
+FAIL apps/web/src/edu/__tests__/DevSandbox.test.tsx
+  ● Test suite failed to run
+
+    [96mapps/web/src/edu/__tests__/DevSandbox.test.tsx[0m:[93m1[0m:[93m8[0m - [91merror[0m[90m TS1259: 
+[0mModule '"C:/Users/agafn/Desktop/education system 5/node_modules/@types/react/index"' can only be default-imported 
+using the 'esModuleInterop' flag
+
+    [7m1[0m import React from "react";
+    [7m [0m [91m       ~~~~~[0m
+
+      [96mnode_modules/@types/react/index.d.ts[0m:[93m47[0m:[93m1[0m
+        [7m47[0m export = React;
+        [7m  [0m [96m~~~~~~~~~~~~~~~[0m
+        This module is declared with 'export =', and can only be used with a default import when using the 
+'esModuleInterop' flag.
+    [96mapps/web/src/edu/__tests__/DevSandbox.test.tsx[0m:[93m5[0m:[93m28[0m - [91merror[0m[90m TS2307: 
+[0mCannot find module '@/edu/DevSandbox' or its corresponding type declarations.
+
+    [7m5[0m import { DevSandbox } from "@/edu/DevSandbox";
+    [7m [0m [91m                           ~~~~~~~~~~~~~~~~~~[0m
+    [96mapps/web/src/edu/__tests__/DevSandbox.test.tsx[0m:[93m9[0m:[93m12[0m - [91merror[0m[90m TS17004: 
+[0mCannot use JSX unless the '--jsx' flag is provided.
+
+    [7m9[0m     render(<DevSandbox />);
+    [7m [0m [91m           ~~~~~~~~~~~~~~[0m
+
+FAIL src/App.test.tsx
+  ● Test suite failed to run
+
+    [96msrc/App.test.tsx[0m:[93m1[0m:[93m8[0m - [91merror[0m[90m TS1259: [0mModule 
+'"C:/Users/agafn/Desktop/education system 5/node_modules/@types/react/index"' can only be default-imported using the 
+'esModuleInterop' flag
+
+    [7m1[0m import React from 'react';
+    [7m [0m [91m       ~~~~~[0m
+
+      [96mnode_modules/@types/react/index.d.ts[0m:[93m47[0m:[93m1[0m
+        [7m47[0m export = React;
+        [7m  [0m [96m~~~~~~~~~~~~~~~[0m
+        This module is declared with 'export =', and can only be used with a default import when using the 
+'esModuleInterop' flag.
+    [96msrc/App.test.tsx[0m:[93m3[0m:[93m21[0m - [91merror[0m[90m TS6142: [0mModule './App' was resolved to 
+'C:/Users/agafn/Desktop/education system 5/src/App.tsx', but '--jsx' is not set.
+
+    [7m3[0m import { App } from './App';
+    [7m [0m [91m                    ~~~~~~~[0m
+    [96msrc/App.test.tsx[0m:[93m20[0m:[93m10[0m - [91merror[0m[90m TS17004: [0mCannot use JSX unless the 
+'--jsx' flag is provided.
+
+    [7m20[0m   render(<App />);
+    [7m  [0m [91m         ~~~~~~~[0m
+
+----------|---------|----------|---------|---------|-------------------
+File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+----------|---------|----------|---------|---------|-------------------
+All files |       0 |        0 |       0 |       0 |                   
+----------|---------|----------|---------|---------|-------------------
+Test Suites: 4 failed, 4 total
+Tests:       0 total
+Snapshots:   0 total
+Time:        3.219 s
+Ran all test suites.

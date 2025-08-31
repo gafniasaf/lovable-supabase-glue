@@ -1,0 +1,19 @@
+﻿C:\Users\agafn\AppData\Local\npm-cache\_npx\69f9afb961c37556\node_modules\vercel\dist\index.js:34780
+                throw new ArgError(`option requires argument: ${originalArgName}${extended}`, "ARG_MISSING_REQUIRED_LONGARG");
+                ^
+
+_ArgError: option requires argument: --token
+    at arg2 (C:\Users\agafn\AppData\Local\npm-cache\_npx\69f9afb961c37556\node_modules\vercel\dist\index.js:34780:23)
+    at getArgs (C:\Users\agafn\AppData\Local\npm-cache\_npx\69f9afb961c37556\node_modules\vercel\dist\index.js:34806:33)
+    at getGlobalPathConfig (C:\Users\agafn\AppData\Local\npm-cache\_npx\69f9afb961c37556\node_modules\vercel\dist\index.js:61079:20)
+    at src/util/config/files.ts (C:\Users\agafn\AppData\Local\npm-cache\_npx\69f9afb961c37556\node_modules\vercel\dist\index.js:61189:18)
+    at __init (C:\Users\agafn\AppData\Local\npm-cache\_npx\69f9afb961c37556\node_modules\vercel\dist\index.js:10:60)
+    at src/util/client.ts (C:\Users\agafn\AppData\Local\npm-cache\_npx\69f9afb961c37556\node_modules\vercel\dist\index.js:61304:5)
+    at __init (C:\Users\agafn\AppData\Local\npm-cache\_npx\69f9afb961c37556\node_modules\vercel\dist\index.js:10:60)
+    at Object.<anonymous> (C:\Users\agafn\AppData\Local\npm-cache\_npx\69f9afb961c37556\node_modules\vercel\dist\index.js:184269:1)
+    at Module._compile (node:internal/modules/cjs/loader:1688:14)
+    at Object..js (node:internal/modules/cjs/loader:1820:10) {
+  code: 'ARG_MISSING_REQUIRED_LONGARG'
+}
+
+Node.js v22.18.0

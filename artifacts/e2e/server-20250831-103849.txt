@@ -1,0 +1,71 @@
+﻿
+> web@0.1.0 start:e2e
+> set NEXT_DISABLE_SWC_NATIVE=1&& next build && next start -p 3077 -H 127.0.0.1
+
+  Γû▓ Next.js 14.2.5
+
+   Creating an optimized production build ...
+ Γ£ô Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/8) ...
+node.exe : Error: supabaseUrl is required.
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Program Files\nodejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Error: supabaseUrl is required.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+    at new aU (C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\app\edu\audit-logs\page.js:21:81310)
+    at 7497 (C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\app\edu\audit-logs\page.js:21:86322)
+    at Object.t [as require] (C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\webpack-runtime.js:1:128)
+    at require (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18490)
+    at I (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94362)
+    at C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:96668
+    at F._fromJSON (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:97106)
+    at JSON.parse (<anonymous>)
+    at O (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94083)
+    at t (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:100582) {
+  digest: '1808352720'
+}
+
+Error occurred prerendering page "/edu/audit-logs". Read more: https://nextjs.org/docs/messages/prerender-error
+
+Error: supabaseUrl is required.
+    at new aU (C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\app\edu\audit-logs\page.js:21:81310)
+    at 7497 (C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\app\edu\audit-logs\page.js:21:86322)
+    at Object.t [as require] (C:\Users\agafn\Desktop\education system 5\apps\web\.next\server\webpack-runtime.js:1:128)
+    at require (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:16:18490)
+    at I (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94362)
+    at C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:96668
+    at F._fromJSON (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:97106)
+    at JSON.parse (<anonymous>)
+    at O (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94083)
+    at t (C:\Users\agafn\Desktop\education system 
+5\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:100582)
+   Generating static pages (2/8) 
+   Generating static pages (4/8) 
+   Generating static pages (6/8) 
+ Γ£ô Generating static pages (8/8)
+
+> Export encountered errors on following paths:
+	/edu/audit-logs/page: /edu/audit-logs
+npm error Lifecycle script `start:e2e` failed with error:
+npm error code 1
+npm error path C:\Users\agafn\Desktop\education system 5\apps\web
+npm error workspace web@0.1.0
+npm error location C:\Users\agafn\Desktop\education system 5\apps\web
+npm error command failed
+npm error command C:\Windows\system32\cmd.exe /d /s /c set NEXT_DISABLE_SWC_NATIVE=1&& next build && next start -p 
+3077 -H 127.0.0.1

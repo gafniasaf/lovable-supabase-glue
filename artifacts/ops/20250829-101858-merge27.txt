@@ -1,0 +1,15 @@
+﻿From https://github.com/gafniasaf/lovable-supabase-glue
+ * branch            main       -> FETCH_HEAD
+   71afd68..7ba1ad0  main       -> origin/main
+Updating 71afd68..7ba1ad0
+Fast-forward
+ packages/expertfolio-ui/README.md      | 18 +++++++++++++++---
+ packages/expertfolio-ui/package.json   | 20 ++++++++++++++++++++
+ packages/expertfolio-ui/src/index.ts   | 20 ++++++++++++++++++++
+ packages/expertfolio-ui/tsconfig.json  | 13 +++++++++++++
+ packages/expertfolio-ui/vite.config.ts |  9 +++++++++
+ 5 files changed, 77 insertions(+), 3 deletions(-)
+ create mode 100644 packages/expertfolio-ui/package.json
+ create mode 100644 packages/expertfolio-ui/src/index.ts
+ create mode 100644 packages/expertfolio-ui/tsconfig.json
+ create mode 100644 packages/expertfolio-ui/vite.config.ts

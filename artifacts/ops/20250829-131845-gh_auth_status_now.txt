@@ -1,0 +1,9 @@
+﻿github.com
+  X Failed to log in to github.com using token (GH_TOKEN)
+  - Active account: true
+  - The token in GH_TOKEN is invalid.
+
+  Γ£ô Logged in to github.com account gafniasaf (keyring)
+  - Active account: false
+  - Git operations protocol: https
+  - Token: github_pat_11BTISNKA0VQTrnvmmcXOY_***********************************************************

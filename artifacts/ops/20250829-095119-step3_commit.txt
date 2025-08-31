@@ -1,0 +1,8 @@
+﻿error: pathspec 'use' did not match any file(s) known to git
+error: pathspec 'schema().from(\'audit_logs\')' did not match any file(s) known to git
+error: pathspec 'to' did not match any file(s) known to git
+error: pathspec 'address' did not match any file(s) known to git
+error: pathspec '404' did not match any file(s) known to git
+error: pathspec 'on' did not match any file(s) known to git
+error: pathspec 'qualified' did not match any file(s) known to git
+error: pathspec 'table'' did not match any file(s) known to git
