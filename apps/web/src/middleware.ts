@@ -17,12 +17,17 @@ export function middleware(req: NextRequest) {
 	if (allowVercelLive) {
 		connectSrc.push('https://vercel.live');
 	}
+	const frameSrc = ["'self'"];
+	if (allowVercelLive) {
+		frameSrc.push('https://vercel.live');
+	}
 	const csp = [
 		"default-src 'self'",
 		`script-src ${scriptSrc.join(' ')}`,
 		"style-src 'self' 'unsafe-inline'",
 		"img-src 'self' data: blob:",
 		`connect-src ${connectSrc.join(' ')}`,
+		`frame-src ${frameSrc.join(' ')}`,
 		"frame-ancestors 'self'",
 	].join('; ');
 	res.headers.set('Content-Security-Policy', csp);
