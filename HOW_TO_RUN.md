@@ -59,6 +59,9 @@ $env:NEXT_PUBLIC_SUPABASE_USE_MOCK = '1'
 ### Lighthouse CI (CI only)
 - A workflow runs Lighthouse against `/edu/courses` and stores reports under `reports/lhci/` as CI artifacts.
 
+### Deployment notes
+- Pushes to the active branch (e.g., `feature/edu-stabilization`) will trigger a Vercel deployment for this project.
+
 ### Artifacts and reports
 - UI/Jest logs: `artifacts/ui/`
 - E2E/Playwright logs: `artifacts/e2e/`
