@@ -1,0 +1,11 @@
+{
+  "name": "@education/shared",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.js",
+  "type": "commonjs",
+  "exports": {
+    ".": "./index.js"
+  }
+}
+
